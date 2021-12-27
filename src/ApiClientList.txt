@@ -1,0 +1,54 @@
+  public readonly ActivitiesClient Activities { get; set; }
+  public readonly ApiKeysClient ApiKeys { get; set; }
+  public readonly AppEnrollmentsClient AppEnrollments { get; set; }
+  public readonly ApplicationsClient Applications { get; set; }
+  public readonly AttachmentsClient Attachments { get; set; }
+  public readonly CodeDefinitionsClient CodeDefinitions { get; set; }
+  public readonly CompaniesClient Companies { get; set; }
+  public readonly ContactsClient Contacts { get; set; }
+  public readonly CreditMemoAppliedClient CreditMemoApplied { get; set; }
+  public readonly CurrenciesClient Currencies { get; set; }
+  public readonly CustomFieldDefinitionsClient CustomFieldDefinitions { get; set; }
+  public readonly CustomFieldValuesClient CustomFieldValues { get; set; }
+  public readonly DefinitionsClient Definitions { get; set; }
+  public readonly EmailsClient Emails { get; set; }
+  public readonly InvoiceHistoryClient InvoiceHistory { get; set; }
+  public readonly InvoicesClient Invoices { get; set; }
+  public readonly LeadsClient Leads { get; set; }
+  public readonly MigrationClient Migration { get; set; }
+  public readonly NotesClient Notes { get; set; }
+  public readonly PaymentApplicationsClient PaymentApplications { get; set; }
+  public readonly PaymentsClient Payments { get; set; }
+  public readonly ProvisioningClient Provisioning { get; set; }
+  public readonly ReportsClient Reports { get; set; }
+  public readonly StatusClient Status { get; set; }
+  public readonly SyncClient Sync { get; set; }
+  public readonly UserAccountsClient UserAccounts { get; set; }
+  public readonly UserRolesClient UserRoles { get; set; }
+    this.Activities = new ActivitiesClient(this);
+    this.ApiKeys = new ApiKeysClient(this);
+    this.AppEnrollments = new AppEnrollmentsClient(this);
+    this.Applications = new ApplicationsClient(this);
+    this.Attachments = new AttachmentsClient(this);
+    this.CodeDefinitions = new CodeDefinitionsClient(this);
+    this.Companies = new CompaniesClient(this);
+    this.Contacts = new ContactsClient(this);
+    this.CreditMemoApplied = new CreditMemoAppliedClient(this);
+    this.Currencies = new CurrenciesClient(this);
+    this.CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
+    this.CustomFieldValues = new CustomFieldValuesClient(this);
+    this.Definitions = new DefinitionsClient(this);
+    this.Emails = new EmailsClient(this);
+    this.InvoiceHistory = new InvoiceHistoryClient(this);
+    this.Invoices = new InvoicesClient(this);
+    this.Leads = new LeadsClient(this);
+    this.Migration = new MigrationClient(this);
+    this.Notes = new NotesClient(this);
+    this.PaymentApplications = new PaymentApplicationsClient(this);
+    this.Payments = new PaymentsClient(this);
+    this.Provisioning = new ProvisioningClient(this);
+    this.Reports = new ReportsClient(this);
+    this.Status = new StatusClient(this);
+    this.Sync = new SyncClient(this);
+    this.UserAccounts = new UserAccountsClient(this);
+    this.UserRoles = new UserRolesClient(this);
