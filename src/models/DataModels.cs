@@ -7,13 +7,14 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-csharp
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
-
 namespace LockstepSDK;
+
+
 
 public class ActivityModel
 {
@@ -742,6 +743,38 @@ public class AtRiskInvoiceSummaryModel
     /// The ids of the payments associated to this invoice.
     /// </summary>
     public Guid[] PaymentIds { get; set; }
+
+};
+public class AttachmentHeaderInfoModel
+{
+    /// <summary>
+    /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+    /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+    /// 
+    /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+    /// </summary>
+    public Guid GroupKey { get; set; }
+
+    /// <summary>
+    /// The CompanyId associated with the attachment status report. Providing a null value will
+    /// return an attachment summary for all attachments associated to the provided GroupKey
+    /// </summary>
+    public Guid CompanyId { get; set; }
+
+    /// <summary>
+    /// The total number of attachments associated with the provided GroupKey and CompanyId.
+    /// </summary>
+    public int TotalAttachments { get; set; }
+
+    /// <summary>
+    /// The total number of archived attachments associated with the provided GroupKey and CompanyId.
+    /// </summary>
+    public int TotalArchived { get; set; }
+
+    /// <summary>
+    /// The total number of active attachments associated with the provided GroupKey and CompanyId.
+    /// </summary>
+    public int TotalActive { get; set; }
 
 };
 public class AttachmentModel
@@ -2210,6 +2243,22 @@ public class EmailModel
     /// The email address(es) for the BCC recipient(s) of this email
     /// </summary>
     public string EmailBcc { get; set; }
+
+    /// <summary>
+    /// The type message being sent (New, Reply, Forward) or null for messages not being sent.
+    /// </summary>
+    public string SendType { get; set; }
+
+    /// <summary>
+    /// If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
+    /// Otherwise null.
+    /// </summary>
+    public Guid ResponseOriginId { get; set; }
+
+    /// <summary>
+    /// The email object associated with the response origin id.
+    /// </summary>
+    public EmailModel ResponseOrigin { get; set; }
 
     /// <summary>
     /// All notes attached to this email.

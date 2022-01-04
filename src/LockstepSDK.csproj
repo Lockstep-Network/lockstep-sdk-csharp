@@ -8,11 +8,28 @@
 
     <ItemGroup>
       <Folder Include="clients" />
-      <Folder Include="examples" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="RestSharp" Version="106.15.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\lockstep-sdk.nuspec">
+        <Link>lockstep-sdk.nuspec</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="examples\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="examples\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="examples\**" />
     </ItemGroup>
 
 </Project>

@@ -7,15 +7,16 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-csharp
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
+
+namespace LockstepSDK;
+
 
 
 using RestSharp;
-
-namespace LockstepSDK;
 
 public class SyncClient
 {
@@ -71,7 +72,7 @@ public class SyncClient
     /// 
     /// </summary>
     /// <param name="id">The unique ID number of the Sync task to retrieve</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Details</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details</param>
     public async Task<LockstepResponse<SyncRequestModel>> RetrieveSync(Guid id, string include)
     {
         var url = $"/api/v1/Sync/{id}";
@@ -87,7 +88,7 @@ public class SyncClient
     /// 
     /// </summary>
     /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Details</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details</param>
     /// <param name="order">The sort order for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>

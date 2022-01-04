@@ -7,15 +7,16 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-csharp
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
+
+namespace LockstepSDK;
+
 
 
 using RestSharp;
-
-namespace LockstepSDK;
 
 public class ActivitiesClient
 {
@@ -32,7 +33,7 @@ public class ActivitiesClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Activity</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve.        Available collections: Attachments, CustomFields, and Notes</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes</param>
     public async Task<LockstepResponse<ActivityModel>> RetrieveActivity(Guid id, string include)
     {
         var url = $"/api/v1/Activities/{id}";
@@ -92,7 +93,7 @@ public class ActivitiesClient
     /// 
     /// </summary>
     /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve.               Available collections: Attachments, CustomFields, and Notes</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes</param>
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
