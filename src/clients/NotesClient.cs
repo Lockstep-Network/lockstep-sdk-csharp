@@ -7,15 +7,16 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-csharp
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
+
+namespace LockstepSDK;
+
 
 
 using RestSharp;
-
-namespace LockstepSDK;
 
 public class NotesClient
 {
@@ -32,7 +33,7 @@ public class NotesClient
     /// 
     /// </summary>
     /// <param name="id">The unique ID number of the Note to retrieve</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve.        No collections are currently available but may be offered in the future</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
     public async Task<LockstepResponse<NoteModel>> RetrieveNote(Guid id, string include)
     {
         var url = $"/api/v1/Notes/{id}";

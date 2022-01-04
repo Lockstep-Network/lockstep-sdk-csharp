@@ -1,15 +1,29 @@
-﻿using System.Text.Json;
-using RestSharp;
+/***
+ * Lockstep Software Development Kit for C#
+ *
+ * (c) 2021-2022 Lockstep, Inc.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @author     Ted Spence <tspence@lockstep.io>
+ * @copyright  2021-2022 Lockstep, Inc.
+ * @version    2021.39
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
+ */
 
 namespace LockstepSDK;
+
+using System.Text.Json;
+using RestSharp;
 
 public class LockstepApi
 {
     // The URL of the environment we will use
-    private readonly string serverUrl;
-    private readonly string version = "2021.39.690";
-    private string bearerToken;
-    private string apiKey;
+    private readonly string _serverUrl;
+    private readonly string _version = "2021.39";
+    private string? _bearerToken;
+    private string? _apiKey;
 
     public ActivitiesClient Activities { get; set; }
     public ApiKeysClient ApiKeys { get; set; }
@@ -38,14 +52,14 @@ public class LockstepApi
     public SyncClient Sync { get; set; }
     public UserAccountsClient UserAccounts { get; set; }
     public UserRolesClient UserRoles { get; set; }
-    
+
     /// <summary>
     /// Internal constructor for the client.  You should always begin with `withEnvironment()`.
     /// </summary>
     /// <param name="customUrl"></param>
     private LockstepApi(string customUrl)
     {
-        this.serverUrl = customUrl;
+        this._serverUrl = customUrl;
         this.Activities = new ActivitiesClient(this);
         this.ApiKeys = new ApiKeysClient(this);
         this.AppEnrollments = new AppEnrollmentsClient(this);
@@ -80,21 +94,17 @@ public class LockstepApi
     /// </summary>
     /// <param name="env">The environment to use, either "prd" for production or "sbx" for sandbox.</param>
     /// <returns>The Lockstep API client to use</returns>
-    public static LockstepApi withEnvironment(string env)
+    public static LockstepApi withEnvironment(LockstepEnv env)
     {
-        string url;
         switch (env)
         {
-            case "prd":
-                url = "https://api.lockstep.io";
-                break;
-            case "sbx":
-                url = "https://api.sbx.lockstep.io";
-                break;
-            default: throw new NotImplementedException("No such environment: " + env);
+            case LockstepEnv.PRD:
+                return new LockstepApi("https://api.lockstep.io");
+            case LockstepEnv.SBX:
+                return new LockstepApi("https://api.sbx.lockstep.io");
         }
 
-        return new LockstepApi(url);
+        throw new NotImplementedException("Unknown environment");
     }
 
     /// <summary>
@@ -111,27 +121,27 @@ public class LockstepApi
 
     /// <summary>
     /// Configure this Lockstep API client to use a JWT bearer token.
-    /// More documentation is available on [JWT Bearer Tokens](https://developer.lockstep.io/docs/jwt-bearer-tokens). 
+    /// More documentation is available on [JWT Bearer Tokens](https://developer.lockstep.io/docs/jwt-bearer-tokens).
     /// </summary>
     /// <param name="token">The JWT bearer token to use for this API session</param>
     /// <returns></returns>
     public LockstepApi withBearerToken(string token)
     {
-        this.bearerToken = token;
-        this.apiKey = null;
+        this._bearerToken = token;
+        this._apiKey = null;
         return this;
     }
 
     /// <summary>
     /// Configures this Lockstep API client to use an API Key.
-    /// More documentation is available on [API Keys](https://developer.lockstep.io/docs/api-keys). 
+    /// More documentation is available on [API Keys](https://developer.lockstep.io/docs/api-keys).
     /// </summary>
     /// <param name="apiKey">The API key to use for this API session</param>
     /// <returns></returns>
     public LockstepApi withApiKey(string apiKey)
     {
-        this.apiKey = apiKey;
-        this.bearerToken = null;
+        this._apiKey = apiKey;
+        this._bearerToken = null;
         return this;
     }
 
@@ -144,35 +154,32 @@ public class LockstepApi
     /// <param name="body">The request body to send</param>
     /// <typeparam name="T">The type of the expected response</typeparam>
     /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
-    public async Task<LockstepResponse<T>> Request<T>(Method method, string path, Dictionary<string, object> options, object body)
+    public async Task<LockstepResponse<T>> Request<T>(Method method, string path, Dictionary<string, object>? options, object? body)
     {
-        var url = new Uri(new Uri(this.serverUrl), path).ToString();
+        var url = new Uri(new Uri(this._serverUrl), path).ToString();
         var client = new RestClient(url);
         var request = new RestRequest(method);
         request.AddHeader("Accept", "application/json");
 
         // Add authentication headers, if any
-        if (!string.IsNullOrWhiteSpace(this.bearerToken))
+        if (!string.IsNullOrWhiteSpace(this._bearerToken))
         {
-            request.AddHeader("Authorization", "Bearer " + this.bearerToken);
+            request.AddHeader("Authorization", "Bearer " + this._bearerToken);
         }
-        else if (!string.IsNullOrWhiteSpace(this.apiKey))
+        else if (!string.IsNullOrWhiteSpace(this._apiKey))
         {
-            request.AddHeader("Api-Key", this.apiKey);
+            request.AddHeader("Api-Key", this._apiKey);
         }
-        
+
         // Add query parameters, if any
         if (options != null)
         {
             foreach (var kvp in options)
             {
-                if (kvp.Value != null)
-                {
-                    request.AddQueryParameter(kvp.Key, kvp.Value.ToString());
-                }
+                request.AddQueryParameter(kvp.Key, kvp.Value.ToString());
             }
         }
-        
+
         // Add request body content, if any
         if (body != null)
         {

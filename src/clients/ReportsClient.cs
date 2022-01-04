@@ -7,15 +7,16 @@
  * file that was distributed with this source code.
  *
  * @author     Ted Spence <tspence@lockstep.io>
- * @copyright  2021-2021 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @version    2021.39
- * @link       https://github.com/tspence/lockstep-sdk-csharp
+ * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
+
+namespace LockstepSDK;
+
 
 
 using RestSharp;
-
-namespace LockstepSDK;
 
 public class ReportsClient
 {
@@ -116,5 +117,20 @@ public class ReportsClient
     {
         var url = $"/api/v1/Reports/ar-aging-header";
         return await this.client.Request<ArAgingHeaderInfoModel[]>(Method.GET, url, null, null);
+    }
+
+    /// <summary>
+    /// Retrieves Attachment Header information for the requested companyId.
+    /// 
+    /// The Attachment Header report contains aggregated information about the `TotalAttachments`, `TotalArchived`, and `TotalActive` attachment classifications.
+    /// 
+    /// </summary>
+    /// <param name="companyId">Include a specific company to get Attachment data for, leave as null to include all Companies.</param>
+    public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid companyId)
+    {
+        var url = $"/api/v1/Reports/attachments-header";
+        var options = new Dictionary<string, object>();
+        options["companyId"] = companyId;
+        return await this.client.Request<AttachmentHeaderInfoModel>(Method.GET, url, options, null);
     }
 }

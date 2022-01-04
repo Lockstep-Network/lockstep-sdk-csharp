@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>LockstepSdk</id>
+		<version>2021.39.690</version>
+		<title>LockstepSdk</title>
+		<authors>Ted Spence</authors>
+		<owners>Lockstep</owners>
+		<license type="file">LICENSE</license>
+		<projectUrl>https://github.com/tspence/lockstep-sdk-typescript</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>
+			Allows you to work with the Lockstep Platform API for financial systems automation.  The SDK provides rich, 
+			context sensitive help and documentation for all methods and objects.
+		</description>
+		<summary>SDK for the Lockstep Platform API.</summary>
+		<releaseNotes>
+			# 2021.39.690
+			December 27, 2021
+
+			Initial Build
+		</releaseNotes>
+		<copyright>Copyright 2021 - 2022</copyright>
+    	<tags>Lockstep fintech api client sdk connector</tags>
+		<repository type="git" url="https://github.com/tspence/lockstep-sdk-typescript" />
+		<dependencies>
+			<group targetFramework="net6.0">
+				<dependency id="RestSharp" version="106.15.0" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src=".\LICENSE*" target=""/>
+		<file src="src\bin\Debug\net6.0\*" target="lib\net6.0" />
+	</files>
+</package>
