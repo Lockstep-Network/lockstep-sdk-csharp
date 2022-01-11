@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,10 +36,10 @@ public class CurrenciesClient
     /// <param name="destinationCurrency">The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.</param>
     /// <param name="date">The date for which we should cto use for this currency conversion.</param>
     /// <param name="dataProvider">Optionally, you can specify a data provider.</param>
-    public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, DateTime date, string dataProvider)
+    public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string? sourceCurrency, string? destinationCurrency, DateTime? date, string? dataProvider)
     {
         var url = $"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["date"] = date;
         options["dataProvider"] = dataProvider;
         return await this.client.Request<CurrencyRateModel>(Method.GET, url, options, null);
@@ -51,10 +51,10 @@ public class CurrenciesClient
     /// </summary>
     /// <param name="destinationCurrency">The currency to convert to.</param>
     /// <param name="body">A list of dates and source currencies.</param>
-    public async Task<LockstepResponse<CurrencyRateModel[]>> Bulkcurrencydata(string destinationCurrency, BulkCurrencyConversionModel[] body)
+    public async Task<LockstepResponse<CurrencyRateModel[]>> Bulkcurrencydata(string? destinationCurrency, BulkCurrencyConversionModel[]? body)
     {
         var url = $"/api/v1/Currencies/bulk";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["destinationCurrency"] = destinationCurrency;
         return await this.client.Request<CurrencyRateModel[]>(Method.POST, url, options, body);
     }

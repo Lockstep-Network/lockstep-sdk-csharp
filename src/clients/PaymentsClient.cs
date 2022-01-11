@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,10 +34,10 @@ public class PaymentsClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Payment; NOT the customer's ERP key</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Applications, Notes, Attachments, CustomFields</param>
-    public async Task<LockstepResponse<PaymentModel>> RetrievePayment(Guid id, string include)
+    public async Task<LockstepResponse<PaymentModel>> RetrievePayment(Guid? id, string? include)
     {
         var url = $"/api/v1/Payments/{id}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["include"] = include;
         return await this.client.Request<PaymentModel>(Method.GET, url, options, null);
     }
@@ -52,7 +52,7 @@ public class PaymentsClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of the Payment to update; NOT the customer's ERP key</param>
     /// <param name="body">A list of changes to apply to this Payment</param>
-    public async Task<LockstepResponse<PaymentModel>> UpdatePayment(Guid id, object body)
+    public async Task<LockstepResponse<PaymentModel>> UpdatePayment(Guid? id, object? body)
     {
         var url = $"/api/v1/Payments/{id}";
         return await this.client.Request<PaymentModel>(Method.PATCH, url, null, body);
@@ -65,7 +65,7 @@ public class PaymentsClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of the Payment to delete; NOT the customer's ERP key</param>
-    public async Task<LockstepResponse<ActionResultModel>> DeletePayment(Guid id)
+    public async Task<LockstepResponse<ActionResultModel>> DeletePayment(Guid? id)
     {
         var url = $"/api/v1/Payments/{id}";
         return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
@@ -78,7 +78,7 @@ public class PaymentsClient
     /// 
     /// </summary>
     /// <param name="body">The Payments to create</param>
-    public async Task<LockstepResponse<PaymentModel[]>> CreatePayments(PaymentModel[] body)
+    public async Task<LockstepResponse<PaymentModel[]>> CreatePayments(PaymentModel[]? body)
     {
         var url = $"/api/v1/Payments";
         return await this.client.Request<PaymentModel[]>(Method.POST, url, null, body);
@@ -97,10 +97,10 @@ public class PaymentsClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<PaymentModel>>> QueryPayments(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<PaymentModel>>> QueryPayments(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Payments/query";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;
@@ -122,10 +122,10 @@ public class PaymentsClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<PaymentSummaryModel>>> QueryPaymentSummaryView(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<PaymentSummaryModel>>> QueryPaymentSummaryView(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Payments/views/summary";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;
@@ -155,10 +155,10 @@ public class PaymentsClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<PaymentDetailModel>>> QueryPaymentDetailView(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<PaymentDetailModel>>> QueryPaymentDetailView(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Payments/views/detail";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;

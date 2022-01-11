@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,10 +34,10 @@ public class CustomFieldDefinitionsClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Custom Field Definition</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No additional data collections are currently defined on this object, but may be supported in the future.</param>
-    public async Task<LockstepResponse<CustomFieldDefinitionModel>> RetrieveFieldDefinition(Guid id, string include)
+    public async Task<LockstepResponse<CustomFieldDefinitionModel>> RetrieveFieldDefinition(Guid? id, string? include)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["include"] = include;
         return await this.client.Request<CustomFieldDefinitionModel>(Method.GET, url, options, null);
     }
@@ -52,7 +52,7 @@ public class CustomFieldDefinitionsClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of the Custom Field Definition to update</param>
     /// <param name="body">A list of changes to apply to this Custom Field Definition</param>
-    public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid id, object body)
+    public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid? id, object? body)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
         return await this.client.Request<CustomFieldDefinitionModel>(Method.PATCH, url, null, body);
@@ -65,7 +65,7 @@ public class CustomFieldDefinitionsClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of the Custom Field Definition to delete</param>
-    public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid id)
+    public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid? id)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
         return await this.client.Request<CustomFieldDefinitionModel>(Method.DELETE, url, null, null);
@@ -76,7 +76,7 @@ public class CustomFieldDefinitionsClient
     /// 
     /// </summary>
     /// <param name="body">The Custom Field Definitions to create</param>
-    public async Task<LockstepResponse<CustomFieldDefinitionModel[]>> CreateFieldDefinitions(CustomFieldDefinitionModel[] body)
+    public async Task<LockstepResponse<CustomFieldDefinitionModel[]>> CreateFieldDefinitions(CustomFieldDefinitionModel[]? body)
     {
         var url = $"/api/v1/CustomFieldDefinitions";
         return await this.client.Request<CustomFieldDefinitionModel[]>(Method.POST, url, null, body);
@@ -95,10 +95,10 @@ public class CustomFieldDefinitionsClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> QueryFieldDefinitions(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> QueryFieldDefinitions(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/CustomFieldDefinitions/query";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;

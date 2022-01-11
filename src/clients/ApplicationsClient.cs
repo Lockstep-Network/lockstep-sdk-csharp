@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,10 +36,10 @@ public class ApplicationsClient
     /// </summary>
     /// <param name="id">The unique ID number of the Application to retrieve</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields</param>
-    public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid id, string include)
+    public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid? id, string? include)
     {
         var url = $"/api/v1/Applications/{id}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["include"] = include;
         return await this.client.Request<ApplicationModel>(Method.GET, url, options, null);
     }
@@ -54,7 +54,7 @@ public class ApplicationsClient
     /// </summary>
     /// <param name="id">The unique ID number of the Application to update</param>
     /// <param name="body">A list of changes to apply to this Application</param>
-    public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid id, object body)
+    public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid? id, object? body)
     {
         var url = $"/api/v1/Applications/{id}";
         return await this.client.Request<ApplicationModel>(Method.PATCH, url, null, body);
@@ -67,7 +67,7 @@ public class ApplicationsClient
     /// 
     /// </summary>
     /// <param name="id">The unique ID number of the Application to delete</param>
-    public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid id)
+    public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid? id)
     {
         var url = $"/api/v1/Applications/{id}";
         return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
@@ -82,7 +82,7 @@ public class ApplicationsClient
     /// 
     /// </summary>
     /// <param name="body">The Applications to create</param>
-    public async Task<LockstepResponse<ApplicationModel[]>> CreateApplications(ApplicationModel[] body)
+    public async Task<LockstepResponse<ApplicationModel[]>> CreateApplications(ApplicationModel[]? body)
     {
         var url = $"/api/v1/Applications";
         return await this.client.Request<ApplicationModel[]>(Method.POST, url, null, body);
@@ -101,10 +101,10 @@ public class ApplicationsClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<ApplicationModel>>> QueryApplications(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<ApplicationModel>>> QueryApplications(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Applications/query";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;

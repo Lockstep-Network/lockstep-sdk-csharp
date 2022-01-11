@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2.47.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,7 +21,8 @@ public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2021.39";
+    private readonly string _version = "2022.2.47.0";
+    private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
 
@@ -108,6 +109,17 @@ public class LockstepApi
     }
 
     /// <summary>
+    /// Set the application name
+    /// </summary>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public LockstepApi withAppName(string name)
+    {
+        this._appName = name;
+        return this;
+    }
+
+    /// <summary>
     /// Construct an unsafe client that uses a non-standard server; this can be necessary
     /// when using proxy servers or an API gateway.  Please be careful when using this
     /// mode.  You should prefer to use `withEnvironment()` instead wherever possible.
@@ -154,12 +166,24 @@ public class LockstepApi
     /// <param name="body">The request body to send</param>
     /// <typeparam name="T">The type of the expected response</typeparam>
     /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
-    public async Task<LockstepResponse<T>> Request<T>(Method method, string path, Dictionary<string, object>? options, object? body)
+    public async Task<LockstepResponse<T>> Request<T>(Method method, string path, Dictionary<string, object?>? options, object? body)
     {
         var url = new Uri(new Uri(this._serverUrl), path).ToString();
         var client = new RestClient(url);
         var request = new RestRequest(method);
         request.AddHeader("Accept", "application/json");
+        request.AddHeader("Accept", "application/json");
+        request.AddHeader("SdkName", "DotNet");
+        request.AddHeader("SdkVersion", _version);
+        request.AddHeader("MachineName", Environment.MachineName);
+        if (this._appName != null)
+        {
+            request.AddHeader("ApplicationName", _appName);
+        }
+        var seropt = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
 
         // Add authentication headers, if any
         if (!string.IsNullOrWhiteSpace(this._bearerToken))
@@ -176,7 +200,10 @@ public class LockstepApi
         {
             foreach (var kvp in options)
             {
-                request.AddQueryParameter(kvp.Key, kvp.Value.ToString());
+                if (kvp.Value != null)
+                {
+                    request.AddQueryParameter(kvp.Key, kvp.Value.ToString() ?? string.Empty);
+                }
             }
         }
 
@@ -191,7 +218,7 @@ public class LockstepApi
         var status = (int)response.StatusCode;
         if (status is >= 200 and < 300)
         {
-            var value = JsonSerializer.Deserialize<T>(response.Content);
+            var value = JsonSerializer.Deserialize<T>(response.Content, seropt);
             return new LockstepResponse<T>()
             {
                 Success = true,
@@ -201,7 +228,7 @@ public class LockstepApi
         }
         else
         {
-            var error = JsonSerializer.Deserialize<ErrorResult>(response.Content);
+            var error = JsonSerializer.Deserialize<ErrorResult>(response.Content, seropt);
             return new LockstepResponse<T>()
             {
                 Success = true,

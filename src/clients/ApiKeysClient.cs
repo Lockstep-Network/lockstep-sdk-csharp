@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,10 +34,10 @@ public class ApiKeysClient
     /// </summary>
     /// <param name="id">The unique ID number of the API Key to retrieve</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future.</param>
-    public async Task<LockstepResponse<ApiKeyModel>> RetrieveAPIKey(Guid id, string include)
+    public async Task<LockstepResponse<ApiKeyModel>> RetrieveAPIKey(Guid? id, string? include)
     {
         var url = $"/api/v1/ApiKeys/{id}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["include"] = include;
         return await this.client.Request<ApiKeyModel>(Method.GET, url, options, null);
     }
@@ -49,7 +49,7 @@ public class ApiKeysClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this API Key</param>
-    public async Task<LockstepResponse<ApiKeyModel>> RevokeAPIKey(Guid id)
+    public async Task<LockstepResponse<ApiKeyModel>> RevokeAPIKey(Guid? id)
     {
         var url = $"/api/v1/ApiKeys/{id}";
         return await this.client.Request<ApiKeyModel>(Method.DELETE, url, null, null);
@@ -62,7 +62,7 @@ public class ApiKeysClient
     /// 
     /// </summary>
     /// <param name="body">Metadata about the API Key to create.</param>
-    public async Task<LockstepResponse<ApiKeyModel>> CreateAPIKey(ApiKeyModel body)
+    public async Task<LockstepResponse<ApiKeyModel>> CreateAPIKey(ApiKeyModel? body)
     {
         var url = $"/api/v1/ApiKeys";
         return await this.client.Request<ApiKeyModel>(Method.POST, url, null, body);
@@ -77,10 +77,10 @@ public class ApiKeysClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<ApiKeyModel>>> QueryAPIKeys(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<ApiKeyModel>>> QueryAPIKeys(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/ApiKeys/query";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;

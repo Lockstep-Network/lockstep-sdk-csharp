@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -45,10 +45,10 @@ public class StatusClient
     /// The Error Test API allows you to test whether your client program is capable of handling certain types of error codes.  Developers writing libraries may find it useful to create integration tests that verify that their code can correctly detect the difference between a validation error resulting in a 400 error code, a network timeout resulting in a broken network connection, and a server error resulting in a 500 error code.  You may use the Error Test API to verify that your code is able to identify and handle these cases correctly.
     /// </summary>
     /// <param name="err">The type of error test to execute. Supported error types: 500, timeout</param>
-    public async Task<LockstepResponse<TestTimeoutException>> ErrorTest(string err)
+    public async Task<LockstepResponse<TestTimeoutException>> ErrorTest(string? err)
     {
         var url = $"/api/v1/Status/testing";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["err"] = err;
         return await this.client.Request<TestTimeoutException>(Method.GET, url, options, null);
     }
