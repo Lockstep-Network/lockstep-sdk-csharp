@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -40,24 +40,24 @@ public class ActivityModel
     /// <summary>
     /// The type code of the activity
     /// </summary>
-    public string ActivityTypeCode { get; set; }
+    public string? ActivityTypeCode { get; set; }
 
     /// <summary>
     /// The name of the activity.  The name is a short name provided by the
     /// person who created the activity that can be displayed in a list.
     /// </summary>
-    public string ActivityName { get; set; }
+    public string? ActivityName { get; set; }
 
     /// <summary>
     /// A description of the activity.  This field contains more detailed text about the
     /// activity and can be lengthy.
     /// </summary>
-    public string ActivityDescription { get; set; }
+    public string? ActivityDescription { get; set; }
 
     /// <summary>
     /// The status of the activity.
     /// </summary>
-    public string ActivityStatus { get; set; }
+    public string? ActivityStatus { get; set; }
 
     /// <summary>
     /// True if this activity is currently "open", which indicates that the activitiy is
@@ -68,29 +68,29 @@ public class ActivityModel
     /// <summary>
     /// The priority of the activity.
     /// </summary>
-    public string Priority { get; set; }
+    public string? Priority { get; set; }
 
     /// <summary>
     /// The ID of the user the activity is assigned to.
     /// </summary>
-    public Guid UserAssignedTo { get; set; }
+    public Guid? UserAssignedTo { get; set; }
 
     /// <summary>
     /// The date the activity was assigned.
     /// </summary>
-    public DateTime DateAssigned { get; set; }
+    public DateTime? DateAssigned { get; set; }
 
     /// <summary>
     /// The date the activity was closed.
     /// </summary>
-    public DateTime DateClosed { get; set; }
+    public DateTime? DateClosed { get; set; }
 
     /// <summary>
     /// If this activity has been "snoozed", this field will be non-null and will contain
     /// the date when the activity will be displayed.  Until that date arrives, the activity
     /// will remain hidden.
     /// </summary>
-    public DateTime SnoozeUntilDate { get; set; }
+    public DateTime? SnoozeUntilDate { get; set; }
 
     /// <summary>
     /// The date on which this activity was created.
@@ -144,28 +144,28 @@ public class ActivityModel
     /// 
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All notes attached to this applied activity.
     /// 
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All definitions attached to this applied activity.
     /// 
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this activity.
     /// 
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
 };
 public class AgingModel
@@ -178,7 +178,7 @@ public class AgingModel
     /// <summary>
     /// Currency code of aging bucket
     /// </summary>
-    public string CurrencyCode { get; set; }
+    public string? CurrencyCode { get; set; }
 
     /// <summary>
     /// Outstanding balance for the given aging bucket
@@ -204,7 +204,7 @@ public class ApiKeyModel
     /// <summary>
     /// The name of the API key.
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The API key to use for authentication. This will only be returned upon creation of the API key.
@@ -212,13 +212,13 @@ public class ApiKeyModel
     /// 
     /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
     /// </summary>
-    public string ApiKey { get; set; }
+    public string? ApiKey { get; set; }
 
     /// <summary>
     /// The first 10 characters of the API key.  This information can be used to ensure that you are
     /// looking at the correct API Key, but cannot be used for authentication.
     /// </summary>
-    public string KeyPrefix { get; set; }
+    public string? KeyPrefix { get; set; }
 
     /// <summary>
     /// The date the API key was created.
@@ -233,17 +233,17 @@ public class ApiKeyModel
     /// <summary>
     /// The date the API key was revoked.
     /// </summary>
-    public DateTime Revoked { get; set; }
+    public DateTime? Revoked { get; set; }
 
     /// <summary>
     /// The user who revoked the API key.
     /// </summary>
-    public Guid RevokedUserId { get; set; }
+    public Guid? RevokedUserId { get; set; }
 
     /// <summary>
     /// The UTC datetime when the API key expires.
     /// </summary>
-    public DateTime Expires { get; set; }
+    public DateTime? Expires { get; set; }
 
 };
 public class AppEnrollmentCustomFieldModel
@@ -261,12 +261,12 @@ public class AppEnrollmentCustomFieldModel
     /// <summary>
     /// The name of the application
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Tag for what type of app the application is
     /// </summary>
-    public string AppType { get; set; }
+    public string? AppType { get; set; }
 
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -284,12 +284,12 @@ public class AppEnrollmentCustomFieldModel
     /// <summary>
     /// Text to display in-application for custom field
     /// </summary>
-    public string CustomFieldLabel { get; set; }
+    public string? CustomFieldLabel { get; set; }
 
     /// <summary>
     /// Data type of the custom field definition
     /// </summary>
-    public string DataType { get; set; }
+    public string? DataType { get; set; }
 
     /// <summary>
     /// Used for display logic when multiple app enrollment custom fields exist
@@ -299,7 +299,7 @@ public class AppEnrollmentCustomFieldModel
     /// <summary>
     /// String of data for field
     /// </summary>
-    public string StringValue { get; set; }
+    public string? StringValue { get; set; }
 
     /// <summary>
     /// Number data for field
@@ -358,7 +358,7 @@ public class AppEnrollmentModel
     /// Stores schedule information for the application enrollment
     /// see https://en.wikipedia.org/wiki/Cron
     /// </summary>
-    public string CronSettings { get; set; }
+    public string? CronSettings { get; set; }
 
     /// <summary>
     /// Flag indicating if the Sync process should be ran on the specified schedule
@@ -371,34 +371,34 @@ public class AppEnrollmentModel
     /// 
     /// To retrieve this object, specify `App` in the "Include" parameter for your query.
     /// </summary>
-    public ApplicationModel App { get; set; }
+    public ApplicationModel? App { get; set; }
 
     /// <summary>
     /// All definitions attached to this app.
     /// 
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this app.
     /// 
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// Data about the last sync attached to this app enrollment
     /// 
     /// To retrieve this collection, specify `LastSync` in the "Include" parameter for your query.
     /// </summary>
-    public SyncRequestModel LastSync { get; set; }
+    public SyncRequestModel? LastSync { get; set; }
 
     /// <summary>
     /// Optional data necessary to create an app enrollment for a supported connector.
     /// Only enter relevant fields for the given connector.
     /// </summary>
-    public ConnectorInfoModel ConnectorInfo { get; set; }
+    public ConnectorInfoModel? ConnectorInfo { get; set; }
 
 };
 public class ApplicationModel
@@ -411,17 +411,17 @@ public class ApplicationModel
     /// <summary>
     /// The name of this application
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Brief summary of this application shown as a subtitle
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Tag for what type of app this is
     /// </summary>
-    public string AppType { get; set; }
+    public string? AppType { get; set; }
 
     /// <summary>
     /// The ID of the owner
@@ -431,37 +431,37 @@ public class ApplicationModel
     /// <summary>
     /// The URL to visit for more information about this application
     /// </summary>
-    public Uri ProjectUrl { get; set; }
+    public Uri? ProjectUrl { get; set; }
 
     /// <summary>
     /// The URL for the icon for this application
     /// </summary>
-    public Uri IconUrl { get; set; }
+    public Uri? IconUrl { get; set; }
 
     /// <summary>
     /// The description of the price for this application
     /// </summary>
-    public string PriceTerms { get; set; }
+    public string? PriceTerms { get; set; }
 
     /// <summary>
     /// The ID of the user who created this application
     /// </summary>
-    public Guid CreatedUserId { get; set; }
+    public Guid? CreatedUserId { get; set; }
 
     /// <summary>
     /// The ID of the user who last modified this application
     /// </summary>
-    public Guid ModifiedUserId { get; set; }
+    public Guid? ModifiedUserId { get; set; }
 
     /// <summary>
     /// The date this application was created
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The date this application was last modified
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// Flag indicating if the application is active.
@@ -471,7 +471,7 @@ public class ApplicationModel
     /// <summary>
     /// URL to the Wiki for the Application
     /// </summary>
-    public Uri WikiURL { get; set; }
+    public Uri? WikiURL { get; set; }
 
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -485,25 +485,25 @@ public class ApplicationModel
     /// All notes attached to this app.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this app.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All definitions attached to the application.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to the application.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
 };
 public class ArAgingHeaderInfoModel
@@ -519,7 +519,7 @@ public class ArAgingHeaderInfoModel
     /// <summary>
     /// The aging bucket this data belongs to.
     /// </summary>
-    public string ReportBucket { get; set; }
+    public string? ReportBucket { get; set; }
 
     /// <summary>
     /// The total number of customers.
@@ -560,7 +560,7 @@ public class ArHeaderInfoModel
     /// <summary>
     /// The date of the report
     /// </summary>
-    public DateTime ReportPeriod { get; set; }
+    public DateTime? ReportPeriod { get; set; }
 
     /// <summary>
     /// The total number of customers.
@@ -663,7 +663,7 @@ public class AtRiskInvoiceSummaryModel
     /// <summary>
     /// The date of the report
     /// </summary>
-    public DateTime ReportDate { get; set; }
+    public DateTime? ReportDate { get; set; }
 
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -676,7 +676,7 @@ public class AtRiskInvoiceSummaryModel
     /// <summary>
     /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
     /// </summary>
-    public Guid CustomerId { get; set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
     /// The unique ID number of this invoice.
@@ -687,27 +687,27 @@ public class AtRiskInvoiceSummaryModel
     /// A reference code that is used to identify this invoice.
     /// The meaning of this field is specific to the ERP or accounting system used by the user.
     /// </summary>
-    public string InvoiceNumber { get; set; }
+    public string? InvoiceNumber { get; set; }
 
     /// <summary>
     /// The reporting date for this invoice.
     /// </summary>
-    public DateTime InvoiceDate { get; set; }
+    public DateTime? InvoiceDate { get; set; }
 
     /// <summary>
     /// The name of the counterparty for the invoice, for example, a customer or vendor.
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
 
     /// <summary>
     /// The status of the invoice.
     /// </summary>
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
     /// <summary>
     /// The due date of the invoice.
     /// </summary>
-    public DateTime PaymentDueDate { get; set; }
+    public DateTime? PaymentDueDate { get; set; }
 
     /// <summary>
     /// The total amount of the Invoice.
@@ -722,12 +722,12 @@ public class AtRiskInvoiceSummaryModel
     /// <summary>
     /// A code identifying the type of this Invoice.
     /// </summary>
-    public string InvoiceTypeCode { get; set; }
+    public string? InvoiceTypeCode { get; set; }
 
     /// <summary>
     /// The date stamp for the newest Activity on this Invoice.
     /// </summary>
-    public DateTime NewestActivity { get; set; }
+    public DateTime? NewestActivity { get; set; }
 
     /// <summary>
     /// The number of days this Invoice is past due.
@@ -737,12 +737,12 @@ public class AtRiskInvoiceSummaryModel
     /// <summary>
     /// The memo text of the payments associated to this invoice.
     /// </summary>
-    public string[] PaymentNumbers { get; set; }
+    public string[]? PaymentNumbers { get; set; }
 
     /// <summary>
     /// The ids of the payments associated to this invoice.
     /// </summary>
-    public Guid[] PaymentIds { get; set; }
+    public Guid[]? PaymentIds { get; set; }
 
 };
 public class AttachmentHeaderInfoModel
@@ -759,7 +759,7 @@ public class AttachmentHeaderInfoModel
     /// The CompanyId associated with the attachment status report. Providing a null value will
     /// return an attachment summary for all attachments associated to the provided GroupKey
     /// </summary>
-    public Guid CompanyId { get; set; }
+    public Guid? CompanyId { get; set; }
 
     /// <summary>
     /// The total number of attachments associated with the provided GroupKey and CompanyId.
@@ -796,7 +796,7 @@ public class AttachmentModel
     /// <summary>
     /// The name of the table the attachment is associated with
     /// </summary>
-    public string TableKey { get; set; }
+    public string? TableKey { get; set; }
 
     /// <summary>
     /// The ID of the object the attachment is associated with
@@ -806,12 +806,12 @@ public class AttachmentModel
     /// <summary>
     /// Name of the file
     /// </summary>
-    public string FileName { get; set; }
+    public string? FileName { get; set; }
 
     /// <summary>
     /// Extension type of the file
     /// </summary>
-    public string FileExt { get; set; }
+    public string? FileExt { get; set; }
 
     /// <summary>
     /// Corresponding AttachmentType object to describe this attachment
@@ -892,7 +892,7 @@ public class AvailableMigrationsModel
     /// <summary>
     /// Indicates which records are available for migration
     /// </summary>
-    public AvailableGroup[] Migrations { get; set; }
+    public AvailableGroup[]? Migrations { get; set; }
 
 };
 public class BulkCurrencyConversionModel
@@ -905,7 +905,7 @@ public class BulkCurrencyConversionModel
     /// <summary>
     /// The currency code This will be validated by the /api/v1/currencies data set
     /// </summary>
-    public string SourceCurrency { get; set; }
+    public string? SourceCurrency { get; set; }
 
 };
 public class CashflowReportModel
@@ -955,17 +955,17 @@ public class CodeDefinitionModel
     /// <summary>
     /// The type of the Code Definition
     /// </summary>
-    public string CodeType { get; set; }
+    public string? CodeType { get; set; }
 
     /// <summary>
     /// The Code to be defined.
     /// </summary>
-    public string Code { get; set; }
+    public string? Code { get; set; }
 
     /// <summary>
     /// The definition of the Code
     /// </summary>
-    public string CodeDescription { get; set; }
+    public string? CodeDescription { get; set; }
 
     /// <summary>
     /// The date that the Code Definition was created
@@ -1001,7 +1001,7 @@ public class CompanyModel
     /// <summary>
     /// The short name of the company.
     /// </summary>
-    public string CompanyName { get; set; }
+    public string? CompanyName { get; set; }
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
@@ -1012,7 +1012,7 @@ public class CompanyModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// This field indicates the type of company.  It can be one of a limited number of values:
@@ -1025,14 +1025,14 @@ public class CompanyModel
     /// * `Vendor` - This record represents a business entity that sells things to the account holder.
     /// * `CustomerVendor` - Both a customer and a vendor.
     /// </summary>
-    public string CompanyType { get; set; }
+    public string? CompanyType { get; set; }
 
     /// <summary>
     /// The status of the company.  Companies can be either `Active` or `Inactive`.  When matched to a
     /// Lockstep corporate profile, this value will change to reflect that this record will be kept
     /// in sync with that company's identity.
     /// </summary>
-    public string CompanyStatus { get; set; }
+    public string? CompanyStatus { get; set; }
 
     /// <summary>
     /// If this business entity is part of an organization, this value is non-null and it is set
@@ -1040,7 +1040,7 @@ public class CompanyModel
     /// 
     /// If this value is null, this business entity is a standalone.
     /// </summary>
-    public Guid ParentCompanyId { get; set; }
+    public Guid? ParentCompanyId { get; set; }
 
     /// <summary>
     /// For convenience, this field indicates the top-level parent company.  This can be used
@@ -1068,67 +1068,67 @@ public class CompanyModel
     /// 
     /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies)
     /// </summary>
-    public string DefaultCurrencyCode { get; set; }
+    public string? DefaultCurrencyCode { get; set; }
 
     /// <summary>
     /// The URL of this company's logo, if known.
     /// </summary>
-    public string CompanyLogoUrl { get; set; }
+    public string? CompanyLogoUrl { get; set; }
 
     /// <summary>
     /// The Lockstep `ContactId` of the primary contact for this company.
     /// </summary>
-    public Guid PrimaryContactId { get; set; }
+    public Guid? PrimaryContactId { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string Address1 { get; set; }
+    public string? Address1 { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string Address2 { get; set; }
+    public string? Address2 { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string Address3 { get; set; }
+    public string? Address3 { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string StateRegion { get; set; }
+    public string? StateRegion { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     /// <summary>
     /// Address info
     /// </summary>
-    public string Country { get; set; }
+    public string? Country { get; set; }
 
     /// <summary>
     /// Phone number
     /// </summary>
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
 
     /// <summary>
     /// Fax number
     /// </summary>
-    public string FaxNumber { get; set; }
+    public string? FaxNumber { get; set; }
 
     /// <summary>
     /// The date this company was created
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID of the user who created this company
@@ -1138,7 +1138,7 @@ public class CompanyModel
     /// <summary>
     /// The date this company was last modified
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// The ID of the user who last modified this company
@@ -1148,105 +1148,105 @@ public class CompanyModel
     /// <summary>
     /// The name of the user who last modified this company
     /// </summary>
-    public string ModifiedUserName { get; set; }
+    public string? ModifiedUserName { get; set; }
 
     /// <summary>
     /// Federal Tax ID
     /// </summary>
-    public string TaxId { get; set; }
+    public string? TaxId { get; set; }
 
     /// <summary>
     /// Dun & Bradstreet Number
     /// </summary>
-    public string DunsNumber { get; set; }
+    public string? DunsNumber { get; set; }
 
     /// <summary>
     /// AP (Accounts Payable) Email Address
     /// </summary>
-    public string ApEmailAddress { get; set; }
+    public string? ApEmailAddress { get; set; }
 
     /// <summary>
     /// AR (Accounts Receivable) Email Address
     /// </summary>
-    public string ArEmailAddress { get; set; }
+    public string? ArEmailAddress { get; set; }
 
     /// <summary>
     /// For companies that use a custom domain name for their email system, this is
     /// the domain name used by this company.  If this value is known, new emails that
     /// come in from this domain will be connected to this company.
     /// </summary>
-    public string DomainName { get; set; }
+    public string? DomainName { get; set; }
 
     /// <summary>
     /// Identifier for classification of this company.
     /// </summary>
-    public Guid CompanyClassificationCodeDefId { get; set; }
+    public Guid? CompanyClassificationCodeDefId { get; set; }
 
     /// <summary>
     /// Description of the company.
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Website URL for this company.
     /// </summary>
-    public string Website { get; set; }
+    public string? Website { get; set; }
 
     /// <summary>
     /// The AppEnrollmentId of the application that imported this company record.  For accounts
     /// with more than one financial system connected, this field identifies the originating
     /// financial system that produced this record.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// All notes attached to this company.
     /// 
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this company.
     /// 
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All contacts attached to this company.
     /// 
     /// To retrieve this collection, specify `Contacts` in the "Include" parameter for your query.
     /// </summary>
-    public ContactModel[] Contacts { get; set; }
+    public ContactModel[]? Contacts { get; set; }
 
     /// <summary>
     /// All invoices attached to this company.
     /// 
     /// To retrieve this collection, specify `Invoices` in the "Include" parameter for your query. For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
     /// </summary>
-    public object[] Invoices { get; set; }
+    public object[]? Invoices { get; set; }
 
     /// <summary>
     /// All definitions attached to this company.
     /// 
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this company.
     /// 
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// Classification code definition for this company.
     /// 
     /// To retrieve this collection, specify `Classification` in the "Include" parameter for your query.
     /// </summary>
-    public CodeDefinitionModel CompanyClassificationCodeDefinition { get; set; }
+    public CodeDefinitionModel? CompanyClassificationCodeDefinition { get; set; }
 
 };
 public class ConnectorInfoModel
@@ -1255,22 +1255,22 @@ public class ConnectorInfoModel
     /// The authorization code returned from the first step of the OAuth2 flow
     /// https://oauth.net/2/grant-types/authorization-code/
     /// </summary>
-    public string AuthCode { get; set; }
+    public string? AuthCode { get; set; }
 
     /// <summary>
     /// The realm id of the account being granted permissions to access
     /// </summary>
-    public string RealmId { get; set; }
+    public string? RealmId { get; set; }
 
     /// <summary>
     /// The redirect uri used for step one of the OAuth2.0 flow.
     /// </summary>
-    public string RedirectUri { get; set; }
+    public string? RedirectUri { get; set; }
 
     /// <summary>
     /// The email an email connection is being created for.
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
 };
 public class ContactModel
@@ -1305,77 +1305,77 @@ public class ContactModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// The name of the contact.
     /// </summary>
-    public string ContactName { get; set; }
+    public string? ContactName { get; set; }
 
     /// <summary>
     /// A friendly human-readable code that describes this Contact.
     /// </summary>
-    public string ContactCode { get; set; }
+    public string? ContactCode { get; set; }
 
     /// <summary>
     /// The title of the contact.
     /// </summary>
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// The role code for the contact.
     /// </summary>
-    public string RoleCode { get; set; }
+    public string? RoleCode { get; set; }
 
     /// <summary>
     /// The email address of the contact.
     /// </summary>
-    public string EmailAddress { get; set; }
+    public string? EmailAddress { get; set; }
 
     /// <summary>
     /// The phone number of the contact.
     /// </summary>
-    public string Phone { get; set; }
+    public string? Phone { get; set; }
 
     /// <summary>
     /// The fax number of the contact.
     /// </summary>
-    public string Fax { get; set; }
+    public string? Fax { get; set; }
 
     /// <summary>
     /// The first line of the address.
     /// </summary>
-    public string Address1 { get; set; }
+    public string? Address1 { get; set; }
 
     /// <summary>
     /// The second line of the address.
     /// </summary>
-    public string Address2 { get; set; }
+    public string? Address2 { get; set; }
 
     /// <summary>
     /// The third line of the address.
     /// </summary>
-    public string Address3 { get; set; }
+    public string? Address3 { get; set; }
 
     /// <summary>
     /// The city of the address.
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// The state/region of the address.
     /// </summary>
-    public string StateRegion { get; set; }
+    public string? StateRegion { get; set; }
 
     /// <summary>
     /// The postal/zip code of the address.
     /// </summary>
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     /// <summary>
     /// The two character country code of the address. This will be validated by the /api/v1/countries data set
     /// </summary>
-    public string CountryCode { get; set; }
+    public string? CountryCode { get; set; }
 
     /// <summary>
     /// Flag indicating if the contact is active.
@@ -1385,17 +1385,17 @@ public class ContactModel
     /// <summary>
     /// The webpage url of the contact.
     /// </summary>
-    public Uri WebpageUrl { get; set; }
+    public Uri? WebpageUrl { get; set; }
 
     /// <summary>
     /// The picture/avatar url of the contact.
     /// </summary>
-    public Uri PictureUrl { get; set; }
+    public Uri? PictureUrl { get; set; }
 
     /// <summary>
     /// The date on which this record was created.
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID of the user who created this contact.
@@ -1405,7 +1405,7 @@ public class ContactModel
     /// <summary>
     /// The date on which this record was last modified.
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// The ID of the user who last modified this contact.
@@ -1415,31 +1415,31 @@ public class ContactModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// All notes attached to this company.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this company.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All definitions attached to this contact.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this contact.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
 };
 public class CountryModel
@@ -1447,17 +1447,17 @@ public class CountryModel
     /// <summary>
     /// Name of the country
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// 2 letter alphabetic code for the given country
     /// </summary>
-    public string Alpha2 { get; set; }
+    public string? Alpha2 { get; set; }
 
     /// <summary>
     /// 3 letter alphabetic code for the given country
     /// </summary>
-    public string Alpha3 { get; set; }
+    public string? Alpha3 { get; set; }
 
     /// <summary>
     /// Unique 3 digit number for the given country
@@ -1467,17 +1467,17 @@ public class CountryModel
     /// <summary>
     /// Region of the country
     /// </summary>
-    public string Region { get; set; }
+    public string? Region { get; set; }
 
     /// <summary>
     /// Subregion of the country
     /// </summary>
-    public string SubRegion { get; set; }
+    public string? SubRegion { get; set; }
 
     /// <summary>
     /// Intermediate region of the country
     /// </summary>
-    public string IntermediateRegion { get; set; }
+    public string? IntermediateRegion { get; set; }
 
     /// <summary>
     /// Numeric code for a region
@@ -1497,12 +1497,12 @@ public class CountryModel
     /// <summary>
     /// French name of the country
     /// </summary>
-    public string FrenchName { get; set; }
+    public string? FrenchName { get; set; }
 
     /// <summary>
     /// A different name for a country
     /// </summary>
-    public string Aliases { get; set; }
+    public string? Aliases { get; set; }
 
 };
 public class CreditMemoAppliedModel
@@ -1542,7 +1542,7 @@ public class CreditMemoAppliedModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// Reference number for the applied credit memo.
@@ -1582,31 +1582,31 @@ public class CreditMemoAppliedModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// All attachments attached to applied Credit Memo.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All notes attached to this applied Credit Memo.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All definitions attached to this applied Credit Memo.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this Credit Memo.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
 };
 public class CreditMemoInvoiceModel
@@ -1638,7 +1638,7 @@ public class CreditMemoInvoiceModel
     /// <summary>
     /// Date invoice applied to credit memo.
     /// </summary>
-    public DateTime ApplyToInvoiceDate { get; set; }
+    public DateTime? ApplyToInvoiceDate { get; set; }
 
     /// <summary>
     /// Amount applied to credit memo.
@@ -1649,22 +1649,22 @@ public class CreditMemoInvoiceModel
     /// An additional reference code that is sometimes used to identify this invoice.
     /// The meaning of this field is specific to the ERP or accounting system used by the user.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// The ID number of the company that created this invoice.
     /// </summary>
-    public Guid CompanyId { get; set; }
+    public Guid? CompanyId { get; set; }
 
     /// <summary>
     /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
     /// </summary>
-    public Guid CustomerId { get; set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
     /// A code identifying the status of this invoice.
     /// </summary>
-    public string InvoiceStatusCode { get; set; }
+    public string? InvoiceStatusCode { get; set; }
 
     /// <summary>
     /// The total value of this invoice, inclusive of all taxes and line items.
@@ -1682,17 +1682,17 @@ public class CurrencyModel
     /// <summary>
     /// Alphabetic code for the given currency
     /// </summary>
-    public string AlphaCode { get; set; }
+    public string? AlphaCode { get; set; }
 
     /// <summary>
     /// Numeric code for the given currency
     /// </summary>
-    public string NumericCode { get; set; }
+    public string? NumericCode { get; set; }
 
     /// <summary>
     /// Name of currency
     /// </summary>
-    public string CurrencyName { get; set; }
+    public string? CurrencyName { get; set; }
 
     /// <summary>
     /// Number of places after the decimal for this currency
@@ -1702,7 +1702,7 @@ public class CurrencyModel
     /// <summary>
     /// Symbol for the given currency
     /// </summary>
-    public string Symbol { get; set; }
+    public string? Symbol { get; set; }
 
 };
 public class CurrencyRateModel
@@ -1710,12 +1710,12 @@ public class CurrencyRateModel
     /// <summary>
     /// The source currency
     /// </summary>
-    public string SourceCurrency { get; set; }
+    public string? SourceCurrency { get; set; }
 
     /// <summary>
     /// The destination currency
     /// </summary>
-    public string DestinationCurrency { get; set; }
+    public string? DestinationCurrency { get; set; }
 
     /// <summary>
     /// The date for the currency rate
@@ -1746,57 +1746,57 @@ public class CustomerDetailsModel
     /// <summary>
     /// The unique ID of this customer
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Customer address info
     /// </summary>
-    public string Address1 { get; set; }
+    public string? Address1 { get; set; }
 
     /// <summary>
     /// Customer address info
     /// </summary>
-    public string Address2 { get; set; }
+    public string? Address2 { get; set; }
 
     /// <summary>
     /// Customer address info
     /// </summary>
-    public string Address3 { get; set; }
+    public string? Address3 { get; set; }
 
     /// <summary>
     /// Customer address info
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// Customer address info
     /// </summary>
-    public string State { get; set; }
+    public string? State { get; set; }
 
     /// <summary>
     /// Customer address info
     /// </summary>
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     /// <summary>
     /// Customer address country
     /// </summary>
-    public string Country { get; set; }
+    public string? Country { get; set; }
 
     /// <summary>
     /// Customer phone number
     /// </summary>
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
 
     /// <summary>
     /// Customer fax number
     /// </summary>
-    public string FaxNumber { get; set; }
+    public string? FaxNumber { get; set; }
 
     /// <summary>
     /// Customer AR email address
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// Customer primary contact id
@@ -1806,12 +1806,12 @@ public class CustomerDetailsModel
     /// <summary>
     /// Customer primary contact name
     /// </summary>
-    public string ContactName { get; set; }
+    public string? ContactName { get; set; }
 
     /// <summary>
     /// Customer primary contact email address
     /// </summary>
-    public string ContactEmail { get; set; }
+    public string? ContactEmail { get; set; }
 
     /// <summary>
     /// Customer number of outstanding invoices
@@ -1831,7 +1831,7 @@ public class CustomerDetailsModel
     /// <summary>
     /// Customer payments collected
     /// </summary>
-    public CustomerDetailsPaymentModel[] Payments { get; set; }
+    public CustomerDetailsPaymentModel[]? Payments { get; set; }
 
 };
 public class CustomerDetailsPaymentModel
@@ -1852,27 +1852,27 @@ public class CustomerDetailsPaymentModel
     /// <summary>
     /// Unique identifier for payment applied
     /// </summary>
-    public Guid PaymentAppliedId { get; set; }
+    public Guid? PaymentAppliedId { get; set; }
 
     /// <summary>
     /// Payment type
     /// </summary>
-    public string PaymentType { get; set; }
+    public string? PaymentType { get; set; }
 
     /// <summary>
     /// Unique identifier for invoice payment is associated with
     /// </summary>
-    public Guid InvoiceId { get; set; }
+    public Guid? InvoiceId { get; set; }
 
     /// <summary>
     /// Invoice type payment is associated with
     /// </summary>
-    public string InvoiceTypeCode { get; set; }
+    public string? InvoiceTypeCode { get; set; }
 
     /// <summary>
     /// Invoice reference code payment is associated with
     /// </summary>
-    public string InvoiceReferenceCode { get; set; }
+    public string? InvoiceReferenceCode { get; set; }
 
     /// <summary>
     /// Invoice total amount payment is associated with
@@ -1908,12 +1908,12 @@ public class CustomerSummaryModel
     /// <summary>
     /// The name of the company.
     /// </summary>
-    public string CompanyName { get; set; }
+    public string? CompanyName { get; set; }
 
     /// <summary>
     /// The name of the primary contact.
     /// </summary>
-    public string PrimaryContact { get; set; }
+    public string? PrimaryContact { get; set; }
 
     /// <summary>
     /// The number of outstanding invoices for this customer.
@@ -1968,7 +1968,7 @@ public class CustomerSummaryModel
     /// <summary>
     /// The date stamp for the newest Activity on this Customer.
     /// </summary>
-    public DateTime NewestActivity { get; set; }
+    public DateTime? NewestActivity { get; set; }
 
 };
 public class CustomFieldDefinitionModel
@@ -1990,22 +1990,22 @@ public class CustomFieldDefinitionModel
     /// <summary>
     /// Table to which this definition belongs
     /// </summary>
-    public string TableKey { get; set; }
+    public string? TableKey { get; set; }
 
     /// <summary>
     /// Id of app this definition belongs to
     /// </summary>
-    public Guid AppId { get; set; }
+    public Guid? AppId { get; set; }
 
     /// <summary>
     /// Text to display in-application for custom field
     /// </summary>
-    public string CustomFieldLabel { get; set; }
+    public string? CustomFieldLabel { get; set; }
 
     /// <summary>
     /// Data type of this definition
     /// </summary>
-    public string DataType { get; set; }
+    public string? DataType { get; set; }
 
     /// <summary>
     /// Used for display logic when multiple custom fields exist
@@ -2035,7 +2035,7 @@ public class CustomFieldDefinitionModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
 };
 public class CustomFieldValueModel
@@ -2062,7 +2062,7 @@ public class CustomFieldValueModel
     /// <summary>
     /// String of data for field
     /// </summary>
-    public string StringValue { get; set; }
+    public string? StringValue { get; set; }
 
     /// <summary>
     /// Number data for field
@@ -2092,12 +2092,12 @@ public class CustomFieldValueModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// Definition of the value
     /// </summary>
-    public CustomFieldDefinitionModel CustomFieldDefinition { get; set; }
+    public CustomFieldDefinitionModel? CustomFieldDefinition { get; set; }
 
 };
 public class DailySalesOutstandingReportModel
@@ -2142,37 +2142,37 @@ public class EmailModel
     /// <summary>
     /// The ID number of the company that created this email.
     /// </summary>
-    public Guid CompanyId { get; set; }
+    public Guid? CompanyId { get; set; }
 
     /// <summary>
     /// The email address for the sender of this email.
     /// </summary>
-    public string EmailFrom { get; set; }
+    public string? EmailFrom { get; set; }
 
     /// <summary>
     /// The email address for the recipient(s) of this email.
     /// </summary>
-    public string EmailTo { get; set; }
+    public string? EmailTo { get; set; }
 
     /// <summary>
     /// The email address for the CC recipient(s) of this email
     /// </summary>
-    public string EmailCC { get; set; }
+    public string? EmailCC { get; set; }
 
     /// <summary>
     /// The subject line of this email.
     /// </summary>
-    public string EmailSubject { get; set; }
+    public string? EmailSubject { get; set; }
 
     /// <summary>
     /// The body content of this email.
     /// </summary>
-    public string EmailBody { get; set; }
+    public string? EmailBody { get; set; }
 
     /// <summary>
     /// The date on which this email was sent.
     /// </summary>
-    public DateTime SentDate { get; set; }
+    public DateTime? SentDate { get; set; }
 
     /// <summary>
     /// A status flag indicating if this email is unread.
@@ -2207,17 +2207,17 @@ public class EmailModel
     /// <summary>
     /// The ID number of the customer that sent this email.
     /// </summary>
-    public Guid CustomerId { get; set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
     /// The date on which this email was received.
     /// </summary>
-    public DateTime ReceivedTimeStamp { get; set; }
+    public DateTime? ReceivedTimeStamp { get; set; }
 
     /// <summary>
     /// The date on which this email was opened.
     /// </summary>
-    public DateTime OpenedTimestamp { get; set; }
+    public DateTime? OpenedTimestamp { get; set; }
 
     /// <summary>
     /// The number of times this email was viewed.
@@ -2227,62 +2227,74 @@ public class EmailModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// The id of the email in an external system if imported.
     /// </summary>
-    public string ExternalEmailId { get; set; }
+    public string? ExternalEmailId { get; set; }
 
     /// <summary>
     /// The id of the email thread in an external system if imported.
     /// </summary>
-    public string ExternalThreadId { get; set; }
+    public string? ExternalThreadId { get; set; }
 
     /// <summary>
     /// The email address(es) for the BCC recipient(s) of this email
     /// </summary>
-    public string EmailBcc { get; set; }
+    public string? EmailBcc { get; set; }
 
     /// <summary>
     /// The type message being sent (New, Reply, Forward) or null for messages not being sent.
     /// </summary>
-    public string SendType { get; set; }
+    public string? SendType { get; set; }
+
+    /// <summary>
+    /// The date on which this email was modified.
+    /// Email modification should only be done by internal services.
+    /// </summary>
+    public DateTime Modified { get; set; }
+
+    /// <summary>
+    /// The ID of the user who modified this email.
+    /// Email modification should only be done by internal services.
+    /// </summary>
+    public Guid ModifiedUserId { get; set; }
 
     /// <summary>
     /// If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
     /// Otherwise null.
     /// </summary>
-    public Guid ResponseOriginId { get; set; }
+    public Guid? ResponseOriginId { get; set; }
 
     /// <summary>
     /// The email object associated with the response origin id.
     /// </summary>
-    public EmailModel ResponseOrigin { get; set; }
+    public EmailModel? ResponseOrigin { get; set; }
 
     /// <summary>
     /// All notes attached to this email.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this email.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All definitions attached to this email.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this email.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
 };
 public class ErpInfoDataModel
@@ -2291,17 +2303,17 @@ public class ErpInfoDataModel
     /// The authorization code returned from the first step of the OAuth2 flow
     /// https://oauth.net/2/grant-types/authorization-code/
     /// </summary>
-    public string AuthCode { get; set; }
+    public string? AuthCode { get; set; }
 
     /// <summary>
     /// The realm id of the account being granted permissions to access
     /// </summary>
-    public string RealmId { get; set; }
+    public string? RealmId { get; set; }
 
     /// <summary>
     /// The redirect uri used for step one of the OAuth2.0 flow.
     /// </summary>
-    public string RedirectUri { get; set; }
+    public string? RedirectUri { get; set; }
 
 };
 public class ErpInfoModel
@@ -2314,7 +2326,7 @@ public class ErpInfoModel
     /// <summary>
     /// The data required to store for connector access
     /// </summary>
-    public ConnectorInfoModel Data { get; set; }
+    public ConnectorInfoModel? Data { get; set; }
 
 };
 public class ErpModel
@@ -2327,7 +2339,7 @@ public class ErpModel
     /// <summary>
     /// Name of ERP
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Flag to indicate if ERP is supported
@@ -2340,12 +2352,12 @@ public class InviteDataModel
     /// <summary>
     /// The email address of the invited user.
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// The status of the user.
     /// </summary>
-    public string UserStatus { get; set; }
+    public string? UserStatus { get; set; }
 
 };
 public class InviteModel
@@ -2353,7 +2365,7 @@ public class InviteModel
     /// <summary>
     /// The invited email address
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// True if the invite was sent successfully
@@ -2363,12 +2375,12 @@ public class InviteModel
     /// <summary>
     /// The invited user, may be null if the user could not be invited
     /// </summary>
-    public UserAccountModel InvitedUser { get; set; }
+    public UserAccountModel? InvitedUser { get; set; }
 
     /// <summary>
     /// The error message if the invite was not successful
     /// </summary>
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
 };
 public class InviteSubmitModel
@@ -2376,7 +2388,7 @@ public class InviteSubmitModel
     /// <summary>
     /// The email address of the user to invite
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
 };
 public class InvoiceAddressModel
@@ -2403,37 +2415,37 @@ public class InvoiceAddressModel
     /// <summary>
     /// The first line of the address.
     /// </summary>
-    public string Line1 { get; set; }
+    public string? Line1 { get; set; }
 
     /// <summary>
     /// The second line of the address.
     /// </summary>
-    public string Line2 { get; set; }
+    public string? Line2 { get; set; }
 
     /// <summary>
     /// The third line of the address.
     /// </summary>
-    public string Line3 { get; set; }
+    public string? Line3 { get; set; }
 
     /// <summary>
     /// The name of the city for this address.
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// The state or region part of this address.
     /// </summary>
-    public string Region { get; set; }
+    public string? Region { get; set; }
 
     /// <summary>
     /// The postal code for this address.
     /// </summary>
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     /// <summary>
     /// The country for this address.
     /// </summary>
-    public string Country { get; set; }
+    public string? Country { get; set; }
 
     /// <summary>
     /// The latitude of this address, if available.
@@ -2448,22 +2460,22 @@ public class InvoiceAddressModel
     /// <summary>
     /// The date on which this address record was created.
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID number of the user who created this address.
     /// </summary>
-    public Guid CreatedUserId { get; set; }
+    public Guid? CreatedUserId { get; set; }
 
     /// <summary>
     /// The date on which this address record was last modified.
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// The ID number of the user who most recently modified this address.
     /// </summary>
-    public Guid ModifiedUserId { get; set; }
+    public Guid? ModifiedUserId { get; set; }
 
 };
 public class InvoiceHistoryModel
@@ -2508,53 +2520,53 @@ public class InvoiceHistoryModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// The purchase order code as it exists in the user's ERP or accounting system.
     /// </summary>
-    public string PurchaseOrderCode { get; set; }
+    public string? PurchaseOrderCode { get; set; }
 
     /// <summary>
     /// An additional reference code that is sometimes used to identify this invoice.
     /// The meaning of this field is specific to the ERP or accounting system used by the user.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// A code identifying the salesperson responsible for writing this invoice.
     /// </summary>
-    public string SalespersonCode { get; set; }
+    public string? SalespersonCode { get; set; }
 
     /// <summary>
     /// A string identifying the salesperson responsible for writing this invoice.
     /// </summary>
-    public string SalespersonName { get; set; }
+    public string? SalespersonName { get; set; }
 
     /// <summary>
     /// A code identifying the type of this invoice.
     /// </summary>
-    public string InvoiceTypeCode { get; set; }
+    public string? InvoiceTypeCode { get; set; }
 
     /// <summary>
     /// A code identifying the status of this invoice.
     /// </summary>
-    public string InvoiceStatusCode { get; set; }
+    public string? InvoiceStatusCode { get; set; }
 
     /// <summary>
     /// A code identifying the terms given to the purchaser.
     /// </summary>
-    public string TermsCode { get; set; }
+    public string? TermsCode { get; set; }
 
     /// <summary>
     /// If the customer negotiated any special terms different from the standard terms above, describe them here.
     /// </summary>
-    public string SpecialTerms { get; set; }
+    public string? SpecialTerms { get; set; }
 
     /// <summary>
     /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
     /// </summary>
-    public string CurrencyCode { get; set; }
+    public string? CurrencyCode { get; set; }
 
     /// <summary>
     /// The total value of this invoice, inclusive of all taxes and line items.
@@ -2579,68 +2591,68 @@ public class InvoiceHistoryModel
     /// <summary>
     /// The reporting date for this invoice.
     /// </summary>
-    public DateTime InvoiceDate { get; set; }
+    public DateTime? InvoiceDate { get; set; }
 
     /// <summary>
     /// The date when discounts were adjusted for this invoice.
     /// </summary>
-    public DateTime DiscountDate { get; set; }
+    public DateTime? DiscountDate { get; set; }
 
     /// <summary>
     /// The date when this invoice posted to the company's general ledger.
     /// </summary>
-    public DateTime PostedDate { get; set; }
+    public DateTime? PostedDate { get; set; }
 
     /// <summary>
     /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
     /// services.
     /// </summary>
-    public DateTime InvoiceClosedDate { get; set; }
+    public DateTime? InvoiceClosedDate { get; set; }
 
     /// <summary>
     /// The date when the remaining outstanding balance is due.
     /// </summary>
-    public DateTime PaymentDueDate { get; set; }
+    public DateTime? PaymentDueDate { get; set; }
 
     /// <summary>
     /// The date and time when this record was imported from the user's ERP or accounting system.
     /// </summary>
-    public DateTime ImportedDate { get; set; }
+    public DateTime? ImportedDate { get; set; }
 
     /// <summary>
     /// The ID number of the invoice's origination address
     /// </summary>
-    public Guid PrimaryOriginAddressId { get; set; }
+    public Guid? PrimaryOriginAddressId { get; set; }
 
     /// <summary>
     /// The ID number of the invoice's bill-to address
     /// </summary>
-    public Guid PrimaryBillToAddressId { get; set; }
+    public Guid? PrimaryBillToAddressId { get; set; }
 
     /// <summary>
     /// The ID number of the invoice's ship-to address
     /// </summary>
-    public Guid PrimaryShipToAddressId { get; set; }
+    public Guid? PrimaryShipToAddressId { get; set; }
 
     /// <summary>
     /// The date on which this invoice record was created.
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID number of the user who created this invoice.
     /// </summary>
-    public Guid CreatedUserId { get; set; }
+    public Guid? CreatedUserId { get; set; }
 
     /// <summary>
     /// The date on which this invoice record was last modified.
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// The ID number of the user who most recently modified this invoice.
     /// </summary>
-    public Guid ModifiedUserId { get; set; }
+    public Guid? ModifiedUserId { get; set; }
 
 };
 public class InvoiceLineModel
@@ -2676,29 +2688,29 @@ public class InvoiceLineModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to
     /// get the original view of lines within the invoice.
     /// </summary>
-    public string LineNumber { get; set; }
+    public string? LineNumber { get; set; }
 
     /// <summary>
     /// A code number identifying the product or service that is specified on this line.
     /// </summary>
-    public string ProductCode { get; set; }
+    public string? ProductCode { get; set; }
 
     /// <summary>
     /// Description of this invoice line.
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// For lines measured in a unit other than "quantity", this code indicates the measurement system for the quantity field.
     /// If the line is measured in quantity, this field is null.
     /// </summary>
-    public string UnitMeasureCode { get; set; }
+    public string? UnitMeasureCode { get; set; }
 
     /// <summary>
     /// The price of a single unit for this line.
@@ -2728,60 +2740,65 @@ public class InvoiceLineModel
     /// <summary>
     /// If this line is tax exempt, this code indicates the reason for the exemption.
     /// </summary>
-    public string ExemptionCode { get; set; }
+    public string? ExemptionCode { get; set; }
 
     /// <summary>
     /// If null, the products specified on this line were delivered on the same date as all other lines.
     /// If not null, this line was delivered or finalized on a different date than the overall invoice.
     /// </summary>
-    public DateTime ReportingDate { get; set; }
+    public DateTime? ReportingDate { get; set; }
 
     /// <summary>
     /// An optional ID number for the line's origin address.
     /// </summary>
-    public Guid OverrideOriginAddressId { get; set; }
+    public Guid? OverrideOriginAddressId { get; set; }
 
     /// <summary>
     /// An optional ID number for the line's bill to address.
     /// </summary>
-    public Guid OverrideBillToAddressId { get; set; }
+    public Guid? OverrideBillToAddressId { get; set; }
 
     /// <summary>
     /// An optional ID number for the line's ship to address.
     /// </summary>
-    public Guid OverrideShipToAddressId { get; set; }
+    public Guid? OverrideShipToAddressId { get; set; }
 
     /// <summary>
     /// The date on which this line was created.
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID number of the user who created this line.
     /// </summary>
-    public Guid CreatedUserId { get; set; }
+    public Guid? CreatedUserId { get; set; }
 
     /// <summary>
     /// The date on which this line was last modified.
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// The ID number of the user who most recently modified this line.
     /// </summary>
-    public Guid ModifiedUserId { get; set; }
+    public Guid? ModifiedUserId { get; set; }
+
+    /// <summary>
+    /// AppEnrollmentId for this record; used for mapping purposes.
+    /// </summary>
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// All notes attached to this company.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this company.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
 };
 public class InvoiceModel
@@ -2821,53 +2838,53 @@ public class InvoiceModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// The purchase order code as it exists in the user's ERP or accounting system.
     /// </summary>
-    public string PurchaseOrderCode { get; set; }
+    public string? PurchaseOrderCode { get; set; }
 
     /// <summary>
     /// An additional reference code that is sometimes used to identify this invoice.
     /// The meaning of this field is specific to the ERP or accounting system used by the user.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// A code identifying the salesperson responsible for writing this quote, invoice, or order.
     /// </summary>
-    public string SalespersonCode { get; set; }
+    public string? SalespersonCode { get; set; }
 
     /// <summary>
     /// A string identifying the salesperson responsible for writing this quote, invoice, or order.
     /// </summary>
-    public string SalespersonName { get; set; }
+    public string? SalespersonName { get; set; }
 
     /// <summary>
     /// A code identifying the type of this invoice.
     /// </summary>
-    public string InvoiceTypeCode { get; set; }
+    public string? InvoiceTypeCode { get; set; }
 
     /// <summary>
     /// A code identifying the status of this invoice.
     /// </summary>
-    public string InvoiceStatusCode { get; set; }
+    public string? InvoiceStatusCode { get; set; }
 
     /// <summary>
     /// A code identifying the terms given to the purchaser.
     /// </summary>
-    public string TermsCode { get; set; }
+    public string? TermsCode { get; set; }
 
     /// <summary>
     /// If the customer negotiated any special terms different from the standard terms above, describe them here.
     /// </summary>
-    public string SpecialTerms { get; set; }
+    public string? SpecialTerms { get; set; }
 
     /// <summary>
     /// The three-character ISO 4217 currency code used for this invoice.
     /// </summary>
-    public string CurrencyCode { get; set; }
+    public string? CurrencyCode { get; set; }
 
     /// <summary>
     /// The total value of this invoice, inclusive of all taxes and line items.
@@ -2892,73 +2909,73 @@ public class InvoiceModel
     /// <summary>
     /// The reporting date for this invoice.
     /// </summary>
-    public DateTime InvoiceDate { get; set; }
+    public DateTime? InvoiceDate { get; set; }
 
     /// <summary>
     /// The date when discounts were adjusted for this invoice.
     /// </summary>
-    public DateTime DiscountDate { get; set; }
+    public DateTime? DiscountDate { get; set; }
 
     /// <summary>
     /// The date when this invoice posted to the company's general ledger.
     /// </summary>
-    public DateTime PostedDate { get; set; }
+    public DateTime? PostedDate { get; set; }
 
     /// <summary>
     /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
     /// services.
     /// </summary>
-    public DateTime InvoiceClosedDate { get; set; }
+    public DateTime? InvoiceClosedDate { get; set; }
 
     /// <summary>
     /// The date when the remaining outstanding balance is due.
     /// </summary>
-    public DateTime PaymentDueDate { get; set; }
+    public DateTime? PaymentDueDate { get; set; }
 
     /// <summary>
     /// The date and time when this record was imported from the user's ERP or accounting system.
     /// </summary>
-    public DateTime ImportedDate { get; set; }
+    public DateTime? ImportedDate { get; set; }
 
     /// <summary>
     /// The ID number of the invoice's origination address
     /// </summary>
-    public Guid PrimaryOriginAddressId { get; set; }
+    public Guid? PrimaryOriginAddressId { get; set; }
 
     /// <summary>
     /// The ID number of the invoice's bill-to address
     /// </summary>
-    public Guid PrimaryBillToAddressId { get; set; }
+    public Guid? PrimaryBillToAddressId { get; set; }
 
     /// <summary>
     /// The ID number of the invoice's ship-to address
     /// </summary>
-    public Guid PrimaryShipToAddressId { get; set; }
+    public Guid? PrimaryShipToAddressId { get; set; }
 
     /// <summary>
     /// The date on which this address record was created.
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID number of the user who created this address.
     /// </summary>
-    public Guid CreatedUserId { get; set; }
+    public Guid? CreatedUserId { get; set; }
 
     /// <summary>
     /// The date on which this address record was last modified.
     /// </summary>
-    public DateTime Modified { get; set; }
+    public DateTime? Modified { get; set; }
 
     /// <summary>
     /// The ID number of the user who most recently modified this address.
     /// </summary>
-    public Guid ModifiedUserId { get; set; }
+    public Guid? ModifiedUserId { get; set; }
 
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// Is the invoice voided?
@@ -2979,66 +2996,66 @@ public class InvoiceModel
     /// All addresses connected to this invoice.
     /// To retrieve this collection, specify `Addresses` in the "Include" parameter for your query.
     /// </summary>
-    public InvoiceAddressModel[] Addresses { get; set; }
+    public InvoiceAddressModel[]? Addresses { get; set; }
 
     /// <summary>
     /// All lines attached to this invoice.
     /// To retrieve this collection, specify `Lines` in the "Include" parameter for your query.
     /// </summary>
-    public InvoiceLineModel[] Lines { get; set; }
+    public InvoiceLineModel[]? Lines { get; set; }
 
     /// <summary>
     /// All payments attached to this invoice, the amount of the payment applied to this Invoice, and the date the Payment was applied.
     /// To retrieve this collection, specify `Payments` in the "Include" parameter for your query.
     /// </summary>
-    public InvoicePaymentDetailModel[] Payments { get; set; }
+    public InvoicePaymentDetailModel[]? Payments { get; set; }
 
     /// <summary>
     /// All notes attached to this invoice.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this invoice.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// The Company associated to this invoice.
     /// To retrieve this item, specify `Company` in the "Include" parameter for your query.
     /// </summary>
-    public CompanyModel Company { get; set; }
+    public CompanyModel? Company { get; set; }
 
     /// <summary>
     /// The Customer associated to the invoice customer
     /// To retrieve this item, specify `Customer` in the "Include" parameter for your query.
     /// </summary>
-    public CompanyModel Customer { get; set; }
+    public CompanyModel? Customer { get; set; }
 
     /// <summary>
     /// The Contact associated to the invoice customer
     /// To retrieve this item, specify `Customer` in the "Include" parameter for your query.
     /// </summary>
-    public ContactModel CustomerPrimaryContact { get; set; }
+    public ContactModel? CustomerPrimaryContact { get; set; }
 
     /// <summary>
     /// The credit memos associated to this invoice.
     /// To retrieve this item, specify `CreditMemos` in the "Include" parameter for your query.
     /// </summary>
-    public CreditMemoInvoiceModel[] CreditMemos { get; set; }
+    public CreditMemoInvoiceModel[]? CreditMemos { get; set; }
 
     /// <summary>
     /// All custom field values associated with this invoice
     /// To retrieve this item, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// All custom field definitions
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
 };
 public class InvoicePaymentDetailModel
@@ -3069,7 +3086,7 @@ public class InvoicePaymentDetailModel
     /// <summary>
     /// Date Payment applied to Invoice.
     /// </summary>
-    public DateTime ApplyToInvoiceDate { get; set; }
+    public DateTime? ApplyToInvoiceDate { get; set; }
 
     /// <summary>
     /// Amount applied to Invoice.
@@ -3080,12 +3097,12 @@ public class InvoicePaymentDetailModel
     /// An additional reference code that is sometimes used to identify this Payment.
     /// The meaning of this field is specific to the ERP or accounting system used by the user.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// The ID number of the Company (CompanyType = "Customer") that created this Payment.
     /// </summary>
-    public Guid CompanyId { get; set; }
+    public Guid? CompanyId { get; set; }
 
     /// <summary>
     /// The total value of this Payment.
@@ -3111,7 +3128,7 @@ public class InvoiceSummaryModel
     /// <summary>
     /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
     /// </summary>
-    public Guid CustomerId { get; set; }
+    public Guid? CustomerId { get; set; }
 
     /// <summary>
     /// The unique ID number of this invoice.
@@ -3122,27 +3139,27 @@ public class InvoiceSummaryModel
     /// A reference code that is used to identify this invoice.
     /// The meaning of this field is specific to the ERP or accounting system used by the user.
     /// </summary>
-    public string InvoiceNumber { get; set; }
+    public string? InvoiceNumber { get; set; }
 
     /// <summary>
     /// The reporting date for this invoice.
     /// </summary>
-    public DateTime InvoiceDate { get; set; }
+    public DateTime? InvoiceDate { get; set; }
 
     /// <summary>
     /// The name of the counterparty for the invoice, for example, a customer or vendor.
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
 
     /// <summary>
     /// The status of the invoice.
     /// </summary>
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
     /// <summary>
     /// The due date of the invoice.
     /// </summary>
-    public DateTime PaymentDueDate { get; set; }
+    public DateTime? PaymentDueDate { get; set; }
 
     /// <summary>
     /// The total amount of the Invoice.
@@ -3157,12 +3174,12 @@ public class InvoiceSummaryModel
     /// <summary>
     /// A code identifying the type of this Invoice.
     /// </summary>
-    public string InvoiceTypeCode { get; set; }
+    public string? InvoiceTypeCode { get; set; }
 
     /// <summary>
     /// The date stamp for the newest Activity on this Invoice.
     /// </summary>
-    public DateTime NewestActivity { get; set; }
+    public DateTime? NewestActivity { get; set; }
 
     /// <summary>
     /// The number of days this Invoice is past due.
@@ -3172,12 +3189,12 @@ public class InvoiceSummaryModel
     /// <summary>
     /// The memo text of the payments associated to this invoice.
     /// </summary>
-    public string[] PaymentNumbers { get; set; }
+    public string[]? PaymentNumbers { get; set; }
 
     /// <summary>
     /// The ids of the payments associated to this invoice.
     /// </summary>
-    public Guid[] PaymentIds { get; set; }
+    public Guid[]? PaymentIds { get; set; }
 
 };
 public class LeadModel
@@ -3191,22 +3208,22 @@ public class LeadModel
     /// <summary>
     /// Name of lead
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Name of company of lead
     /// </summary>
-    public string Company { get; set; }
+    public string? Company { get; set; }
 
     /// <summary>
     /// Email of lead
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// Requested ERP of lead
     /// </summary>
-    public string ErpSystem { get; set; }
+    public string? ErpSystem { get; set; }
 
 };
 public class MigrationResultModel
@@ -3215,7 +3232,7 @@ public class MigrationResultModel
     /// If the API call produced messages, this element will contain a list of user-visible
     /// text strings that contain information about what work occurred in the API.
     /// </summary>
-    public string[] Messages { get; set; }
+    public string[]? Messages { get; set; }
 
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3290,7 +3307,7 @@ public class NoteModel
     /// <summary>
     /// The name of the table the note is associated with
     /// </summary>
-    public string TableKey { get; set; }
+    public string? TableKey { get; set; }
 
     /// <summary>
     /// The ID of the object the note is associated with
@@ -3300,12 +3317,12 @@ public class NoteModel
     /// <summary>
     /// The text of the note
     /// </summary>
-    public string NoteText { get; set; }
+    public string? NoteText { get; set; }
 
     /// <summary>
     /// The type of the note
     /// </summary>
-    public string NoteType { get; set; }
+    public string? NoteType { get; set; }
 
     /// <summary>
     /// Flag indicating if the note has been archived
@@ -3315,7 +3332,7 @@ public class NoteModel
     /// <summary>
     /// The date the note was created
     /// </summary>
-    public DateTime Created { get; set; }
+    public DateTime? Created { get; set; }
 
     /// <summary>
     /// The ID of the user who created the note
@@ -3325,12 +3342,12 @@ public class NoteModel
     /// <summary>
     /// The name of the user who created the note
     /// </summary>
-    public string CreatedUserName { get; set; }
+    public string? CreatedUserName { get; set; }
 
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
 };
 public class PaymentAppliedModel
@@ -3370,7 +3387,7 @@ public class PaymentAppliedModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// Reference number for the payment applied.
@@ -3410,12 +3427,12 @@ public class PaymentAppliedModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// The invoice associated with this applied payment.
     /// </summary>
-    public InvoiceModel Invoice { get; set; }
+    public InvoiceModel? Invoice { get; set; }
 
 };
 public class PaymentDetailHeaderModel
@@ -3477,27 +3494,27 @@ public class PaymentDetailModel
     /// <summary>
     /// The name of the customer to which this Payment belongs.
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
 
     /// <summary>
     /// Memo or reference text (ex. memo field on a check).
     /// </summary>
-    public string MemoText { get; set; }
+    public string? MemoText { get; set; }
 
     /// <summary>
     /// Reference code for the payment for the given Erp system.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// The name of the Primary Contact for the Customer.
     /// </summary>
-    public string PrimaryContact { get; set; }
+    public string? PrimaryContact { get; set; }
 
     /// <summary>
     /// The Email address of the Customer.
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// Total amount of this Payment.
@@ -3512,62 +3529,62 @@ public class PaymentDetailModel
     /// <summary>
     /// The type of payment, Payment or AP Payment.
     /// </summary>
-    public string PaymentType { get; set; }
+    public string? PaymentType { get; set; }
 
     /// <summary>
     /// The date of this Payment.
     /// </summary>
-    public DateTime PaymentDate { get; set; }
+    public DateTime? PaymentDate { get; set; }
 
     /// <summary>
     /// Payment post date.
     /// </summary>
-    public DateTime PostDate { get; set; }
+    public DateTime? PostDate { get; set; }
 
     /// <summary>
     /// The phone number of the Customer's Primary Contact.
     /// </summary>
-    public string Phone { get; set; }
+    public string? Phone { get; set; }
 
     /// <summary>
     /// The fax number of the Customer's Primary Contact.
     /// </summary>
-    public string Fax { get; set; }
+    public string? Fax { get; set; }
 
     /// <summary>
     /// The first line of the address for the Customer's Primary Contact.
     /// </summary>
-    public string Address1 { get; set; }
+    public string? Address1 { get; set; }
 
     /// <summary>
     /// The second line of the address for the Customer's Primary Contact.
     /// </summary>
-    public string Address2 { get; set; }
+    public string? Address2 { get; set; }
 
     /// <summary>
     /// The third line of the address for the Customer's Primary Contact.
     /// </summary>
-    public string Address3 { get; set; }
+    public string? Address3 { get; set; }
 
     /// <summary>
     /// The city of the address for the Customer's Primary Contact.
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// The state/region of the address for the Customer's Primary Contact.
     /// </summary>
-    public string StateRegion { get; set; }
+    public string? StateRegion { get; set; }
 
     /// <summary>
     /// The postal/zip code of the address for the Customer's Primary Contact.
     /// </summary>
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     /// <summary>
     /// The 2 character country code of the address for the Customer's Primary Contact.
     /// </summary>
-    public string CountryCode { get; set; }
+    public string? CountryCode { get; set; }
 
 };
 public class PaymentModel
@@ -3602,17 +3619,17 @@ public class PaymentModel
     /// 
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
-    public string ErpKey { get; set; }
+    public string? ErpKey { get; set; }
 
     /// <summary>
     /// The type of payment, cash or check.
     /// </summary>
-    public string PaymentType { get; set; }
+    public string? PaymentType { get; set; }
 
     /// <summary>
     /// Cash, check, credit card, wire transfer.
     /// </summary>
-    public string TenderType { get; set; }
+    public string? TenderType { get; set; }
 
     /// <summary>
     /// Has the payment been fully applied?
@@ -3622,7 +3639,7 @@ public class PaymentModel
     /// <summary>
     /// Memo or reference text (ex. memo field on a check).
     /// </summary>
-    public string MemoText { get; set; }
+    public string? MemoText { get; set; }
 
     /// <summary>
     /// The date of this payment.
@@ -3647,12 +3664,12 @@ public class PaymentModel
     /// <summary>
     /// Currency of the payment. This will be validated by the /api/v1/currencies data set
     /// </summary>
-    public string CurrencyCode { get; set; }
+    public string? CurrencyCode { get; set; }
 
     /// <summary>
     /// Reference code for the payment for the given Erp system.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// The date on which this record was created.
@@ -3677,7 +3694,7 @@ public class PaymentModel
     /// <summary>
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// Is the payment voided?
@@ -3693,31 +3710,31 @@ public class PaymentModel
     /// All applications this payment is associated with.
     /// To retrieve this collection, specify `Applications` in the "Include" parameter for your query.
     /// </summary>
-    public PaymentAppliedModel[] Applications { get; set; }
+    public PaymentAppliedModel[]? Applications { get; set; }
 
     /// <summary>
     /// All notes attached to this payment.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this payment.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All definitions attached to this payment.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+    public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this payment.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
 };
 public class PaymentSummaryModel
@@ -3738,22 +3755,22 @@ public class PaymentSummaryModel
     /// <summary>
     /// Memo or reference text (ex. memo field on a check).
     /// </summary>
-    public string MemoText { get; set; }
+    public string? MemoText { get; set; }
 
     /// <summary>
     /// Reference code for the payment for the given Erp system.
     /// </summary>
-    public string ReferenceCode { get; set; }
+    public string? ReferenceCode { get; set; }
 
     /// <summary>
     /// The type of payment, Payment or AP Payment.
     /// </summary>
-    public string PaymentType { get; set; }
+    public string? PaymentType { get; set; }
 
     /// <summary>
     /// The date of this payment.
     /// </summary>
-    public DateTime PaymentDate { get; set; }
+    public DateTime? PaymentDate { get; set; }
 
     /// <summary>
     /// Total amount of this payment.
@@ -3778,22 +3795,22 @@ public class PaymentSummaryModel
     /// <summary>
     /// The reference codes of the invoices associated to this payment.
     /// </summary>
-    public string[] InvoiceList { get; set; }
+    public string[]? InvoiceList { get; set; }
 
     /// <summary>
     /// The ids of the invoices associated to this payment.
     /// </summary>
-    public Guid[] InvoiceIdList { get; set; }
+    public Guid[]? InvoiceIdList { get; set; }
 
     /// <summary>
     /// The name of the customer for this payment.
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
 
     /// <summary>
     /// The id of the customer for this payment.
     /// </summary>
-    public Guid CustomerId { get; set; }
+    public Guid? CustomerId { get; set; }
 
 };
 public class ProvisioningFinalizeRequestModel
@@ -3801,27 +3818,27 @@ public class ProvisioningFinalizeRequestModel
     /// <summary>
     /// The full name of the user
     /// </summary>
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
 
     /// <summary>
     /// The time zone of the user
     /// </summary>
-    public string TimeZone { get; set; }
+    public string? TimeZone { get; set; }
 
     /// <summary>
     /// The default currency of the user
     /// </summary>
-    public string DefaultCurrency { get; set; }
+    public string? DefaultCurrency { get; set; }
 
     /// <summary>
     /// The company information for the user and group
     /// </summary>
-    public CompanyModel Company { get; set; }
+    public CompanyModel? Company { get; set; }
 
     /// <summary>
     /// Optional connector information needed to enroll user to their email connector
     /// </summary>
-    public ErpInfoModel EmailConnector { get; set; }
+    public ErpInfoModel? EmailConnector { get; set; }
 
 };
 public class ProvisioningModel
@@ -3829,12 +3846,12 @@ public class ProvisioningModel
     /// <summary>
     /// The full name of the new user
     /// </summary>
-    public string FullName { get; set; }
+    public string? FullName { get; set; }
 
     /// <summary>
     /// The information necessary to enroll the user in their ERP
     /// </summary>
-    public ErpInfoModel Erp { get; set; }
+    public ErpInfoModel? Erp { get; set; }
 
 };
 public class ProvisioningResponseModel
@@ -3842,37 +3859,37 @@ public class ProvisioningResponseModel
     /// <summary>
     /// If provisioning is successful, contains the username of the created user.
     /// </summary>
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// If provisioning is successful, contains subscription account name of created user.
     /// </summary>
-    public string AccountName { get; set; }
+    public string? AccountName { get; set; }
 
     /// <summary>
     /// If provisioning is successful, contains the unique identifier of the created user.
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
 
     /// <summary>
     /// If provisioning is successful, contains the group key of the created user.
     /// </summary>
-    public Guid GroupKey { get; set; }
+    public Guid? GroupKey { get; set; }
 
     /// <summary>
     /// If provisioning is successful, contains the app enrollment id of the created app enrollment.
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// if provisioning is successful, contains the sync request id of the sync that was started for the app enrollment.
     /// </summary>
-    public Guid SyncRequestId { get; set; }
+    public Guid? SyncRequestId { get; set; }
 
     /// <summary>
     /// The error message(s).
     /// </summary>
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
 };
 public class RiskRateModel
@@ -3893,7 +3910,7 @@ public class RiskRateModel
     /// <summary>
     /// The string name of the month the risk rate was calculated for
     /// </summary>
-    public string InvoiceMonthName { get; set; }
+    public string? InvoiceMonthName { get; set; }
 
     /// <summary>
     /// The count of all invoices in the calculation month
@@ -3931,17 +3948,17 @@ public class StateModel
     /// <summary>
     /// Name of the state
     /// </summary>
-    public string Name { get; set; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// 2 letter alphabetic code for the given state
     /// </summary>
-    public string Alpha2 { get; set; }
+    public string? Alpha2 { get; set; }
 
     /// <summary>
     /// A different name for a state
     /// </summary>
-    public string Aliases { get; set; }
+    public string? Aliases { get; set; }
 
 };
 public class StatusModel
@@ -3949,27 +3966,27 @@ public class StatusModel
     /// <summary>
     /// If authentication is successful, contains the username of the logged-in user.
     /// </summary>
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// If authentication is successful, contains subscription account name of logged-in user.
     /// </summary>
-    public string AccountName { get; set; }
+    public string? AccountName { get; set; }
 
     /// <summary>
     /// If authentication is successful, contains subscription account company id of logged-in user.
     /// </summary>
-    public Guid AccountCompanyId { get; set; }
+    public Guid? AccountCompanyId { get; set; }
 
     /// <summary>
     /// If authentication is successful, contains the unique identifier of the logged-in user.
     /// </summary>
-    public Guid UserId { get; set; }
+    public Guid? UserId { get; set; }
 
     /// <summary>
     /// If authentication is successful, contains the group key of the logged-in user.
     /// </summary>
-    public Guid GroupKey { get; set; }
+    public Guid? GroupKey { get; set; }
 
     /// <summary>
     /// Returns true if authentication for this API was successful.
@@ -3979,33 +3996,38 @@ public class StatusModel
     /// <summary>
     /// The error message.
     /// </summary>
-    public string ErrorMessage { get; set; }
+    public string? ErrorMessage { get; set; }
 
     /// <summary>
     /// The set of roles for this user.
     /// </summary>
-    public string[] Roles { get; set; }
+    public string[]? Roles { get; set; }
 
     /// <summary>
     /// Date and time user has last logged into Azure B2C.
     /// </summary>
-    public DateTime LastLoggedIn { get; set; }
+    public DateTime? LastLoggedIn { get; set; }
 
     /// <summary>
     /// The id of the API key used to authenticate.
     /// </summary>
-    public Guid ApiKeyId { get; set; }
+    public Guid? ApiKeyId { get; set; }
 
     /// <summary>
     /// If authentication is successful, contains the user status of the logged-in user.
     /// </summary>
-    public string UserStatus { get; set; }
+    public string? UserStatus { get; set; }
+
+    /// <summary>
+    /// The environment currently being used
+    /// </summary>
+    public string? Environment { get; set; }
 
     /// <summary>
     /// Statuses for the dependencies of this api.
     /// OK if the dependency is working.
     /// </summary>
-    public object Dependencies { get; set; }
+    public object? Dependencies { get; set; }
 
 };
 public class SyncEntityResultModel
@@ -4033,7 +4055,7 @@ public class SyncEntityResultModel
     /// <summary>
     /// The errors encountered during sync keyed by ERP key
     /// </summary>
-    public object Errors { get; set; }
+    public object? Errors { get; set; }
 
 };
 public class SyncRequestModel
@@ -4055,17 +4077,17 @@ public class SyncRequestModel
     /// <summary>
     /// Potential values = Cancelled, Ready, In Progress, Success, Failed
     /// </summary>
-    public string StatusCode { get; set; }
+    public string? StatusCode { get; set; }
 
     /// <summary>
     /// Message containing information about the sync request results
     /// </summary>
-    public string ProcessResultMessage { get; set; }
+    public string? ProcessResultMessage { get; set; }
 
     /// <summary>
     /// App enrollment sync request is for
     /// </summary>
-    public Guid AppEnrollmentId { get; set; }
+    public Guid? AppEnrollmentId { get; set; }
 
     /// <summary>
     /// The date this sync request was created
@@ -4086,7 +4108,7 @@ public class SyncRequestModel
     /// The detailed results from the sync.
     /// To retrieve this collection, set `includeDetails` to true in your GET requests.
     /// </summary>
-    public object Details { get; set; }
+    public object? Details { get; set; }
 
 };
 public class SyncSubmitModel
@@ -4102,12 +4124,12 @@ public class TransferOwnerModel
     /// <summary>
     /// The previous owner of the account.
     /// </summary>
-    public UserAccountModel PreviousOwner { get; set; }
+    public UserAccountModel? PreviousOwner { get; set; }
 
     /// <summary>
     /// The new owner of the account.
     /// </summary>
-    public UserAccountModel NewOwner { get; set; }
+    public UserAccountModel? NewOwner { get; set; }
 
 };
 public class TransferOwnerSubmitModel
@@ -4139,17 +4161,17 @@ public class UserAccountModel
     /// <summary>
     /// The full name of the user
     /// </summary>
-    public string UserName { get; set; }
+    public string? UserName { get; set; }
 
     /// <summary>
     /// The email of the user
     /// </summary>
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// The status of the user's account
     /// </summary>
-    public string Status { get; set; }
+    public string? Status { get; set; }
 
     /// <summary>
     /// The date that the user account was created
@@ -4174,12 +4196,12 @@ public class UserAccountModel
     /// <summary>
     /// The name of the user who last modified the user account
     /// </summary>
-    public string ModifiedUserName { get; set; }
+    public string? ModifiedUserName { get; set; }
 
     /// <summary>
     /// The ID of the user in Azure B2C
     /// </summary>
-    public Guid B2CUserId { get; set; }
+    public Guid? B2CUserId { get; set; }
 
     /// <summary>
     /// The id of the Permission Level for the user.
@@ -4189,77 +4211,77 @@ public class UserAccountModel
     /// <summary>
     /// The date timestamp when the invite was sent to the user.
     /// </summary>
-    public DateTime InviteSent { get; set; }
+    public DateTime? InviteSent { get; set; }
 
     /// <summary>
     /// The phone number of the user.
     /// </summary>
-    public string PhoneNumber { get; set; }
+    public string? PhoneNumber { get; set; }
 
     /// <summary>
     /// The fax number of the user.
     /// </summary>
-    public string FaxNumber { get; set; }
+    public string? FaxNumber { get; set; }
 
     /// <summary>
     /// The title of the user; free text field
     /// </summary>
-    public string Title { get; set; }
+    public string? Title { get; set; }
 
     /// <summary>
     /// FK to the CodeDefinition table; CodeType = 'AccountingRole'
     /// </summary>
-    public Guid AccountingRoleCodeDefId { get; set; }
+    public Guid? AccountingRoleCodeDefId { get; set; }
 
     /// <summary>
     /// Address Line 1 for this User
     /// </summary>
-    public string Address1 { get; set; }
+    public string? Address1 { get; set; }
 
     /// <summary>
     /// Address Line 2 for this User
     /// </summary>
-    public string Address2 { get; set; }
+    public string? Address2 { get; set; }
 
     /// <summary>
     /// Address Line 3 for this User
     /// </summary>
-    public string Address3 { get; set; }
+    public string? Address3 { get; set; }
 
     /// <summary>
     /// City for this User
     /// </summary>
-    public string City { get; set; }
+    public string? City { get; set; }
 
     /// <summary>
     /// Region ("state" in the US) for this User
     /// </summary>
-    public string StateRegion { get; set; }
+    public string? StateRegion { get; set; }
 
     /// <summary>
     /// Postal Code this User
     /// </summary>
-    public string PostalCode { get; set; }
+    public string? PostalCode { get; set; }
 
     /// <summary>
     /// Country for this User This will be validated by the /api/v1/countries data set
     /// </summary>
-    public string Country { get; set; }
+    public string? Country { get; set; }
 
     /// <summary>
     /// Image URL for this User
     /// </summary>
-    public string ImageURL { get; set; }
+    public string? ImageURL { get; set; }
 
     /// <summary>
     /// Description for this User.
     /// </summary>
-    public string Description { get; set; }
+    public string? Description { get; set; }
 
     /// <summary>
     /// Last date time user logged into Azure B2C.
     /// </summary>
-    public DateTime B2CLastLoggedIn { get; set; }
+    public DateTime? B2CLastLoggedIn { get; set; }
 
     /// <summary>
     /// The default currency code used by this user entity.  This value can be overridden
@@ -4267,31 +4289,31 @@ public class UserAccountModel
     /// 
     /// For a list of defined currency codes, see [TODO]()
     /// </summary>
-    public string DefaultCurrencyCode { get; set; }
+    public string? DefaultCurrencyCode { get; set; }
 
     /// <summary>
     /// All notes attached to this User.
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
-    public NoteModel[] Notes { get; set; }
+    public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this User.
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
-    public AttachmentModel[] Attachments { get; set; }
+    public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All values attached to this User.
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
-    public CustomFieldValueModel[] CustomFieldValues { get; set; }
+    public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// Accounting role definition for this User.
     /// To retrieve this collection, specify `AccountingRole` in the "Include" parameter for your query.
     /// </summary>
-    public CodeDefinitionModel AccountingRoleCodeDefinition { get; set; }
+    public CodeDefinitionModel? AccountingRoleCodeDefinition { get; set; }
 
 };
 public class UserRoleModel
@@ -4313,7 +4335,7 @@ public class UserRoleModel
     /// <summary>
     /// The name of the user role
     /// </summary>
-    public string UserRoleName { get; set; }
+    public string? UserRoleName { get; set; }
 
     /// <summary>
     /// The date that the user role was created

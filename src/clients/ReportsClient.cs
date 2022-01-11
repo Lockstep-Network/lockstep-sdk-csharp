@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -33,10 +33,10 @@ public class ReportsClient
     /// 
     /// </summary>
     /// <param name="timeframe">Number of days of data to include for the Cash Flow Report (default is 30 days from today)</param>
-    public async Task<LockstepResponse<CashflowReportModel>> CashFlow(int timeframe)
+    public async Task<LockstepResponse<CashflowReportModel>> CashFlow(int? timeframe)
     {
         var url = $"/api/v1/Reports/cashflow";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["timeframe"] = timeframe;
         return await this.client.Request<CashflowReportModel>(Method.GET, url, options, null);
     }
@@ -71,10 +71,10 @@ public class ReportsClient
     /// </summary>
     /// <param name="reportDate">The date of the report.</param>
     /// <param name="companyId">Include a company to get AR data for a specific company, leave as null to include all Companies.</param>
-    public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime reportDate, Guid companyId)
+    public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime? reportDate, Guid? companyId)
     {
         var url = $"/api/v1/Reports/ar-header";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["reportDate"] = reportDate;
         options["companyId"] = companyId;
         return await this.client.Request<ArHeaderInfoModel>(Method.GET, url, options, null);
@@ -95,10 +95,10 @@ public class ReportsClient
     /// <param name="CurrencyCode">Currency aging buckets are converted to (all aging data returned without currency conversion if no currency is specified)</param>
     /// <param name="CurrencyProvider">Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)</param>
     /// <param name="Buckets">Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)</param>
-    public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid CompanyId, bool Recalculate, string CurrencyCode, string CurrencyProvider, int[] Buckets)
+    public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId, bool? Recalculate, string? CurrencyCode, string? CurrencyProvider, int[]? Buckets)
     {
         var url = $"/api/v1/Reports/aging";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["CompanyId"] = CompanyId;
         options["Recalculate"] = Recalculate;
         options["CurrencyCode"] = CurrencyCode;
@@ -126,10 +126,10 @@ public class ReportsClient
     /// 
     /// </summary>
     /// <param name="companyId">Include a specific company to get Attachment data for, leave as null to include all Companies.</param>
-    public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid companyId)
+    public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid? companyId)
     {
         var url = $"/api/v1/Reports/attachments-header";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["companyId"] = companyId;
         return await this.client.Request<AttachmentHeaderInfoModel>(Method.GET, url, options, null);
     }

@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,10 +34,10 @@ public class CompaniesClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification</param>
-    public async Task<LockstepResponse<CompanyModel>> RetrieveCompany(Guid id, string include)
+    public async Task<LockstepResponse<CompanyModel>> RetrieveCompany(Guid? id, string? include)
     {
         var url = $"/api/v1/Companies/{id}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["include"] = include;
         return await this.client.Request<CompanyModel>(Method.GET, url, options, null);
     }
@@ -52,7 +52,7 @@ public class CompaniesClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
     /// <param name="body">A list of changes to apply to this Company</param>
-    public async Task<LockstepResponse<CompanyModel>> UpdateCompany(Guid id, object body)
+    public async Task<LockstepResponse<CompanyModel>> UpdateCompany(Guid? id, object? body)
     {
         var url = $"/api/v1/Companies/{id}";
         return await this.client.Request<CompanyModel>(Method.PATCH, url, null, body);
@@ -67,7 +67,7 @@ public class CompaniesClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
-    public async Task<LockstepResponse<ActionResultModel>> DisableCompany(Guid id)
+    public async Task<LockstepResponse<ActionResultModel>> DisableCompany(Guid? id)
     {
         var url = $"/api/v1/Companies/{id}";
         return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
@@ -80,7 +80,7 @@ public class CompaniesClient
     /// 
     /// </summary>
     /// <param name="body">The Companies to create</param>
-    public async Task<LockstepResponse<CompanyModel[]>> CreateCompanies(CompanyModel[] body)
+    public async Task<LockstepResponse<CompanyModel[]>> CreateCompanies(CompanyModel[]? body)
     {
         var url = $"/api/v1/Companies";
         return await this.client.Request<CompanyModel[]>(Method.POST, url, null, body);
@@ -99,10 +99,10 @@ public class CompaniesClient
     /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
     /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
     /// <param name="pageNumber">The page number for results (default 0)</param>
-    public async Task<LockstepResponse<FetchResult<CompanyModel>>> QueryCompanies(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<CompanyModel>>> QueryCompanies(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Companies/query";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;
@@ -122,10 +122,10 @@ public class CompaniesClient
     /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
     /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
     /// <param name="pageNumber">The page number for results (default 0)</param>
-    public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Companies/views/customer-summary";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;
@@ -139,7 +139,7 @@ public class CompaniesClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
-    public async Task<LockstepResponse<CustomerDetailsModel>> RetrieveCustomerDetail(Guid id)
+    public async Task<LockstepResponse<CustomerDetailsModel>> RetrieveCustomerDetail(Guid? id)
     {
         var url = $"/api/v1/Companies/views/customer-details/{id}";
         return await this.client.Request<CustomerDetailsModel>(Method.GET, url, null, null);

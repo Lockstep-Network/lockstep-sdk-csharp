@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,10 +34,10 @@ public class ActivitiesClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Activity</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes</param>
-    public async Task<LockstepResponse<ActivityModel>> RetrieveActivity(Guid id, string include)
+    public async Task<LockstepResponse<ActivityModel>> RetrieveActivity(Guid? id, string? include)
     {
         var url = $"/api/v1/Activities/{id}";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["include"] = include;
         return await this.client.Request<ActivityModel>(Method.GET, url, options, null);
     }
@@ -52,7 +52,7 @@ public class ActivitiesClient
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of the Activity to update</param>
     /// <param name="body">A list of changes to apply to this Activity</param>
-    public async Task<LockstepResponse<ActivityModel>> UpdateActivity(Guid id, object body)
+    public async Task<LockstepResponse<ActivityModel>> UpdateActivity(Guid? id, object? body)
     {
         var url = $"/api/v1/Activities/{id}";
         return await this.client.Request<ActivityModel>(Method.PATCH, url, null, body);
@@ -65,7 +65,7 @@ public class ActivitiesClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of the Activity to delete</param>
-    public async Task<LockstepResponse<ActivityModel>> DeleteActivity(Guid id)
+    public async Task<LockstepResponse<ActivityModel>> DeleteActivity(Guid? id)
     {
         var url = $"/api/v1/Activities/{id}";
         return await this.client.Request<ActivityModel>(Method.DELETE, url, null, null);
@@ -78,7 +78,7 @@ public class ActivitiesClient
     /// 
     /// </summary>
     /// <param name="body">The Activities to create</param>
-    public async Task<LockstepResponse<ActivityModel[]>> CreateActivities(ActivityModel[] body)
+    public async Task<LockstepResponse<ActivityModel[]>> CreateActivities(ActivityModel[]? body)
     {
         var url = $"/api/v1/Activities";
         return await this.client.Request<ActivityModel[]>(Method.POST, url, null, body);
@@ -97,10 +97,10 @@ public class ActivitiesClient
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<ActivityModel>>> QueryActivities(string filter, string include, string order, int pageSize, int pageNumber)
+    public async Task<LockstepResponse<FetchResult<ActivityModel>>> QueryActivities(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
     {
         var url = $"/api/v1/Activities/query";
-        var options = new Dictionary<string, object>();
+        var options = new Dictionary<string, object?>();
         options["filter"] = filter;
         options["include"] = include;
         options["order"] = order;

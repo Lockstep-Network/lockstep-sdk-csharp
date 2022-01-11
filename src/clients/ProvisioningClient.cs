@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2021.39
+ * @version    2022.2
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -31,7 +31,7 @@ public class ProvisioningClient
     /// 
     /// </summary>
     /// <param name="body">Represents a User and their related metadata</param>
-    public async Task<LockstepResponse<ProvisioningResponseModel>> ProvisionUserAccount(ProvisioningModel body)
+    public async Task<LockstepResponse<ProvisioningResponseModel>> ProvisionUserAccount(ProvisioningModel? body)
     {
         var url = $"/api/v1/Provisioning";
         return await this.client.Request<ProvisioningResponseModel>(Method.POST, url, null, body);
@@ -42,7 +42,7 @@ public class ProvisioningClient
     /// 
     /// </summary>
     /// <param name="body">Represents a User and their related metadata</param>
-    public async Task<LockstepResponse<ProvisioningResponseModel>> FinalizeUserAccountProvisioning(ProvisioningFinalizeRequestModel body)
+    public async Task<LockstepResponse<ProvisioningResponseModel>> FinalizeUserAccountProvisioning(ProvisioningFinalizeRequestModel? body)
     {
         var url = $"/api/v1/Provisioning/finalize";
         return await this.client.Request<ProvisioningResponseModel>(Method.POST, url, null, body);
