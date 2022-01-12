@@ -26,6 +26,7 @@ public class LockstepApi
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
+    private readonly HttpClient _client;
 
     public ActivitiesClient Activities { get; set; }
     public ApiKeysClient ApiKeys { get; set; }
@@ -61,6 +62,9 @@ public class LockstepApi
     /// <param name="customUrl"></param>
     private LockstepApi(string customUrl)
     {
+        // We intentionally use a single HttpClient object for the lifetime of this API connection.
+        // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
+        this._client = new HttpClient();
         this._serverUrl = customUrl;
         this.Activities = new ActivitiesClient(this);
         this.ApiKeys = new ApiKeysClient(this);
@@ -167,84 +171,78 @@ public class LockstepApi
     /// <param name="body">The request body to send</param>
     /// <typeparam name="T">The type of the expected response</typeparam>
     /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
-    public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path, Dictionary<string, object?>? query, object? body)
+    public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
+        Dictionary<string, object?>? query, object? body)
     {
-        using (var client = new HttpClient())
+        var request = new HttpRequestMessage();
+        request.Method = method;
+        request.Headers.Add("Accept", "application/json");
+        request.Headers.Add("SdkName", "DotNet");
+        request.Headers.Add("SdkVersion", _version);
+        request.Headers.Add("MachineName", Environment.MachineName);
+        if (_appName != null)
         {
-            var request = new HttpRequestMessage();
-            request.Method = method;
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("Accept", "application/json");
-            request.Headers.Add("SdkName", "DotNet");
-            request.Headers.Add("SdkVersion", _version);
-            request.Headers.Add("MachineName", Environment.MachineName);
-            if (_appName != null)
-            {
-                request.Headers.Add("ApplicationName", _appName);
-            }
+            request.Headers.Add("ApplicationName", _appName);
+        }
 
-            // Add authentication headers, if any
-            if (!string.IsNullOrWhiteSpace(this._bearerToken))
-            {
-                request.Headers.Add("Authorization", "Bearer " + this._bearerToken);
-            }
-            else if (!string.IsNullOrWhiteSpace(this._apiKey))
-            {
-                request.Headers.Add("Api-Key", this._apiKey);
-            }
+        // Add authentication headers, if any
+        if (!string.IsNullOrWhiteSpace(this._bearerToken))
+        {
+            request.Headers.Add("Authorization", "Bearer " + this._bearerToken);
+        }
+        else if (!string.IsNullOrWhiteSpace(this._apiKey))
+        {
+            request.Headers.Add("Api-Key", this._apiKey);
+        }
 
-            // Construct the request URI and query string
-            var url = new Uri(new Uri(this._serverUrl), path).ToString();
-            var sb = new StringBuilder();
-            sb.Append("?");
-            if (query != null)
+        // Construct the request URI and query string
+        var url = new Uri(new Uri(this._serverUrl), path).ToString();
+        var sb = new StringBuilder();
+        sb.Append("?");
+        if (query != null)
+        {
+            foreach (var kvp in query)
             {
-                foreach (var kvp in query)
+                if (kvp.Value != null)
                 {
-                    if (kvp.Value != null)
-                    {
-                        sb.Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}&");
-                    }
+                    sb.Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}&");
                 }
             }
-            sb.Length -= 1;
-            request.RequestUri = new Uri(url + sb);
+        }
 
-            // Add request body content, if any
-            if (body != null)
-            {
-                request.Content = new StringContent(JsonSerializer.Serialize(body));
-            }
+        sb.Length -= 1;
+        request.RequestUri = new Uri(url + sb);
 
-            // Send the request and convert the response into a success or failure
-            using (var response = await client.SendAsync(request))
+        // Add request body content, if any
+        if (body != null)
+        {
+            request.Content = new StringContent(JsonSerializer.Serialize(body));
+        }
+
+        // Send the request and convert the response into a success or failure
+        using (var response = await _client.SendAsync(request))
+        {
+            using (var stream = await response.Content.ReadAsStreamAsync())
             {
-                var responseContent = await response.Content.ReadAsStringAsync();
                 var status = (int)response.StatusCode;
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 };
-                if (status is >= 200 and < 300)
+                var result = new LockstepResponse<T>
                 {
-                    var value = JsonSerializer.Deserialize<T>(responseContent, options);
-                    return new LockstepResponse<T>()
-                    {
-                        Success = true,
-                        Value = value,
-                        Error = null,
-                    };
+                    Success = response.IsSuccessStatusCode
+                };
+                if (result.Success)
+                {
+                    result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
                 }
                 else
                 {
-                    var error = JsonSerializer.Deserialize<ErrorResult>(responseContent, options);
-                    return new LockstepResponse<T>()
-                    {
-                        Success = true,
-                        Value = default(T),
-                        Error = error,
-                    };
+                    result.Error = await JsonSerializer.DeserializeAsync<ErrorResult>(stream, options);
                 }
+
+                return result;
             }
         }
     }
