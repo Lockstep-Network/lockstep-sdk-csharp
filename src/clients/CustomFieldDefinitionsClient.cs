@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class CustomFieldDefinitionsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public CustomFieldDefinitionsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class CustomFieldDefinitionsClient
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<CustomFieldDefinitionModel>(Method.GET, url, options, null);
+        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -55,7 +53,7 @@ public class CustomFieldDefinitionsClient
     public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid? id, object? body)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
-        return await this.client.Request<CustomFieldDefinitionModel>(Method.PATCH, url, null, body);
+        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -68,7 +66,7 @@ public class CustomFieldDefinitionsClient
     public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid? id)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
-        return await this.client.Request<CustomFieldDefinitionModel>(Method.DELETE, url, null, null);
+        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -79,7 +77,7 @@ public class CustomFieldDefinitionsClient
     public async Task<LockstepResponse<CustomFieldDefinitionModel[]>> CreateFieldDefinitions(CustomFieldDefinitionModel[]? body)
     {
         var url = $"/api/v1/CustomFieldDefinitions";
-        return await this.client.Request<CustomFieldDefinitionModel[]>(Method.POST, url, null, body);
+        return await _client.Request<CustomFieldDefinitionModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -104,6 +102,6 @@ public class CustomFieldDefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CustomFieldDefinitionModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CustomFieldDefinitionModel>>(HttpMethod.Get, url, options, null);
     }
 }

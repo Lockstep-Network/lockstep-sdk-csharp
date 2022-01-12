@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class AppEnrollmentsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public AppEnrollmentsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -41,7 +39,7 @@ public class AppEnrollmentsClient
         var url = $"/api/v1/AppEnrollments/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<AppEnrollmentModel>(Method.GET, url, options, null);
+        return await _client.Request<AppEnrollmentModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -59,7 +57,7 @@ public class AppEnrollmentsClient
     public async Task<LockstepResponse<AppEnrollmentModel>> UpdateAppEnrollment(Guid? id, object? body)
     {
         var url = $"/api/v1/AppEnrollments/{id}";
-        return await this.client.Request<AppEnrollmentModel>(Method.PATCH, url, null, body);
+        return await _client.Request<AppEnrollmentModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -75,7 +73,7 @@ public class AppEnrollmentsClient
         var url = $"/api/v1/AppEnrollments/{id}";
         var options = new Dictionary<string, object?>();
         options["removeEnrollmentData"] = removeEnrollmentData;
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, options, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, options, null);
     }
 
     /// <summary>
@@ -90,7 +88,7 @@ public class AppEnrollmentsClient
     public async Task<LockstepResponse<AppEnrollmentModel[]>> CreateAppEnrollments(AppEnrollmentModel[]? body)
     {
         var url = $"/api/v1/AppEnrollments";
-        return await this.client.Request<AppEnrollmentModel[]>(Method.POST, url, null, body);
+        return await _client.Request<AppEnrollmentModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -117,7 +115,7 @@ public class AppEnrollmentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<AppEnrollmentModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<AppEnrollmentModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -134,6 +132,6 @@ public class AppEnrollmentsClient
     public async Task<LockstepResponse<FetchResult<AppEnrollmentCustomFieldModel>>> QueryEnrollmentFields(Guid? id)
     {
         var url = $"/api/v1/AppEnrollments/settings/{id}";
-        return await this.client.Request<FetchResult<AppEnrollmentCustomFieldModel>>(Method.GET, url, null, null);
+        return await _client.Request<FetchResult<AppEnrollmentCustomFieldModel>>(HttpMethod.Get, url, null, null);
     }
 }

@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class LeadsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public LeadsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -35,6 +33,6 @@ public class LeadsClient
     public async Task<LockstepResponse<LeadModel[]>> CreateLeads(LeadModel[]? body)
     {
         var url = $"/api/v1/Leads";
-        return await this.client.Request<LeadModel[]>(Method.POST, url, null, body);
+        return await _client.Request<LeadModel[]>(HttpMethod.Post, url, null, body);
     }
 }

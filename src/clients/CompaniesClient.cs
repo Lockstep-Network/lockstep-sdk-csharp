@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class CompaniesClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public CompaniesClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class CompaniesClient
         var url = $"/api/v1/Companies/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<CompanyModel>(Method.GET, url, options, null);
+        return await _client.Request<CompanyModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -55,7 +53,7 @@ public class CompaniesClient
     public async Task<LockstepResponse<CompanyModel>> UpdateCompany(Guid? id, object? body)
     {
         var url = $"/api/v1/Companies/{id}";
-        return await this.client.Request<CompanyModel>(Method.PATCH, url, null, body);
+        return await _client.Request<CompanyModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -70,7 +68,7 @@ public class CompaniesClient
     public async Task<LockstepResponse<ActionResultModel>> DisableCompany(Guid? id)
     {
         var url = $"/api/v1/Companies/{id}";
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -83,7 +81,7 @@ public class CompaniesClient
     public async Task<LockstepResponse<CompanyModel[]>> CreateCompanies(CompanyModel[]? body)
     {
         var url = $"/api/v1/Companies";
-        return await this.client.Request<CompanyModel[]>(Method.POST, url, null, body);
+        return await _client.Request<CompanyModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -108,7 +106,7 @@ public class CompaniesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CompanyModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CompanyModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -131,7 +129,7 @@ public class CompaniesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CustomerSummaryModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CustomerSummaryModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -142,6 +140,6 @@ public class CompaniesClient
     public async Task<LockstepResponse<CustomerDetailsModel>> RetrieveCustomerDetail(Guid? id)
     {
         var url = $"/api/v1/Companies/views/customer-details/{id}";
-        return await this.client.Request<CustomerDetailsModel>(Method.GET, url, null, null);
+        return await _client.Request<CustomerDetailsModel>(HttpMethod.Get, url, null, null);
     }
 }

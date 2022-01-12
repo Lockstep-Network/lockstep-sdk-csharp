@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class InvoiceHistoryClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public InvoiceHistoryClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -36,7 +34,7 @@ public class InvoiceHistoryClient
     public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid? id)
     {
         var url = $"/api/v1/InvoiceHistory/{id}";
-        return await this.client.Request<FetchResult<InvoiceHistoryModel>>(Method.GET, url, null, null);
+        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -59,6 +57,6 @@ public class InvoiceHistoryClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<InvoiceHistoryModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, options, null);
     }
 }

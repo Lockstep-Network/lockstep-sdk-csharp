@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class UserAccountsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public UserAccountsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class UserAccountsClient
         var url = $"/api/v1/UserAccounts/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<UserAccountModel>(Method.GET, url, options, null);
+        return await _client.Request<UserAccountModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -53,7 +51,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<UserAccountModel>> UpdateUser(Guid? id, object? body)
     {
         var url = $"/api/v1/UserAccounts/{id}";
-        return await this.client.Request<UserAccountModel>(Method.PATCH, url, null, body);
+        return await _client.Request<UserAccountModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -66,7 +64,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<ActionResultModel>> DisableUser(Guid? id)
     {
         var url = $"/api/v1/UserAccounts/{id}";
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -81,7 +79,7 @@ public class UserAccountsClient
         var url = $"/api/v1/UserAccounts/reenable";
         var options = new Dictionary<string, object?>();
         options["id"] = id;
-        return await this.client.Request<ActionResultModel>(Method.POST, url, options, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Post, url, options, null);
     }
 
     /// <summary>
@@ -94,7 +92,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<InviteModel[]>> InviteUser(InviteSubmitModel[]? body)
     {
         var url = $"/api/v1/UserAccounts/invite";
-        return await this.client.Request<InviteModel[]>(Method.POST, url, null, body);
+        return await _client.Request<InviteModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -108,7 +106,7 @@ public class UserAccountsClient
         var url = $"/api/v1/UserAccounts/invite";
         var options = new Dictionary<string, object?>();
         options["code"] = code;
-        return await this.client.Request<InviteDataModel>(Method.GET, url, options, null);
+        return await _client.Request<InviteDataModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -121,7 +119,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<TransferOwnerModel>> TransferOwner(TransferOwnerSubmitModel? body)
     {
         var url = $"/api/v1/UserAccounts/transfer-owner";
-        return await this.client.Request<TransferOwnerModel>(Method.POST, url, null, body);
+        return await _client.Request<TransferOwnerModel>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -142,6 +140,6 @@ public class UserAccountsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<UserAccountModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<UserAccountModel>>(HttpMethod.Get, url, options, null);
     }
 }

@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class CurrenciesClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public CurrenciesClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -42,7 +40,7 @@ public class CurrenciesClient
         var options = new Dictionary<string, object?>();
         options["date"] = date;
         options["dataProvider"] = dataProvider;
-        return await this.client.Request<CurrencyRateModel>(Method.GET, url, options, null);
+        return await _client.Request<CurrencyRateModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -56,6 +54,6 @@ public class CurrenciesClient
         var url = $"/api/v1/Currencies/bulk";
         var options = new Dictionary<string, object?>();
         options["destinationCurrency"] = destinationCurrency;
-        return await this.client.Request<CurrencyRateModel[]>(Method.POST, url, options, body);
+        return await _client.Request<CurrencyRateModel[]>(HttpMethod.Post, url, options, body);
     }
 }

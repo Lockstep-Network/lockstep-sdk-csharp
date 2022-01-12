@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class CodeDefinitionsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public CodeDefinitionsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class CodeDefinitionsClient
         var url = $"/api/v1/CodeDefinitions/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<CodeDefinitionModel>(Method.GET, url, options, null);
+        return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -64,6 +62,6 @@ public class CodeDefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CodeDefinitionModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null);
     }
 }

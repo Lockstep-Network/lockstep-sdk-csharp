@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class AttachmentsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public AttachmentsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -41,7 +39,7 @@ public class AttachmentsClient
         var url = $"/api/v1/Attachments/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<AttachmentModel>(Method.GET, url, options, null);
+        return await _client.Request<AttachmentModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -59,7 +57,7 @@ public class AttachmentsClient
     public async Task<LockstepResponse<AttachmentModel>> UpdateAttachment(Guid? id, object? body)
     {
         var url = $"/api/v1/Attachments/{id}";
-        return await this.client.Request<AttachmentModel>(Method.PATCH, url, null, body);
+        return await _client.Request<AttachmentModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -74,7 +72,7 @@ public class AttachmentsClient
     public async Task<LockstepResponse<ActionResultModel>> ArchiveAttachment(Guid? id)
     {
         var url = $"/api/v1/Attachments/{id}";
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -89,7 +87,7 @@ public class AttachmentsClient
     public async Task<LockstepResponse<string?>> DownloadAttachment(Guid? id)
     {
         var url = $"/api/v1/Attachments/{id}/download";
-        return await this.client.Request<string?>(Method.GET, url, null, null);
+        return await _client.Request<string?>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -108,7 +106,7 @@ public class AttachmentsClient
         var options = new Dictionary<string, object?>();
         options["tableName"] = tableName;
         options["objectId"] = objectId;
-        return await this.client.Request<AttachmentModel[]>(Method.POST, url, options, null);
+        return await _client.Request<AttachmentModel[]>(HttpMethod.Post, url, options, null);
     }
 
     /// <summary>
@@ -135,6 +133,6 @@ public class AttachmentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<AttachmentModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<AttachmentModel>>(HttpMethod.Get, url, options, null);
     }
 }

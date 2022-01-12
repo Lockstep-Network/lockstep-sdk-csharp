@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class InvoicesClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public InvoicesClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class InvoicesClient
         var url = $"/api/v1/Invoices/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<InvoiceModel>(Method.GET, url, options, null);
+        return await _client.Request<InvoiceModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -53,7 +51,7 @@ public class InvoicesClient
     public async Task<LockstepResponse<InvoiceModel>> UpdateInvoice(Guid? id, object? body)
     {
         var url = $"/api/v1/Invoices/{id}";
-        return await this.client.Request<InvoiceModel>(Method.PATCH, url, null, body);
+        return await _client.Request<InvoiceModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -64,7 +62,7 @@ public class InvoicesClient
     public async Task<LockstepResponse<ActionResultModel>> DeleteInvoice(Guid? id)
     {
         var url = $"/api/v1/Invoices/{id}";
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -77,7 +75,7 @@ public class InvoicesClient
     public async Task<LockstepResponse<InvoiceModel[]>> CreateInvoices(InvoiceModel[]? body)
     {
         var url = $"/api/v1/Invoices";
-        return await this.client.Request<InvoiceModel[]>(Method.POST, url, null, body);
+        return await _client.Request<InvoiceModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -100,7 +98,7 @@ public class InvoicesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<InvoiceModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<InvoiceModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -125,7 +123,7 @@ public class InvoicesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<InvoiceSummaryModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<InvoiceSummaryModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -150,6 +148,6 @@ public class InvoicesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<AtRiskInvoiceSummaryModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<AtRiskInvoiceSummaryModel>>(HttpMethod.Get, url, options, null);
     }
 }

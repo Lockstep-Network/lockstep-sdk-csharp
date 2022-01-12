@@ -8,20 +8,21 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.52.0
+ * @version    2022.2.63.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
-namespace LockstepSDK;
-
+using System.Text;
+using System.Web;
 using System.Text.Json;
-using RestSharp;
+
+namespace LockstepSDK;
 
 public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2022.2.52.0";
+    private readonly string _version = "2022.2.63.0";
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
@@ -162,79 +163,89 @@ public class LockstepApi
     /// </summary>
     /// <param name="method">The HTTP method to send</param>
     /// <param name="path">The URL path fragment relative to this environment</param>
-    /// <param name="options">The list of parameters and options to send</param>
+    /// <param name="query">The list of parameters and options to send</param>
     /// <param name="body">The request body to send</param>
     /// <typeparam name="T">The type of the expected response</typeparam>
     /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
-    public async Task<LockstepResponse<T>> Request<T>(Method method, string path, Dictionary<string, object?>? options, object? body)
+    public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path, Dictionary<string, object?>? query, object? body)
     {
-        var url = new Uri(new Uri(this._serverUrl), path).ToString();
-        var client = new RestClient(url);
-        var request = new RestRequest(method);
-        request.AddHeader("Accept", "application/json");
-        request.AddHeader("Accept", "application/json");
-        request.AddHeader("SdkName", "DotNet");
-        request.AddHeader("SdkVersion", _version);
-        request.AddHeader("MachineName", Environment.MachineName);
-        if (this._appName != null)
+        using (var client = new HttpClient())
         {
-            request.AddHeader("ApplicationName", _appName);
-        }
-        var seropt = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
-
-        // Add authentication headers, if any
-        if (!string.IsNullOrWhiteSpace(this._bearerToken))
-        {
-            request.AddHeader("Authorization", "Bearer " + this._bearerToken);
-        }
-        else if (!string.IsNullOrWhiteSpace(this._apiKey))
-        {
-            request.AddHeader("Api-Key", this._apiKey);
-        }
-
-        // Add query parameters, if any
-        if (options != null)
-        {
-            foreach (var kvp in options)
+            var request = new HttpRequestMessage();
+            request.Method = method;
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("Accept", "application/json");
+            request.Headers.Add("SdkName", "DotNet");
+            request.Headers.Add("SdkVersion", _version);
+            request.Headers.Add("MachineName", Environment.MachineName);
+            if (_appName != null)
             {
-                if (kvp.Value != null)
+                request.Headers.Add("ApplicationName", _appName);
+            }
+
+            // Add authentication headers, if any
+            if (!string.IsNullOrWhiteSpace(this._bearerToken))
+            {
+                request.Headers.Add("Authorization", "Bearer " + this._bearerToken);
+            }
+            else if (!string.IsNullOrWhiteSpace(this._apiKey))
+            {
+                request.Headers.Add("Api-Key", this._apiKey);
+            }
+
+            // Construct the request URI and query string
+            var url = new Uri(new Uri(this._serverUrl), path).ToString();
+            var sb = new StringBuilder();
+            sb.Append("?");
+            if (query != null)
+            {
+                foreach (var kvp in query)
                 {
-                    request.AddQueryParameter(kvp.Key, kvp.Value.ToString() ?? string.Empty);
+                    if (kvp.Value != null)
+                    {
+                        sb.Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}&");
+                    }
                 }
             }
-        }
+            sb.Length -= 1;
+            request.RequestUri = new Uri(url + sb);
 
-        // Add request body content, if any
-        if (body != null)
-        {
-            request.AddBody(JsonSerializer.Serialize(body));
-        }
+            // Add request body content, if any
+            if (body != null)
+            {
+                request.Content = new StringContent(JsonSerializer.Serialize(body));
+            }
 
-        // Send the request and convert the response into a success or failure
-        var response = await client.ExecuteAsync(request);
-        var status = (int)response.StatusCode;
-        if (status is >= 200 and < 300)
-        {
-            var value = JsonSerializer.Deserialize<T>(response.Content, seropt);
-            return new LockstepResponse<T>()
+            // Send the request and convert the response into a success or failure
+            using (var response = await client.SendAsync(request))
             {
-                Success = true,
-                Value = value,
-                Error = null,
-            };
-        }
-        else
-        {
-            var error = JsonSerializer.Deserialize<ErrorResult>(response.Content, seropt);
-            return new LockstepResponse<T>()
-            {
-                Success = true,
-                Value = default(T),
-                Error = error,
-            };
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var status = (int)response.StatusCode;
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                if (status is >= 200 and < 300)
+                {
+                    var value = JsonSerializer.Deserialize<T>(responseContent, options);
+                    return new LockstepResponse<T>()
+                    {
+                        Success = true,
+                        Value = value,
+                        Error = null,
+                    };
+                }
+                else
+                {
+                    var error = JsonSerializer.Deserialize<ErrorResult>(responseContent, options);
+                    return new LockstepResponse<T>()
+                    {
+                        Success = true,
+                        Value = default(T),
+                        Error = error,
+                    };
+                }
+            }
         }
     }
 }

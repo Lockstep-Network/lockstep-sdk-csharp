@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class UserRolesClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public UserRolesClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -37,7 +35,7 @@ public class UserRolesClient
         var url = $"/api/v1/UserRoles/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<UserRoleModel>(Method.GET, url, options, null);
+        return await _client.Request<UserRoleModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -58,6 +56,6 @@ public class UserRolesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<UserRoleModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<UserRoleModel>>(HttpMethod.Get, url, options, null);
     }
 }

@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class DefinitionsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public DefinitionsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -45,7 +43,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CountryModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CountryModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -69,7 +67,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CurrencyModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CurrencyModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -91,7 +89,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<StateModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<StateModel>>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -113,6 +111,6 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<ErpModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<ErpModel>>(HttpMethod.Get, url, options, null);
     }
 }

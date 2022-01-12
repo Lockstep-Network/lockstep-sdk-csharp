@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class ApiKeysClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public ApiKeysClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class ApiKeysClient
         var url = $"/api/v1/ApiKeys/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<ApiKeyModel>(Method.GET, url, options, null);
+        return await _client.Request<ApiKeyModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -52,7 +50,7 @@ public class ApiKeysClient
     public async Task<LockstepResponse<ApiKeyModel>> RevokeAPIKey(Guid? id)
     {
         var url = $"/api/v1/ApiKeys/{id}";
-        return await this.client.Request<ApiKeyModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ApiKeyModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -65,7 +63,7 @@ public class ApiKeysClient
     public async Task<LockstepResponse<ApiKeyModel>> CreateAPIKey(ApiKeyModel? body)
     {
         var url = $"/api/v1/ApiKeys";
-        return await this.client.Request<ApiKeyModel>(Method.POST, url, null, body);
+        return await _client.Request<ApiKeyModel>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -86,6 +84,6 @@ public class ApiKeysClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<ApiKeyModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<ApiKeyModel>>(HttpMethod.Get, url, options, null);
     }
 }

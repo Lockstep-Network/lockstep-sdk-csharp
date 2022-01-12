@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LockstepSdk</id>
-		<version>2022.2.52.0</version>
+		<version>2022.2.63.0</version>
 		<title>LockstepSdk</title>
 		<authors>Ted Spence</authors>
 		<owners>Lockstep</owners>
@@ -15,7 +15,7 @@
 		</description>
 		<summary>SDK for the Lockstep Platform API.</summary>
 		<releaseNotes>
-			# 2022.2.52.0
+			# 2022.2.63.0
 			
 
 			For full patch notes see https://developer.lockstep.io
@@ -23,11 +23,6 @@
 		<copyright>Copyright 2021 - 2022</copyright>
     	<tags>Lockstep fintech api client sdk connector</tags>
 		<repository type="git" url="https://github.com/Lockstep-Network/lockstep-sdk-csharp" />
-		<dependencies>
-			<group targetFramework="net6.0">
-				<dependency id="RestSharp" version="106.15.0" />
-			</group>
-		</dependencies>
 	</metadata>
 	<files>
 		<file src=".\LICENSE*" target=""/>
