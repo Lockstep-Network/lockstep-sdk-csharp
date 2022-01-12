@@ -196,22 +196,23 @@ public class LockstepApi
         }
 
         // Construct the request URI and query string
-        var url = new Uri(new Uri(this._serverUrl), path).ToString();
+        var uriBuilder = new UriBuilder(this._serverUrl)
+        {
+            Path = path
+        };
         var sb = new StringBuilder();
-        sb.Append("?");
         if (query != null)
         {
-            foreach (var kvp in query)
+            foreach (var (key, value) in query)
             {
-                if (kvp.Value != null)
+                if (value != null)
                 {
-                    sb.Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}&");
+                    sb.Append($"{key}={HttpUtility.UrlEncode(value.ToString())}&");
                 }
             }
         }
-
-        sb.Length -= 1;
-        request.RequestUri = new Uri(url + sb);
+        uriBuilder.Query = sb.ToString();
+        request.RequestUri = uriBuilder.Uri;
 
         // Add request body content, if any
         if (body != null)
@@ -224,14 +225,14 @@ public class LockstepApi
         {
             using (var stream = await response.Content.ReadAsStreamAsync())
             {
-                var status = (int)response.StatusCode;
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 };
                 var result = new LockstepResponse<T>
                 {
-                    Success = response.IsSuccessStatusCode
+                    Success = response.IsSuccessStatusCode,
+                    Status = response.StatusCode
                 };
                 if (result.Success)
                 {

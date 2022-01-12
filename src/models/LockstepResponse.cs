@@ -12,11 +12,14 @@
  * @link       https://github.com/tspence/lockstep-sdk-csharp
  */
 
+using System.Net;
+
 namespace LockstepSDK;
 
 public class LockstepResponse<T>
 {
     public bool Success { get; internal set; }
+    public HttpStatusCode Status { get; internal set; }
     public T? Value { get; internal set; }
     public ErrorResult? Error { get; internal set; }
 }
