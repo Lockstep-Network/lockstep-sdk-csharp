@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.47.0
+ * @version    2022.2.52.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,7 +21,7 @@ public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2022.2.47.0";
+    private readonly string _version = "2022.2.52.0";
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
@@ -95,7 +95,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="env">The environment to use, either "prd" for production or "sbx" for sandbox.</param>
     /// <returns>The Lockstep API client to use</returns>
-    public static LockstepApi withEnvironment(LockstepEnv env)
+    public static LockstepApi WithEnvironment(LockstepEnv env)
     {
         switch (env)
         {
@@ -113,7 +113,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public LockstepApi withAppName(string name)
+    public LockstepApi WithAppName(string name)
     {
         this._appName = name;
         return this;
@@ -122,11 +122,11 @@ public class LockstepApi
     /// <summary>
     /// Construct an unsafe client that uses a non-standard server; this can be necessary
     /// when using proxy servers or an API gateway.  Please be careful when using this
-    /// mode.  You should prefer to use `withEnvironment()` instead wherever possible.
+    /// mode.  You should prefer to use `WithEnvironment()` instead wherever possible.
     /// </summary>
     /// <param name="unsafeUrl">The non-Lockstep URL to use for this client</param>
     /// <returns>The Lockstep API client to use</returns>
-    public static LockstepApi withCustomEnvironment(string unsafeUrl)
+    public static LockstepApi WithCustomEnvironment(string unsafeUrl)
     {
         return new LockstepApi(unsafeUrl);
     }
@@ -137,7 +137,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="token">The JWT bearer token to use for this API session</param>
     /// <returns></returns>
-    public LockstepApi withBearerToken(string token)
+    public LockstepApi WithBearerToken(string token)
     {
         this._bearerToken = token;
         this._apiKey = null;
@@ -150,7 +150,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="apiKey">The API key to use for this API session</param>
     /// <returns></returns>
-    public LockstepApi withApiKey(string apiKey)
+    public LockstepApi WithApiKey(string apiKey)
     {
         this._apiKey = apiKey;
         this._bearerToken = null;
