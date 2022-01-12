@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class PaymentApplicationsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public PaymentApplicationsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class PaymentApplicationsClient
         var url = $"/api/v1/PaymentApplications/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<PaymentAppliedModel>(Method.GET, url, options, null);
+        return await _client.Request<PaymentAppliedModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -53,7 +51,7 @@ public class PaymentApplicationsClient
     public async Task<LockstepResponse<PaymentAppliedModel>> UpdatePaymentApplication(Guid? id, object? body)
     {
         var url = $"/api/v1/PaymentApplications/{id}";
-        return await this.client.Request<PaymentAppliedModel>(Method.PATCH, url, null, body);
+        return await _client.Request<PaymentAppliedModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -66,7 +64,7 @@ public class PaymentApplicationsClient
     public async Task<LockstepResponse<ActionResultModel>> DeletePaymentApplication(Guid? id)
     {
         var url = $"/api/v1/PaymentApplications/{id}";
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -79,7 +77,7 @@ public class PaymentApplicationsClient
     public async Task<LockstepResponse<PaymentAppliedModel[]>> CreatePaymentApplications(PaymentAppliedModel[]? body)
     {
         var url = $"/api/v1/PaymentApplications";
-        return await this.client.Request<PaymentAppliedModel[]>(Method.POST, url, null, body);
+        return await _client.Request<PaymentAppliedModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -102,6 +100,6 @@ public class PaymentApplicationsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<PaymentAppliedModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<PaymentAppliedModel>>(HttpMethod.Get, url, options, null);
     }
 }

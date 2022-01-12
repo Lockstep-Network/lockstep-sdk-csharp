@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class ReportsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public ReportsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -38,7 +36,7 @@ public class ReportsClient
         var url = $"/api/v1/Reports/cashflow";
         var options = new Dictionary<string, object?>();
         options["timeframe"] = timeframe;
-        return await this.client.Request<CashflowReportModel>(Method.GET, url, options, null);
+        return await _client.Request<CashflowReportModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -50,7 +48,7 @@ public class ReportsClient
     public async Task<LockstepResponse<DailySalesOutstandingReportModel[]>> DailySalesOutstanding()
     {
         var url = $"/api/v1/Reports/dailysalesoutstanding";
-        return await this.client.Request<DailySalesOutstandingReportModel[]>(Method.GET, url, null, null);
+        return await _client.Request<DailySalesOutstandingReportModel[]>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -62,7 +60,7 @@ public class ReportsClient
     public async Task<LockstepResponse<RiskRateModel[]>> RiskRates()
     {
         var url = $"/api/v1/Reports/riskrates";
-        return await this.client.Request<RiskRateModel[]>(Method.GET, url, null, null);
+        return await _client.Request<RiskRateModel[]>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -77,7 +75,7 @@ public class ReportsClient
         var options = new Dictionary<string, object?>();
         options["reportDate"] = reportDate;
         options["companyId"] = companyId;
-        return await this.client.Request<ArHeaderInfoModel>(Method.GET, url, options, null);
+        return await _client.Request<ArHeaderInfoModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -104,7 +102,7 @@ public class ReportsClient
         options["CurrencyCode"] = CurrencyCode;
         options["CurrencyProvider"] = CurrencyProvider;
         options["Buckets"] = Buckets;
-        return await this.client.Request<AgingModel[]>(Method.GET, url, options, null);
+        return await _client.Request<AgingModel[]>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -116,7 +114,7 @@ public class ReportsClient
     public async Task<LockstepResponse<ArAgingHeaderInfoModel[]>> AccountsReceivableAgingHeader()
     {
         var url = $"/api/v1/Reports/ar-aging-header";
-        return await this.client.Request<ArAgingHeaderInfoModel[]>(Method.GET, url, null, null);
+        return await _client.Request<ArAgingHeaderInfoModel[]>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -131,6 +129,6 @@ public class ReportsClient
         var url = $"/api/v1/Reports/attachments-header";
         var options = new Dictionary<string, object?>();
         options["companyId"] = companyId;
-        return await this.client.Request<AttachmentHeaderInfoModel>(Method.GET, url, options, null);
+        return await _client.Request<AttachmentHeaderInfoModel>(HttpMethod.Get, url, options, null);
     }
 }

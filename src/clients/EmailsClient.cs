@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class EmailsClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public EmailsClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class EmailsClient
         var url = $"/api/v1/Emails/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<EmailModel>(Method.GET, url, options, null);
+        return await _client.Request<EmailModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -55,7 +53,7 @@ public class EmailsClient
     public async Task<LockstepResponse<EmailModel>> UpdateEmail(Guid? id, object? body)
     {
         var url = $"/api/v1/Emails/{id}";
-        return await this.client.Request<EmailModel>(Method.PATCH, url, null, body);
+        return await _client.Request<EmailModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -68,7 +66,7 @@ public class EmailsClient
     public async Task<LockstepResponse<ActionResultModel>> DeleteEmail(Guid? id)
     {
         var url = $"/api/v1/Emails/{id}";
-        return await this.client.Request<ActionResultModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -81,7 +79,7 @@ public class EmailsClient
     public async Task<LockstepResponse<byte[]>> RetrieveEmailLogo(Guid? emailId, Guid? nonce)
     {
         var url = $"/api/v1/Emails/{emailId}/logo/{nonce}";
-        return await this.client.Request<byte[]>(Method.GET, url, null, null);
+        return await _client.Request<byte[]>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -94,7 +92,7 @@ public class EmailsClient
     public async Task<LockstepResponse<EmailModel[]>> CreateEmails(EmailModel[]? body)
     {
         var url = $"/api/v1/Emails";
-        return await this.client.Request<EmailModel[]>(Method.POST, url, null, body);
+        return await _client.Request<EmailModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -119,6 +117,6 @@ public class EmailsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<EmailModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<EmailModel>>(HttpMethod.Get, url, options, null);
     }
 }

@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class ProvisioningClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public ProvisioningClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -34,7 +32,7 @@ public class ProvisioningClient
     public async Task<LockstepResponse<ProvisioningResponseModel>> ProvisionUserAccount(ProvisioningModel? body)
     {
         var url = $"/api/v1/Provisioning";
-        return await this.client.Request<ProvisioningResponseModel>(Method.POST, url, null, body);
+        return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -45,6 +43,6 @@ public class ProvisioningClient
     public async Task<LockstepResponse<ProvisioningResponseModel>> FinalizeUserAccountProvisioning(ProvisioningFinalizeRequestModel? body)
     {
         var url = $"/api/v1/Provisioning/finalize";
-        return await this.client.Request<ProvisioningResponseModel>(Method.POST, url, null, body);
+        return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body);
     }
 }

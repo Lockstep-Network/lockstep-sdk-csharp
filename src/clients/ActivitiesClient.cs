@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class ActivitiesClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public ActivitiesClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -33,13 +31,13 @@ public class ActivitiesClient
     /// 
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this Activity</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Company, Attachments, CustomFields, and Notes</param>
     public async Task<LockstepResponse<ActivityModel>> RetrieveActivity(Guid? id, string? include)
     {
         var url = $"/api/v1/Activities/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<ActivityModel>(Method.GET, url, options, null);
+        return await _client.Request<ActivityModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -55,7 +53,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel>> UpdateActivity(Guid? id, object? body)
     {
         var url = $"/api/v1/Activities/{id}";
-        return await this.client.Request<ActivityModel>(Method.PATCH, url, null, body);
+        return await _client.Request<ActivityModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -68,7 +66,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel>> DeleteActivity(Guid? id)
     {
         var url = $"/api/v1/Activities/{id}";
-        return await this.client.Request<ActivityModel>(Method.DELETE, url, null, null);
+        return await _client.Request<ActivityModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -81,7 +79,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel[]>> CreateActivities(ActivityModel[]? body)
     {
         var url = $"/api/v1/Activities";
-        return await this.client.Request<ActivityModel[]>(Method.POST, url, null, body);
+        return await _client.Request<ActivityModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -93,7 +91,7 @@ public class ActivitiesClient
     /// 
     /// </summary>
     /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, and Notes</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Company, Attachments, CustomFields, and Notes</param>
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
@@ -106,6 +104,6 @@ public class ActivitiesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<ActivityModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<ActivityModel>>(HttpMethod.Get, url, options, null);
     }
 }

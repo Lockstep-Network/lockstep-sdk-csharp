@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class CreditMemoAppliedClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public CreditMemoAppliedClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -39,7 +37,7 @@ public class CreditMemoAppliedClient
         var url = $"/api/v1/CreditMemoApplied/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<CreditMemoAppliedModel>(Method.GET, url, options, null);
+        return await _client.Request<CreditMemoAppliedModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -53,7 +51,7 @@ public class CreditMemoAppliedClient
     public async Task<LockstepResponse<CreditMemoAppliedModel>> UpdateCreditMemoApplication(Guid? id, object? body)
     {
         var url = $"/api/v1/CreditMemoApplied/{id}";
-        return await this.client.Request<CreditMemoAppliedModel>(Method.PATCH, url, null, body);
+        return await _client.Request<CreditMemoAppliedModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -66,7 +64,7 @@ public class CreditMemoAppliedClient
     public async Task<LockstepResponse<CreditMemoAppliedModel>> DeleteCreditMemoApplication(Guid? id)
     {
         var url = $"/api/v1/CreditMemoApplied/{id}";
-        return await this.client.Request<CreditMemoAppliedModel>(Method.DELETE, url, null, null);
+        return await _client.Request<CreditMemoAppliedModel>(HttpMethod.Delete, url, null, null);
     }
 
     /// <summary>
@@ -79,7 +77,7 @@ public class CreditMemoAppliedClient
     public async Task<LockstepResponse<CreditMemoAppliedModel[]>> CreateCreditMemoApplications(CreditMemoAppliedModel[]? body)
     {
         var url = $"/api/v1/CreditMemoApplied";
-        return await this.client.Request<CreditMemoAppliedModel[]>(Method.POST, url, null, body);
+        return await _client.Request<CreditMemoAppliedModel[]>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -102,6 +100,6 @@ public class CreditMemoAppliedClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<CreditMemoAppliedModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<CreditMemoAppliedModel>>(HttpMethod.Get, url, options, null);
     }
 }

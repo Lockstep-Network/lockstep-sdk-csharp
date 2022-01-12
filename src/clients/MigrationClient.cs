@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class MigrationClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public MigrationClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -33,7 +31,7 @@ public class MigrationClient
     public async Task<LockstepResponse<MigrationResultModel>> MigrateData()
     {
         var url = $"/api/v1/Migration";
-        return await this.client.Request<MigrationResultModel>(Method.POST, url, null, null);
+        return await _client.Request<MigrationResultModel>(HttpMethod.Post, url, null, null);
     }
 
     /// <summary>
@@ -43,6 +41,6 @@ public class MigrationClient
     public async Task<LockstepResponse<AvailableMigrationsModel>> ListMigrations()
     {
         var url = $"/api/v1/Migration/list";
-        return await this.client.Request<AvailableMigrationsModel>(Method.GET, url, null, null);
+        return await _client.Request<AvailableMigrationsModel>(HttpMethod.Get, url, null, null);
     }
 }

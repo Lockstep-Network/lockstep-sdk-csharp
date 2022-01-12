@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class StatusClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public StatusClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -34,7 +32,7 @@ public class StatusClient
     public async Task<LockstepResponse<StatusModel>> Ping()
     {
         var url = $"/api/v1/Status";
-        return await this.client.Request<StatusModel>(Method.GET, url, null, null);
+        return await _client.Request<StatusModel>(HttpMethod.Get, url, null, null);
     }
 
     /// <summary>
@@ -50,6 +48,6 @@ public class StatusClient
         var url = $"/api/v1/Status/testing";
         var options = new Dictionary<string, object?>();
         options["err"] = err;
-        return await this.client.Request<TestTimeoutException>(Method.GET, url, options, null);
+        return await _client.Request<TestTimeoutException>(HttpMethod.Get, url, options, null);
     }
 }

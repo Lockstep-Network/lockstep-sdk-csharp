@@ -16,14 +16,12 @@ namespace LockstepSDK;
 
 
 
-using RestSharp;
-
 public class SyncClient
 {
-    private readonly LockstepApi client;
+    private readonly LockstepApi _client;
 
     public SyncClient(LockstepApi client) {
-        this.client = client;
+        _client = client;
     }
 
     /// <summary>
@@ -36,7 +34,7 @@ public class SyncClient
     public async Task<LockstepResponse<SyncRequestModel>> CreateSync(SyncSubmitModel? body)
     {
         var url = $"/api/v1/Sync";
-        return await this.client.Request<SyncRequestModel>(Method.POST, url, null, body);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, body);
     }
 
     /// <summary>
@@ -48,7 +46,7 @@ public class SyncClient
     public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile()
     {
         var url = $"/api/v1/Sync/zip";
-        return await this.client.Request<SyncRequestModel>(Method.POST, url, null, null);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, null);
     }
 
     /// <summary>
@@ -66,7 +64,7 @@ public class SyncClient
     public async Task<LockstepResponse<SyncRequestModel>> UpdateSync(Guid? id, object? body)
     {
         var url = $"/api/v1/Sync/{id}";
-        return await this.client.Request<SyncRequestModel>(Method.PATCH, url, null, body);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Patch, url, null, body);
     }
 
     /// <summary>
@@ -82,7 +80,7 @@ public class SyncClient
         var url = $"/api/v1/Sync/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await this.client.Request<SyncRequestModel>(Method.GET, url, options, null);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Get, url, options, null);
     }
 
     /// <summary>
@@ -107,6 +105,6 @@ public class SyncClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await this.client.Request<FetchResult<SyncRequestModel>>(Method.GET, url, options, null);
+        return await _client.Request<FetchResult<SyncRequestModel>>(HttpMethod.Get, url, options, null);
     }
 }

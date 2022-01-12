@@ -140,6 +140,13 @@ public class ActivityModel
     public bool IsArchived { get; set; }
 
     /// <summary>
+    /// The company associated with the activity
+    /// 
+    /// To retrieve this collection, specify `Company` in the "Include" parameter for your query.
+    /// </summary>
+    public CompanyModel? Company { get; set; }
+
+    /// <summary>
     /// All attachments attached to applied activity.
     /// 
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.

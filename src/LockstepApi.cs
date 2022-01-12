@@ -8,23 +8,25 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.47.0
+ * @version    2022.2.63.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
-namespace LockstepSDK;
-
+using System.Text;
+using System.Web;
 using System.Text.Json;
-using RestSharp;
+
+namespace LockstepSDK;
 
 public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2022.2.47.0";
+    private readonly string _version = "2022.2.63.0";
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
+    private readonly HttpClient _client;
 
     public ActivitiesClient Activities { get; set; }
     public ApiKeysClient ApiKeys { get; set; }
@@ -60,6 +62,9 @@ public class LockstepApi
     /// <param name="customUrl"></param>
     private LockstepApi(string customUrl)
     {
+        // We intentionally use a single HttpClient object for the lifetime of this API connection.
+        // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
+        this._client = new HttpClient();
         this._serverUrl = customUrl;
         this.Activities = new ActivitiesClient(this);
         this.ApiKeys = new ApiKeysClient(this);
@@ -95,7 +100,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="env">The environment to use, either "prd" for production or "sbx" for sandbox.</param>
     /// <returns>The Lockstep API client to use</returns>
-    public static LockstepApi withEnvironment(LockstepEnv env)
+    public static LockstepApi WithEnvironment(LockstepEnv env)
     {
         switch (env)
         {
@@ -113,7 +118,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-    public LockstepApi withAppName(string name)
+    public LockstepApi WithAppName(string name)
     {
         this._appName = name;
         return this;
@@ -122,11 +127,11 @@ public class LockstepApi
     /// <summary>
     /// Construct an unsafe client that uses a non-standard server; this can be necessary
     /// when using proxy servers or an API gateway.  Please be careful when using this
-    /// mode.  You should prefer to use `withEnvironment()` instead wherever possible.
+    /// mode.  You should prefer to use `WithEnvironment()` instead wherever possible.
     /// </summary>
     /// <param name="unsafeUrl">The non-Lockstep URL to use for this client</param>
     /// <returns>The Lockstep API client to use</returns>
-    public static LockstepApi withCustomEnvironment(string unsafeUrl)
+    public static LockstepApi WithCustomEnvironment(string unsafeUrl)
     {
         return new LockstepApi(unsafeUrl);
     }
@@ -137,7 +142,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="token">The JWT bearer token to use for this API session</param>
     /// <returns></returns>
-    public LockstepApi withBearerToken(string token)
+    public LockstepApi WithBearerToken(string token)
     {
         this._bearerToken = token;
         this._apiKey = null;
@@ -150,7 +155,7 @@ public class LockstepApi
     /// </summary>
     /// <param name="apiKey">The API key to use for this API session</param>
     /// <returns></returns>
-    public LockstepApi withApiKey(string apiKey)
+    public LockstepApi WithApiKey(string apiKey)
     {
         this._apiKey = apiKey;
         this._bearerToken = null;
@@ -162,79 +167,84 @@ public class LockstepApi
     /// </summary>
     /// <param name="method">The HTTP method to send</param>
     /// <param name="path">The URL path fragment relative to this environment</param>
-    /// <param name="options">The list of parameters and options to send</param>
+    /// <param name="query">The list of parameters and options to send</param>
     /// <param name="body">The request body to send</param>
     /// <typeparam name="T">The type of the expected response</typeparam>
     /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
-    public async Task<LockstepResponse<T>> Request<T>(Method method, string path, Dictionary<string, object?>? options, object? body)
+    public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
+        Dictionary<string, object?>? query, object? body)
     {
-        var url = new Uri(new Uri(this._serverUrl), path).ToString();
-        var client = new RestClient(url);
-        var request = new RestRequest(method);
-        request.AddHeader("Accept", "application/json");
-        request.AddHeader("Accept", "application/json");
-        request.AddHeader("SdkName", "DotNet");
-        request.AddHeader("SdkVersion", _version);
-        request.AddHeader("MachineName", Environment.MachineName);
-        if (this._appName != null)
+        var request = new HttpRequestMessage();
+        request.Method = method;
+        request.Headers.Add("Accept", "application/json");
+        request.Headers.Add("SdkName", "DotNet");
+        request.Headers.Add("SdkVersion", _version);
+        request.Headers.Add("MachineName", Environment.MachineName);
+        if (_appName != null)
         {
-            request.AddHeader("ApplicationName", _appName);
+            request.Headers.Add("ApplicationName", _appName);
         }
-        var seropt = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
 
         // Add authentication headers, if any
         if (!string.IsNullOrWhiteSpace(this._bearerToken))
         {
-            request.AddHeader("Authorization", "Bearer " + this._bearerToken);
+            request.Headers.Add("Authorization", "Bearer " + this._bearerToken);
         }
         else if (!string.IsNullOrWhiteSpace(this._apiKey))
         {
-            request.AddHeader("Api-Key", this._apiKey);
+            request.Headers.Add("Api-Key", this._apiKey);
         }
 
-        // Add query parameters, if any
-        if (options != null)
+        // Construct the request URI and query string
+        var uriBuilder = new UriBuilder(this._serverUrl)
         {
-            foreach (var kvp in options)
+            Path = path
+        };
+        var sb = new StringBuilder();
+        if (query != null)
+        {
+            foreach (var (key, value) in query)
             {
-                if (kvp.Value != null)
+                if (value != null)
                 {
-                    request.AddQueryParameter(kvp.Key, kvp.Value.ToString() ?? string.Empty);
+                    sb.Append($"{key}={HttpUtility.UrlEncode(value.ToString())}&");
                 }
             }
         }
+        uriBuilder.Query = sb.ToString();
+        request.RequestUri = uriBuilder.Uri;
 
         // Add request body content, if any
         if (body != null)
         {
-            request.AddBody(JsonSerializer.Serialize(body));
+            request.Content = new StringContent(JsonSerializer.Serialize(body));
         }
 
         // Send the request and convert the response into a success or failure
-        var response = await client.ExecuteAsync(request);
-        var status = (int)response.StatusCode;
-        if (status is >= 200 and < 300)
+        using (var response = await _client.SendAsync(request))
         {
-            var value = JsonSerializer.Deserialize<T>(response.Content, seropt);
-            return new LockstepResponse<T>()
+            using (var stream = await response.Content.ReadAsStreamAsync())
             {
-                Success = true,
-                Value = value,
-                Error = null,
-            };
-        }
-        else
-        {
-            var error = JsonSerializer.Deserialize<ErrorResult>(response.Content, seropt);
-            return new LockstepResponse<T>()
-            {
-                Success = true,
-                Value = default(T),
-                Error = error,
-            };
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                var result = new LockstepResponse<T>
+                {
+                    Success = response.IsSuccessStatusCode,
+                    Status = response.StatusCode
+                };
+                if (result.Success)
+                {
+                    result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
+                }
+                else
+                {
+                    result.Error = await JsonSerializer.DeserializeAsync<ErrorResult>(stream, options);
+                }
+
+                return result;
+            }
         }
     }
 }
