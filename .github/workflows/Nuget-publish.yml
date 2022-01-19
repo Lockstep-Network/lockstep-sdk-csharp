@@ -1,0 +1,31 @@
+name: NuGet Publish
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    name: Update NuGet package
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Setup .NET Core @ Latest
+        uses: actions/setup-dotnet@v1
+        with:
+          gotnet-version: 6.0.x
+          
+      - name: Build solution and generate NuGet package
+        run: dotnet pack -c Release -o out  
+
+      - name: Push generated package to GitHub registry
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
+        run: nuget push **\out\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
