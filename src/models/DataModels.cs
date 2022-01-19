@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2
+ * @version    2022.3
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -147,6 +147,11 @@ public class ActivityModel
     public CompanyModel? Company { get; set; }
 
     /// <summary>
+    /// The name of the user the activity is assigned to
+    /// </summary>
+    public string? UserAssignedToName { get; set; }
+
+    /// <summary>
     /// All attachments attached to applied activity.
     /// 
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
@@ -173,6 +178,101 @@ public class ActivityModel
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+
+    /// <summary>
+    /// All references attached to this applied activity.
+    /// 
+    /// To retrieve this collection, specify `References` in the "Include" parameter for your query.
+    /// </summary>
+    public ActivityXRefModel[]? References { get; set; }
+
+};
+public class ActivityStreamItemModel
+{
+    /// <summary>
+    /// The object key of the activity stream item.
+    /// </summary>
+    public Guid ObjectKey { get; set; }
+
+    /// <summary>
+    /// The type code of the activity stream item.
+    /// </summary>
+    public string? ActivityStreamType { get; set; }
+
+    /// <summary>
+    /// The text body description for this Activity Stream Item.
+    /// </summary>
+    public string? TextValue { get; set; }
+
+    /// <summary>
+    /// The date on which this activity stream item was created.
+    /// </summary>
+    public DateTime Created { get; set; }
+
+    /// <summary>
+    /// The ID of the user who created this activity.
+    /// </summary>
+    public Guid CreatedUserId { get; set; }
+
+    /// <summary>
+    /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+    /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+    /// 
+    /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+    /// </summary>
+    public Guid GroupKey { get; set; }
+
+    /// <summary>
+    /// The sender's email address if activity stream item is an Email.
+    /// </summary>
+    public string? FromEmailAddress { get; set; }
+
+    /// <summary>
+    /// The recipient's email address if activity stream item is an Email.
+    /// </summary>
+    public string? ToEmailAddress { get; set; }
+
+    /// <summary>
+    /// The name of the contact sending the activity otherwise null.
+    /// </summary>
+    public string? FromContactName { get; set; }
+
+    /// <summary>
+    /// The name of the contact sending the activity otherwise null.
+    /// </summary>
+    public string? ToContactName { get; set; }
+
+};
+public class ActivityXRefModel
+{
+    /// <summary>
+    /// The unique ID of this record, automatically assigned by Lockstep when this is
+    /// added to the Lockstep platform.
+    /// </summary>
+    public Guid ActivityXRefId { get; set; }
+
+    /// <summary>
+    /// The ID of the activity to which this reference belongs.
+    /// </summary>
+    public Guid ActivityId { get; set; }
+
+    /// <summary>
+    /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+    /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+    /// 
+    /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+    /// </summary>
+    public Guid GroupKey { get; set; }
+
+    /// <summary>
+    /// The name of the table the activity reference is associated with
+    /// </summary>
+    public string? TableKey { get; set; }
+
+    /// <summary>
+    /// The ID of the object the activity reference is associated with
+    /// </summary>
+    public string? ObjectKey { get; set; }
 
 };
 public class AgingModel
@@ -400,6 +500,11 @@ public class AppEnrollmentModel
     /// To retrieve this collection, specify `LastSync` in the "Include" parameter for your query.
     /// </summary>
     public SyncRequestModel? LastSync { get; set; }
+
+    /// <summary>
+    /// Data about the last successful sync associated with this enrollment
+    /// </summary>
+    public SyncRequestModel? LastSuccessfulSync { get; set; }
 
     /// <summary>
     /// Optional data necessary to create an app enrollment for a supported connector.
@@ -851,55 +956,6 @@ public class AttachmentModel
     /// Id of the user who made the file
     /// </summary>
     public Guid CreatedUserId { get; set; }
-
-};
-public class AvailableGroup
-{
-    /// <summary>
-    /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-    /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
-    /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-    /// </summary>
-    public Guid GroupKey { get; set; }
-
-    /// <summary>
-    /// The number of invoices.
-    /// </summary>
-    public int InvoiceCount { get; set; }
-
-    /// <summary>
-    /// The number of invoice lines.
-    /// </summary>
-    public int LineCount { get; set; }
-
-    /// <summary>
-    /// The number of companies.
-    /// </summary>
-    public int CompanyCount { get; set; }
-
-    /// <summary>
-    /// The number of contacts.
-    /// </summary>
-    public int ContactCount { get; set; }
-
-    /// <summary>
-    /// The number of payments.
-    /// </summary>
-    public int PaymentCount { get; set; }
-
-    /// <summary>
-    /// The number of payments applied.
-    /// </summary>
-    public int PaymentAppliedCount { get; set; }
-
-};
-public class AvailableMigrationsModel
-{
-    /// <summary>
-    /// Indicates which records are available for migration
-    /// </summary>
-    public AvailableGroup[]? Migrations { get; set; }
 
 };
 public class BulkCurrencyConversionModel
@@ -2125,6 +2181,24 @@ public class DailySalesOutstandingReportModel
     public double DailySalesOutstanding { get; set; }
 
 };
+public class DeveloperAccountSubmitModel
+{
+    /// <summary>
+    /// The name of the developer.
+    /// </summary>
+    public string? Name { get; set; }
+
+    /// <summary>
+    /// The email address of the developer.
+    /// </summary>
+    public string? Email { get; set; }
+
+    /// <summary>
+    /// The company name of the developer.
+    /// </summary>
+    public string? CompanyName { get; set; }
+
+};
 public class EmailModel
 {
     /// <summary>
@@ -3233,68 +3307,6 @@ public class LeadModel
     public string? ErpSystem { get; set; }
 
 };
-public class MigrationResultModel
-{
-    /// <summary>
-    /// If the API call produced messages, this element will contain a list of user-visible
-    /// text strings that contain information about what work occurred in the API.
-    /// </summary>
-    public string[]? Messages { get; set; }
-
-    /// <summary>
-    /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-    /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
-    /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-    /// </summary>
-    public Guid GroupKey { get; set; }
-
-    /// <summary>
-    /// The number of invoices migrated
-    /// </summary>
-    public int InvoiceCount { get; set; }
-
-    /// <summary>
-    /// The number of addresses migrated
-    /// </summary>
-    public int AddressCount { get; set; }
-
-    /// <summary>
-    /// The number of invoice and invoice line fields migrated
-    /// </summary>
-    public int InvoiceFieldCount { get; set; }
-
-    /// <summary>
-    /// The number of invoice lines migrated
-    /// </summary>
-    public int LineCount { get; set; }
-
-    /// <summary>
-    /// The number of contacts migrated
-    /// </summary>
-    public int ContactCount { get; set; }
-
-    /// <summary>
-    /// The number of companies migrated
-    /// </summary>
-    public int CompanyCount { get; set; }
-
-    /// <summary>
-    /// The number of payments migrated
-    /// </summary>
-    public int PaymentCount { get; set; }
-
-    /// <summary>
-    /// The number of payment fields migrated
-    /// </summary>
-    public int PaymentFieldCount { get; set; }
-
-    /// <summary>
-    /// The number of payments applied migrated
-    /// </summary>
-    public int PaymentAppliedCount { get; set; }
-
-};
 public class NoteModel
 {
     /// <summary>
@@ -3355,6 +3367,11 @@ public class NoteModel
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
     public Guid? AppEnrollmentId { get; set; }
+
+    /// <summary>
+    /// The person to whom this note is intended for.
+    /// </summary>
+    public string? RecipientName { get; set; }
 
 };
 public class PaymentAppliedModel
@@ -4031,6 +4048,11 @@ public class StatusModel
     public string? Environment { get; set; }
 
     /// <summary>
+    /// The version currently being used
+    /// </summary>
+    public string? Version { get; set; }
+
+    /// <summary>
     /// Statuses for the dependencies of this api.
     /// OK if the dependency is working.
     /// </summary>
@@ -4294,7 +4316,7 @@ public class UserAccountModel
     /// The default currency code used by this user entity.  This value can be overridden
     /// for invoices in a different currency code.
     /// 
-    /// For a list of defined currency codes, see [TODO]()
+    /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
     /// </summary>
     public string? DefaultCurrencyCode { get; set; }
 
