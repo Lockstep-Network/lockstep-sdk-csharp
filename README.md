@@ -1,10 +1,12 @@
-# Fetch Invoices Sample Project (C#)
+# Lockstep SDK for C#
 
-Many types of products examine invoices for a customer and provide feedback on them. A typical product might analyze incoming invoices and add metadata like a credit score for each invoice. This tutorial explains how to iterate through invoices, examine them, and add metadata.
+![Nuget](https://img.shields.io/nuget/v/LockstepSdk)
 
 ## Repository Description
 
-This repository contains the source code for the Lockstep Platform API SDK for C#. This README describes the steps (mentioned in the ["Fetch Invoices" tutorial](https://developer.lockstep.io/docs/fetch-invoices)) to write a C# program that uses this SDK to fetch invoices.
+This software development kit allows you to connect with the Lockstep Platform SDK using C#. This README describes the steps (mentioned in the ["Fetch Invoices" tutorial](https://developer.lockstep.io/docs/fetch-invoices)) to write a C# program that uses this SDK to fetch invoices.
+
+Many types of products examine invoices for a customer and provide feedback on them. A typical product might analyze incoming invoices and add metadata like a credit score for each invoice. This tutorial explains how to iterate through invoices, examine them, and add metadata.
 
 We use the [Query Invoices API](https://developer.lockstep.io/reference/get_api-v1-invoices-query) to retrieve a collection of invoices. To fetch a large number of invoices, we must use [filtering and pagination](https://developer.lockstep.io/docs/querying-with-searchlight).
 
@@ -12,11 +14,20 @@ We use the [Query Invoices API](https://developer.lockstep.io/reference/get_api-
 
 ### Step 0: Install Lockstep SDK for C#
 
-Before you start, make sure you generated a valid API key and saved it as an environment variable in your system (referred to as `LOCKSTEPAPI_SBX` in this example). That way, you'll have access to the server.
+Before you start, make sure you [generated a valid API key](https://developer.lockstep.io/docs/api-keys) and saved it as an environment variable in your system (referred to as `LOCKSTEPAPI_SBX` in this example). That way, you'll have access to the server.
 
-Create a new project folder with an empty `Program.cs` file inside it. The source code for the C# SDK is located in the `/src/` folder of this repository. Your project folder will need to have access to it. There may be some additional dependencies you have to install.
+Create a new project folder with an empty `Program.cs` file inside it and add the SDK to your project:
+- One way to add the SDK to your project is by using the [package manager](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli):
 
-### Step 1: Declare and Initialize Lockstep API
+    ```
+    dotnet add package lockstep-sdk
+    ```
+
+- Another way is to locate the source code in the `/src/` folder of this repository and ensure that your project folder has access to it (download and add it using your IDE).
+
+There may be some additional dependencies you have to install.
+
+### Step 1: Declare and initialize Lockstep API
 
 Open your `Program.cs` file. Start by listing the dependencies and creating the main method. This main method should have variables for the `client` and `apiKey`. Note that the string passed in `Environment.GetEnvironmentVariable()` matches the environment variable name you created on your system. The `Ping()` method verifies your program can access the Lockstep Platfom API, regardless of authentication status or permissions. 
 
@@ -30,7 +41,9 @@ namespace LockstepExamples
     {
         public static async Task Main(string[] args)
         { 
+            # Lockstep provides sandbox and production environments.
             var client = LockstepApi.WithEnvironment(LockstepEnv.SBX);
+            # Add your API key here.
             var apiKey = Environment.GetEnvironmentVariable("LOCKSTEPAPI_SBX");
             
             if (apiKey != null)
@@ -47,7 +60,7 @@ namespace LockstepExamples
 }
 ```
 
-### Step 2: Create API Query
+### Step 2: Create API query
 
 In the `while` loop, we can begin querying invoices by storing the results in the `invoices` variable. Using the `QueryInvoices` API, we will fetch all invoices dated from December 1st, 2021 and later. We specify a page size of 100, which gives us a small number of invoices in each query.
 
@@ -84,7 +97,7 @@ The results from this API call will list the first 100 invoices, since you speci
 
 The results we get back also includes information about the company that wrote the invoice, since we added `"Customer"` to the `include` parameter of the query. Thus, we can fetch invoices and companies within the same query rather than making separate API calls.
 
-### Step 3: Iterate Through Query Results
+### Step 3: Iterate through query results
 
 Looking at the previous output, notice that `records` was returned. We can access each invoice by iterating through `invoices.Value.Records`. We can print details about each invoice by accessing its fields, such as `InvoiceId` and `OutstandingBalanceAmount`. And since we added `"Customer"` to the `include` parameter, we can access that to print the `CompanyName`:
 
