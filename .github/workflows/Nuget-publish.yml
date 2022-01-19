@@ -25,8 +25,17 @@ jobs:
           include-prerelease: true
           
       - name: Build solution and generate NuGet package
-        run: dotnet pack -c Release -o out  
+        run: dotnet build -c Release
 
+      - name: Setup Nuget
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+          nuget-version: '5.x'
+          
+      - name: Run Nuget pack
+        run: nuget pack lockstep-sdk.nuspec
+      
       - name: Push generated package to GitHub registry
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' 
         run: nuget push **/out/*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
