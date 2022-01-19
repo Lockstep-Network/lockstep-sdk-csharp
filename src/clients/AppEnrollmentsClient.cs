@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2
+ * @version    2022.3
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -33,7 +33,7 @@ public class AppEnrollmentsClient
     /// 
     /// </summary>
     /// <param name="id">The unique ID number of the App Enrollment to retrieve</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync</param>
     public async Task<LockstepResponse<AppEnrollmentModel>> RetrieveAppEnrollment(Guid? id, string? include)
     {
         var url = $"/api/v1/AppEnrollments/{id}";
@@ -102,7 +102,7 @@ public class AppEnrollmentsClient
     /// 
     /// </summary>
     /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync</param>
+    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync</param>
     /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>

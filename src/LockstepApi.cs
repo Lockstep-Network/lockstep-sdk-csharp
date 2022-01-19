@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.2.63.0
+ * @version    2022.3.32.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -22,7 +22,7 @@ public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2022.2.63.0";
+    private readonly string _version = "2022.3.32.0";
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
@@ -45,7 +45,6 @@ public class LockstepApi
     public InvoiceHistoryClient InvoiceHistory { get; set; }
     public InvoicesClient Invoices { get; set; }
     public LeadsClient Leads { get; set; }
-    public MigrationClient Migration { get; set; }
     public NotesClient Notes { get; set; }
     public PaymentApplicationsClient PaymentApplications { get; set; }
     public PaymentsClient Payments { get; set; }
@@ -83,7 +82,6 @@ public class LockstepApi
         this.InvoiceHistory = new InvoiceHistoryClient(this);
         this.Invoices = new InvoicesClient(this);
         this.Leads = new LeadsClient(this);
-        this.Migration = new MigrationClient(this);
         this.Notes = new NotesClient(this);
         this.PaymentApplications = new PaymentApplicationsClient(this);
         this.Payments = new PaymentsClient(this);
