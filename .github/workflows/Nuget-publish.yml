@@ -25,7 +25,7 @@ jobs:
           include-prerelease: true
           
       - name: Build solution and generate NuGet package
-        run: dotnet build -c Release
+        run: dotnet build -c Debug
 
       - name: Setup Nuget
         uses: nuget/setup-nuget@v1
