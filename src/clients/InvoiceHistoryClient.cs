@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3
+ * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -26,12 +26,12 @@ public class InvoiceHistoryClient
 
     /// <summary>
     /// Retrieves the history of the Invoice specified by this unique identifier.
-    /// 
+    ///
     /// An Invoice represents a bill sent from one company to another.  The Lockstep Platform tracks changes to each Invoice so that you can observe the changes over time.  You can view the InvoiceHistory list to monitor and observe the changes of this Invoice and track the dates when changes occurred.
-    /// 
+    ///
     /// </summary>
     /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
-    public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid? id)
+    public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid id)
     {
         var url = $"/api/v1/InvoiceHistory/{id}";
         return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null);
@@ -39,9 +39,9 @@ public class InvoiceHistoryClient
 
     /// <summary>
     /// Queries Invoice History for this account using the specified filtering, sorting, and pagination rules requested.
-    /// 
+    ///
     /// An Invoice represents a bill sent from one company to another.  The Lockstep Platform tracks changes to each Invoice so that you can observe the changes over time.  You can view the InvoiceHistory list to monitor and observe the changes of this Invoice and track the dates when changes occurred.
-    /// 
+    ///
     /// </summary>
     /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.</param>
