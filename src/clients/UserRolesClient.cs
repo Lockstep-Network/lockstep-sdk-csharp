@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3
+ * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -26,11 +26,11 @@ public class UserRolesClient
 
     /// <summary>
     /// Retrieves the User Role with this identifier.
-    /// 
+    ///
     /// </summary>
     /// <param name="id">The unique ID number of the User Role to retrieve</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-    public async Task<LockstepResponse<UserRoleModel>> RetrieveUserRole(Guid? id, string? include)
+    public async Task<LockstepResponse<UserRoleModel>> RetrieveUserRole(Guid id, string? include)
     {
         var url = $"/api/v1/UserRoles/{id}";
         var options = new Dictionary<string, object?>();
@@ -40,7 +40,7 @@ public class UserRolesClient
 
     /// <summary>
     /// Queries User Roles for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
-    /// 
+    ///
     /// </summary>
     /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
     /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>

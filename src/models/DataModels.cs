@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.3
+ * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -27,7 +27,7 @@ public class ActivityModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -46,7 +46,7 @@ public class ActivityModel
     /// The name of the activity.  The name is a short name provided by the
     /// person who created the activity that can be displayed in a list.
     /// </summary>
-    public string? ActivityName { get; set; }
+    public string ActivityName { get; set; }
 
     /// <summary>
     /// A description of the activity.  This field contains more detailed text about the
@@ -141,7 +141,7 @@ public class ActivityModel
 
     /// <summary>
     /// The company associated with the activity
-    /// 
+    ///
     /// To retrieve this collection, specify `Company` in the "Include" parameter for your query.
     /// </summary>
     public CompanyModel? Company { get; set; }
@@ -153,35 +153,35 @@ public class ActivityModel
 
     /// <summary>
     /// All attachments attached to applied activity.
-    /// 
+    ///
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
     public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All notes attached to this applied activity.
-    /// 
+    ///
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
     public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All definitions attached to this applied activity.
-    /// 
+    ///
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this activity.
-    /// 
+    ///
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// All references attached to this applied activity.
-    /// 
+    ///
     /// To retrieve this collection, specify `References` in the "Include" parameter for your query.
     /// </summary>
     public ActivityXRefModel[]? References { get; set; }
@@ -217,7 +217,7 @@ public class ActivityStreamItemModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -259,7 +259,7 @@ public class ActivityXRefModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -303,7 +303,7 @@ public class ApiKeyModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -311,12 +311,19 @@ public class ApiKeyModel
     /// <summary>
     /// The name of the API key.
     /// </summary>
-    public string? Name { get; set; }
+    public string Name { get; set; }
+
+    /// <summary>
+    /// For convenience, a call to createApiKey will contain the name of the environment for this API key,
+    /// typically SBX or PRD. This can help you distinguish between keys created on the Sandbox environment
+    /// from those created on Production.
+    /// </summary>
+    public string? Environment { get; set; }
 
     /// <summary>
     /// The API key to use for authentication. This will only be returned upon creation of the API key.
     /// All other times, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
     /// </summary>
     public string? ApiKey { get; set; }
@@ -378,7 +385,7 @@ public class AppEnrollmentCustomFieldModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -431,7 +438,7 @@ public class AppEnrollmentModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -475,28 +482,28 @@ public class AppEnrollmentModel
     /// <summary>
     /// The Application to which this AppEnrollment belongs.  Contains general name, description,
     /// logo, and other metadata about this application.
-    /// 
+    ///
     /// To retrieve this object, specify `App` in the "Include" parameter for your query.
     /// </summary>
     public ApplicationModel? App { get; set; }
 
     /// <summary>
     /// All definitions attached to this app.
-    /// 
+    ///
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this app.
-    /// 
+    ///
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// Data about the last sync attached to this app enrollment
-    /// 
+    ///
     /// To retrieve this collection, specify `LastSync` in the "Include" parameter for your query.
     /// </summary>
     public SyncRequestModel? LastSync { get; set; }
@@ -533,7 +540,7 @@ public class ApplicationModel
     /// <summary>
     /// Tag for what type of app this is
     /// </summary>
-    public string? AppType { get; set; }
+    public string AppType { get; set; }
 
     /// <summary>
     /// The ID of the owner
@@ -588,7 +595,7 @@ public class ApplicationModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -623,7 +630,7 @@ public class ArAgingHeaderInfoModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -664,7 +671,7 @@ public class ArHeaderInfoModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -780,7 +787,7 @@ public class AtRiskInvoiceSummaryModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -862,7 +869,7 @@ public class AttachmentHeaderInfoModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -900,7 +907,7 @@ public class AttachmentModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -968,7 +975,7 @@ public class BulkCurrencyConversionModel
     /// <summary>
     /// The currency code This will be validated by the /api/v1/currencies data set
     /// </summary>
-    public string? SourceCurrency { get; set; }
+    public string SourceCurrency { get; set; }
 
 };
 public class CashflowReportModel
@@ -1010,7 +1017,7 @@ public class CodeDefinitionModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -1056,7 +1063,7 @@ public class CompanyModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid CompanyId { get; set; }
@@ -1068,24 +1075,25 @@ public class CompanyModel
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
 
     /// <summary>
     /// This field indicates the type of company.  It can be one of a limited number of values:
-    /// Company, Customer, Group, or Vendor.  A company that represents both a customer and a vendor
+    /// Company, Customer, Group, Vendor, or Third Party.  A company that represents both a customer and a vendor
     /// is identified as a CustomerVendor.
-    /// 
+    ///
     /// * `Company` - This record represents a company that is part of the organization of the account holder.
     /// * `Customer` - This record represents a business entity that purchases things from the account holder.
     /// * `Group` - Only one record of type `GROUP` exists in each account.  Contains your account profile.
     /// * `Vendor` - This record represents a business entity that sells things to the account holder.
+    /// * `Third Party` - This record represents a business entity that is neither a customer nor vendor.
     /// * `CustomerVendor` - Both a customer and a vendor.
     /// </summary>
     public string? CompanyType { get; set; }
@@ -1100,7 +1108,7 @@ public class CompanyModel
     /// <summary>
     /// If this business entity is part of an organization, this value is non-null and it is set
     /// to the `CompanyId` value of the parent company of this business entity.
-    /// 
+    ///
     /// If this value is null, this business entity is a standalone.
     /// </summary>
     public Guid? ParentCompanyId { get; set; }
@@ -1114,7 +1122,7 @@ public class CompanyModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -1128,7 +1136,7 @@ public class CompanyModel
     /// <summary>
     /// The default currency code used by this business entity.  This value can be overridden
     /// for invoices in a different currency code.
-    /// 
+    ///
     /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies)
     /// </summary>
     public string? DefaultCurrencyCode { get; set; }
@@ -1264,49 +1272,49 @@ public class CompanyModel
 
     /// <summary>
     /// All notes attached to this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
     /// </summary>
     public NoteModel[]? Notes { get; set; }
 
     /// <summary>
     /// All attachments attached to this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
     public AttachmentModel[]? Attachments { get; set; }
 
     /// <summary>
     /// All contacts attached to this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `Contacts` in the "Include" parameter for your query.
     /// </summary>
     public ContactModel[]? Contacts { get; set; }
 
     /// <summary>
     /// All invoices attached to this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `Invoices` in the "Include" parameter for your query. For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
     /// </summary>
     public object[]? Invoices { get; set; }
 
     /// <summary>
     /// All definitions attached to this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
     /// <summary>
     /// All values attached to this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
     /// <summary>
     /// Classification code definition for this company.
-    /// 
+    ///
     /// To retrieve this collection, specify `Classification` in the "Include" parameter for your query.
     /// </summary>
     public CodeDefinitionModel? CompanyClassificationCodeDefinition { get; set; }
@@ -1341,7 +1349,7 @@ public class ContactModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid ContactId { get; set; }
@@ -1354,18 +1362,18 @@ public class ContactModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -1573,7 +1581,7 @@ public class CreditMemoAppliedModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid CreditMemoAppliedId { get; set; }
@@ -1581,7 +1589,7 @@ public class CreditMemoAppliedModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -1598,11 +1606,11 @@ public class CreditMemoAppliedModel
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -1677,7 +1685,7 @@ public class CreditMemoInvoiceModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -1773,12 +1781,12 @@ public class CurrencyRateModel
     /// <summary>
     /// The source currency
     /// </summary>
-    public string? SourceCurrency { get; set; }
+    public string SourceCurrency { get; set; }
 
     /// <summary>
     /// The destination currency
     /// </summary>
-    public string? DestinationCurrency { get; set; }
+    public string DestinationCurrency { get; set; }
 
     /// <summary>
     /// The date for the currency rate
@@ -1796,7 +1804,7 @@ public class CustomerDetailsModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -1902,7 +1910,7 @@ public class CustomerDetailsPaymentModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -1958,7 +1966,7 @@ public class CustomerSummaryModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2039,7 +2047,7 @@ public class CustomFieldDefinitionModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2106,7 +2114,7 @@ public class CustomFieldValueModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2186,17 +2194,17 @@ public class DeveloperAccountSubmitModel
     /// <summary>
     /// The name of the developer.
     /// </summary>
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     /// <summary>
     /// The email address of the developer.
     /// </summary>
-    public string? Email { get; set; }
+    public string Email { get; set; }
 
     /// <summary>
     /// The company name of the developer.
     /// </summary>
-    public string? CompanyName { get; set; }
+    public string CompanyName { get; set; }
 
 };
 public class EmailModel
@@ -2215,7 +2223,7 @@ public class EmailModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2469,7 +2477,7 @@ public class InviteSubmitModel
     /// <summary>
     /// The email address of the user to invite
     /// </summary>
-    public string? Email { get; set; }
+    public string Email { get; set; }
 
 };
 public class InvoiceAddressModel
@@ -2483,7 +2491,7 @@ public class InvoiceAddressModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2564,7 +2572,7 @@ public class InvoiceHistoryModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2577,7 +2585,7 @@ public class InvoiceHistoryModel
     /// <summary>
     /// The unique ID of the Invoice represented by this history entry.  This ID was automatically assigned
     /// by Lockstep to the Invoice record when it was added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid InvoiceId { get; set; }
@@ -2594,11 +2602,11 @@ public class InvoiceHistoryModel
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -2741,7 +2749,7 @@ public class InvoiceLineModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid InvoiceLineId { get; set; }
@@ -2749,7 +2757,7 @@ public class InvoiceLineModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2762,11 +2770,11 @@ public class InvoiceLineModel
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system, if it was
     /// different from the original `LineNumber`.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -2887,7 +2895,7 @@ public class InvoiceModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -2895,7 +2903,7 @@ public class InvoiceModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid InvoiceId { get; set; }
@@ -2912,11 +2920,11 @@ public class InvoiceModel
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -3144,7 +3152,7 @@ public class InvoicePaymentDetailModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3201,7 +3209,7 @@ public class InvoiceSummaryModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3318,7 +3326,7 @@ public class NoteModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3379,7 +3387,7 @@ public class PaymentAppliedModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3387,7 +3395,7 @@ public class PaymentAppliedModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid PaymentAppliedId { get; set; }
@@ -3404,11 +3412,11 @@ public class PaymentAppliedModel
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -3464,7 +3472,7 @@ public class PaymentDetailHeaderModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3500,7 +3508,7 @@ public class PaymentDetailModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3616,7 +3624,7 @@ public class PaymentModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3624,7 +3632,7 @@ public class PaymentModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// For the ID of this record in its originating financial system, see `ErpKey`.
     /// </summary>
     public Guid PaymentId { get; set; }
@@ -3636,11 +3644,11 @@ public class PaymentModel
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
-    /// 
+    ///
     /// If this company record was imported from a financial system, it will have the value `ErpKey`
     /// set to the original primary key number of the record as it was known in the originating financial
     /// system.  If this record was not imported, this value will be `null`.
-    /// 
+    ///
     /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
     /// </summary>
     public string? ErpKey { get; set; }
@@ -3648,12 +3656,12 @@ public class PaymentModel
     /// <summary>
     /// The type of payment, cash or check.
     /// </summary>
-    public string? PaymentType { get; set; }
+    public string PaymentType { get; set; }
 
     /// <summary>
     /// Cash, check, credit card, wire transfer.
     /// </summary>
-    public string? TenderType { get; set; }
+    public string TenderType { get; set; }
 
     /// <summary>
     /// Has the payment been fully applied?
@@ -3766,7 +3774,7 @@ public class PaymentSummaryModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -3842,7 +3850,7 @@ public class ProvisioningFinalizeRequestModel
     /// <summary>
     /// The full name of the user
     /// </summary>
-    public string? FullName { get; set; }
+    public string FullName { get; set; }
 
     /// <summary>
     /// The time zone of the user
@@ -3921,7 +3929,7 @@ public class RiskRateModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -4098,7 +4106,7 @@ public class SyncRequestModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -4174,7 +4182,7 @@ public class UserAccountModel
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
-    /// 
+    ///
     /// This record provides a link to the user's Azure AD B2C OID.
     /// </summary>
     public Guid UserId { get; set; }
@@ -4182,7 +4190,7 @@ public class UserAccountModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -4190,12 +4198,12 @@ public class UserAccountModel
     /// <summary>
     /// The full name of the user
     /// </summary>
-    public string? UserName { get; set; }
+    public string UserName { get; set; }
 
     /// <summary>
     /// The email of the user
     /// </summary>
-    public string? Email { get; set; }
+    public string Email { get; set; }
 
     /// <summary>
     /// The status of the user's account
@@ -4315,7 +4323,7 @@ public class UserAccountModel
     /// <summary>
     /// The default currency code used by this user entity.  This value can be overridden
     /// for invoices in a different currency code.
-    /// 
+    ///
     /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
     /// </summary>
     public string? DefaultCurrencyCode { get; set; }
@@ -4356,7 +4364,7 @@ public class UserRoleModel
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-    /// 
+    ///
     /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
     /// </summary>
     public Guid GroupKey { get; set; }
@@ -4364,7 +4372,7 @@ public class UserRoleModel
     /// <summary>
     /// The name of the user role
     /// </summary>
-    public string? UserRoleName { get; set; }
+    public string UserRoleName { get; set; }
 
     /// <summary>
     /// The date that the user role was created
