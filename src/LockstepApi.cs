@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4.32.0
+ * @version    2022.5.7.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -22,7 +22,7 @@ public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2022.4.32.0";
+    private readonly string _version = "2022.5.7.0";
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;

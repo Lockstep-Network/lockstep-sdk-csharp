@@ -14,6 +14,10 @@
 
 namespace LockstepSDK;
 
+/// <summary>
+/// Represents a response to a Query API call
+/// </summary>
+/// <typeparam name="T">The type of records returned by this query</typeparam>
 public class FetchResult<T>
 {
     /// <summary>
