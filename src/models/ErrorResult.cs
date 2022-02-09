@@ -43,6 +43,11 @@ public class ErrorResult
     /// If this error corresponds to a specific instance or object, this field indicates which one.
     /// </summary>
     public string? Instance { get; internal set; }
+    
+    /// <summary>
+    /// The full content of the HTTP response
+    /// </summary>
+    public string? Content { get; internal set; }
 }
 
 /// <summary>

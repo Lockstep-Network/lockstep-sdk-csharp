@@ -230,28 +230,30 @@ public class LockstepApi
         // Send the request and convert the response into a success or failure
         using (var response = await _client.SendAsync(request))
         {
-            using (var stream = await response.Content.ReadAsStreamAsync())
+            var options = new JsonSerializerOptions
             {
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
-                var result = new LockstepResponse<T>
-                {
-                    Success = response.IsSuccessStatusCode,
-                    Status = response.StatusCode
-                };
-                if (result.Success)
+                PropertyNameCaseInsensitive = true
+            };
+            var result = new LockstepResponse<T>
+            {
+                Success = response.IsSuccessStatusCode,
+                Status = response.StatusCode
+            };
+            if (result.Success)
+            {
+                using (var stream = await response.Content.ReadAsStreamAsync())
                 {
                     result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
                 }
-                else
-                {
-                    result.Error = await JsonSerializer.DeserializeAsync<ErrorResult>(stream, options);
-                }
-
-                return result;
             }
+            else
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
+                if (result.Error != null) result.Error.Content = errorContent;
+            }
+
+            return result;
         }
     }
 }

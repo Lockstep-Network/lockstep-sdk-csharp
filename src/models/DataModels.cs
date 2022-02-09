@@ -14,6 +14,7 @@
 namespace LockstepSDK;
 
 
+#pragma warning disable CS8618
 
 /// <summary>
 /// An Activity contains information about work being done on a specific accounting task.
