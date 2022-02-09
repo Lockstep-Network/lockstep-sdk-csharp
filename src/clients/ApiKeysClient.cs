@@ -36,7 +36,7 @@ public class ApiKeysClient
         var url = $"/api/v1/ApiKeys/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<ApiKeyModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<ApiKeyModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class ApiKeysClient
     public async Task<LockstepResponse<ApiKeyModel>> RevokeAPIKey(Guid id)
     {
         var url = $"/api/v1/ApiKeys/{id}";
-        return await _client.Request<ApiKeyModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ApiKeyModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class ApiKeysClient
     public async Task<LockstepResponse<ApiKeyModel>> CreateAPIKey(ApiKeyModel body)
     {
         var url = $"/api/v1/ApiKeys";
-        return await _client.Request<ApiKeyModel>(HttpMethod.Post, url, null, body);
+        return await _client.Request<ApiKeyModel>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -83,6 +83,6 @@ public class ApiKeysClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<ApiKeyModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<ApiKeyModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

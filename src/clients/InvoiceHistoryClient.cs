@@ -33,7 +33,7 @@ public class InvoiceHistoryClient
     public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid id)
     {
         var url = $"/api/v1/InvoiceHistory/{id}";
-        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null);
+        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -56,6 +56,6 @@ public class InvoiceHistoryClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

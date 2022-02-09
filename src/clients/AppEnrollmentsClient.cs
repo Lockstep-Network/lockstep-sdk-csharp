@@ -38,7 +38,7 @@ public class AppEnrollmentsClient
         var url = $"/api/v1/AppEnrollments/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<AppEnrollmentModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<AppEnrollmentModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -56,7 +56,7 @@ public class AppEnrollmentsClient
     public async Task<LockstepResponse<AppEnrollmentModel>> UpdateAppEnrollment(Guid id, object body)
     {
         var url = $"/api/v1/AppEnrollments/{id}";
-        return await _client.Request<AppEnrollmentModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<AppEnrollmentModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -72,7 +72,7 @@ public class AppEnrollmentsClient
         var url = $"/api/v1/AppEnrollments/{id}";
         var options = new Dictionary<string, object?>();
         options["removeEnrollmentData"] = removeEnrollmentData;
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, options, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, options, null, null);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class AppEnrollmentsClient
     public async Task<LockstepResponse<AppEnrollmentModel[]>> CreateAppEnrollments(AppEnrollmentModel[] body)
     {
         var url = $"/api/v1/AppEnrollments";
-        return await _client.Request<AppEnrollmentModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<AppEnrollmentModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -114,7 +114,7 @@ public class AppEnrollmentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<AppEnrollmentModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<AppEnrollmentModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -131,6 +131,6 @@ public class AppEnrollmentsClient
     public async Task<LockstepResponse<FetchResult<AppEnrollmentCustomFieldModel>>> QueryEnrollmentFields(Guid id)
     {
         var url = $"/api/v1/AppEnrollments/settings/{id}";
-        return await _client.Request<FetchResult<AppEnrollmentCustomFieldModel>>(HttpMethod.Get, url, null, null);
+        return await _client.Request<FetchResult<AppEnrollmentCustomFieldModel>>(HttpMethod.Get, url, null, null, null);
     }
 }

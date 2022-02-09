@@ -36,7 +36,7 @@ public class CustomFieldDefinitionsClient
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class CustomFieldDefinitionsClient
     public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid id, object body)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
-        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public class CustomFieldDefinitionsClient
     public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid id)
     {
         var url = $"/api/v1/CustomFieldDefinitions/{id}";
-        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -76,7 +76,7 @@ public class CustomFieldDefinitionsClient
     public async Task<LockstepResponse<CustomFieldDefinitionModel[]>> CreateFieldDefinitions(CustomFieldDefinitionModel[] body)
     {
         var url = $"/api/v1/CustomFieldDefinitions";
-        return await _client.Request<CustomFieldDefinitionModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<CustomFieldDefinitionModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -101,6 +101,6 @@ public class CustomFieldDefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CustomFieldDefinitionModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CustomFieldDefinitionModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

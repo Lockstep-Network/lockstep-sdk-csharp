@@ -36,7 +36,7 @@ public class PaymentsClient
         var url = $"/api/v1/Payments/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<PaymentModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<PaymentModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class PaymentsClient
     public async Task<LockstepResponse<PaymentModel>> UpdatePayment(Guid id, object body)
     {
         var url = $"/api/v1/Payments/{id}";
-        return await _client.Request<PaymentModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<PaymentModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public class PaymentsClient
     public async Task<LockstepResponse<ActionResultModel>> DeletePayment(Guid id)
     {
         var url = $"/api/v1/Payments/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -78,7 +78,7 @@ public class PaymentsClient
     public async Task<LockstepResponse<PaymentModel[]>> CreatePayments(PaymentModel[] body)
     {
         var url = $"/api/v1/Payments";
-        return await _client.Request<PaymentModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<PaymentModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public class PaymentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<PaymentModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<PaymentModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -128,7 +128,7 @@ public class PaymentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<PaymentSummaryModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<PaymentSummaryModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -138,7 +138,7 @@ public class PaymentsClient
     public async Task<LockstepResponse<PaymentDetailHeaderModel>> RetrievePaymentDetailHeader()
     {
         var url = $"/api/v1/Payments/views/detail-header";
-        return await _client.Request<PaymentDetailHeaderModel>(HttpMethod.Get, url, null, null);
+        return await _client.Request<PaymentDetailHeaderModel>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -161,6 +161,6 @@ public class PaymentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<PaymentDetailModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<PaymentDetailModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

@@ -36,7 +36,7 @@ public class CodeDefinitionsClient
         var url = $"/api/v1/CodeDefinitions/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -61,6 +61,6 @@ public class CodeDefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

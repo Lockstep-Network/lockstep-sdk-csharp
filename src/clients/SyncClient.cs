@@ -33,7 +33,7 @@ public class SyncClient
     public async Task<LockstepResponse<SyncRequestModel>> CreateSync(SyncSubmitModel body)
     {
         var url = $"/api/v1/Sync";
-        return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, body);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -42,10 +42,11 @@ public class SyncClient
     /// A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
     ///
     /// </summary>
-    public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile()
+    /// <param name="filename">The full path of a file to upload to the API</param>
+    public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile(string filename)
     {
         var url = $"/api/v1/Sync/zip";
-        return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, null);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, null, filename);
     }
 
     /// <summary>
@@ -63,7 +64,7 @@ public class SyncClient
     public async Task<LockstepResponse<SyncRequestModel>> UpdateSync(Guid id, object body)
     {
         var url = $"/api/v1/Sync/{id}";
-        return await _client.Request<SyncRequestModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -79,7 +80,7 @@ public class SyncClient
         var url = $"/api/v1/Sync/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<SyncRequestModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<SyncRequestModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -104,6 +105,6 @@ public class SyncClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<SyncRequestModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<SyncRequestModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

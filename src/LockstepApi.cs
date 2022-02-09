@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.5.7.0
+ * @version    2022.5.19.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -22,7 +22,7 @@ public class LockstepApi
 {
     // The URL of the environment we will use
     private readonly string _serverUrl;
-    private readonly string _version = "2022.5.7.0";
+    private readonly string _version = "2022.5.19.0";
     private string? _appName;
     private string? _bearerToken;
     private string? _apiKey;
@@ -167,10 +167,11 @@ public class LockstepApi
     /// <param name="path">The URL path fragment relative to this environment</param>
     /// <param name="query">The list of parameters and options to send</param>
     /// <param name="body">The request body to send</param>
+    /// <param name="filename">The filename of a file attachment to upload</param>
     /// <typeparam name="T">The type of the expected response</typeparam>
     /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
     public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
-        Dictionary<string, object?>? query, object? body)
+        Dictionary<string, object?>? query, object? body, string? filename)
     {
         var request = new HttpRequestMessage();
         request.Method = method;
@@ -217,7 +218,15 @@ public class LockstepApi
         {
             request.Content = new StringContent(JsonSerializer.Serialize(body));
         }
-
+        else if (filename != null)
+        {
+            var bytesFile = await File.ReadAllBytesAsync(filename);
+            var fileContent = new ByteArrayContent(bytesFile);
+            var form = new MultipartFormDataContent(Guid.NewGuid().ToString());
+            form.Add(fileContent, "file", Path.GetFileName(filename));
+            request.Content = form;
+        }
+        
         // Send the request and convert the response into a success or failure
         using (var response = await _client.SendAsync(request))
         {

@@ -35,7 +35,7 @@ public class ReportsClient
         var url = $"/api/v1/Reports/cashflow";
         var options = new Dictionary<string, object?>();
         options["timeframe"] = timeframe;
-        return await _client.Request<CashflowReportModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CashflowReportModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public class ReportsClient
     public async Task<LockstepResponse<DailySalesOutstandingReportModel[]>> DailySalesOutstanding()
     {
         var url = $"/api/v1/Reports/dailysalesoutstanding";
-        return await _client.Request<DailySalesOutstandingReportModel[]>(HttpMethod.Get, url, null, null);
+        return await _client.Request<DailySalesOutstandingReportModel[]>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class ReportsClient
     public async Task<LockstepResponse<RiskRateModel[]>> RiskRates()
     {
         var url = $"/api/v1/Reports/riskrates";
-        return await _client.Request<RiskRateModel[]>(HttpMethod.Get, url, null, null);
+        return await _client.Request<RiskRateModel[]>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ public class ReportsClient
         var options = new Dictionary<string, object?>();
         options["reportDate"] = reportDate;
         options["companyId"] = companyId;
-        return await _client.Request<ArHeaderInfoModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<ArHeaderInfoModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -101,7 +101,7 @@ public class ReportsClient
         options["CurrencyCode"] = CurrencyCode;
         options["CurrencyProvider"] = CurrencyProvider;
         options["Buckets"] = Buckets;
-        return await _client.Request<AgingModel[]>(HttpMethod.Get, url, options, null);
+        return await _client.Request<AgingModel[]>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public class ReportsClient
     public async Task<LockstepResponse<ArAgingHeaderInfoModel[]>> AccountsReceivableAgingHeader()
     {
         var url = $"/api/v1/Reports/ar-aging-header";
-        return await _client.Request<ArAgingHeaderInfoModel[]>(HttpMethod.Get, url, null, null);
+        return await _client.Request<ArAgingHeaderInfoModel[]>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -128,6 +128,6 @@ public class ReportsClient
         var url = $"/api/v1/Reports/attachments-header";
         var options = new Dictionary<string, object?>();
         options["companyId"] = companyId;
-        return await _client.Request<AttachmentHeaderInfoModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<AttachmentHeaderInfoModel>(HttpMethod.Get, url, options, null, null);
     }
 }

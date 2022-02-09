@@ -38,7 +38,7 @@ public class ApplicationsClient
         var url = $"/api/v1/Applications/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<ApplicationModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<ApplicationModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class ApplicationsClient
     public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid id, object body)
     {
         var url = $"/api/v1/Applications/{id}";
-        return await _client.Request<ApplicationModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<ApplicationModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public class ApplicationsClient
     public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid id)
     {
         var url = $"/api/v1/Applications/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public class ApplicationsClient
     public async Task<LockstepResponse<ApplicationModel[]>> CreateApplications(ApplicationModel[] body)
     {
         var url = $"/api/v1/Applications";
-        return await _client.Request<ApplicationModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<ApplicationModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -107,6 +107,6 @@ public class ApplicationsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<ApplicationModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<ApplicationModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

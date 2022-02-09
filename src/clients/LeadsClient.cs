@@ -33,6 +33,6 @@ public class LeadsClient
     public async Task<LockstepResponse<LeadModel[]>> CreateLeads(LeadModel[] body)
     {
         var url = $"/api/v1/Leads";
-        return await _client.Request<LeadModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<LeadModel[]>(HttpMethod.Post, url, null, body, null);
     }
 }

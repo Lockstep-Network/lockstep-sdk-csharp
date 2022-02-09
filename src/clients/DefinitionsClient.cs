@@ -43,7 +43,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CountryModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CountryModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CurrencyModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CurrencyModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<StateModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<StateModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -114,6 +114,6 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<ErpModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<ErpModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

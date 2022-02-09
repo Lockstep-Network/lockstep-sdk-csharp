@@ -34,7 +34,7 @@ public class UserRolesClient
         var url = $"/api/v1/UserRoles/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<UserRoleModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<UserRoleModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -55,6 +55,6 @@ public class UserRolesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<UserRoleModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<UserRoleModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

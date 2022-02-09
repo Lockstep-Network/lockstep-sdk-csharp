@@ -36,7 +36,7 @@ public class UserAccountsClient
         var url = $"/api/v1/UserAccounts/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<UserAccountModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<UserAccountModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -52,7 +52,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<UserAccountModel>> UpdateUser(Guid id, object body)
     {
         var url = $"/api/v1/UserAccounts/{id}";
-        return await _client.Request<UserAccountModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<UserAccountModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<ActionResultModel>> DisableUser(Guid id)
     {
         var url = $"/api/v1/UserAccounts/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public class UserAccountsClient
         var url = $"/api/v1/UserAccounts/reenable";
         var options = new Dictionary<string, object?>();
         options["id"] = id;
-        return await _client.Request<ActionResultModel>(HttpMethod.Post, url, options, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Post, url, options, null, null);
     }
 
     /// <summary>
@@ -93,7 +93,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<InviteModel[]>> InviteUser(InviteSubmitModel[] body)
     {
         var url = $"/api/v1/UserAccounts/invite";
-        return await _client.Request<InviteModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<InviteModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -108,7 +108,7 @@ public class UserAccountsClient
         var url = $"/api/v1/UserAccounts/invite";
         var options = new Dictionary<string, object?>();
         options["code"] = code;
-        return await _client.Request<InviteDataModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<InviteDataModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public class UserAccountsClient
     public async Task<LockstepResponse<TransferOwnerModel>> TransferOwner(TransferOwnerSubmitModel body)
     {
         var url = $"/api/v1/UserAccounts/transfer-owner";
-        return await _client.Request<TransferOwnerModel>(HttpMethod.Post, url, null, body);
+        return await _client.Request<TransferOwnerModel>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -142,6 +142,6 @@ public class UserAccountsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<UserAccountModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<UserAccountModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

@@ -39,7 +39,7 @@ public class CurrenciesClient
         var options = new Dictionary<string, object?>();
         options["date"] = date;
         options["dataProvider"] = dataProvider;
-        return await _client.Request<CurrencyRateModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CurrencyRateModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -53,6 +53,6 @@ public class CurrenciesClient
         var url = $"/api/v1/Currencies/bulk";
         var options = new Dictionary<string, object?>();
         options["destinationCurrency"] = destinationCurrency;
-        return await _client.Request<CurrencyRateModel[]>(HttpMethod.Post, url, options, body);
+        return await _client.Request<CurrencyRateModel[]>(HttpMethod.Post, url, options, body, null);
     }
 }

@@ -34,7 +34,7 @@ public class ContactsClient
         var url = $"/api/v1/Contacts/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<ContactModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<ContactModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -48,7 +48,7 @@ public class ContactsClient
     public async Task<LockstepResponse<ContactModel>> UpdateContact(Guid id, object body)
     {
         var url = $"/api/v1/Contacts/{id}";
-        return await _client.Request<ContactModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<ContactModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ public class ContactsClient
     public async Task<LockstepResponse<ActionResultModel>> DisableContact(Guid id)
     {
         var url = $"/api/v1/Contacts/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ public class ContactsClient
     public async Task<LockstepResponse<ContactModel[]>> CreateContacts(ContactModel[] body)
     {
         var url = $"/api/v1/Contacts";
-        return await _client.Request<ContactModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<ContactModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -97,6 +97,6 @@ public class ContactsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<ContactModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<ContactModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

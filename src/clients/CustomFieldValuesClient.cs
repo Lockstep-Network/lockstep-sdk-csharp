@@ -37,7 +37,7 @@ public class CustomFieldValuesClient
         var url = $"/api/v1/CustomFieldValues/{definitionId}/{recordKey}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<CustomFieldValueModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CustomFieldValueModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class CustomFieldValuesClient
     public async Task<LockstepResponse<CustomFieldValueModel>> UpdateField(Guid definitionId, Guid recordKey, object body)
     {
         var url = $"/api/v1/CustomFieldValues/{definitionId}/{recordKey}";
-        return await _client.Request<CustomFieldValueModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<CustomFieldValueModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -68,7 +68,7 @@ public class CustomFieldValuesClient
     public async Task<LockstepResponse<ActionResultModel>> DeleteField(Guid definitionId, Guid recordKey)
     {
         var url = $"/api/v1/CustomFieldValues/{definitionId}/{recordKey}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public class CustomFieldValuesClient
     public async Task<LockstepResponse<CustomFieldValueModel[]>> CreateFields(CustomFieldValueModel[] body)
     {
         var url = $"/api/v1/CustomFieldValues";
-        return await _client.Request<CustomFieldValueModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<CustomFieldValueModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -104,6 +104,6 @@ public class CustomFieldValuesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CustomFieldValueModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CustomFieldValueModel>>(HttpMethod.Get, url, options, null, null);
     }
 }
