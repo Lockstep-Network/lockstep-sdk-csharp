@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -37,7 +36,7 @@ public class CodeDefinitionsClient
         var url = $"/api/v1/CodeDefinitions/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -62,6 +61,6 @@ public class CodeDefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

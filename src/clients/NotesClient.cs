@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -37,7 +36,7 @@ public class NotesClient
         var url = $"/api/v1/Notes/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<NoteModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<NoteModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -50,7 +49,7 @@ public class NotesClient
     public async Task<LockstepResponse<ActionResultModel>> ArchiveNote(Guid id)
     {
         var url = $"/api/v1/Notes/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -65,7 +64,7 @@ public class NotesClient
     public async Task<LockstepResponse<NoteModel[]>> CreateNotes(NoteModel[] body)
     {
         var url = $"/api/v1/Notes";
-        return await _client.Request<NoteModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<NoteModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -90,6 +89,6 @@ public class NotesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<NoteModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<NoteModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

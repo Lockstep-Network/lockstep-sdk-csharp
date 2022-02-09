@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,7 +33,7 @@ public class InvoiceHistoryClient
     public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid id)
     {
         var url = $"/api/v1/InvoiceHistory/{id}";
-        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null);
+        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -57,6 +56,6 @@ public class InvoiceHistoryClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

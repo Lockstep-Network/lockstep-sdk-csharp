@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -37,7 +36,7 @@ public class EmailsClient
         var url = $"/api/v1/Emails/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<EmailModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<EmailModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -53,7 +52,7 @@ public class EmailsClient
     public async Task<LockstepResponse<EmailModel>> UpdateEmail(Guid id, object body)
     {
         var url = $"/api/v1/Emails/{id}";
-        return await _client.Request<EmailModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<EmailModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ public class EmailsClient
     public async Task<LockstepResponse<ActionResultModel>> DeleteEmail(Guid id)
     {
         var url = $"/api/v1/Emails/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -77,10 +76,10 @@ public class EmailsClient
     /// </summary>
     /// <param name="emailId">The unique ID number of the Email to retrieve.</param>
     /// <param name="nonce">The random nonce applied at time of url creation.</param>
-    public async Task<LockstepResponse<byte[]>> RetrieveEmailLogo(Guid emailId, Guid nonce)
+    public async Task<LockstepResponse<string>> RetrieveEmailLogo(Guid emailId, Guid nonce)
     {
         var url = $"/api/v1/Emails/{emailId}/logo/{nonce}";
-        return await _client.Request<byte[]>(HttpMethod.Get, url, null, null);
+        return await _client.Request<string>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -93,7 +92,7 @@ public class EmailsClient
     public async Task<LockstepResponse<EmailModel[]>> CreateEmails(EmailModel[] body)
     {
         var url = $"/api/v1/Emails";
-        return await _client.Request<EmailModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<EmailModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -118,6 +117,6 @@ public class EmailsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<EmailModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<EmailModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

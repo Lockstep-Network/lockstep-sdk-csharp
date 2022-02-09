@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -34,6 +33,6 @@ public class LeadsClient
     public async Task<LockstepResponse<LeadModel[]>> CreateLeads(LeadModel[] body)
     {
         var url = $"/api/v1/Leads";
-        return await _client.Request<LeadModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<LeadModel[]>(HttpMethod.Post, url, null, body, null);
     }
 }

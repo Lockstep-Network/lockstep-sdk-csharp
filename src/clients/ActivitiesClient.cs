@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -37,7 +36,7 @@ public class ActivitiesClient
         var url = $"/api/v1/Activities/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<ActivityModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<ActivityModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -53,7 +52,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel>> UpdateActivity(Guid id, object body)
     {
         var url = $"/api/v1/Activities/{id}";
-        return await _client.Request<ActivityModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<ActivityModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -66,7 +65,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel>> DeleteActivity(Guid id)
     {
         var url = $"/api/v1/Activities/{id}";
-        return await _client.Request<ActivityModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActivityModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -79,7 +78,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel[]>> CreateActivities(ActivityModel[] body)
     {
         var url = $"/api/v1/Activities";
-        return await _client.Request<ActivityModel[]>(HttpMethod.Post, url, null, body);
+        return await _client.Request<ActivityModel[]>(HttpMethod.Post, url, null, body, null);
     }
 
     /// <summary>
@@ -104,7 +103,7 @@ public class ActivitiesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<ActivityModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<ActivityModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -117,7 +116,7 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityStreamItemModel[]>> RetrieveActivityStream(Guid id)
     {
         var url = $"/api/v1/Activities/{id}/stream";
-        return await _client.Request<ActivityStreamItemModel[]>(HttpMethod.Get, url, null, null);
+        return await _client.Request<ActivityStreamItemModel[]>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -131,6 +130,6 @@ public class ActivitiesClient
     public async Task<LockstepResponse<ActivityModel>> ForwardActivity(Guid activityId, Guid userId)
     {
         var url = $"/api/v1/Activities/{activityId}/forward/{userId}";
-        return await _client.Request<ActivityModel>(HttpMethod.Post, url, null, null);
+        return await _client.Request<ActivityModel>(HttpMethod.Post, url, null, null, null);
     }
 }

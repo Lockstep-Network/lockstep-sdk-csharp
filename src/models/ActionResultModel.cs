@@ -14,7 +14,13 @@
 
 namespace LockstepSDK;
 
+/// <summary>
+/// Represents a response to an API action that does not return data
+/// </summary>
 public class ActionResultModel
 {
+    /// <summary>
+    /// A list of messages returned by this API call
+    /// </summary>
     public string[]? Messages { get; internal set; }
 }

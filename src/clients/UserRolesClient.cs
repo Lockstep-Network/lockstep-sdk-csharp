@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -35,7 +34,7 @@ public class UserRolesClient
         var url = $"/api/v1/UserRoles/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<UserRoleModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<UserRoleModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -56,6 +55,6 @@ public class UserRolesClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<UserRoleModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<UserRoleModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

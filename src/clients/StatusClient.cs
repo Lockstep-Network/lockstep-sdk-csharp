@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -33,7 +32,7 @@ public class StatusClient
     public async Task<LockstepResponse<StatusModel>> Ping()
     {
         var url = $"/api/v1/Status";
-        return await _client.Request<StatusModel>(HttpMethod.Get, url, null, null);
+        return await _client.Request<StatusModel>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -50,6 +49,6 @@ public class StatusClient
         var url = $"/api/v1/Status/testing";
         var options = new Dictionary<string, object?>();
         options["err"] = err;
-        return await _client.Request<TestTimeoutException>(HttpMethod.Get, url, options, null);
+        return await _client.Request<TestTimeoutException>(HttpMethod.Get, url, options, null, null);
     }
 }

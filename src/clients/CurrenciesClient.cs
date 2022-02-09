@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -40,7 +39,7 @@ public class CurrenciesClient
         var options = new Dictionary<string, object?>();
         options["date"] = date;
         options["dataProvider"] = dataProvider;
-        return await _client.Request<CurrencyRateModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<CurrencyRateModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -54,6 +53,6 @@ public class CurrenciesClient
         var url = $"/api/v1/Currencies/bulk";
         var options = new Dictionary<string, object?>();
         options["destinationCurrency"] = destinationCurrency;
-        return await _client.Request<CurrencyRateModel[]>(HttpMethod.Post, url, options, body);
+        return await _client.Request<CurrencyRateModel[]>(HttpMethod.Post, url, options, body, null);
     }
 }

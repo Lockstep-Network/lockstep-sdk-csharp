@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +38,7 @@ public class AttachmentsClient
         var url = $"/api/v1/Attachments/{id}";
         var options = new Dictionary<string, object?>();
         options["include"] = include;
-        return await _client.Request<AttachmentModel>(HttpMethod.Get, url, options, null);
+        return await _client.Request<AttachmentModel>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -57,7 +56,7 @@ public class AttachmentsClient
     public async Task<LockstepResponse<AttachmentModel>> UpdateAttachment(Guid id, object body)
     {
         var url = $"/api/v1/Attachments/{id}";
-        return await _client.Request<AttachmentModel>(HttpMethod.Patch, url, null, body);
+        return await _client.Request<AttachmentModel>(HttpMethod.Patch, url, null, body, null);
     }
 
     /// <summary>
@@ -72,7 +71,7 @@ public class AttachmentsClient
     public async Task<LockstepResponse<ActionResultModel>> ArchiveAttachment(Guid id)
     {
         var url = $"/api/v1/Attachments/{id}";
-        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null);
+        return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
     }
 
     /// <summary>
@@ -87,7 +86,7 @@ public class AttachmentsClient
     public async Task<LockstepResponse<string>> DownloadAttachment(Guid id)
     {
         var url = $"/api/v1/Attachments/{id}/download";
-        return await _client.Request<string>(HttpMethod.Get, url, null, null);
+        return await _client.Request<string>(HttpMethod.Get, url, null, null, null);
     }
 
     /// <summary>
@@ -100,13 +99,14 @@ public class AttachmentsClient
     /// </summary>
     /// <param name="tableName">The name of the type of object to which this Attachment will be linked</param>
     /// <param name="objectId">The unique ID of the object to which this Attachment will be linked</param>
-    public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId)
+    /// <param name="filename">The full path of a file to upload to the API</param>
+    public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId, string filename)
     {
         var url = $"/api/v1/Attachments";
         var options = new Dictionary<string, object?>();
         options["tableName"] = tableName;
         options["objectId"] = objectId;
-        return await _client.Request<AttachmentModel[]>(HttpMethod.Post, url, options, null);
+        return await _client.Request<AttachmentModel[]>(HttpMethod.Post, url, options, null, filename);
     }
 
     /// <summary>
@@ -133,6 +133,6 @@ public class AttachmentsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<AttachmentModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<AttachmentModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

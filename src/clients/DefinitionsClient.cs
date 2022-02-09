@@ -8,7 +8,6 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -44,7 +43,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CountryModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CountryModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -69,7 +68,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CurrencyModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<CurrencyModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -92,7 +91,7 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<StateModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<StateModel>>(HttpMethod.Get, url, options, null, null);
     }
 
     /// <summary>
@@ -115,6 +114,6 @@ public class DefinitionsClient
         options["order"] = order;
         options["pageSize"] = pageSize;
         options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<ErpModel>>(HttpMethod.Get, url, options, null);
+        return await _client.Request<FetchResult<ErpModel>>(HttpMethod.Get, url, options, null, null);
     }
 }

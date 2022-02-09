@@ -8,16 +8,23 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.4
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
 namespace LockstepSDK;
 
 
+#pragma warning disable CS8618
 
+/// <summary>
+/// An Activity contains information about work being done on a specific accounting task.
+/// You can use Activities to track information about who has been assigned a specific task,
+/// the current status of the task, the name and description given for the particular task,
+/// the priority of the task, and any amounts collected, paid, or credited for the task.
+/// </summary>
 public class ActivityModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -185,10 +192,14 @@ public class ActivityModel
     /// To retrieve this collection, specify `References` in the "Include" parameter for your query.
     /// </summary>
     public ActivityXRefModel[]? References { get; set; }
-
 };
+
+/// <summary>
+/// Represents an item belonging to the activity stream.
+/// </summary>
 public class ActivityStreamItemModel
 {
+
     /// <summary>
     /// The object key of the activity stream item.
     /// </summary>
@@ -241,10 +252,11 @@ public class ActivityStreamItemModel
     /// The name of the contact sending the activity otherwise null.
     /// </summary>
     public string? ToContactName { get; set; }
-
 };
+
 public class ActivityXRefModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this is
     /// added to the Lockstep platform.
@@ -273,10 +285,14 @@ public class ActivityXRefModel
     /// The ID of the object the activity reference is associated with
     /// </summary>
     public string? ObjectKey { get; set; }
-
 };
+
+/// <summary>
+/// Represents an aging record
+/// </summary>
 public class AgingModel
 {
+
     /// <summary>
     /// Aging bucket of outstanding balance data (days past due date of invoice)
     /// </summary>
@@ -291,10 +307,20 @@ public class AgingModel
     /// Outstanding balance for the given aging bucket
     /// </summary>
     public double OutstandingBalance { get; set; }
-
 };
+
+/// <summary>
+/// An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys
+/// do not have an expiration date, they are well suited for unattended processes.  Each API Key
+/// is associated with a user, and may be revoked to prevent it from accessing the Lockstep API.
+/// When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot
+/// retrieve an API Key once it is created.
+///
+/// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
+/// </summary>
 public class ApiKeyModel
 {
+
     /// <summary>
     /// The unique identifier for the API key.
     /// </summary>
@@ -358,10 +384,14 @@ public class ApiKeyModel
     /// The UTC datetime when the API key expires.
     /// </summary>
     public DateTime? Expires { get; set; }
-
 };
+
+/// <summary>
+/// App enrollment and custom field merged into one
+/// </summary>
 public class AppEnrollmentCustomFieldModel
 {
+
     /// <summary>
     /// Unique id for the app enrollment
     /// </summary>
@@ -419,10 +449,19 @@ public class AppEnrollmentCustomFieldModel
     /// Number data for field
     /// </summary>
     public double? NumericValue { get; set; }
-
 };
+
+/// <summary>
+/// An AppEnrollment represents an app that has been enrolled to the current account.  When you sign up for an
+/// app using the Lockstep Platform, you obtain an enrollment record for that app.  Example types of apps include
+/// connectors and feature enhancement apps. The App Enrollment object contains information about this app, its
+/// configuration, and settings.
+///
+/// See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
+/// </summary>
 public class AppEnrollmentModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -518,10 +557,22 @@ public class AppEnrollmentModel
     /// Only enter relevant fields for the given connector.
     /// </summary>
     public ConnectorInfoModel? ConnectorInfo { get; set; }
-
 };
+
+/// <summary>
+/// An Application represents a feature available to customers within the Lockstep Platform.  You can create
+/// Applications by working with your Lockstep business development manager and publish them on the platform
+/// so that customers can browse and find your Application on the Lockstep Platform Marketplace.  When a
+/// customer adds an Application to their account, they obtain an AppEnrollment which represents that customer's
+/// instance of this Application.  The customer-specific AppEnrollment contains a customer's configuration data
+/// for the Application, which is not customer-specific.
+///
+/// See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
+/// --swaggerCategory:Platform
+/// </summary>
 public class ApplicationModel
 {
+
     /// <summary>
     /// A unique code identifying this application
     /// </summary>
@@ -623,10 +674,14 @@ public class ApplicationModel
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
-
 };
+
+/// <summary>
+/// Aggregated Accounts Receivable Aging information.
+/// </summary>
 public class ArAgingHeaderInfoModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -664,10 +719,14 @@ public class ArAgingHeaderInfoModel
     /// Portion of Total AR this data represents.
     /// </summary>
     public double PercentageOfTotalAr { get; set; }
-
 };
+
+/// <summary>
+/// Aggregated Accounts Receivable information.
+/// </summary>
 public class ArHeaderInfoModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -775,10 +834,14 @@ public class ArHeaderInfoModel
     /// Portion of Total AR that is 90+ days Past due.
     /// </summary>
     public double PercentageOfTotalAr90DaysPastDue { get; set; }
-
 };
+
+/// <summary>
+/// Contains summarized data for an invoice
+/// </summary>
 public class AtRiskInvoiceSummaryModel
 {
+
     /// <summary>
     /// The date of the report
     /// </summary>
@@ -862,10 +925,14 @@ public class AtRiskInvoiceSummaryModel
     /// The ids of the payments associated to this invoice.
     /// </summary>
     public Guid[]? PaymentIds { get; set; }
-
 };
+
+/// <summary>
+/// Aggregated Attachment status information.
+/// </summary>
 public class AttachmentHeaderInfoModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -894,10 +961,14 @@ public class AttachmentHeaderInfoModel
     /// The total number of active attachments associated with the provided GroupKey and CompanyId.
     /// </summary>
     public int TotalActive { get; set; }
-
 };
+
+/// <summary>
+/// Represents a user uploaded attachment
+/// </summary>
 public class AttachmentModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -963,10 +1034,14 @@ public class AttachmentModel
     /// Id of the user who made the file
     /// </summary>
     public Guid CreatedUserId { get; set; }
-
 };
+
+/// <summary>
+/// Input format used for bulk conversion route
+/// </summary>
 public class BulkCurrencyConversionModel
 {
+
     /// <summary>
     /// The date for the currency rate
     /// </summary>
@@ -976,10 +1051,14 @@ public class BulkCurrencyConversionModel
     /// The currency code This will be validated by the /api/v1/currencies data set
     /// </summary>
     public string SourceCurrency { get; set; }
-
 };
+
+/// <summary>
+/// Represents the cashflow report based on a timeframe
+/// </summary>
 public class CashflowReportModel
 {
+
     /// <summary>
     /// Timeframe in days the cashflow report is generated on
     /// </summary>
@@ -1004,10 +1083,15 @@ public class CashflowReportModel
     /// Number of invoices billed in the timeframe
     /// </summary>
     public int InvoicesBilledCount { get; set; }
-
 };
+
+/// <summary>
+/// Represents a Code Definition.  Codes can be used as shortened, human readable strings.
+/// Additionally, this table can be used to store lists of system values for Lockstep objects.
+/// </summary>
 public class CodeDefinitionModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -1056,10 +1140,18 @@ public class CodeDefinitionModel
     /// The ID of the user who last modified the Code Definition
     /// </summary>
     public Guid ModifiedUserId { get; set; }
-
 };
+
+/// <summary>
+/// A Company represents a customer, a vendor, or a company within the organization of the account holder.
+/// Companies can have parents and children, representing an organizational hierarchy of corporate entities.
+/// You can use Companies to track projects and financial data under this Company label.
+///
+/// See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
+/// </summary>
 public class CompanyModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -1071,7 +1163,7 @@ public class CompanyModel
     /// <summary>
     /// The short name of the company.
     /// </summary>
-    public string? CompanyName { get; set; }
+    public string CompanyName { get; set; }
 
     /// <summary>
     /// The unique ID of this record as it was known in its originating financial system.
@@ -1318,10 +1410,15 @@ public class CompanyModel
     /// To retrieve this collection, specify `Classification` in the "Include" parameter for your query.
     /// </summary>
     public CodeDefinitionModel? CompanyClassificationCodeDefinition { get; set; }
-
 };
+
+/// <summary>
+/// Represents all possible data required to set up an app enrollment for a connector.
+/// Only send required fields for the given connector.
+/// </summary>
 public class ConnectorInfoModel
 {
+
     /// <summary>
     /// The authorization code returned from the first step of the OAuth2 flow
     /// https://oauth.net/2/grant-types/authorization-code/
@@ -1342,10 +1439,17 @@ public class ConnectorInfoModel
     /// The email an email connection is being created for.
     /// </summary>
     public string? Email { get; set; }
-
 };
+
+/// <summary>
+/// A Contact contains information about a person or role within a Company.
+/// You can use Contacts to track information about who is responsible for a specific project,
+/// who handles invoices, or information about which role at a particular customer or
+/// vendor you should speak with about invoices.
+/// </summary>
 public class ContactModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -1511,10 +1615,14 @@ public class ContactModel
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
-
 };
+
+/// <summary>
+/// Country model for ISO-3166
+/// </summary>
 public class CountryModel
 {
+
     /// <summary>
     /// Name of the country
     /// </summary>
@@ -1574,10 +1682,18 @@ public class CountryModel
     /// A different name for a country
     /// </summary>
     public string? Aliases { get; set; }
-
 };
+
+/// <summary>
+/// Credit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds.
+/// Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice,
+/// Lockstep creates a Credit Memo Application record to track the amount from the Credit Memo that was applied
+/// as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid
+/// using this Credit.
+/// </summary>
 public class CreditMemoAppliedModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -1678,10 +1794,14 @@ public class CreditMemoAppliedModel
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
-
 };
+
+/// <summary>
+/// Contains information about a credit memo invoice
+/// </summary>
 public class CreditMemoInvoiceModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -1746,10 +1866,14 @@ public class CreditMemoInvoiceModel
     /// The remaining balance value of this invoice.
     /// </summary>
     public double? OutstandingBalanceAmount { get; set; }
-
 };
+
+/// <summary>
+/// Represents an ISO-4217 currency code definition
+/// </summary>
 public class CurrencyModel
 {
+
     /// <summary>
     /// Alphabetic code for the given currency
     /// </summary>
@@ -1774,10 +1898,14 @@ public class CurrencyModel
     /// Symbol for the given currency
     /// </summary>
     public string? Symbol { get; set; }
-
 };
+
+/// <summary>
+/// Represents a currency rate for specific currencies and date
+/// </summary>
 public class CurrencyRateModel
 {
+
     /// <summary>
     /// The source currency
     /// </summary>
@@ -1797,10 +1925,14 @@ public class CurrencyRateModel
     /// The currency rate value
     /// </summary>
     public double? CurrencyRate { get; set; }
-
 };
+
+/// <summary>
+/// Contains customer details data
+/// </summary>
 public class CustomerDetailsModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -1903,10 +2035,14 @@ public class CustomerDetailsModel
     /// Customer payments collected
     /// </summary>
     public CustomerDetailsPaymentModel[]? Payments { get; set; }
-
 };
+
+/// <summary>
+/// Customer payment collected information
+/// </summary>
 public class CustomerDetailsPaymentModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -1959,10 +2095,14 @@ public class CustomerDetailsPaymentModel
     /// Amount payment was made for
     /// </summary>
     public double PaymentAmount { get; set; }
-
 };
+
+/// <summary>
+/// Contains summarized data for a customer
+/// </summary>
 public class CustomerSummaryModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -2040,10 +2180,19 @@ public class CustomerSummaryModel
     /// The date stamp for the newest Activity on this Customer.
     /// </summary>
     public DateTime? NewestActivity { get; set; }
-
 };
+
+/// <summary>
+/// A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
+/// core definition for each object.  The core definition is intended to represent a level of compatibility
+/// that provides support across most accounting systems and products.  When a user or developer requires
+/// information beyond this core definition, you can use Custom Fields to represent this information.
+///
+/// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+/// </summary>
 public class CustomFieldDefinitionModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -2107,10 +2256,19 @@ public class CustomFieldDefinitionModel
     /// AppEnrollmentId for this record; used for mapping purposes.
     /// </summary>
     public Guid? AppEnrollmentId { get; set; }
-
 };
+
+/// <summary>
+/// A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
+/// core definition for each object.  The core definition is intended to represent a level of compatibility
+/// that provides support across most accounting systems and products.  When a user or developer requires
+/// information beyond this core definition, you can use Custom Fields to represent this information.
+///
+/// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+/// </summary>
 public class CustomFieldValueModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -2138,7 +2296,7 @@ public class CustomFieldValueModel
     /// <summary>
     /// Number data for field
     /// </summary>
-    public double NumericValue { get; set; }
+    public double? NumericValue { get; set; }
 
     /// <summary>
     /// Date created
@@ -2169,10 +2327,14 @@ public class CustomFieldValueModel
     /// Definition of the value
     /// </summary>
     public CustomFieldDefinitionModel? CustomFieldDefinition { get; set; }
-
 };
+
+/// <summary>
+/// Represents the daily sales outstanding report
+/// </summary>
 public class DailySalesOutstandingReportModel
 {
+
     /// <summary>
     /// Timeframe (month) the daily sales outstanding values are associated with
     /// </summary>
@@ -2187,10 +2349,14 @@ public class DailySalesOutstandingReportModel
     /// Time (in days) between an invoice was completed paid off and when the invoice was issued
     /// </summary>
     public double DailySalesOutstanding { get; set; }
-
 };
+
+/// <summary>
+/// Model containing information to create a new developer account.
+/// </summary>
 public class DeveloperAccountSubmitModel
 {
+
     /// <summary>
     /// The name of the developer.
     /// </summary>
@@ -2205,10 +2371,17 @@ public class DeveloperAccountSubmitModel
     /// The company name of the developer.
     /// </summary>
     public string CompanyName { get; set; }
-
 };
+
+/// <summary>
+/// An Email represents a communication sent from one company to another.  The creator of the email is identified
+/// by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field.
+/// The Email Model represents an email and a number of different metadata attributes related to the creation,
+/// storage, and ownership of the email.
+/// </summary>
 public class EmailModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -2384,10 +2557,15 @@ public class EmailModel
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
-
 };
+
+/// <summary>
+/// Represents all the possible data sent as a part of the provisioning post.
+/// Only send required fields for the given connector.
+/// </summary>
 public class ErpInfoDataModel
 {
+
     /// <summary>
     /// The authorization code returned from the first step of the OAuth2 flow
     /// https://oauth.net/2/grant-types/authorization-code/
@@ -2403,10 +2581,14 @@ public class ErpInfoDataModel
     /// The redirect uri used for step one of the OAuth2.0 flow.
     /// </summary>
     public string? RedirectUri { get; set; }
-
 };
+
+/// <summary>
+/// Represents the ERP object sent in a provisioning request
+/// </summary>
 public class ErpInfoModel
 {
+
     /// <summary>
     /// The id of the ERP's App
     /// </summary>
@@ -2416,10 +2598,14 @@ public class ErpInfoModel
     /// The data required to store for connector access
     /// </summary>
     public ConnectorInfoModel? Data { get; set; }
-
 };
+
+/// <summary>
+/// Represents unsupported ERP systems
+/// </summary>
 public class ErpModel
 {
+
     /// <summary>
     /// Unique ID for this ERP
     /// </summary>
@@ -2434,10 +2620,14 @@ public class ErpModel
     /// Flag to indicate if ERP is supported
     /// </summary>
     public bool IsSupported { get; set; }
-
 };
+
+/// <summary>
+/// Model containing information about a user for the invite/onboarding process.
+/// </summary>
 public class InviteDataModel
 {
+
     /// <summary>
     /// The email address of the invited user.
     /// </summary>
@@ -2447,10 +2637,14 @@ public class InviteDataModel
     /// The status of the user.
     /// </summary>
     public string? UserStatus { get; set; }
-
 };
+
+/// <summary>
+/// Model from the User invite process
+/// </summary>
 public class InviteModel
 {
+
     /// <summary>
     /// The invited email address
     /// </summary>
@@ -2470,18 +2664,26 @@ public class InviteModel
     /// The error message if the invite was not successful
     /// </summary>
     public string? ErrorMessage { get; set; }
-
 };
+
+/// <summary>
+/// Model to invite a new user to your accounting group
+/// </summary>
 public class InviteSubmitModel
 {
+
     /// <summary>
     /// The email address of the user to invite
     /// </summary>
     public string Email { get; set; }
-
 };
+
+/// <summary>
+/// Represents a single address for an invoice
+/// </summary>
 public class InvoiceAddressModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -2565,10 +2767,16 @@ public class InvoiceAddressModel
     /// The ID number of the user who most recently modified this address.
     /// </summary>
     public Guid? ModifiedUserId { get; set; }
-
 };
+
+/// <summary>
+/// An Invoice represents a bill sent from one company to another.  The Lockstep Platform tracks changes to
+/// each Invoice so that you can observe the changes over time.  You can view the InvoiceHistory list to
+/// monitor and observe the changes of this Invoice and track the dates when changes occurred.
+/// </summary>
 public class InvoiceHistoryModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -2742,10 +2950,14 @@ public class InvoiceHistoryModel
     /// The ID number of the user who most recently modified this invoice.
     /// </summary>
     public Guid? ModifiedUserId { get; set; }
-
 };
+
+/// <summary>
+/// Represents a line in an invoice
+/// </summary>
 public class InvoiceLineModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -2888,10 +3100,19 @@ public class InvoiceLineModel
     /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
     /// </summary>
     public AttachmentModel[]? Attachments { get; set; }
-
 };
+
+/// <summary>
+/// An Invoice represents a bill sent from one company to another.  The creator of the invoice is identified
+/// by the `CompanyId` field, and the recipient of the invoice is identified by the `CustomerId` field.  Most
+/// invoices are uniquely identified both by a Lockstep Platform ID number and a customer ERP "key" that was
+/// generated by the system that originated the invoice.  Invoices have a total amount and a due date, and when
+/// some payments have been made on the Invoice the `TotalAmount` and the `OutstandingBalanceAmount` may be
+/// different.
+/// </summary>
 public class InvoiceModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3145,10 +3366,14 @@ public class InvoiceModel
     /// All custom field definitions
     /// </summary>
     public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
-
 };
+
+/// <summary>
+/// View to return Payment Detail information for a given Invoice record.
+/// </summary>
 public class InvoicePaymentDetailModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3202,10 +3427,14 @@ public class InvoicePaymentDetailModel
     /// The remaining balance value of this Payment.
     /// </summary>
     public double? UnappliedAmount { get; set; }
-
 };
+
+/// <summary>
+/// Contains summarized data for an invoice
+/// </summary>
 public class InvoiceSummaryModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3284,10 +3513,14 @@ public class InvoiceSummaryModel
     /// The ids of the payments associated to this invoice.
     /// </summary>
     public Guid[]? PaymentIds { get; set; }
-
 };
+
+/// <summary>
+/// Represents leads for creating new ERP connectors
+/// </summary>
 public class LeadModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -3313,10 +3546,19 @@ public class LeadModel
     /// Requested ERP of lead
     /// </summary>
     public string? ErpSystem { get; set; }
-
 };
+
+/// <summary>
+/// A note is a customizable text string that can be attached to various account attributes
+/// within Lockstep. You can use notes for internal communication, correspondence with
+/// clients, or personal reminders. The Note Model represents a note and a number of
+/// different metadata attributes related to the creation, storage, and ownership of the note.
+///
+/// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+/// </summary>
 public class NoteModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -3380,10 +3622,17 @@ public class NoteModel
     /// The person to whom this note is intended for.
     /// </summary>
     public string? RecipientName { get; set; }
-
 };
+
+/// <summary>
+/// A Payment Application is created by a business who receives a Payment from a customer.  A customer may make
+/// a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be
+/// made for multiple smaller Invoices.  The Payment Application contains information about which Invoices are connected
+/// to which Payments and for which amounts.
+/// </summary>
 public class PaymentAppliedModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3465,10 +3714,14 @@ public class PaymentAppliedModel
     /// The invoice associated with this applied payment.
     /// </summary>
     public InvoiceModel? Invoice { get; set; }
-
 };
+
+/// <summary>
+/// Contains group level payment data.
+/// </summary>
 public class PaymentDetailHeaderModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3501,10 +3754,14 @@ public class PaymentDetailHeaderModel
     /// The number of open invoices.
     /// </summary>
     public int? OpenInvoiceCount { get; set; }
-
 };
+
+/// <summary>
+/// Contains detailed information about a Payment.
+/// </summary>
 public class PaymentDetailModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3617,10 +3874,20 @@ public class PaymentDetailModel
     /// The 2 character country code of the address for the Customer's Primary Contact.
     /// </summary>
     public string? CountryCode { get; set; }
-
 };
+
+/// <summary>
+/// A Payment represents money sent from one company to another.  A single payment may contain payments for
+/// one or more invoices; it is also possible for payments to be made in advance of an invoice, for example,
+/// as a deposit.  The creator of the Payment is identified by the `CustomerId` field, and the recipient of
+/// the Payment is identified by the `CompanyId` field.  Most Payments are uniquely identified both by a
+/// Lockstep Platform ID number and a customer ERP "key" that was generated by the system that originated
+/// the Payment.  Payments that have not been fully applied have a nonzero `UnappliedAmount` value, which
+/// represents a deposit that has been paid and not yet applied to an Invoice.
+/// </summary>
 public class PaymentModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3767,10 +4034,14 @@ public class PaymentModel
     /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
     /// </summary>
     public CustomFieldValueModel[]? CustomFieldValues { get; set; }
-
 };
+
+/// <summary>
+/// Contains summary information for a Payment
+/// </summary>
 public class PaymentSummaryModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3843,10 +4114,14 @@ public class PaymentSummaryModel
     /// The id of the customer for this payment.
     /// </summary>
     public Guid? CustomerId { get; set; }
-
 };
+
+/// <summary>
+/// Represents the data to finalize onboarding for a user
+/// </summary>
 public class ProvisioningFinalizeRequestModel
 {
+
     /// <summary>
     /// The full name of the user
     /// </summary>
@@ -3871,10 +4146,14 @@ public class ProvisioningFinalizeRequestModel
     /// Optional connector information needed to enroll user to their email connector
     /// </summary>
     public ErpInfoModel? EmailConnector { get; set; }
-
 };
+
+/// <summary>
+/// Represents the data sent during the onboarding flow
+/// </summary>
 public class ProvisioningModel
 {
+
     /// <summary>
     /// The full name of the new user
     /// </summary>
@@ -3884,10 +4163,14 @@ public class ProvisioningModel
     /// The information necessary to enroll the user in their ERP
     /// </summary>
     public ErpInfoModel? Erp { get; set; }
-
 };
+
+/// <summary>
+/// Represents the response to either a successful or failed account provisioning
+/// </summary>
 public class ProvisioningResponseModel
 {
+
     /// <summary>
     /// If provisioning is successful, contains the username of the created user.
     /// </summary>
@@ -3922,10 +4205,14 @@ public class ProvisioningResponseModel
     /// The error message(s).
     /// </summary>
     public string? ErrorMessage { get; set; }
-
 };
+
+/// <summary>
+/// Represents a risk rate calculation for a single month
+/// </summary>
 public class RiskRateModel
 {
+
     /// <summary>
     /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
     /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
@@ -3973,10 +4260,14 @@ public class RiskRateModel
     /// The percentage of all open invoices for the calculation month that are over 90 days based on outstanding balance
     /// </summary>
     public double AtRiskPercentage { get; set; }
-
 };
+
+/// <summary>
+/// State model for ISO-3166-2
+/// </summary>
 public class StateModel
 {
+
     /// <summary>
     /// Name of the state
     /// </summary>
@@ -3991,10 +4282,14 @@ public class StateModel
     /// A different name for a state
     /// </summary>
     public string? Aliases { get; set; }
-
 };
+
+/// <summary>
+/// Represents the status of a user's credentials
+/// </summary>
 public class StatusModel
 {
+
     /// <summary>
     /// If authentication is successful, contains the username of the logged-in user.
     /// </summary>
@@ -4065,10 +4360,14 @@ public class StatusModel
     /// OK if the dependency is working.
     /// </summary>
     public object? Dependencies { get; set; }
-
 };
+
+/// <summary>
+/// Contains information about a sync process for an entity.
+/// </summary>
 public class SyncEntityResultModel
 {
+
     /// <summary>
     /// The number of entities inserted
     /// </summary>
@@ -4093,10 +4392,14 @@ public class SyncEntityResultModel
     /// The errors encountered during sync keyed by ERP key
     /// </summary>
     public object? Errors { get; set; }
-
 };
+
+/// <summary>
+/// Represents a user request to sync data
+/// </summary>
 public class SyncRequestModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -4146,18 +4449,26 @@ public class SyncRequestModel
     /// To retrieve this collection, set `includeDetails` to true in your GET requests.
     /// </summary>
     public object? Details { get; set; }
-
 };
+
+/// <summary>
+/// Model representing information for a sync request
+/// </summary>
 public class SyncSubmitModel
 {
+
     /// <summary>
     /// The identifier of the app enrollment
     /// </summary>
     public Guid AppEnrollmentId { get; set; }
-
 };
+
+/// <summary>
+/// Model from the transfer ownership process.
+/// </summary>
 public class TransferOwnerModel
 {
+
     /// <summary>
     /// The previous owner of the account.
     /// </summary>
@@ -4167,18 +4478,42 @@ public class TransferOwnerModel
     /// The new owner of the account.
     /// </summary>
     public UserAccountModel? NewOwner { get; set; }
-
 };
+
+/// <summary>
+/// Model used to submit a transfer ownership request
+/// </summary>
 public class TransferOwnerSubmitModel
 {
+
     /// <summary>
     /// The ID of the user to transfer ownership to.
     /// </summary>
     public Guid TargetUserId { get; set; }
-
 };
+
+/// <summary>
+/// Represents a Uri for download link
+/// </summary>
+public class UriModel
+{
+
+    /// <summary>
+    /// Represents the download link
+    /// </summary>
+    public Uri? DownloadLink { get; set; }
+};
+
+/// <summary>
+/// A User represents a person who has the ability to authenticate against the Lockstep Platform and use
+/// services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must
+/// have an email address defined within their account.  All Users must validate their email to make use of
+/// Lockstep platform services.  Users may have different privileges and access control rights within the
+/// Lockstep Platform.
+/// </summary>
 public class UserAccountModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -4351,10 +4686,14 @@ public class UserAccountModel
     /// To retrieve this collection, specify `AccountingRole` in the "Include" parameter for your query.
     /// </summary>
     public CodeDefinitionModel? AccountingRoleCodeDefinition { get; set; }
-
 };
+
+/// <summary>
+/// Represents a role for a user
+/// </summary>
 public class UserRoleModel
 {
+
     /// <summary>
     /// The unique ID of this record, automatically assigned by Lockstep when this record is
     /// added to the Lockstep platform.
@@ -4393,5 +4732,4 @@ public class UserRoleModel
     /// The ID of the user who last modified the user role
     /// </summary>
     public Guid ModifiedUserId { get; set; }
-
 };
