@@ -11,21 +11,22 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
-
-
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-
 namespace LockstepSDK
 {
+
+
+
     public class SyncClient
     {
         private readonly LockstepApi _client;
 
-        public SyncClient(LockstepApi client) {
+        public SyncClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -102,7 +103,8 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string? filter, string? include,
+            string? order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/Sync/query";
             var options = new Dictionary<string, object?>();
