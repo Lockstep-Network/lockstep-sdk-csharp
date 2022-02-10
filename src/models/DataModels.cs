@@ -1030,6 +1030,24 @@ namespace LockstepSDK
         public bool ViewExternal { get; set; }
 
         /// <summary>
+        /// The unique ID of this record as it was known in its originating financial system.
+        ///
+        /// If this company record was imported from a financial system, it will have the value `ErpKey`
+        /// set to the original primary key number of the record as it was known in the originating financial
+        /// system.  If this record was not imported from a financial system, this value will be `null`.
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// The AppEnrollmentId of the application that imported this attachment record.  For accounts
+        /// with more than one financial system connected, this field identifies the originating
+        /// financial system that produced this record.
+        /// </summary>
+        public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
         /// The date the attachment was created
         /// </summary>
         public DateTime Created { get; set; }
@@ -1038,6 +1056,61 @@ namespace LockstepSDK
         /// Id of the user who made the file
         /// </summary>
         public Guid CreatedUserId { get; set; }
+    }
+
+    /// <summary>
+    /// A BatchSyncModel contains a collection of records to load into the Lockstep Platform.  Data contained
+    /// in this batch will be merged with your existing data.  Each record will be matched with existing data inside
+    /// the Lockstep Platform using the [Identity Column](https://developer.lockstep.io/docs/identity-columns) rules.
+    /// Any record that represents a new AppEnrollmentId+ErpKey will be inserted.  A record that matches an existing
+    /// AppEnrollmentId+ErpKey will be updated, but only if the data has changed.
+    ///
+    /// A Sync process permits either a complete data file or a partial / delta data file.  Lockstep recommends
+    /// using a sliding time window to avoid the risk of clock skew errors that might accidentally omit records.
+    /// Best practice is to run a Sync process daily, and to export all data that has changed in the past 48 hours.
+    /// </summary>
+    public class BatchSyncModel
+    {
+
+        /// <summary>
+        /// A list of Company records to merge with your Lockstep Platform data
+        /// </summary>
+        public CompanySyncModel[]? Companies { get; set; }
+
+        /// <summary>
+        /// A list of Contact records to merge with your Lockstep Platform data
+        /// </summary>
+        public ContactSyncModel[]? Contacts { get; set; }
+
+        /// <summary>
+        /// A list of CreditMemoApplied records to merge with your Lockstep Platform data
+        /// </summary>
+        public CreditMemoAppliedSyncModel[]? CreditMemoApplications { get; set; }
+
+        /// <summary>
+        /// A list of Invoice records to merge with your Lockstep Platform data
+        /// </summary>
+        public InvoiceSyncModel[]? Invoices { get; set; }
+
+        /// <summary>
+        /// A list of InvoiceLine records to merge with your Lockstep Platform data
+        /// </summary>
+        public InvoiceLineSyncModel[]? InvoiceLines { get; set; }
+
+        /// <summary>
+        /// A list of CustomField records to merge with your Lockstep Platform data
+        /// </summary>
+        public CustomFieldSyncModel[]? CustomFields { get; set; }
+
+        /// <summary>
+        /// A list of Payment records to merge with your Lockstep Platform data
+        /// </summary>
+        public PaymentSyncModel[]? Payments { get; set; }
+
+        /// <summary>
+        /// A list of PaymentApplied records to merge with your Lockstep Platform data
+        /// </summary>
+        public PaymentAppliedSyncModel[]? PaymentApplications { get; set; }
     }
 
     /// <summary>
@@ -1417,6 +1490,175 @@ namespace LockstepSDK
     }
 
     /// <summary>
+    /// The CompanySyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  To import data from an external system, convert your original data into
+    /// the CompanySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [CompanyModel](https://developer.lockstep.io/docs/companymodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class CompanySyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Company record. For this field, you should use whatever the company's unique
+        /// identifying number is in the originating system. Search for a unique, non-changing number within the
+        /// originating financial system for this record.
+        ///
+        /// Example: If you store your company records in a database, whatever the primary key for the company table is
+        /// in the database should be the `ErpKey`.
+        ///
+        /// Example: If you use a financial system such as Quickbooks or Xero, look for the primary ID number of the
+        /// company record within that financial system.
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// A friendly, short name of the company.
+        /// </summary>
+        public string? CompanyName { get; set; }
+
+        /// <summary>
+        /// This field indicates the type of company. It can be one of a limited number of values: `Company`,
+        /// `Customer`, `Group`, `Vendor`, or `Third Party`. A company that represents both a customer and a vendor is
+        /// identified as a `CustomerVendor`.
+        ///
+        /// When loading data into Lockstep, you should focus on the distinction between a company that is part of
+        /// your own enterprise, or a company that is external to your enterprise.
+        ///
+        /// For a company that is within your enterprise, you should set this value to be `Company`.
+        ///
+        /// For a company that is external to your enterprise, you should set this value to either `Customer`,
+        /// `Vendor`, `Third Party`, or `CustomerVendor`.  If you don't know what value to choose, select
+        /// `CustomerVendor`.
+        /// </summary>
+        public string? CompanyType { get; set; }
+
+        /// <summary>
+        /// Either `Active` or `Inactive`.
+        /// </summary>
+        public string? CompanyStatus { get; set; }
+
+        /// <summary>
+        /// If this company has a parent company, identify the parent company's `ErpKey` value here. This value should
+        /// be the original primary key or unique ID of the parent company to this company belongs. This value should
+        /// match the original ErpKey field on the parent company.
+        ///
+        /// If this company is not a child company, leave this field null.
+        /// </summary>
+        public string? ParentCompanyErpKey { get; set; }
+
+        /// <summary>
+        /// This flag indicates whether the company is currently active. An inactive company will be hidden from the
+        /// user interface but will still be available for querying.
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
+        /// The default currency code for transactions related to this company.  For a list of currency codes, see
+        /// [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+        /// </summary>
+        public string? DefaultCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The URL of this company's logo, if known.
+        /// </summary>
+        public Uri? CompanyLogoUrl { get; set; }
+
+        /// <summary>
+        /// The `ErpKey` of the primary contact for this company.  This value should match the `ErpKey` value of the
+        /// [Importing Contacts](https://developer.lockstep.io/docs/importing-contacts) record for the contact table.
+        /// </summary>
+        public string? PrimaryContactErpKey { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information
+        /// </summary>
+        public string? Address1 { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information
+        /// </summary>
+        public string? Address2 { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information
+        /// </summary>
+        public string? Address3 { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information
+        /// </summary>
+        public string? City { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information
+        /// </summary>
+        public string? StateRegion { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information
+        /// </summary>
+        public string? PostalCode { get; set; }
+
+        /// <summary>
+        /// The company's primary mailing address information This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? Country { get; set; }
+
+        /// <summary>
+        /// The main phone number of this company.
+        /// </summary>
+        public string? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// The main fax number of this company.
+        /// </summary>
+        public string? FaxNumber { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
+
+        /// <summary>
+        /// The company's Tax ID number for the appropriate government for this company.
+        /// </summary>
+        public string? TaxId { get; set; }
+
+        /// <summary>
+        /// The Dun and Bradstreet number for this company, if known.
+        /// </summary>
+        public string? DunsNumber { get; set; }
+
+        /// <summary>
+        /// If you know the AP (accounts payable) email address of this company, fill it in here. This is the email
+        /// address where you would send questions to the company if the company owed you money.
+        /// </summary>
+        public string? ApEmailAddress { get; set; }
+
+        /// <summary>
+        /// If you know the AR (accounts receivable) email address of this company, fill it in here. This is the email
+        /// address where you would send questions to the company if you owed this company money.
+        /// </summary>
+        public string? ArEmailAddress { get; set; }
+    }
+
+    /// <summary>
     /// Represents all possible data required to set up an app enrollment for a connector.
     /// Only send required fields for the given connector.
     /// </summary>
@@ -1622,6 +1864,139 @@ namespace LockstepSDK
     }
 
     /// <summary>
+    /// The ContactSyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  To import data from an external system, convert your original data into
+    /// the ContactSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [ContactModel](https://developer.lockstep.io/docs/contactmodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class ContactSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Contact record. For this field, you should use whatever the contact's unique
+        /// identifying number is in the originating system. Search for a unique, non-changing number within the
+        /// originating financial system for this record.
+        ///
+        /// Example: If you store your contact records in a database, whatever the primary key for the contact table is
+        /// in the database should be the "ErpKey".
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// The original primary key or unique ID of the company to which this contact belongs.  This value should
+        /// match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
+        /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
+        /// </summary>
+        public string? CompanyErpKey { get; set; }
+
+        /// <summary>
+        /// The name of the contact.
+        /// </summary>
+        public string? ContactName { get; set; }
+
+        /// <summary>
+        /// A friendly human-readable code that describes this Contact.
+        /// </summary>
+        public string? ContactCode { get; set; }
+
+        /// <summary>
+        /// The title of the contact.
+        /// </summary>
+        public string? Title { get; set; }
+
+        /// <summary>
+        /// The role code for the contact.
+        /// </summary>
+        public string? RoleCode { get; set; }
+
+        /// <summary>
+        /// The email address of the contact.
+        /// </summary>
+        public string? EmailAddress { get; set; }
+
+        /// <summary>
+        /// The phone number of the contact.
+        /// </summary>
+        public string? Phone { get; set; }
+
+        /// <summary>
+        /// The fax number of the contact.
+        /// </summary>
+        public string? Fax { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact.
+        /// </summary>
+        public string? Address1 { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact.
+        /// </summary>
+        public string? Address2 { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact.
+        /// </summary>
+        public string? Address3 { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact.
+        /// </summary>
+        public string? City { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact.
+        /// </summary>
+        public string? StateRegion { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact.
+        /// </summary>
+        public string? PostalCode { get; set; }
+
+        /// <summary>
+        /// The mailing address information for this contact. This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? CountryCode { get; set; }
+
+        /// <summary>
+        /// True if this contact is considered "active".
+        /// </summary>
+        public bool IsActive { get; set; }
+
+        /// <summary>
+        /// A webpage URL for more information about this contact.
+        /// </summary>
+        public Uri? WebpageUrl { get; set; }
+
+        /// <summary>
+        /// If available, the URL of a photograph that shows this contact.
+        /// </summary>
+        public Uri? PictureUrl { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
+    }
+
+    /// <summary>
     /// Country model for ISO-3166
     /// </summary>
     public class CountryModel
@@ -1810,6 +2185,81 @@ namespace LockstepSDK
         /// To retrieve this collection, specify `CustomFields` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+    }
+
+    /// <summary>
+    /// The CreditMemoAppliedSyncModel represents information coming into Lockstep from an external financial system or
+    /// other enterprise resource planning system.  To import data from an external system, convert your original data
+    /// into the CreditMemoAppliedSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [CreditMemoAppliedModel](https://developer.lockstep.io/docs/creditmemoappliedmodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class CreditMemoAppliedSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Credit Memo Application record. For this field, you should use whatever this
+        /// transaction's unique identifying number is in the originating system. Search for a unique, non-changing
+        /// number within the originating financial system for this record.
+        ///
+        /// Since Credit Memo Applications are often considered transactions, a typical value to look for will be
+        /// the transaction ID number, the payment confirmation number, or some other record of this payment.
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// This field indicates which Invoice had its balanced reduced by applying a credit memo.  In this field,
+        /// identify the original primary key or unique ID of the Invoice which had its balanced reduced.
+        ///
+        /// Example: Company ABC received a credit memo, CM000123 for $500.  Company ABC then chooses to apply this
+        /// credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is `PO1000578`.
+        /// </summary>
+        public string? InvoiceErpKey { get; set; }
+
+        /// <summary>
+        /// This field indicates which Invoice is the original credit memo that was used to make this payment
+        /// application event.  In this field, identify the original primary key or unique ID of the Invoice which
+        /// created the credit memo that was consumed in this event.
+        ///
+        /// Example: Company ABC received a credit memo, CM000123 for $500.  Company ABC then chooses to apply this
+        /// credit memo to reduce the balance of the invoice PO1000578.  The `CreditMemoInvoiceErpKey` is `CM000123`.
+        /// </summary>
+        public string? CreditMemoInvoiceErpKey { get; set; }
+
+        /// <summary>
+        /// Reference number for the applied credit memo.
+        /// </summary>
+        public int EntryNumber { get; set; }
+
+        /// <summary>
+        /// The date on which this credit memo was applied to the Invoice.
+        /// </summary>
+        public DateTime ApplyToInvoiceDate { get; set; }
+
+        /// <summary>
+        /// The amount of this credit memo that was applied to this Invoice.
+        /// </summary>
+        public double CreditMemoAppliedAmount { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -2272,6 +2722,86 @@ namespace LockstepSDK
         /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
+    }
+
+    /// <summary>
+    /// The CustomFieldSyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)
+    /// represent custom data extensions that you can use with the Lockstep Platform.  If you need to store extra
+    /// information about an object that does not match Lockstep's official schema, you can store it in the Custom
+    /// Field system using CustomFieldSyncModel.
+    ///
+    /// To store a custom field for an object, create a CustomFieldSyncModel record containing the `EntityType` and
+    /// `ErpKey` of the entity to which you will attach a custom field. Next specify the field's `CustomFieldLabel`
+    /// and either a `StringValue` or `NumericValue`.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class CustomFieldSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the record to which you will attach this custom field. You should provide the
+        /// identifying number as it is stored in the originating financial system. Search for a unique, non-changing
+        /// number within the originating financial system for this record.
+        ///
+        /// Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+        ///
+        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+        /// invoice named "ApprovalStatusCode".  For the `ErpKey` field, specify the value `100047878`.
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+        ///
+        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+        /// invoice named "ApprovalStatusCode".  For the `EntityType` field, specify the value `Invoice`.
+        ///
+        /// Recognized types include:
+        /// * `Company` - Link this custom field to a CompanySyncModel
+        /// * `Contact` - Link this custom field to a ContactSyncModel
+        /// * `Invoice` - Link this custom field to an InvoiceSyncModel
+        /// * `InvoiceLine` - Link this custom field to an InvoiceLineSyncModel
+        /// * `Payment` - Link this custom field to a PaymentSyncModel
+        /// </summary>
+        public string? EntityType { get; set; }
+
+        /// <summary>
+        /// A label that uniquely identifies this custom field within your software.
+        ///
+        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+        /// invoice named "ApprovalStatusCode".  For the `CustomFieldLabel` field, specify the value `ApprovalStatusCode`.
+        /// </summary>
+        public string? CustomFieldLabel { get; set; }
+
+        /// <summary>
+        /// The value of this custom field, if it is stored in string format.
+        /// </summary>
+        public string? StringValue { get; set; }
+
+        /// <summary>
+        /// The value of this custom field, if it is stored in numeric format.
+        /// </summary>
+        public double? NumericValue { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -3119,6 +3649,247 @@ namespace LockstepSDK
     }
 
     /// <summary>
+    /// The InvoiceLineSyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  To import data from an external system, convert your original data into
+    /// the InvoiceLineSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as an [InvoiceLineModel](https://developer.lockstep.io/docs/invoicelinemodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class InvoiceLineSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Invoice Line record. For this field, you should use whatever the contact's unique
+        /// identifying number is in the originating system. Search for a unique, non-changing number within the
+        /// originating financial system for this record.
+        ///
+        /// Example: If you store your invoice line records in a database, whatever the primary key for the invoice
+        /// line table is in the database should be the "ErpKey".
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// The original primary key or unique ID of the invoice to which this line belongs.  This value should
+        /// match the [Invoice ErpKey](https://developer.lockstep.io/docs/importing-invoices#erpkey) field on the
+        /// [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices).
+        /// </summary>
+        public string? InvoiceErpKey { get; set; }
+
+        /// <summary>
+        /// The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to
+        /// get the original view of lines within the invoice.
+        /// </summary>
+        public string? LineNumber { get; set; }
+
+        /// <summary>
+        /// A code number identifying the product or service that is specified on this line.
+        /// </summary>
+        public string? ProductCode { get; set; }
+
+        /// <summary>
+        /// Description of this invoice line.
+        /// </summary>
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// For lines measured in a unit other than "quantity", this code indicates the measurement system for the quantity field.
+        /// If the line is measured in quantity, this field is null.
+        /// </summary>
+        public string? UnitMeasureCode { get; set; }
+
+        /// <summary>
+        /// The price of a single unit for this line.
+        /// </summary>
+        public double UnitPrice { get; set; }
+
+        /// <summary>
+        /// The quantity of items for ths line.
+        /// </summary>
+        public double? Quantity { get; set; }
+
+        /// <summary>
+        /// The number of items that have been shipped.
+        /// </summary>
+        public double? QuantityShipped { get; set; }
+
+        /// <summary>
+        /// The number of items that has been received.
+        /// </summary>
+        public double? QuantityReceived { get; set; }
+
+        /// <summary>
+        /// The total amount for this line.
+        /// </summary>
+        public double? TotalAmount { get; set; }
+
+        /// <summary>
+        /// If this line is tax exempt, this code indicates the reason for the exemption.
+        /// </summary>
+        public string? ExemptionCode { get; set; }
+
+        /// <summary>
+        /// If null, the products specified on this line were delivered on the same date as all other lines.
+        /// If not null, this line was delivered or finalized on a different date than the overall invoice.
+        /// </summary>
+        public DateTime? ReportingDate { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public string? OriginAddressLine1 { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public string? OriginAddressLine2 { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public string? OriginAddressLine3 { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public string? OriginAddressCity { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public string? OriginAddressRegion { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public string? OriginAddressPostalCode { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? OriginAddressCountry { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public float? OriginAddressLatitude { get; set; }
+
+        /// <summary>
+        /// Origination address for this invoice line, if this line item was originated from a different address
+        /// </summary>
+        public float? OriginAddressLongitude { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public string? BillToAddressLine1 { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public string? BillToAddressLine2 { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public string? BillToAddressLine3 { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public string? BillToAddressCity { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public string? BillToAddressRegion { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public string? BillToAddressPostalCode { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? BillToAddressCountry { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public float? BillToAddressLatitude { get; set; }
+
+        /// <summary>
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
+        /// </summary>
+        public float? BillToAddressLongitude { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public string? ShipToAddressLine1 { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public string? ShipToAddressLine2 { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public string? ShipToAddressLine3 { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public string? ShipToAddressCity { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public string? ShipToAddressRegion { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public string? ShipToAddressPostalCode { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? ShipToAddressCountry { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public float? ShipToAddressLatitude { get; set; }
+
+        /// <summary>
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
+        /// </summary>
+        public float? ShipToAddressLongitude { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
+    }
+
+    /// <summary>
     /// An Invoice represents a bill sent from one company to another.  The creator of the invoice is identified
     /// by the `CompanyId` field, and the recipient of the invoice is identified by the `CustomerId` field.  Most
     /// invoices are uniquely identified both by a Lockstep Platform ID number and a customer ERP "key" that was
@@ -3544,6 +4315,326 @@ namespace LockstepSDK
     }
 
     /// <summary>
+    /// The InvoiceSyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  To import data from an external system, convert your original data into
+    /// the InvoiceSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as an [InvoiceModel](https://developer.lockstep.io/docs/invoicemodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class InvoiceSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Invoice record. For this field, you should use whatever the invoice's unique
+        /// identifying number is in the originating system. Search for a unique, non-changing number within the
+        /// originating financial system for this record.
+        ///
+        /// Example: If you store your invoice records in a database, whatever the primary key for the invoice table is
+        /// in the database should be the "ErpKey".
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// The original primary key or unique ID of the company to which this invoice belongs.  This value should
+        /// match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
+        /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
+        ///
+        /// An Invoice has two relationships: The Company and the Customer.  The field `CompanyErpKey` identifies the
+        /// company that created the invoice, and the field `CustomerErpKey` is the customer to whom the invoice
+        /// was sent.
+        /// </summary>
+        public string? CompanyErpKey { get; set; }
+
+        /// <summary>
+        /// The original primary key or unique ID of the company to which this invoice was sent.  This value should
+        /// match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
+        /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
+        ///
+        /// An Invoice has two relationships: The Company and the Customer.  The field `CompanyErpKey` identifies the
+        /// company that created the invoice, and the field `CustomerErpKey` is the customer to whom the invoice
+        /// was sent.
+        /// </summary>
+        public string? CustomerErpKey { get; set; }
+
+        /// <summary>
+        /// The name of the salesperson that wrote this invoice.  This is just text, it is not a reference to the
+        /// "Contacts" table.  You will not receive an error if this field does not match a known contact person.
+        /// </summary>
+        public string? SalespersonName { get; set; }
+
+        /// <summary>
+        /// The "Purchase Order Code" is a code that is sometimes used by companies to refer to the original PO
+        /// that was sent that caused this invoice to be written.  If a customer sends a purchase order to a vendor,
+        /// the vendor can then create an invoice and refer back to the originating purchase order using this field.
+        /// </summary>
+        public string? PurchaseOrderCode { get; set; }
+
+        /// <summary>
+        /// An additional reference code that is sometimes used to identify this invoice. The meaning of this field
+        /// is specific to the ERP or accounting system used by the user.
+        /// </summary>
+        public string? ReferenceCode { get; set; }
+
+        /// <summary>
+        /// A code identifying the salesperson responsible for writing this quote, invoice, or order.  This is just
+        /// text, it is not a reference to the "Contacts" table.  You will not receive an error if this field does
+        /// not match a known contact person.
+        /// </summary>
+        public string? SalespersonCode { get; set; }
+
+        /// <summary>
+        /// A code identifying the type of this invoice.
+        ///
+        /// Recognized Invoice types are:
+        /// * `Invoice` - Represents an invoice sent by Company to the Customer
+        /// * `AP Invoice` - Represents an invoice sent by Customer to the Company
+        /// * `Credit Memo` - Represents a credit memo generated by Customer given to Company
+        /// </summary>
+        public string? InvoiceTypeCode { get; set; }
+
+        /// <summary>
+        /// A code identifying the status of this invoice.
+        ///
+        /// Recognized Invoice status codes are:
+        /// * `Open` - Represents an invoice that is considered open and needs more work to complete
+        /// * `Closed` - Represents an invoice that is considered closed and resolved
+        /// </summary>
+        public string? InvoiceStatusCode { get; set; }
+
+        /// <summary>
+        /// A code identifying the terms given to the purchaser.  This field is imported directly from the originating
+        /// financial system and does not follow a specified format.
+        /// </summary>
+        public string? TermsCode { get; set; }
+
+        /// <summary>
+        /// If the customer negotiated any special terms different from the standard terms above, describe them here.
+        /// </summary>
+        public string? SpecialTerms { get; set; }
+
+        /// <summary>
+        /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
+        /// </summary>
+        public string? CurrencyCode { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice, inclusive of all taxes and line items.
+        /// </summary>
+        public double? TotalAmount { get; set; }
+
+        /// <summary>
+        /// The total sales (or transactional) tax calculated for this invoice.
+        /// </summary>
+        public double? SalesTaxAmount { get; set; }
+
+        /// <summary>
+        /// The total discounts given by the seller to the buyer on this invoice.
+        /// </summary>
+        public double? DiscountAmount { get; set; }
+
+        /// <summary>
+        /// The remaining balance value of this invoice.
+        /// </summary>
+        public double? OutstandingBalanceAmount { get; set; }
+
+        /// <summary>
+        /// The reporting date for this invoice.
+        /// </summary>
+        public DateTime? InvoiceDate { get; set; }
+
+        /// <summary>
+        /// The date when discounts were adjusted for this invoice.
+        /// </summary>
+        public DateTime? DiscountDate { get; set; }
+
+        /// <summary>
+        /// The date when this invoice posted to the company's general ledger.
+        /// </summary>
+        public DateTime? PostedDate { get; set; }
+
+        /// <summary>
+        /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
+        /// services.
+        /// </summary>
+        public DateTime? InvoiceClosedDate { get; set; }
+
+        /// <summary>
+        /// The date when the remaining outstanding balance is due.
+        /// </summary>
+        public DateTime? PaymentDueDate { get; set; }
+
+        /// <summary>
+        /// The date and time when this record was imported from the user's ERP or accounting system.
+        /// </summary>
+        public DateTime? ImportedDate { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public string? OriginAddressLine1 { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public string? OriginAddressLine2 { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public string? OriginAddressLine3 { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public string? OriginAddressCity { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public string? OriginAddressRegion { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public string? OriginAddressPostalCode { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? OriginAddressCountry { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public float? OriginAddressLatitude { get; set; }
+
+        /// <summary>
+        /// The origination address for this invoice
+        /// </summary>
+        public float? OriginAddressLongitude { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public string? BillToAddressLine1 { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public string? BillToAddressLine2 { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public string? BillToAddressLine3 { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public string? BillToAddressCity { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public string? BillToAddressRegion { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public string? BillToAddressPostalCode { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? BillToAddressCountry { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public float? BillToAddressLatitude { get; set; }
+
+        /// <summary>
+        /// The billing address for this invoice
+        /// </summary>
+        public float? BillToAddressLongitude { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public string? ShipToAddressLine1 { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public string? ShipToAddressLine2 { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public string? ShipToAddressLine3 { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public string? ShipToAddressCity { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public string? ShipToAddressRegion { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public string? ShipToAddressPostalCode { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice This will be validated by the /api/v1/countries data set
+        /// </summary>
+        public string? ShipToAddressCountry { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public float? ShipToAddressLatitude { get; set; }
+
+        /// <summary>
+        /// The shipping address for this invoice
+        /// </summary>
+        public float? ShipToAddressLongitude { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
+
+        /// <summary>
+        /// Is the invoice voided?
+        /// </summary>
+        public bool IsVoided { get; set; }
+
+        /// <summary>
+        /// Is the invoice in dispute?
+        /// </summary>
+        public bool InDispute { get; set; }
+    }
+
+    /// <summary>
     /// Represents leads for creating new ERP connectors
     /// </summary>
     public class LeadModel
@@ -3743,6 +4834,88 @@ namespace LockstepSDK
         /// The invoice associated with this applied payment.
         /// </summary>
         public InvoiceModel? Invoice { get; set; }
+    }
+
+    /// <summary>
+    /// The PaymentAppliedSyncModel represents information coming into Lockstep from an external financial system or
+    /// other enterprise resource planning system.  To import data from an external system, convert your original data
+    /// into the PaymentAppliedSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [PaymentAppliedModel](https://developer.lockstep.io/docs/paymentappliedmodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class PaymentAppliedSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Payment Application record. For this field, you should use whatever this
+        /// transaction's unique identifying number is in the originating system. Search for a unique, non-changing
+        /// number within the originating financial system for this record.
+        ///
+        /// Since Payment Applications are often considered transactions, a typical value to look for will be
+        /// the transaction ID number, the payment confirmation number, or some other record of this payment.
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// This field indicates which Invoice had its balance reduced by applying this payment.  In this field,
+        /// identify the original primary key or unique ID of the Invoice which had its balance reduced.
+        ///
+        /// This information lets you track how an invoice was paid. You can identify what proportion of an invoice's
+        /// balance was paid by which methods by joining this field to Invoices.
+        ///
+        /// This value should match the [Invoice ErpKey](https://developer.lockstep.io/docs/importing-invoices#erpkey)
+        /// field on the [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices).
+        /// </summary>
+        public string? InvoiceErpKey { get; set; }
+
+        /// <summary>
+        /// This field indicates which Payment was used to provide the funds for this payment application. In this
+        /// field, identify the original primary key or unique ID of the Payment that was used for this payment
+        /// application.
+        ///
+        /// This information lets you track how an invoice was paid. You can identify what proportion of an payment's
+        /// balance was paid by which methods by joining this field to the Payment.
+        ///
+        /// This value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)
+        /// field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
+        /// </summary>
+        public string? PaymentErpKey { get; set; }
+
+        /// <summary>
+        /// The entry number of this payment application.  This is often a journal entry number, confirmation code,
+        /// or other identifying field for this payment application.
+        /// </summary>
+        public int EntryNumber { get; set; }
+
+        /// <summary>
+        /// The date this payment was applied to this invoice.
+        /// </summary>
+        public DateTime ApplyToInvoiceDate { get; set; }
+
+        /// <summary>
+        /// The total amount that was applied to this Invoice from the Payment.
+        /// </summary>
+        public double PaymentAppliedAmount { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -4163,6 +5336,133 @@ namespace LockstepSDK
     }
 
     /// <summary>
+    /// The PaymentSyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  To import data from an external system, convert your original data into
+    /// the PaymentSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
+    /// platform.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [PaymentModel](https://developer.lockstep.io/docs/paymentmodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class PaymentSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the Payment record. For this field, you should use whatever the payment's unique
+        /// identifying number is in the originating system. Search for a unique, non-changing number within the
+        /// originating financial system for this record.
+        ///
+        /// Example: If you store your payment records in a database, whatever the primary key for the payment table is
+        /// in the database should be the "ErpKey".
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// The original primary key or unique ID of the company to which this payment belongs.  This value should
+        /// match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
+        /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
+        /// </summary>
+        public string? CompanyErpKey { get; set; }
+
+        /// <summary>
+        /// The type of payment, cash or check.
+        ///
+        /// Recognized PaymentType values are:
+        /// * `Cash` - A cash payment or other direct transfer.
+        /// * `Check` - A check payment.
+        /// </summary>
+        public string? PaymentType { get; set; }
+
+        /// <summary>
+        /// Cash, check, credit card, wire transfer.
+        ///
+        /// Recognized TenderType values are:
+        /// * `Cash` - A cash payment or other direct transfer.
+        /// * `Check` - A check payment.
+        /// * `Credit Card` - A payment made via a credit card.
+        /// * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+        /// </summary>
+        public string? TenderType { get; set; }
+
+        /// <summary>
+        /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
+        /// value is true, the field `UnappliedAmount` will be nonzero.
+        /// </summary>
+        public bool IsOpen { get; set; }
+
+        /// <summary>
+        /// Memo or reference text (ex. memo field on a check).
+        /// </summary>
+        public string? MemoText { get; set; }
+
+        /// <summary>
+        /// The date when this payment was received.  This typically is the date when an accounting employee recorded
+        /// that they received notification that the payment had occurred, whether they were notified by email, postal
+        /// mail, or financial transaction notification.
+        /// </summary>
+        public DateTime PaymentDate { get; set; }
+
+        /// <summary>
+        /// The date when a payment was posted to a ledger.  This date is often determined by a company's accounting
+        /// practices and may be different than the date when the payment was received.  This date may be affected by
+        /// issues such as temporary holds on funds transferred, bank holidays, or other actions.
+        /// </summary>
+        public DateTime PostDate { get; set; }
+
+        /// <summary>
+        /// Total amount of this payment.
+        /// </summary>
+        public double PaymentAmount { get; set; }
+
+        /// <summary>
+        /// Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
+        /// </summary>
+        public double UnappliedAmount { get; set; }
+
+        /// <summary>
+        /// The ISO 4217 currency code for this payment.
+        ///
+        /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+        /// </summary>
+        public string? CurrencyCode { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime? Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime? Modified { get; set; }
+
+        /// <summary>
+        /// A reference code for the payment for the given financial or ERP system.  This can be any value that the
+        /// originating system uses to designate the payment, such as a confirmation number or tracking number, that
+        /// is different from the `ErpKey` value.
+        /// </summary>
+        public string? ReferenceCode { get; set; }
+
+        /// <summary>
+        /// True if this payment was voided.
+        /// </summary>
+        public bool IsVoided { get; set; }
+
+        /// <summary>
+        /// True if this payment is in dispute.
+        /// </summary>
+        public bool InDispute { get; set; }
+    }
+
+    /// <summary>
     /// Represents the data to finalize onboarding for a user
     /// </summary>
     public class ProvisioningFinalizeRequestModel
@@ -4518,13 +5818,21 @@ namespace LockstepSDK
     }
 
     /// <summary>
-    /// Model representing information for a sync request
+    /// A SyncSubmitModel represents a task that loads data from a connector to load into the Lockstep Platform.  Data
+    /// contained in a sync will be merged with your existing data.  Each record will be matched with existing data
+    /// inside the Lockstep Platform using the [Identity Column](https://developer.lockstep.io/docs/identity-columns)
+    /// rules.  Any record that represents a new AppEnrollmentId+ErpKey will be inserted.  A record that matches an
+    /// existing AppEnrollmentId+ErpKey will be updated, but only if the data has changed.
+    ///
+    /// A Sync process permits either a complete data file or a partial / delta data file.  Lockstep recommends
+    /// using a sliding time window to avoid the risk of clock skew errors that might accidentally omit records.
+    /// Best practice is to run a Sync process daily, and to export all data that has changed in the past 48 hours.
     /// </summary>
     public class SyncSubmitModel
     {
 
         /// <summary>
-        /// The identifier of the app enrollment
+        /// The unique identifier of the app enrollment that is creating this sync request.
         /// </summary>
         public Guid AppEnrollmentId { get; set; }
     }

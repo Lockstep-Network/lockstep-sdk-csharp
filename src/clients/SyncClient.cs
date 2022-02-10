@@ -11,22 +11,21 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
+
+
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
+
 namespace LockstepSDK
 {
-
-
-
     public class SyncClient
     {
         private readonly LockstepApi _client;
 
-        public SyncClient(LockstepApi client)
-        {
+        public SyncClient(LockstepApi client) {
             _client = client;
         }
 
@@ -40,6 +39,21 @@ namespace LockstepSDK
         public async Task<LockstepResponse<SyncRequestModel>> CreateSync(SyncSubmitModel body)
         {
             var url = $"/api/v1/Sync";
+            return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, body, null);
+        }
+
+        /// <summary>
+        /// Creates a new batch import Sync task that imports all the models provided to this API call.
+        ///
+        /// A Sync task represents ingestion of data from a source.  For each data model in the source, the Sync process will determine whether the data is new, updated, or unchanged from data that already exists within the Lockstep Platform.  For records that are new, the Sync process will add them to the Lockstep Platform data.  For records that are updated, the Sync process will update existing data to match the newly uploaded records.  If records have not changed, no action will be taken.
+        ///
+        /// You can use this Batch Import process to load data in bulk directly into the Lockstep Platform.
+        ///
+        /// </summary>
+        /// <param name="body">Information about the Sync to execute</param>
+        public async Task<LockstepResponse<SyncRequestModel>> CreateBatchImport(BatchSyncModel body)
+        {
+            var url = $"/api/v1/Sync/batch";
             return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, body, null);
         }
 
@@ -103,8 +117,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string? filter, string? include,
-            string? order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/Sync/query";
             var options = new Dictionary<string, object?>();
