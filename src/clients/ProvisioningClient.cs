@@ -11,43 +11,50 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
-namespace LockstepSDK;
 
 
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-public class ProvisioningClient
+
+namespace LockstepSDK
 {
-    private readonly LockstepApi _client;
-
-    public ProvisioningClient(LockstepApi client) {
-        _client = client;
-    }
-
-    /// <summary>
-    /// Creates a new User or updates an Invited user based on metadata provided by the User during the onboarding process
-    ///
-    /// </summary>
-    /// <param name="body">Represents a User and their related metadata</param>
-    public async Task<LockstepResponse<ProvisioningResponseModel>> ProvisionUserAccount(ProvisioningModel body)
+    public class ProvisioningClient
     {
-        var url = $"/api/v1/Provisioning";
-        return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
-    }
+        private readonly LockstepApi _client;
 
-    /// <summary>
-    /// Updates user, company and group metadata for a User of status 'Onboarding' and finalizes a user's onboarding process by changing the user status to 'Active'
-    ///
-    /// </summary>
-    /// <param name="body">Represents a User and their related metadata</param>
-    public async Task<LockstepResponse<ProvisioningResponseModel>> FinalizeUserAccountProvisioning(ProvisioningFinalizeRequestModel body)
-    {
-        var url = $"/api/v1/Provisioning/finalize";
-        return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
-    }
+        public ProvisioningClient(LockstepApi client) {
+            _client = client;
+        }
 
-    public async Task<LockstepResponse<ActionResultModel>> ProvisionFreeDeveloperAccount(DeveloperAccountSubmitModel body)
-    {
-        var url = $"/api/v1/Provisioning/free-account";
-        return await _client.Request<ActionResultModel>(HttpMethod.Post, url, null, body, null);
+        /// <summary>
+        /// Creates a new User or updates an Invited user based on metadata provided by the User during the onboarding process
+        ///
+        /// </summary>
+        /// <param name="body">Represents a User and their related metadata</param>
+        public async Task<LockstepResponse<ProvisioningResponseModel>> ProvisionUserAccount(ProvisioningModel body)
+        {
+            var url = $"/api/v1/Provisioning";
+            return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
+        }
+
+        /// <summary>
+        /// Updates user, company and group metadata for a User of status 'Onboarding' and finalizes a user's onboarding process by changing the user status to 'Active'
+        ///
+        /// </summary>
+        /// <param name="body">Represents a User and their related metadata</param>
+        public async Task<LockstepResponse<ProvisioningResponseModel>> FinalizeUserAccountProvisioning(ProvisioningFinalizeRequestModel body)
+        {
+            var url = $"/api/v1/Provisioning/finalize";
+            return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
+        }
+
+        public async Task<LockstepResponse<ActionResultModel>> ProvisionFreeDeveloperAccount(DeveloperAccountSubmitModel body)
+        {
+            var url = $"/api/v1/Provisioning/free-account";
+            return await _client.Request<ActionResultModel>(HttpMethod.Post, url, null, body, null);
+        }
     }
 }

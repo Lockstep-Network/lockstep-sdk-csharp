@@ -11,56 +11,63 @@
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
-namespace LockstepSDK;
 
 
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
 
-public class CodeDefinitionsClient
+
+namespace LockstepSDK
 {
-    private readonly LockstepApi _client;
-
-    public CodeDefinitionsClient(LockstepApi client) {
-        _client = client;
-    }
-
-    /// <summary>
-    /// Retrieves the CodeDefinition specified by this unique identifier, optionally including nested data sets.
-    ///
-    /// A CodeDefinition contains information around system code values and their definitions.
-    ///
-    /// </summary>
-    /// <param name="id">The unique Lockstep Platform ID number of this CodeDefinition</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-    public async Task<LockstepResponse<CodeDefinitionModel>> RetrieveCodeDefinition(Guid id, string? include)
+    public class CodeDefinitionsClient
     {
-        var url = $"/api/v1/CodeDefinitions/{id}";
-        var options = new Dictionary<string, object?>();
-        options["include"] = include;
-        return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null, null);
-    }
+        private readonly LockstepApi _client;
 
-    /// <summary>
-    /// Queries CodeDefinitions for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
-    ///
-    /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
-    ///
-    /// A CodeDefinition contains information around system code values and their definitions.
-    ///
-    /// </summary>
-    /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-    /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-    public async Task<LockstepResponse<FetchResult<CodeDefinitionModel>>> QueryCodeDefinitions(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-    {
-        var url = $"/api/v1/CodeDefinitions/query";
-        var options = new Dictionary<string, object?>();
-        options["filter"] = filter;
-        options["include"] = include;
-        options["order"] = order;
-        options["pageSize"] = pageSize;
-        options["pageNumber"] = pageNumber;
-        return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null, null);
+        public CodeDefinitionsClient(LockstepApi client) {
+            _client = client;
+        }
+
+        /// <summary>
+        /// Retrieves the CodeDefinition specified by this unique identifier, optionally including nested data sets.
+        ///
+        /// A CodeDefinition contains information around system code values and their definitions.
+        ///
+        /// </summary>
+        /// <param name="id">The unique Lockstep Platform ID number of this CodeDefinition</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
+        public async Task<LockstepResponse<CodeDefinitionModel>> RetrieveCodeDefinition(Guid id, string? include)
+        {
+            var url = $"/api/v1/CodeDefinitions/{id}";
+            var options = new Dictionary<string, object?>();
+            options["include"] = include;
+            return await _client.Request<CodeDefinitionModel>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
+        /// Queries CodeDefinitions for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
+        ///
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        ///
+        /// A CodeDefinition contains information around system code values and their definitions.
+        ///
+        /// </summary>
+        /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
+        /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        public async Task<LockstepResponse<FetchResult<CodeDefinitionModel>>> QueryCodeDefinitions(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+        {
+            var url = $"/api/v1/CodeDefinitions/query";
+            var options = new Dictionary<string, object?>();
+            options["filter"] = filter;
+            options["include"] = include;
+            options["order"] = order;
+            options["pageSize"] = pageSize;
+            options["pageNumber"] = pageNumber;
+            return await _client.Request<FetchResult<CodeDefinitionModel>>(HttpMethod.Get, url, options, null, null);
+        }
     }
 }

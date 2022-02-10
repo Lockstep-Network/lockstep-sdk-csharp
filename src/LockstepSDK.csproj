@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
       <Folder Include="clients" />
+      <Folder Include="models" />
     </ItemGroup>
 
     <ItemGroup>
@@ -15,17 +15,4 @@
         <Link>lockstep-sdk.nuspec</Link>
       </Content>
     </ItemGroup>
-
-    <ItemGroup>
-      <Compile Remove="examples\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="examples\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="examples\**" />
-    </ItemGroup>
-
 </Project>

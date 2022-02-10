@@ -12,33 +12,35 @@
  * @link       https://github.com/tspence/lockstep-sdk-csharp
  */
 
-namespace LockstepSDK;
-
-/// <summary>
-/// Represents a response to a Query API call
-/// </summary>
-/// <typeparam name="T">The type of records returned by this query</typeparam>
-public class FetchResult<T>
+namespace LockstepSDK
 {
-    /// <summary>
-    /// The total number of rows matching the filter.  If unknown, returns null.
-    /// </summary>
-    public int? TotalCount { get; set; }
 
     /// <summary>
-    /// If the original request was submitted using Page Size-based pagination, contains the page size for this query.  Null otherwise.
+    /// Represents a response to a Query API call
     /// </summary>
-    public int? PageSize { get; set; }
+    /// <typeparam name="T">The type of records returned by this query</typeparam>
+    public class FetchResult<T>
+    {
+        /// <summary>
+        /// The total number of rows matching the filter.  If unknown, returns null.
+        /// </summary>
+        public int? TotalCount { get; set; }
 
-    /// <summary>
-    /// If the original request was submitted using Page Size-based pagination, contains the page number of this current result.  Null otherwise.
-    ///
-    /// To get the next page of results, make a new request with the same pageSize but add one to the pageNumber.
-    /// </summary>
-    public int? PageNumber { get; set; }
+        /// <summary>
+        /// If the original request was submitted using Page Size-based pagination, contains the page size for this query.  Null otherwise.
+        /// </summary>
+        public int? PageSize { get; set; }
 
-    /// <summary>
-    /// The paginated and filtered list of records matching the parameters you supplied.
-    /// </summary>
-    public T[]? Records { get; set; }
+        /// <summary>
+        /// If the original request was submitted using Page Size-based pagination, contains the page number of this current result.  Null otherwise.
+        ///
+        /// To get the next page of results, make a new request with the same pageSize but add one to the pageNumber.
+        /// </summary>
+        public int? PageNumber { get; set; }
+
+        /// <summary>
+        /// The paginated and filtered list of records matching the parameters you supplied.
+        /// </summary>
+        public T[]? Records { get; set; }
+    }
 }

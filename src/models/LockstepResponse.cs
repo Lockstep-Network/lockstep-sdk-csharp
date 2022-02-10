@@ -14,31 +14,33 @@
 
 using System.Net;
 
-namespace LockstepSDK;
-
-/// <summary>
-/// Represents a response from a Lockstep Platform API call
-/// </summary>
-/// <typeparam name="T"></typeparam>
-public class LockstepResponse<T>
+namespace LockstepSDK
 {
+
     /// <summary>
-    /// True if the API call succeeded
+    /// Represents a response from a Lockstep Platform API call
     /// </summary>
-    public bool Success { get; internal set; }
-    
-    /// <summary>
-    /// The HTTP response code provided by the remote server
-    /// </summary>
-    public HttpStatusCode Status { get; internal set; }
-    
-    /// <summary>
-    /// If successful, this contains the results of the API call
-    /// </summary>
-    public T? Value { get; internal set; }
-    
-    /// <summary>
-    /// If not successful, this contains information about the error
-    /// </summary>
-    public ErrorResult? Error { get; internal set; }
+    /// <typeparam name="T"></typeparam>
+    public class LockstepResponse<T>
+    {
+        /// <summary>
+        /// True if the API call succeeded
+        /// </summary>
+        public bool Success { get; internal set; }
+
+        /// <summary>
+        /// The HTTP response code provided by the remote server
+        /// </summary>
+        public HttpStatusCode Status { get; internal set; }
+
+        /// <summary>
+        /// If successful, this contains the results of the API call
+        /// </summary>
+        public T? Value { get; internal set; }
+
+        /// <summary>
+        /// If not successful, this contains information about the error
+        /// </summary>
+        public ErrorResult? Error { get; internal set; }
+    }
 }
