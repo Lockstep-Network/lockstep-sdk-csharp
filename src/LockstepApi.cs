@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.6.48.0
+ * @version    2022.6.49.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -28,7 +28,7 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private readonly string _version = "2022.6.48.0";
+        private readonly string _version = "2022.6.49.0";
         private string? _appName;
         private string? _bearerToken;
         private string? _apiKey;
@@ -257,8 +257,24 @@ namespace LockstepSDK
                 else
                 {
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
-                    if (result.Error != null) result.Error.Content = errorContent;
+                    if (!String.IsNullOrEmpty(errorContent))
+                    {
+                        try
+                        {
+                            result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
+                            if (result.Error != null) result.Error.Content = errorContent;
+                        }
+                        catch { }
+                    }
+
+                    if (result.Error == null)
+                    {
+                        result.Error = new ErrorResult()
+                        {
+                            Title = $"{(int)response.StatusCode} {response.StatusCode}",
+                            Content = errorContent
+                        };
+                    }
                 }
     
                 return result;
