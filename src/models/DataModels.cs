@@ -71,7 +71,7 @@ namespace LockstepSDK
         public string? ActivityStatus { get; set; }
 
         /// <summary>
-        /// True if this activity is currently "open", which indicates that the activity is
+        /// True if this activity is currently "open", which indicates that the activitiy is
         /// currently in progress.
         /// </summary>
         public bool IsOpen { get; set; }
@@ -163,42 +163,30 @@ namespace LockstepSDK
         public string? UserAssignedToName { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
+        /// All attachments attached to applied activity.
         ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
+        /// All notes attached to this applied activity.
         ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
+        /// All definitions attached to this applied activity.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
+        /// All values attached to this activity.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
@@ -270,9 +258,6 @@ namespace LockstepSDK
         public string? ToContactName { get; set; }
     }
 
-    /// <summary>
-    /// Represents links between an Activity and another record.
-    /// </summary>
     public class ActivityXRefModel
     {
 
@@ -546,22 +531,16 @@ namespace LockstepSDK
         public ApplicationModel? App { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
+        /// All definitions attached to this app.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `AppEnrollment` and the `ObjectKey` set to the `AppEnrollmentId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
+        /// All values attached to this app.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `AppEnrollment` and the `ObjectKey` set to the `AppEnrollmentId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
@@ -677,42 +656,26 @@ namespace LockstepSDK
         public Guid GroupKey { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this app.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this app.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All definitions attached to the application.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All values attached to the application.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
     }
@@ -1054,9 +1017,6 @@ namespace LockstepSDK
         /// </summary>
         public bool IsArchived { get; set; }
 
-        /// <summary>
-        /// Tracks the original record for this attachment, not currently used.
-        /// </summary>
         public Guid OriginAttachmentId { get; set; }
 
         /// <summary>
@@ -1081,10 +1041,9 @@ namespace LockstepSDK
         public string? ErpKey { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
+        /// The AppEnrollmentId of the application that imported this attachment record.  For accounts
         /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// financial system that produced this record.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -1474,30 +1433,23 @@ namespace LockstepSDK
         public string? Website { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
+        /// The AppEnrollmentId of the application that imported this company record.  For accounts
         /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// financial system that produced this record.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
+        /// All notes attached to this company.
         ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
+        /// All attachments attached to this company.
         ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
@@ -1516,22 +1468,16 @@ namespace LockstepSDK
         public object[]? Invoices { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
+        /// All definitions attached to this company.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
+        /// All values attached to this company.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
@@ -1774,7 +1720,7 @@ namespace LockstepSDK
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
         ///
-        /// If this contact record was imported from a financial system, it will have the value `ErpKey`
+        /// If this company record was imported from a financial system, it will have the value `ErpKey`
         /// set to the original primary key number of the record as it was known in the originating financial
         /// system.  If this record was not imported, this value will be `null`.
         ///
@@ -1888,50 +1834,31 @@ namespace LockstepSDK
         public Guid ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this company.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this company.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All definitions attached to this contact.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All values attached to this contact.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
     }
@@ -2228,50 +2155,34 @@ namespace LockstepSDK
         public Guid ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to applied Credit Memo.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
+        /// All notes attached to this applied Credit Memo.
         ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
+        /// All definitions attached to this applied Credit Memo.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFields` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
+        /// All values attached to this Credit Memo.
         ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// To retrieve this collection, specify `CustomFields` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
     }
@@ -2808,10 +2719,7 @@ namespace LockstepSDK
         public Guid ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
     }
@@ -2957,10 +2865,7 @@ namespace LockstepSDK
         public Guid ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this attachment record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -3128,10 +3033,7 @@ namespace LockstepSDK
         public int ViewCount { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -3179,42 +3081,26 @@ namespace LockstepSDK
         public EmailModel? ResponseOrigin { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this email.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this email.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All definitions attached to this email.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All values attached to this email.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
     }
@@ -3427,14 +3313,6 @@ namespace LockstepSDK
         /// The ID number of the user who most recently modified this address.
         /// </summary>
         public Guid? ModifiedUserId { get; set; }
-
-        /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
-        /// </summary>
-        public Guid? AppEnrollmentId { get; set; }
     }
 
     /// <summary>
@@ -3618,14 +3496,6 @@ namespace LockstepSDK
         /// The ID number of the user who most recently modified this invoice.
         /// </summary>
         public Guid? ModifiedUserId { get; set; }
-
-        /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
-        /// </summary>
-        public Guid? AppEnrollmentId { get; set; }
     }
 
     /// <summary>
@@ -3761,30 +3631,19 @@ namespace LockstepSDK
         public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `InvoiceLine` and the `ObjectKey` set to the `InvoiceLineId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this company.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `InvoiceLine` and the `ObjectKey` set to the `InvoiceLineId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this company.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
     }
@@ -4223,10 +4082,7 @@ namespace LockstepSDK
         public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -4264,22 +4120,14 @@ namespace LockstepSDK
         public InvoicePaymentDetailModel[]? Payments { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this invoice.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this invoice.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
@@ -4308,22 +4156,13 @@ namespace LockstepSDK
         public CreditMemoInvoiceModel[]? CreditMemos { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All custom field values associated with this invoice
+        /// To retrieve this item, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All custom field definitions
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
     }
@@ -4894,10 +4733,7 @@ namespace LockstepSDK
         public string? CreatedUserName { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -4990,10 +4826,7 @@ namespace LockstepSDK
         public Guid ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -5377,10 +5210,7 @@ namespace LockstepSDK
         public Guid ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
+        /// AppEnrollmentId for this record; used for mapping purposes.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -5401,42 +5231,26 @@ namespace LockstepSDK
         public PaymentAppliedModel[]? Applications { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this payment.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this payment.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldDefinitions` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All definitions attached to this payment.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All values attached to this payment.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
     }
@@ -5973,7 +5787,7 @@ namespace LockstepSDK
         public string? ProcessResultMessage { get; set; }
 
         /// <summary>
-        /// The AppEnrollmentId of the AppEnrollment object that executed this sync request
+        /// App enrollment sync request is for
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -6224,32 +6038,20 @@ namespace LockstepSDK
         public string? DefaultCurrencyCode { get; set; }
 
         /// <summary>
-        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
-        /// `include` parameter when retrieving data.
-        ///
-        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
-        /// endpoint with the `TableKey` to `UserAccount` and the `ObjectKey` set to the `UserId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All notes attached to this User.
+        /// To retrieve this collection, specify `Notes` in the "Include" parameter for your query.
         /// </summary>
         public NoteModel[]? Notes { get; set; }
 
         /// <summary>
-        /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
-        /// the `include` parameter when retrieving data.
-        ///
-        /// To create an attachment, use the [Upload Attachment](https://developer.lockstep.io/reference/post_api-v1-attachments)
-        /// endpoint with the `TableKey` to `UserAccount` and the `ObjectKey` set to the `UserId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All attachments attached to this User.
+        /// To retrieve this collection, specify `Attachments` in the "Include" parameter for your query.
         /// </summary>
         public AttachmentModel[]? Attachments { get; set; }
 
         /// <summary>
-        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
-        /// `CustomFieldValues` in the `include` parameter when retrieving data.
-        ///
-        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
-        /// endpoint with the `TableKey` to `UserAccount` and the `ObjectKey` set to the `UserId` for this record.  For
-        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// All values attached to this User.
+        /// To retrieve this collection, specify `CustomFieldValues` in the "Include" parameter for your query.
         /// </summary>
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
 
