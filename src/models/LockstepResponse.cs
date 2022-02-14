@@ -42,5 +42,16 @@ namespace LockstepSDK
         /// If not successful, this contains information about the error
         /// </summary>
         public ErrorResult? Error { get; internal set; }
+
+        /// <summary>
+        /// The length of time, in milliseconds, that the Lockstep Platform server took responding to this request. 
+        /// </summary>
+        public int ServerDuration { get; set; }
+
+        /// <summary>
+        /// The length of time, in milliseconds, that it took to complete this API call including all network delays,
+        /// proxy requests, decompression, and JSON parsing.
+        /// </summary>
+        public long TotalRoundtrip { get; set; }
     }
 }

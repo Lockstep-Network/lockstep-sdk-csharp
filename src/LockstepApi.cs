@@ -8,13 +8,16 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.6.49.0
+ * @version    2022.7.2.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web;
@@ -28,7 +31,7 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private readonly string _version = "2022.6.49.0";
+        private readonly string _version = "2022.7.2.0";
         private string? _appName;
         private string? _bearerToken;
         private string? _apiKey;
@@ -68,9 +71,13 @@ namespace LockstepSDK
         /// <param name="customUrl"></param>
         private LockstepApi(string customUrl)
         {
+            // Add support for HTTP compression
+            var handler = new HttpClientHandler();
+            handler.AutomaticDecompression = DecompressionMethods.All;
+            
             // We intentionally use a single HttpClient object for the lifetime of this API connection.
             // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
-            this._client = new HttpClient();
+            this._client = new HttpClient(handler);
             this._serverUrl = customUrl;
             this.Activities = new ActivitiesClient(this);
             this.ApiKeys = new ApiKeysClient(this);
@@ -181,6 +188,8 @@ namespace LockstepSDK
         public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
             Dictionary<string, object?>? query, object? body, string? filename)
         {
+            var sw = new Stopwatch();
+            sw.Start();
             var request = new HttpRequestMessage();
             request.Method = method;
             request.Headers.Add("Accept", "application/json");
@@ -245,10 +254,19 @@ namespace LockstepSDK
                 var result = new LockstepResponse<T>
                 {
                     Success = response.IsSuccessStatusCode,
-                    Status = response.StatusCode
+                    Status = response.StatusCode,
                 };
+                if (response.Headers.TryGetValues("ServerDuration", out var durations))
+                {
+                    var durationStr = durations.FirstOrDefault();
+                    if (Int32.TryParse(durationStr, out var duration))
+                    {
+                        result.ServerDuration = duration;
+                    }
+                }
                 if (result.Success)
                 {
+                    // Successful API responses can be very large, so let's stream them
                     using (var stream = await response.Content.ReadAsStreamAsync())
                     {
                         result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
@@ -256,6 +274,10 @@ namespace LockstepSDK
                 }
                 else
                 {
+                    // Error responses tend to be very short, and issues such as proxy errors
+                    // or "server down" can fail to provide valid JSON in the response.  If
+                    // we fail to parse the response as JSON, just create a simulated error
+                    // object with as much information as is available.
                     var errorContent = await response.Content.ReadAsStringAsync();
                     if (!String.IsNullOrEmpty(errorContent))
                     {
@@ -276,7 +298,10 @@ namespace LockstepSDK
                         };
                     }
                 }
-    
+                
+                // Calculate length of time it took including JSON processing
+                sw.Stop();
+                result.TotalRoundtrip = sw.ElapsedMilliseconds;
                 return result;
             }
         }
