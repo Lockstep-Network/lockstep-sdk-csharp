@@ -298,7 +298,7 @@ namespace LockstepSDK
                         };
                     }
                 }
-                
+
                 // Calculate length of time it took including JSON processing
                 sw.Stop();
                 result.TotalRoundtrip = sw.ElapsedMilliseconds;
