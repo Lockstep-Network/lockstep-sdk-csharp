@@ -51,6 +51,10 @@ namespace LockstepSDK
             return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
         }
 
+        /// <summary>
+        /// Creates a new account for a developer, sending an email with information on how to access the API.
+        /// </summary>
+        /// <param name="body"></param>
         public async Task<LockstepResponse<ActionResultModel>> ProvisionFreeDeveloperAccount(DeveloperAccountSubmitModel body)
         {
             var url = $"/api/v1/Provisioning/free-account";

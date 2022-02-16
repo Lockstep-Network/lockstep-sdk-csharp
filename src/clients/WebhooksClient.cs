@@ -107,5 +107,25 @@ namespace LockstepSDK
             options["pageNumber"] = pageNumber;
             return await _client.Request<FetchResult<WebhookModel>>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        ///
+        ///
+        /// </summary>
+        /// <param name="webhookId">The unique Lockstep Platform ID number of this Webhook</param>
+        /// <param name="filter">The filter for this query. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
+        /// <param name="select">The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
+        /// <param name="pageSize">The page size for results (default 200).</param>
+        /// <param name="pageNumber">The page number for results (default 0).</param>
+        public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string? filter, string? select, int? pageSize, int? pageNumber)
+        {
+            var url = $"/api/v1/Webhooks/{webhookId}/history/query";
+            var options = new Dictionary<string, object?>();
+            options["filter"] = filter;
+            options["select"] = select;
+            options["pageSize"] = pageSize;
+            options["pageNumber"] = pageNumber;
+            return await _client.Request<FetchResult<WebhookHistoryTableStorageModel>>(HttpMethod.Get, url, options, null, null);
+        }
     }
 }
