@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to Sync
+    /// </summary>
     public class SyncClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public SyncClient(LockstepApi client) {
             _client = client;
         }
@@ -58,7 +64,7 @@ namespace LockstepSDK
         }
 
         /// <summary>
-        /// Requests a new Sync task from a ZIP file you provide.  This ZIP file can contain one or more files with data from the customer's platform.  Individual files can be in the format CSV or JSONL (JSON with Lines).
+        /// Requests a new Sync task from a ZIP file you provide.  This ZIP file can contain one or more files with data from the customer&#39;s platform.  Individual files can be in the format CSV or JSONL (JSON with Lines).
         ///
         /// A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
         ///
@@ -75,7 +81,7 @@ namespace LockstepSDK
         ///
         /// This API is restricted to internal service users and may not be called by customers or partners.
         ///
-        /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  For example, you can provide the field name "IsActive" and specify the new value "False"; this API will then change the value of IsActive to false.
+        /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  For example, you can provide the field name &quot;IsActive&quot; and specify the new value &quot;False&quot;; this API will then change the value of IsActive to false.
         ///
         /// A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
         ///

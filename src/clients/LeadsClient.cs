@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to Leads
+    /// </summary>
     public class LeadsClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public LeadsClient(LockstepApi client) {
             _client = client;
         }

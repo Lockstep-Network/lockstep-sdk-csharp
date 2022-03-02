@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to Webhooks
+    /// </summary>
     public class WebhooksClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public WebhooksClient(LockstepApi client) {
             _client = client;
         }

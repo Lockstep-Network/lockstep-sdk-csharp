@@ -12,6 +12,7 @@
  * @link       https://github.com/tspence/lockstep-sdk-csharp
  */
 
+using System;
 using System.Net;
 
 namespace LockstepSDK
@@ -21,7 +22,7 @@ namespace LockstepSDK
     /// Represents a response from a Lockstep Platform API call
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class LockstepResponse<T>
+    public class LockstepResponse<T> where T: class
     {
         /// <summary>
         /// True if the API call succeeded

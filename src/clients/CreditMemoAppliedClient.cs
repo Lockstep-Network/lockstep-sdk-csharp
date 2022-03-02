@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to CreditMemoApplied
+    /// </summary>
     public class CreditMemoAppliedClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CreditMemoAppliedClient(LockstepApi client) {
             _client = client;
         }

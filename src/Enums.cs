@@ -1,6 +1,9 @@
 ﻿namespace LockstepSDK
 {
 
+    /// <summary>
+    /// An enumeration listing all publicly available Lockstep Platform environments
+    /// </summary>
     public enum LockstepEnv
     {
         /// <summary>

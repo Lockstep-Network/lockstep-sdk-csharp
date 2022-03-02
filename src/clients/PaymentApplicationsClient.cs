@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to PaymentApplications
+    /// </summary>
     public class PaymentApplicationsClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public PaymentApplicationsClient(LockstepApi client) {
             _client = client;
         }

@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to Emails
+    /// </summary>
     public class EmailsClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public EmailsClient(LockstepApi client) {
             _client = client;
         }
@@ -32,7 +38,7 @@ namespace LockstepSDK
         /// <summary>
         /// Retrieves the email with the specified email identifier.
         ///
-        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
+        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the &#39;EmailCC&#39; field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the Email to retrieve.</param>
@@ -50,7 +56,7 @@ namespace LockstepSDK
         ///
         /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
         ///
-        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
+        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the &#39;EmailCC&#39; field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the email to update</param>
@@ -64,7 +70,7 @@ namespace LockstepSDK
         /// <summary>
         /// Deletes the Email referred to by this unique identifier.
         ///
-        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
+        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the &#39;EmailCC&#39; field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Email to delete</param>
@@ -75,9 +81,9 @@ namespace LockstepSDK
         }
 
         /// <summary>
-        /// Retrieves a signature logo for the email with the specified identifier and increments 'ViewCount'.
+        /// Retrieves a signature logo for the email with the specified identifier and increments &#39;ViewCount&#39;.
         ///
-        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
+        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the &#39;EmailCC&#39; field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
         ///
         /// </summary>
         /// <param name="emailId">The unique ID number of the Email to retrieve.</param>
@@ -91,7 +97,7 @@ namespace LockstepSDK
         /// <summary>
         /// Creates one or more emails from the specified array of Email Models
         ///
-        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
+        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the &#39;EmailCC&#39; field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
         ///
         /// </summary>
         /// <param name="body">The array of emails to be created</param>
@@ -106,7 +112,7 @@ namespace LockstepSDK
         ///
         /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
         ///
-        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the 'EmailCC' field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
+        /// An Email represents a communication sent from one company to another.  The creator of the email is identified by the `CompanyId` field, recipient(s) by the `EmailTo` field, and cc recipient(s) by the &#39;EmailCC&#39; field. The Email Model represents an email and a number of different metadata attributes related to the creation, storage, and ownership of the email.
         ///
         /// </summary>
         /// <param name="filter">The filter to use to select from the list of available applications, in the [Searchlight query syntax](https://github.com/tspence/csharp-searchlight).</param>

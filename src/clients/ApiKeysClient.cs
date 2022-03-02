@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to ApiKeys
+    /// </summary>
     public class ApiKeysClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ApiKeysClient(LockstepApi client) {
             _client = client;
         }
