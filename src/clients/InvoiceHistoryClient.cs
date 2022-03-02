@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to InvoiceHistory
+    /// </summary>
     public class InvoiceHistoryClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public InvoiceHistoryClient(LockstepApi client) {
             _client = client;
         }

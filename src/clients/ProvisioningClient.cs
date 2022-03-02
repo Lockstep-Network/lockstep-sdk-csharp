@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to Provisioning
+    /// </summary>
     public class ProvisioningClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ProvisioningClient(LockstepApi client) {
             _client = client;
         }
@@ -41,7 +47,7 @@ namespace LockstepSDK
         }
 
         /// <summary>
-        /// Updates user, company and group metadata for a User of status 'Onboarding' and finalizes a user's onboarding process by changing the user status to 'Active'
+        /// Updates user, company and group metadata for a User of status &#39;Onboarding&#39; and finalizes a user&#39;s onboarding process by changing the user status to &#39;Active&#39;
         ///
         /// </summary>
         /// <param name="body">Represents a User and their related metadata</param>

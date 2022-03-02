@@ -21,10 +21,16 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK
 {
+    /// <summary>
+    /// Lockstep Platform methods related to CustomFieldDefinitions
+    /// </summary>
     public class CustomFieldDefinitionsClient
     {
         private readonly LockstepApi _client;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CustomFieldDefinitionsClient(LockstepApi client) {
             _client = client;
         }

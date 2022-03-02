@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.9.6.0
+ * @version    2022.9.18.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -27,45 +27,138 @@ using System.Threading.Tasks;
 
 namespace LockstepSDK 
 {
+    /// <summary>
+    /// A client object that connects to the Lockstep Platform API
+    /// </summary>
     public class LockstepApi
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private readonly string _version = "2022.9.6.0";
+        private readonly string _version = "2022.9.18.0";
         private string? _appName;
         private string? _bearerToken;
         private string? _apiKey;
         private readonly HttpClient _client;
     
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public ActivitiesClient Activities { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public ApiKeysClient ApiKeys { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public AppEnrollmentsClient AppEnrollments { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public ApplicationsClient Applications { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public AttachmentsClient Attachments { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public CodeDefinitionsClient CodeDefinitions { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public CompaniesClient Companies { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public ContactsClient Contacts { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public CreditMemoAppliedClient CreditMemoApplied { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public CurrenciesClient Currencies { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public CustomFieldDefinitionsClient CustomFieldDefinitions { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public CustomFieldValuesClient CustomFieldValues { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public DefinitionsClient Definitions { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public EmailsClient Emails { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public FinancialAccountClient FinancialAccount { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public FinancialYearSettingsClient FinancialYearSettings { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public InvoiceHistoryClient InvoiceHistory { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public InvoicesClient Invoices { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public LeadsClient Leads { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public NotesClient Notes { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public PaymentApplicationsClient PaymentApplications { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public PaymentsClient Payments { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public ProvisioningClient Provisioning { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public ReportsClient Reports { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public StatusClient Status { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public SyncClient Sync { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public UserAccountsClient UserAccounts { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public UserRolesClient UserRoles { get; set; }
+        /// <summary>
+        /// Lockstep Platform methods related to {cat}
+        /// </summary>
         public WebhooksClient Webhooks { get; set; }
     
         /// <summary>
@@ -192,7 +285,7 @@ namespace LockstepSDK
         /// <typeparam name="T">The type of the expected response</typeparam>
         /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
         public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
-            Dictionary<string, object?>? query, object? body, string? filename)
+            Dictionary<string, object?>? query, object? body, string? filename) where T: class
         {
             var sw = new Stopwatch();
             sw.Start();
