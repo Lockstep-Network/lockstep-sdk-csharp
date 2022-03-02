@@ -2872,14 +2872,9 @@ namespace LockstepSDK
         public string CustomFieldLabel { get; set; }
 
         /// <summary>
-        /// The value of this custom field, if it is stored in string format.
+        /// The value of this custom field.
         /// </summary>
-        public string? StringValue { get; set; }
-
-        /// <summary>
-        /// The value of this custom field, if it is stored in numeric format.
-        /// </summary>
-        public double? NumericValue { get; set; }
+        public string? Value { get; set; }
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
@@ -2927,16 +2922,6 @@ namespace LockstepSDK
         public Guid RecordKey { get; set; }
 
         /// <summary>
-        /// String of data for field
-        /// </summary>
-        public string? StringValue { get; set; }
-
-        /// <summary>
-        /// Number data for field
-        /// </summary>
-        public double? NumericValue { get; set; }
-
-        /// <summary>
         /// Date created
         /// </summary>
         public DateTime Created { get; set; }
@@ -2963,6 +2948,11 @@ namespace LockstepSDK
         /// was not loaded from an external ERP or financial system.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The value of this custom field.
+        /// </summary>
+        public string? Value { get; set; }
 
         /// <summary>
         /// Definition of the value
@@ -3280,6 +3270,258 @@ namespace LockstepSDK
         /// Flag to indicate if ERP is supported
         /// </summary>
         public bool IsSupported { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a balance for a financial account for a given period of time.
+    /// </summary>
+    public class FinancialAccountBalanceHistoryModel
+    {
+
+        /// <summary>
+        /// The unique ID of this record, automatically assigned by Lockstep when this record is
+        /// added to the Lockstep platform.
+        /// </summary>
+        public Guid FinancialAccountBalanceHistoryId { get; set; }
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The id of the Financial Account that this balance history is for.
+        /// </summary>
+        public Guid FinancialAccountId { get; set; }
+
+        /// <summary>
+        /// The AppEnrollmentId of the application that imported this record.  For accounts
+        /// with more than one financial system connected, this field identifies the originating
+        /// financial system that produced this record.  This value is null if this record
+        /// was not loaded from an external ERP or financial system.
+        /// </summary>
+        public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The financial year that this period falls under
+        /// </summary>
+        public int FinancialYear { get; set; }
+
+        /// <summary>
+        /// The period number (1-12 or 1-13) that this balance history is for
+        /// </summary>
+        public int PeriodNumber { get; set; }
+
+        /// <summary>
+        /// The start date of this period.
+        /// </summary>
+        public DateTime PeriodStartDate { get; set; }
+
+        /// <summary>
+        /// The end date of this period.
+        /// </summary>
+        public DateTime PeriodEndDate { get; set; }
+
+        /// <summary>
+        /// The status of this period. The status should be Closed if the books for this period have been closed,
+        /// if not the status should be Open. The status can also be Deleted if there was a recalculation that needed
+        /// to occur, for example due to a change in financial year settings.
+        /// </summary>
+        public string? Status { get; set; }
+
+        /// <summary>
+        /// The current or end balance of this period.
+        /// </summary>
+        public double Balance { get; set; }
+
+        /// <summary>
+        /// The date on which this financial account balance history record was created.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// The ID number of the user who created this financial account balance history.
+        /// </summary>
+        public Guid CreatedUserId { get; set; }
+
+        /// <summary>
+        /// The date on which this financial account balance history record was modified.
+        /// </summary>
+        public DateTime Modified { get; set; }
+
+        /// <summary>
+        /// The ID number of the user who most recently modified this financial account balance history.
+        /// </summary>
+        public Guid ModifiedUserId { get; set; }
+    }
+
+    /// <summary>
+    /// An Financial account refers to records of assets, liabilities, income, expenses, and equity.
+    /// </summary>
+    public class FinancialAccountModel
+    {
+
+        /// <summary>
+        /// The unique identifier for the Financial Account.
+        /// </summary>
+        public Guid FinancialAccountId { get; set; }
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The code for the Financial Account. Can either be a general ledger or
+        /// an account code.
+        /// </summary>
+        public string? Code { get; set; }
+
+        /// <summary>
+        /// The External Id for the Financial Account.
+        /// </summary>
+        public string? ErpKey { get; set; }
+
+        /// <summary>
+        /// The App Enrollment Id for the Financial Account.
+        /// </summary>
+        public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The name of the Financial Account.
+        /// </summary>
+        public string? Name { get; set; }
+
+        /// <summary>
+        /// The status of the Financial Account. Possible values are active,
+        /// inactive, deleted or archived.
+        /// </summary>
+        public string? Status { get; set; }
+
+        /// <summary>
+        /// The cashflow type for the Financial Account. Examples include cash, financing, investment
+        /// or operation.
+        /// </summary>
+        public string? CashflowType { get; set; }
+
+        /// <summary>
+        /// The description for the Financial Account.
+        /// </summary>
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// The classification for the Financial Account. Possible values are Asset, Equity,
+        /// Expense, Liability or Revenue.
+        /// </summary>
+        public string? Classification { get; set; }
+
+        /// <summary>
+        /// The category for the Financial Account. Examples include Current Asset, Current Liability, Common Stock
+        /// </summary>
+        public string? Category { get; set; }
+
+        /// <summary>
+        /// The subcategory for the Financial Account. Examples include Cash, Property, Bank Loan, etc.
+        /// </summary>
+        public string? Subcategory { get; set; }
+
+        /// <summary>
+        /// The date the FinancialAccount was created.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// The user that has created the Financial Account.
+        /// </summary>
+        public Guid CreatedUserId { get; set; }
+
+        /// <summary>
+        /// The date the Financial Account was modified.
+        /// </summary>
+        public DateTime Modified { get; set; }
+
+        /// <summary>
+        /// The user that has modified the Financial Account.
+        /// </summary>
+        public Guid ModifiedUserId { get; set; }
+    }
+
+    /// <summary>
+    /// A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to
+    /// calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync
+    /// or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
+    /// </summary>
+    public class FinancialYearSettingModel
+    {
+
+        /// <summary>
+        /// The unique ID of this record, automatically assigned by Lockstep when this record is
+        /// added to the Lockstep platform.
+        /// </summary>
+        public Guid FinancialYearSettingId { get; set; }
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The AppEnrollmentId of the application that imported this record.  For accounts
+        /// with more than one financial system connected, this field identifies the originating
+        /// financial system that produced this record.  This value is null if this record
+        /// was not loaded from an external ERP or financial system.
+        /// </summary>
+        public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The type of financial year, either Calendar or Fiscal.
+        /// </summary>
+        public string? YearType { get; set; }
+
+        /// <summary>
+        /// Total number of periods in the year. For Calendar year types this should always be 12. For Fiscal year types
+        /// this can either be 12 or 13 for a 4 week 13 period year.
+        /// </summary>
+        public int TotalPeriods { get; set; }
+
+        /// <summary>
+        /// The start date of the financial year. Should be entered in MM-DD format.
+        /// </summary>
+        public DateTime? StartDate { get; set; }
+
+        /// <summary>
+        /// The end date of the financial year. Should be entered in MM-DD format.
+        /// </summary>
+        public DateTime? EndDate { get; set; }
+
+        /// <summary>
+        /// The date on which this financial year setting record was created.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// The ID number of the user who created this financial year setting.
+        /// </summary>
+        public Guid CreatedUserId { get; set; }
+
+        /// <summary>
+        /// The date on which this financial year setting record was last modified.
+        /// </summary>
+        public DateTime Modified { get; set; }
+
+        /// <summary>
+        /// The ID number of the user who most recently modified this financial year setting.
+        /// </summary>
+        public Guid ModifiedUserId { get; set; }
     }
 
     /// <summary>
@@ -4203,22 +4445,22 @@ namespace LockstepSDK
         public Guid? PrimaryShipToAddressId { get; set; }
 
         /// <summary>
-        /// The date on which this address record was created.
+        /// The date on which this invoice record was created.
         /// </summary>
         public DateTime? Created { get; set; }
 
         /// <summary>
-        /// The ID number of the user who created this address.
+        /// The ID number of the user who created this invoice.
         /// </summary>
         public Guid? CreatedUserId { get; set; }
 
         /// <summary>
-        /// The date on which this address record was last modified.
+        /// The date on which this invoice record was last modified.
         /// </summary>
         public DateTime? Modified { get; set; }
 
         /// <summary>
-        /// The ID number of the user who most recently modified this address.
+        /// The ID number of the user who most recently modified this invoice.
         /// </summary>
         public Guid? ModifiedUserId { get; set; }
 
@@ -6321,10 +6563,15 @@ namespace LockstepSDK
         public Guid GroupKey { get; set; }
 
         /// <summary>
+        /// The WebhookId uniquely identifies the webhook used to send notification that an event action has taken place.
+        /// </summary>
+        public Guid WebhookId { get; set; }
+
+        /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid WebhookId { get; set; }
+        public Guid WebhookHistoryId { get; set; }
 
         /// <summary>
         /// Event type which fired webhook
@@ -6339,9 +6586,20 @@ namespace LockstepSDK
         public bool RequestSent { get; set; }
 
         /// <summary>
+        /// Flag whether webhook notification was successful overall (if webhook disabled should always return true otherwise
+        /// depends on the response from the callback url)
+        /// </summary>
+        public bool IsSuccessful { get; set; }
+
+        /// <summary>
         /// Response status code that is returned when calling a callback url.
         /// </summary>
         public string? ResponseStatusCode { get; set; }
+
+        /// <summary>
+        /// Message containing information about the webhook callback results
+        /// </summary>
+        public string? ProcessResultMessage { get; set; }
 
         /// <summary>
         /// Number of times message failed to be sent over to callback url before succeeding or failing out.
@@ -6451,5 +6709,10 @@ namespace LockstepSDK
         /// The ID of the user who last modified this webhook
         /// </summary>
         public Guid ModifiedUserId { get; set; }
+
+        /// <summary>
+        /// The partition key used for the webhook callback history
+        /// </summary>
+        public string? PartitionKey { get; set; }
     }
 }
