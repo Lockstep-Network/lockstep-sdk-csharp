@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.7.31.0
+ * @version    2022.9.6.0
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -31,7 +31,7 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private readonly string _version = "2022.7.31.0";
+        private readonly string _version = "2022.9.6.0";
         private string? _appName;
         private string? _bearerToken;
         private string? _apiKey;
@@ -51,6 +51,9 @@ namespace LockstepSDK
         public CustomFieldValuesClient CustomFieldValues { get; set; }
         public DefinitionsClient Definitions { get; set; }
         public EmailsClient Emails { get; set; }
+        public FinancialAccountClient FinancialAccount { get; set; }
+        public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; set; }
+        public FinancialYearSettingsClient FinancialYearSettings { get; set; }
         public InvoiceHistoryClient InvoiceHistory { get; set; }
         public InvoicesClient Invoices { get; set; }
         public LeadsClient Leads { get; set; }
@@ -93,6 +96,9 @@ namespace LockstepSDK
             this.CustomFieldValues = new CustomFieldValuesClient(this);
             this.Definitions = new DefinitionsClient(this);
             this.Emails = new EmailsClient(this);
+            this.FinancialAccount = new FinancialAccountClient(this);
+            this.FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
+            this.FinancialYearSettings = new FinancialYearSettingsClient(this);
             this.InvoiceHistory = new InvoiceHistoryClient(this);
             this.Invoices = new InvoicesClient(this);
             this.Leads = new LeadsClient(this);
