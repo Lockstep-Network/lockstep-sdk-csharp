@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LockstepSdk</id>
-		<version>2022.9.18.0</version>
+		<version>2022.9.18</version>
 		<title>LockstepSdk</title>
 		<authors>Ted Spence</authors>
 		<owners>Lockstep</owners>
@@ -14,10 +14,11 @@
 			context sensitive help and documentation for all methods and objects.
 		</description>
 		<iconUrl>https://raw.githubusercontent.com/Lockstep-Network/lockstep-sdk-csharp/main/images/lockstep_logo.png</iconUrl>
+		<icon>docs/lockstep_logo.png</iconUrl>
 		<readme>docs/README.md</readme>
 		<summary>SDK for the Lockstep Platform API.</summary>
 		<releaseNotes>
-            # 2022.9.18.0
+            # 2022.9.18
         
             For full patch notes see [Patch Notes](https://medium.com/lockstep-developer/tagged/patch-notes) on the [Lockstep Developer website](https://developer.lockstep.io)
         </releaseNotes>
@@ -33,6 +34,7 @@
 	<files>
 		<file src=".\LICENSE" target="docs/LICENSE"/>
 		<file src=".\README.md" target="docs/README.md"/>
+		<file src=".\images\lockstep_logo.png" target="docs/lockstep_logo.png"/>
 		<file src="src\bin\Debug\netcoreapp3.1\*" target="lib\netcoreapp3.1" />
 		<file src="src\bin\Debug\net5.0\*" target="lib\net5.0" />
 		<file src="src\bin\Debug\net6.0\*" target="lib\net6.0" />
