@@ -22,7 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-#if DOT_NET_FRAMEWORK
+#if NEWTONSOFT
 using Newtonsoft.Json;
 #else
 using System.Net;
@@ -351,7 +351,7 @@ namespace LockstepSDK
             // Add request body content, if any
             if (body != null)
             {
-#if DOT_NET_FRAMEWORK
+#if NEWTONSOFT
                 var content = JsonConvert.SerializeObject(body);
 #else
                 var content = JsonSerializer.Serialize(body);
@@ -374,7 +374,7 @@ namespace LockstepSDK
             // Send the request and convert the response into a success or failure
             using (var response = await _client.SendAsync(request))
             {
-#if !DOT_NET_FRAMEWORK
+#if !NEWTONSOFT
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
@@ -395,7 +395,7 @@ namespace LockstepSDK
                 }
                 if (result.Success)
                 {
-#if DOT_NET_FRAMEWORK
+#if NEWTONSOFT
                     result.Value = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
 #else
                     // Successful API responses can be very large, so let's stream them
@@ -416,7 +416,7 @@ namespace LockstepSDK
                     {
                         try
                         {
-#if DOT_NET_FRAMEWORK
+#if NEWTONSOFT
                             result.Error = JsonConvert.DeserializeObject<ErrorResult>(errorContent);
 #else
                             result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
