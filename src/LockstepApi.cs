@@ -17,12 +17,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Web;
-using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web;
+
+#if DOT_NET_FRAMEWORK
+using Newtonsoft.Json;
+#else
+using System.Net;
+using System.Text.Json;
+#endif
 
 
 namespace LockstepSDK 
@@ -34,11 +39,17 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private readonly string _version = "2022.9.18.0";
+        private const string _version = "2022.9.18.0";
+        private readonly HttpClient _client;
+#if DOT_NET_FRAMEWORK
+        private string _appName;
+        private string _bearerToken;
+        private string _apiKey;
+#else
         private string? _appName;
         private string? _bearerToken;
         private string? _apiKey;
-        private readonly HttpClient _client;
+#endif
     
         /// <summary>
         /// Lockstep Platform methods related to {cat}
@@ -167,13 +178,16 @@ namespace LockstepSDK
         /// <param name="customUrl"></param>
         private LockstepApi(string customUrl)
         {
+#if DOT_NET_FRAMEWORK
+            this._client = new HttpClient();
+#else
             // Add support for HTTP compression
             var handler = new HttpClientHandler();
             handler.AutomaticDecompression = DecompressionMethods.All;
-            
             // We intentionally use a single HttpClient object for the lifetime of this API connection.
             // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
             this._client = new HttpClient(handler);
+#endif
             this._serverUrl = customUrl;
             this.Activities = new ActivitiesClient(this);
             this.ApiKeys = new ApiKeysClient(this);
@@ -284,8 +298,13 @@ namespace LockstepSDK
         /// <param name="filename">The filename of a file attachment to upload</param>
         /// <typeparam name="T">The type of the expected response</typeparam>
         /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
+#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
-            Dictionary<string, object?>? query, object? body, string? filename) where T: class
+            Dictionary<string, object> query, object body, string filename) where T: class
+#else
+        public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
+            Dictionary<string, object>? query, object? body, string? filename) where T: class
+#endif
         {
             var sw = new Stopwatch();
             sw.Start();
@@ -318,11 +337,11 @@ namespace LockstepSDK
             var sb = new StringBuilder();
             if (query != null)
             {
-                foreach (var (key, value) in query)
+                foreach (var kvp in query)
                 {
-                    if (value != null)
+                    if (kvp.Value != null)
                     {
-                        sb.Append($"{key}={HttpUtility.UrlEncode(value.ToString())}&");
+                        sb.Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}&");
                     }
                 }
             }
@@ -332,11 +351,20 @@ namespace LockstepSDK
             // Add request body content, if any
             if (body != null)
             {
-                request.Content = new StringContent(JsonSerializer.Serialize(body));
+#if DOT_NET_FRAMEWORK
+                var content = JsonConvert.SerializeObject(body);
+#else
+                var content = JsonSerializer.Serialize(body);
+#endif
+                request.Content = new StringContent(content);
             }
             else if (filename != null)
             {
+#if DOT_NET_FRAMEWORK
+                var bytesFile = File.ReadAllBytes(filename);
+#else
                 var bytesFile = await File.ReadAllBytesAsync(filename);
+#endif
                 var fileContent = new ByteArrayContent(bytesFile);
                 var form = new MultipartFormDataContent(Guid.NewGuid().ToString());
                 form.Add(fileContent, "file", Path.GetFileName(filename));
@@ -346,10 +374,12 @@ namespace LockstepSDK
             // Send the request and convert the response into a success or failure
             using (var response = await _client.SendAsync(request))
             {
+#if !DOT_NET_FRAMEWORK
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true
                 };
+#endif
                 var result = new LockstepResponse<T>
                 {
                     Success = response.IsSuccessStatusCode,
@@ -365,11 +395,15 @@ namespace LockstepSDK
                 }
                 if (result.Success)
                 {
+#if DOT_NET_FRAMEWORK
+                    result.Value = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+#else
                     // Successful API responses can be very large, so let's stream them
                     using (var stream = await response.Content.ReadAsStreamAsync())
                     {
                         result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
                     }
+#endif
                 }
                 else
                 {
@@ -382,10 +416,17 @@ namespace LockstepSDK
                     {
                         try
                         {
+#if DOT_NET_FRAMEWORK
+                            result.Error = JsonConvert.DeserializeObject<ErrorResult>(errorContent);
+#else
                             result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
+#endif
                             if (result.Error != null) result.Error.Content = errorContent;
                         }
-                        catch { }
+                        catch
+                        {
+                            // ignored
+                        }
                     }
 
                     if (result.Error == null)

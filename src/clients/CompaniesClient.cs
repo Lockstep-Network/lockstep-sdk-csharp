@@ -45,11 +45,15 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<CompanyModel>> RetrieveCompany(Guid id, string include)
+#else
         public async Task<LockstepResponse<CompanyModel>> RetrieveCompany(Guid id, string? include)
+#endif
         {
             var url = $"/api/v1/Companies/{id}";
-            var options = new Dictionary<string, object?>();
-            options["include"] = include;
+            var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             return await _client.Request<CompanyModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -68,7 +72,7 @@ namespace LockstepSDK
         public async Task<LockstepResponse<CompanyModel>> UpdateCompany(Guid id, object body)
         {
             var url = $"/api/v1/Companies/{id}";
-            return await _client.Request<CompanyModel>(HttpMethod.Patch, url, null, body, null);
+            return await _client.Request<CompanyModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
@@ -116,15 +120,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<CompanyModel>>> QueryCompanies(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<CompanyModel>>> QueryCompanies(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/Companies/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<CompanyModel>>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -143,15 +151,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/Companies/views/customer-summary";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<CustomerSummaryModel>>(HttpMethod.Get, url, options, null, null);
         }
 

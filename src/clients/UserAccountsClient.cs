@@ -43,11 +43,15 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the User to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, AccountingRole</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<UserAccountModel>> RetrieveUser(Guid id, string include)
+#else
         public async Task<LockstepResponse<UserAccountModel>> RetrieveUser(Guid id, string? include)
+#endif
         {
             var url = $"/api/v1/UserAccounts/{id}";
-            var options = new Dictionary<string, object?>();
-            options["include"] = include;
+            var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             return await _client.Request<UserAccountModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -64,7 +68,7 @@ namespace LockstepSDK
         public async Task<LockstepResponse<UserAccountModel>> UpdateUser(Guid id, object body)
         {
             var url = $"/api/v1/UserAccounts/{id}";
-            return await _client.Request<UserAccountModel>(HttpMethod.Patch, url, null, body, null);
+            return await _client.Request<UserAccountModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
@@ -87,11 +91,15 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this User</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<ActionResultModel>> ReenableUser(Guid id)
+#else
         public async Task<LockstepResponse<ActionResultModel>> ReenableUser(Guid? id)
+#endif
         {
             var url = $"/api/v1/UserAccounts/reenable";
-            var options = new Dictionary<string, object?>();
-            options["id"] = id;
+            var options = new Dictionary<string, object>();
+            if (id != null) { options["id"] = id; }
             return await _client.Request<ActionResultModel>(HttpMethod.Post, url, options, null, null);
         }
 
@@ -115,11 +123,15 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="code">The code of the invite</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<InviteDataModel>> RetrieveInviteData(Guid code)
+#else
         public async Task<LockstepResponse<InviteDataModel>> RetrieveInviteData(Guid? code)
+#endif
         {
             var url = $"/api/v1/UserAccounts/invite";
-            var options = new Dictionary<string, object?>();
-            options["code"] = code;
+            var options = new Dictionary<string, object>();
+            if (code != null) { options["code"] = code; }
             return await _client.Request<InviteDataModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -145,15 +157,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<UserAccountModel>>> QueryUsers(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<UserAccountModel>>> QueryUsers(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/UserAccounts/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<UserAccountModel>>(HttpMethod.Get, url, options, null, null);
         }
     }

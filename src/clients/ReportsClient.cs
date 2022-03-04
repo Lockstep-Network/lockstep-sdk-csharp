@@ -45,8 +45,8 @@ namespace LockstepSDK
         public async Task<LockstepResponse<CashflowReportModel>> CashFlow(int? timeframe)
         {
             var url = $"/api/v1/Reports/cashflow";
-            var options = new Dictionary<string, object?>();
-            options["timeframe"] = timeframe;
+            var options = new Dictionary<string, object>();
+            if (timeframe != null) { options["timeframe"] = timeframe; }
             return await _client.Request<CashflowReportModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -80,12 +80,16 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="reportDate">The date of the report.</param>
         /// <param name="companyId">Include a company to get AR data for a specific company, leave as null to include all Companies.</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime reportDate, Guid companyId)
+#else
         public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime reportDate, Guid? companyId)
+#endif
         {
             var url = $"/api/v1/Reports/ar-header";
-            var options = new Dictionary<string, object?>();
+            var options = new Dictionary<string, object>();
             options["reportDate"] = reportDate;
-            options["companyId"] = companyId;
+            if (companyId != null) { options["companyId"] = companyId; }
             return await _client.Request<ArHeaderInfoModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -104,15 +108,19 @@ namespace LockstepSDK
         /// <param name="CurrencyCode">Currency aging buckets are converted to (all aging data returned without currency conversion if no currency is specified)</param>
         /// <param name="CurrencyProvider">Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)</param>
         /// <param name="Buckets">Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid CompanyId, bool? Recalculate, string CurrencyCode, string CurrencyProvider, int[] Buckets)
+#else
         public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId, bool? Recalculate, string? CurrencyCode, string? CurrencyProvider, int[]? Buckets)
+#endif
         {
             var url = $"/api/v1/Reports/aging";
-            var options = new Dictionary<string, object?>();
-            options["CompanyId"] = CompanyId;
-            options["Recalculate"] = Recalculate;
-            options["CurrencyCode"] = CurrencyCode;
-            options["CurrencyProvider"] = CurrencyProvider;
-            options["Buckets"] = Buckets;
+            var options = new Dictionary<string, object>();
+            if (CompanyId != null) { options["CompanyId"] = CompanyId; }
+            if (Recalculate != null) { options["Recalculate"] = Recalculate; }
+            if (CurrencyCode != null) { options["CurrencyCode"] = CurrencyCode; }
+            if (CurrencyProvider != null) { options["CurrencyProvider"] = CurrencyProvider; }
+            if (Buckets != null) { options["Buckets"] = Buckets; }
             return await _client.Request<AgingModel[]>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -135,11 +143,15 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="companyId">Include a specific company to get Attachment data for, leave as null to include all Companies.</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid companyId)
+#else
         public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid? companyId)
+#endif
         {
             var url = $"/api/v1/Reports/attachments-header";
-            var options = new Dictionary<string, object?>();
-            options["companyId"] = companyId;
+            var options = new Dictionary<string, object>();
+            if (companyId != null) { options["companyId"] = companyId; }
             return await _client.Request<AttachmentHeaderInfoModel>(HttpMethod.Get, url, options, null, null);
         }
     }

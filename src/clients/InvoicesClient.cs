@@ -43,11 +43,15 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<InvoiceModel>> RetrieveInvoice(Guid id, string include)
+#else
         public async Task<LockstepResponse<InvoiceModel>> RetrieveInvoice(Guid id, string? include)
+#endif
         {
             var url = $"/api/v1/Invoices/{id}";
-            var options = new Dictionary<string, object?>();
-            options["include"] = include;
+            var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             return await _client.Request<InvoiceModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -64,7 +68,7 @@ namespace LockstepSDK
         public async Task<LockstepResponse<InvoiceModel>> UpdateInvoice(Guid id, object body)
         {
             var url = $"/api/v1/Invoices/{id}";
-            return await _client.Request<InvoiceModel>(HttpMethod.Patch, url, null, body, null);
+            return await _client.Request<InvoiceModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
@@ -104,15 +108,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<InvoiceModel>>> QueryInvoices(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<InvoiceModel>>> QueryInvoices(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/Invoices/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<InvoiceModel>>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -129,15 +137,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<InvoiceSummaryModel>>> QueryInvoiceSummaryView(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<InvoiceSummaryModel>>> QueryInvoiceSummaryView(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/Invoices/views/summary";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<InvoiceSummaryModel>>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -154,15 +166,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<AtRiskInvoiceSummaryModel>>> QueryAtRiskInvoiceSummaryView(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<AtRiskInvoiceSummaryModel>>> QueryAtRiskInvoiceSummaryView(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/Invoices/views/at-risk-summary";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<AtRiskInvoiceSummaryModel>>(HttpMethod.Get, url, options, null, null);
         }
     }

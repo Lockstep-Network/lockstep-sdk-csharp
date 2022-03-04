@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK", "src\LockstepSDK.csproj", "{36D255C6-3964-4AF2-82F1-08143CD565C8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.Net45", "src\LockstepSDK.Net45.csproj", "{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{36D255C6-3964-4AF2-82F1-08143CD565C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{36D255C6-3964-4AF2-82F1-08143CD565C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{36D255C6-3964-4AF2-82F1-08143CD565C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

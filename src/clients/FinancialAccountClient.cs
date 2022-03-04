@@ -66,7 +66,7 @@ namespace LockstepSDK
         public async Task<LockstepResponse<FinancialAccountModel>> UpdateFinancialAccount(Guid id, object body)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
-            return await _client.Request<FinancialAccountModel>(HttpMethod.Patch, url, null, body, null);
+            return await _client.Request<FinancialAccountModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
@@ -89,15 +89,19 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<FetchResult<FinancialAccountModel>>> QueryFinancialAccounts(string filter, string include, string order, int? pageSize, int? pageNumber)
+#else
         public async Task<LockstepResponse<FetchResult<FinancialAccountModel>>> QueryFinancialAccounts(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+#endif
         {
             var url = $"/api/v1/FinancialAccount/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<FinancialAccountModel>>(HttpMethod.Get, url, options, null, null);
         }
     }

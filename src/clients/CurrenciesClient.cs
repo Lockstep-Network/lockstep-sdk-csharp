@@ -45,12 +45,16 @@ namespace LockstepSDK
         /// <param name="destinationCurrency">The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.</param>
         /// <param name="date">The date for which we should cto use for this currency conversion.</param>
         /// <param name="dataProvider">Optionally, you can specify a data provider.</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, DateTime date, string dataProvider)
+#else
         public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, DateTime? date, string? dataProvider)
+#endif
         {
             var url = $"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}";
-            var options = new Dictionary<string, object?>();
-            options["date"] = date;
-            options["dataProvider"] = dataProvider;
+            var options = new Dictionary<string, object>();
+            if (date != null) { options["date"] = date; }
+            if (dataProvider != null) { options["dataProvider"] = dataProvider; }
             return await _client.Request<CurrencyRateModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -60,11 +64,15 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="destinationCurrency">The currency to convert to.</param>
         /// <param name="body">A list of dates and source currencies.</param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<CurrencyRateModel[]>> Bulkcurrencydata(BulkCurrencyConversionModel[] body, string destinationCurrency)
+#else
         public async Task<LockstepResponse<CurrencyRateModel[]>> Bulkcurrencydata(BulkCurrencyConversionModel[] body, string? destinationCurrency)
+#endif
         {
             var url = $"/api/v1/Currencies/bulk";
-            var options = new Dictionary<string, object?>();
-            options["destinationCurrency"] = destinationCurrency;
+            var options = new Dictionary<string, object>();
+            if (destinationCurrency != null) { options["destinationCurrency"] = destinationCurrency; }
             return await _client.Request<CurrencyRateModel[]>(HttpMethod.Post, url, options, body, null);
         }
     }

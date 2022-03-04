@@ -51,7 +51,11 @@ namespace LockstepSDK
         /// <summary>
         /// The type code of the activity
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ActivityTypeCode { get; set; }
+#else
         public string? ActivityTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// The name of the activity.  The name is a short name provided by the
@@ -63,12 +67,20 @@ namespace LockstepSDK
         /// A description of the activity.  This field contains more detailed text about the
         /// activity and can be lengthy.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ActivityDescription { get; set; }
+#else
         public string? ActivityDescription { get; set; }
+#endif
 
         /// <summary>
         /// The status of the activity.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ActivityStatus { get; set; }
+#else
         public string? ActivityStatus { get; set; }
+#endif
 
         /// <summary>
         /// True if this activity is currently &quot;open&quot;, which indicates that the activity is
@@ -79,29 +91,49 @@ namespace LockstepSDK
         /// <summary>
         /// The priority of the activity.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Priority { get; set; }
+#else
         public string? Priority { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user the activity is assigned to.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid UserAssignedTo { get; set; }
+#else
         public Guid? UserAssignedTo { get; set; }
+#endif
 
         /// <summary>
         /// The date the activity was assigned.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime DateAssigned { get; set; }
+#else
         public DateTime? DateAssigned { get; set; }
+#endif
 
         /// <summary>
         /// The date the activity was closed.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime DateClosed { get; set; }
+#else
         public DateTime? DateClosed { get; set; }
+#endif
 
         /// <summary>
         /// If this activity has been &quot;snoozed&quot;, this field will be non-null and will contain
         /// the date when the activity will be displayed.  Until that date arrives, the activity
         /// will remain hidden.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime SnoozeUntilDate { get; set; }
+#else
         public DateTime? SnoozeUntilDate { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this activity was created.
@@ -155,12 +187,20 @@ namespace LockstepSDK
         ///
         /// To retrieve this collection, specify `Company` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CompanyModel Company { get; set; }
+#else
         public CompanyModel? Company { get; set; }
+#endif
 
         /// <summary>
         /// The name of the user the activity is assigned to
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UserAssignedToName { get; set; }
+#else
         public string? UserAssignedToName { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -170,7 +210,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -180,7 +224,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -190,7 +238,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -200,14 +252,22 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Activity` and the `ObjectKey` set to the `ActivityId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
 
         /// <summary>
         /// All references attached to this applied activity.
         ///
         /// To retrieve this collection, specify `References` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ActivityXRefModel[] References { get; set; }
+#else
         public ActivityXRefModel[]? References { get; set; }
+#endif
     }
 
     /// <summary>
@@ -224,12 +284,20 @@ namespace LockstepSDK
         /// <summary>
         /// The type code of the activity stream item.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ActivityStreamType { get; set; }
+#else
         public string? ActivityStreamType { get; set; }
+#endif
 
         /// <summary>
         /// The text body description for this Activity Stream Item.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TextValue { get; set; }
+#else
         public string? TextValue { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this activity stream item was created.
@@ -252,22 +320,38 @@ namespace LockstepSDK
         /// <summary>
         /// The sender&#39;s email address if activity stream item is an Email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FromEmailAddress { get; set; }
+#else
         public string? FromEmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// The recipient&#39;s email address if activity stream item is an Email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ToEmailAddress { get; set; }
+#else
         public string? ToEmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// The name of the contact sending the activity otherwise null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FromContactName { get; set; }
+#else
         public string? FromContactName { get; set; }
+#endif
 
         /// <summary>
         /// The name of the contact sending the activity otherwise null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ToContactName { get; set; }
+#else
         public string? ToContactName { get; set; }
+#endif
     }
 
     /// <summary>
@@ -298,12 +382,20 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the table the activity reference is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TableKey { get; set; }
+#else
         public string? TableKey { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the object the activity reference is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ObjectKey { get; set; }
+#else
         public string? ObjectKey { get; set; }
+#endif
     }
 
     /// <summary>
@@ -320,7 +412,11 @@ namespace LockstepSDK
         /// <summary>
         /// Currency code of aging bucket
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyCode { get; set; }
+#else
         public string? CurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// Outstanding balance for the given aging bucket
@@ -363,7 +459,11 @@ namespace LockstepSDK
         /// typically SBX or PRD. This can help you distinguish between keys created on the Sandbox environment
         /// from those created on Production.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Environment { get; set; }
+#else
         public string? Environment { get; set; }
+#endif
 
         /// <summary>
         /// The API key to use for authentication. This will only be returned upon creation of the API key.
@@ -371,13 +471,21 @@ namespace LockstepSDK
         ///
         /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ApiKey { get; set; }
+#else
         public string? ApiKey { get; set; }
+#endif
 
         /// <summary>
         /// The first 10 characters of the API key.  This information can be used to ensure that you are
         /// looking at the correct API Key, but cannot be used for authentication.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string KeyPrefix { get; set; }
+#else
         public string? KeyPrefix { get; set; }
+#endif
 
         /// <summary>
         /// The date the API key was created.
@@ -392,17 +500,29 @@ namespace LockstepSDK
         /// <summary>
         /// The date the API key was revoked.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Revoked { get; set; }
+#else
         public DateTime? Revoked { get; set; }
+#endif
 
         /// <summary>
         /// The user who revoked the API key.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid RevokedUserId { get; set; }
+#else
         public Guid? RevokedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The UTC datetime when the API key expires.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Expires { get; set; }
+#else
         public DateTime? Expires { get; set; }
+#endif
     }
 
     /// <summary>
@@ -424,12 +544,20 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// Tag for what type of app the application is
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AppType { get; set; }
+#else
         public string? AppType { get; set; }
+#endif
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -447,12 +575,20 @@ namespace LockstepSDK
         /// <summary>
         /// Text to display in-application for custom field
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CustomFieldLabel { get; set; }
+#else
         public string? CustomFieldLabel { get; set; }
+#endif
 
         /// <summary>
         /// Data type of the custom field definition
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DataType { get; set; }
+#else
         public string? DataType { get; set; }
+#endif
 
         /// <summary>
         /// Used for display logic when multiple app enrollment custom fields exist
@@ -462,7 +598,11 @@ namespace LockstepSDK
         /// <summary>
         /// Value for the field
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Value { get; set; }
+#else
         public string? Value { get; set; }
+#endif
     }
 
     /// <summary>
@@ -525,7 +665,11 @@ namespace LockstepSDK
         /// Stores schedule information for the application enrollment
         /// see https://en.wikipedia.org/wiki/Cron
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CronSettings { get; set; }
+#else
         public string? CronSettings { get; set; }
+#endif
 
         /// <summary>
         /// Flag indicating if the Sync process should be ran on the specified schedule
@@ -538,7 +682,11 @@ namespace LockstepSDK
         ///
         /// To retrieve this object, specify `App` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ApplicationModel App { get; set; }
+#else
         public ApplicationModel? App { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -548,7 +696,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `AppEnrollment` and the `ObjectKey` set to the `AppEnrollmentId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -558,25 +710,41 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `AppEnrollment` and the `ObjectKey` set to the `AppEnrollmentId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
 
         /// <summary>
         /// Data about the last sync attached to this app enrollment
         ///
         /// To retrieve this collection, specify `LastSync` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public SyncRequestModel LastSync { get; set; }
+#else
         public SyncRequestModel? LastSync { get; set; }
+#endif
 
         /// <summary>
         /// Data about the last successful sync associated with this enrollment
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public SyncRequestModel LastSuccessfulSync { get; set; }
+#else
         public SyncRequestModel? LastSuccessfulSync { get; set; }
+#endif
 
         /// <summary>
         /// Optional data necessary to create an app enrollment for a supported connector.
         /// Only enter relevant fields for the given connector.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ConnectorInfoModel ConnectorInfo { get; set; }
+#else
         public ConnectorInfoModel? ConnectorInfo { get; set; }
+#endif
     }
 
     /// <summary>
@@ -601,12 +769,20 @@ namespace LockstepSDK
         /// <summary>
         /// The name of this application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// Brief summary of this application shown as a subtitle
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Description { get; set; }
+#else
         public string? Description { get; set; }
+#endif
 
         /// <summary>
         /// Tag for what type of app this is
@@ -621,37 +797,65 @@ namespace LockstepSDK
         /// <summary>
         /// The URL to visit for more information about this application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Uri ProjectUrl { get; set; }
+#else
         public Uri? ProjectUrl { get; set; }
+#endif
 
         /// <summary>
         /// The URL for the icon for this application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Uri IconUrl { get; set; }
+#else
         public Uri? IconUrl { get; set; }
+#endif
 
         /// <summary>
         /// The description of the price for this application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PriceTerms { get; set; }
+#else
         public string? PriceTerms { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who created this application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CreatedUserId { get; set; }
+#else
         public Guid? CreatedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who last modified this application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ModifiedUserId { get; set; }
+#else
         public Guid? ModifiedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The date this application was created
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The date this application was last modified
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// Flag indicating if the application is active.
@@ -661,7 +865,11 @@ namespace LockstepSDK
         /// <summary>
         /// URL to the Wiki for the Application
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Uri WikiURL { get; set; }
+#else
         public Uri? WikiURL { get; set; }
+#endif
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -679,7 +887,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -689,7 +901,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -699,7 +915,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -709,7 +929,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Application` and the `ObjectKey` set to the `ApplicationId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
     }
 
     /// <summary>
@@ -729,7 +953,11 @@ namespace LockstepSDK
         /// <summary>
         /// The aging bucket this data belongs to.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReportBucket { get; set; }
+#else
         public string? ReportBucket { get; set; }
+#endif
 
         /// <summary>
         /// The total number of customers.
@@ -774,7 +1002,11 @@ namespace LockstepSDK
         /// <summary>
         /// The date of the report
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ReportPeriod { get; set; }
+#else
         public DateTime? ReportPeriod { get; set; }
+#endif
 
         /// <summary>
         /// The total number of customers.
@@ -881,7 +1113,11 @@ namespace LockstepSDK
         /// <summary>
         /// The date of the report
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ReportDate { get; set; }
+#else
         public DateTime? ReportDate { get; set; }
+#endif
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -894,7 +1130,11 @@ namespace LockstepSDK
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CustomerId { get; set; }
+#else
         public Guid? CustomerId { get; set; }
+#endif
 
         /// <summary>
         /// The unique ID number of this invoice.
@@ -905,27 +1145,47 @@ namespace LockstepSDK
         /// A reference code that is used to identify this invoice.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceNumber { get; set; }
+#else
         public string? InvoiceNumber { get; set; }
+#endif
 
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceDate { get; set; }
+#else
         public DateTime? InvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// The name of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CustomerName { get; set; }
+#else
         public string? CustomerName { get; set; }
+#endif
 
         /// <summary>
         /// The status of the invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Status { get; set; }
+#else
         public string? Status { get; set; }
+#endif
 
         /// <summary>
         /// The due date of the invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDueDate { get; set; }
+#else
         public DateTime? PaymentDueDate { get; set; }
+#endif
 
         /// <summary>
         /// The total amount of the Invoice.
@@ -940,12 +1200,20 @@ namespace LockstepSDK
         /// <summary>
         /// A code identifying the type of this Invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceTypeCode { get; set; }
+#else
         public string? InvoiceTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime NewestActivity { get; set; }
+#else
         public DateTime? NewestActivity { get; set; }
+#endif
 
         /// <summary>
         /// The number of days this Invoice is past due.
@@ -955,12 +1223,20 @@ namespace LockstepSDK
         /// <summary>
         /// The memo text of the payments associated to this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string[] PaymentNumbers { get; set; }
+#else
         public string[]? PaymentNumbers { get; set; }
+#endif
 
         /// <summary>
         /// The ids of the payments associated to this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid[] PaymentIds { get; set; }
+#else
         public Guid[]? PaymentIds { get; set; }
+#endif
     }
 
     /// <summary>
@@ -981,7 +1257,11 @@ namespace LockstepSDK
         /// The CompanyId associated with the attachment status report. Providing a null value will
         /// return an attachment summary for all attachments associated to the provided GroupKey
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CompanyId { get; set; }
+#else
         public Guid? CompanyId { get; set; }
+#endif
 
         /// <summary>
         /// The total number of attachments associated with the provided GroupKey and CompanyId.
@@ -1022,7 +1302,11 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the table the attachment is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TableKey { get; set; }
+#else
         public string? TableKey { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the object the attachment is associated with
@@ -1032,12 +1316,20 @@ namespace LockstepSDK
         /// <summary>
         /// Name of the file
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FileName { get; set; }
+#else
         public string? FileName { get; set; }
+#endif
 
         /// <summary>
         /// Extension type of the file
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FileExt { get; set; }
+#else
         public string? FileExt { get; set; }
+#endif
 
         /// <summary>
         /// Corresponding AttachmentType object to describe this attachment
@@ -1073,7 +1365,11 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -1081,7 +1377,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The date the attachment was created
@@ -1111,42 +1411,74 @@ namespace LockstepSDK
         /// <summary>
         /// A list of Company records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CompanySyncModel[] Companies { get; set; }
+#else
         public CompanySyncModel[]? Companies { get; set; }
+#endif
 
         /// <summary>
         /// A list of Contact records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ContactSyncModel[] Contacts { get; set; }
+#else
         public ContactSyncModel[]? Contacts { get; set; }
+#endif
 
         /// <summary>
         /// A list of CreditMemoApplied records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CreditMemoAppliedSyncModel[] CreditMemoApplications { get; set; }
+#else
         public CreditMemoAppliedSyncModel[]? CreditMemoApplications { get; set; }
+#endif
 
         /// <summary>
         /// A list of Invoice records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public InvoiceSyncModel[] Invoices { get; set; }
+#else
         public InvoiceSyncModel[]? Invoices { get; set; }
+#endif
 
         /// <summary>
         /// A list of InvoiceLine records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public InvoiceLineSyncModel[] InvoiceLines { get; set; }
+#else
         public InvoiceLineSyncModel[]? InvoiceLines { get; set; }
+#endif
 
         /// <summary>
         /// A list of CustomField records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldSyncModel[] CustomFields { get; set; }
+#else
         public CustomFieldSyncModel[]? CustomFields { get; set; }
+#endif
 
         /// <summary>
         /// A list of Payment records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public PaymentSyncModel[] Payments { get; set; }
+#else
         public PaymentSyncModel[]? Payments { get; set; }
+#endif
 
         /// <summary>
         /// A list of PaymentApplied records to merge with your Lockstep Platform data
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public PaymentAppliedSyncModel[] PaymentApplications { get; set; }
+#else
         public PaymentAppliedSyncModel[]? PaymentApplications { get; set; }
+#endif
     }
 
     /// <summary>
@@ -1222,17 +1554,29 @@ namespace LockstepSDK
         /// <summary>
         /// The type of the Code Definition
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CodeType { get; set; }
+#else
         public string? CodeType { get; set; }
+#endif
 
         /// <summary>
         /// The Code to be defined.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Code { get; set; }
+#else
         public string? Code { get; set; }
+#endif
 
         /// <summary>
         /// The definition of the Code
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CodeDescription { get; set; }
+#else
         public string? CodeDescription { get; set; }
+#endif
 
         /// <summary>
         /// The date that the Code Definition was created
@@ -1287,7 +1631,11 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// This field indicates the type of company.  It can be one of a limited number of values:
@@ -1301,14 +1649,22 @@ namespace LockstepSDK
         /// * `Third Party` - This record represents a business entity that is neither a customer nor vendor.
         /// * `CustomerVendor` - Both a customer and a vendor.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CompanyType { get; set; }
+#else
         public string? CompanyType { get; set; }
+#endif
 
         /// <summary>
         /// The status of the company.  Companies can be either `Active` or `Inactive`.  When matched to a
         /// Lockstep corporate profile, this value will change to reflect that this record will be kept
         /// in sync with that company&#39;s identity.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CompanyStatus { get; set; }
+#else
         public string? CompanyStatus { get; set; }
+#endif
 
         /// <summary>
         /// If this business entity is part of an organization, this value is non-null and it is set
@@ -1316,7 +1672,11 @@ namespace LockstepSDK
         ///
         /// If this value is null, this business entity is a standalone.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ParentCompanyId { get; set; }
+#else
         public Guid? ParentCompanyId { get; set; }
+#endif
 
         /// <summary>
         /// For convenience, this field indicates the top-level parent company.  This can be used
@@ -1344,67 +1704,119 @@ namespace LockstepSDK
         ///
         /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies)
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DefaultCurrencyCode { get; set; }
+#else
         public string? DefaultCurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// The URL of this company&#39;s logo, if known.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CompanyLogoUrl { get; set; }
+#else
         public string? CompanyLogoUrl { get; set; }
+#endif
 
         /// <summary>
         /// The Lockstep `ContactId` of the primary contact for this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryContactId { get; set; }
+#else
         public Guid? PrimaryContactId { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StateRegion { get; set; }
+#else
         public string? StateRegion { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// Address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Country { get; set; }
+#else
         public string? Country { get; set; }
+#endif
 
         /// <summary>
         /// Phone number
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PhoneNumber { get; set; }
+#else
         public string? PhoneNumber { get; set; }
+#endif
 
         /// <summary>
         /// Fax number
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FaxNumber { get; set; }
+#else
         public string? FaxNumber { get; set; }
+#endif
 
         /// <summary>
         /// The date this company was created
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who created this company
@@ -1414,7 +1826,11 @@ namespace LockstepSDK
         /// <summary>
         /// The date this company was last modified
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who last modified this company
@@ -1424,49 +1840,85 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the user who last modified this company
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ModifiedUserName { get; set; }
+#else
         public string? ModifiedUserName { get; set; }
+#endif
 
         /// <summary>
         /// Federal Tax ID
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TaxId { get; set; }
+#else
         public string? TaxId { get; set; }
+#endif
 
         /// <summary>
         /// Dun &amp; Bradstreet Number
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DunsNumber { get; set; }
+#else
         public string? DunsNumber { get; set; }
+#endif
 
         /// <summary>
         /// AP (Accounts Payable) Email Address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ApEmailAddress { get; set; }
+#else
         public string? ApEmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// AR (Accounts Receivable) Email Address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ArEmailAddress { get; set; }
+#else
         public string? ArEmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// For companies that use a custom domain name for their email system, this is
         /// the domain name used by this company.  If this value is known, new emails that
         /// come in from this domain will be connected to this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DomainName { get; set; }
+#else
         public string? DomainName { get; set; }
+#endif
 
         /// <summary>
         /// Identifier for classification of this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CompanyClassificationCodeDefId { get; set; }
+#else
         public Guid? CompanyClassificationCodeDefId { get; set; }
+#endif
 
         /// <summary>
         /// Description of the company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Description { get; set; }
+#else
         public string? Description { get; set; }
+#endif
 
         /// <summary>
         /// Website URL for this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Website { get; set; }
+#else
         public string? Website { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -1474,7 +1926,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -1484,7 +1940,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -1494,21 +1954,33 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// All contacts attached to this company.
         ///
         /// To retrieve this collection, specify `Contacts` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ContactModel[] Contacts { get; set; }
+#else
         public ContactModel[]? Contacts { get; set; }
+#endif
 
         /// <summary>
         /// All invoices attached to this company.
         ///
         /// To retrieve this collection, specify `Invoices` in the &quot;Include&quot; parameter for your query. For more information on Invoices, see [InvoiceModel](https://developer.lockstep.io/reference/get_api-v1-invoices-id).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public object[] Invoices { get; set; }
+#else
         public object[]? Invoices { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -1518,7 +1990,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -1528,14 +2004,22 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Company` and the `ObjectKey` set to the `CompanyId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
 
         /// <summary>
         /// Classification code definition for this company.
         ///
         /// To retrieve this collection, specify `Classification` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CodeDefinitionModel CompanyClassificationCodeDefinition { get; set; }
+#else
         public CodeDefinitionModel? CompanyClassificationCodeDefinition { get; set; }
+#endif
     }
 
     /// <summary>
@@ -1591,7 +2075,11 @@ namespace LockstepSDK
         /// <summary>
         /// An optional field including status codes.  Defined status codes are `Active` and `Inactive`.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CompanyStatus { get; set; }
+#else
         public string? CompanyStatus { get; set; }
+#endif
 
         /// <summary>
         /// If this company has a parent company, identify the parent company&#39;s `ErpKey` value here. This value should
@@ -1600,7 +2088,11 @@ namespace LockstepSDK
         ///
         /// If this company is not a child company, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ParentCompanyErpKey { get; set; }
+#else
         public string? ParentCompanyErpKey { get; set; }
+#endif
 
         /// <summary>
         /// This flag indicates whether the company is currently active. An inactive company will be hidden from the
@@ -1612,99 +2104,171 @@ namespace LockstepSDK
         /// The default currency code for transactions related to this company.  For a list of currency codes, see
         /// [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DefaultCurrencyCode { get; set; }
+#else
         public string? DefaultCurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// The URL of this company&#39;s logo, if known.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CompanyLogoUrl { get; set; }
+#else
         public string? CompanyLogoUrl { get; set; }
+#endif
 
         /// <summary>
         /// The `ErpKey` of the primary contact for this company.  This value should match the `ErpKey` value of the
         /// [Importing Contacts](https://developer.lockstep.io/docs/importing-contacts) record for the contact table.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PrimaryContactErpKey { get; set; }
+#else
         public string? PrimaryContactErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StateRegion { get; set; }
+#else
         public string? StateRegion { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s primary mailing address information This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Country { get; set; }
+#else
         public string? Country { get; set; }
+#endif
 
         /// <summary>
         /// The main phone number of this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PhoneNumber { get; set; }
+#else
         public string? PhoneNumber { get; set; }
+#endif
 
         /// <summary>
         /// The main fax number of this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FaxNumber { get; set; }
+#else
         public string? FaxNumber { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The company&#39;s Tax ID number for the appropriate government for this company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TaxId { get; set; }
+#else
         public string? TaxId { get; set; }
+#endif
 
         /// <summary>
         /// The Dun and Bradstreet number for this company, if known.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DunsNumber { get; set; }
+#else
         public string? DunsNumber { get; set; }
+#endif
 
         /// <summary>
         /// If you know the AP (accounts payable) email address of this company, fill it in here. This is the email
         /// address where you would send questions to the company if the company owed you money.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ApEmailAddress { get; set; }
+#else
         public string? ApEmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// If you know the AR (accounts receivable) email address of this company, fill it in here. This is the email
         /// address where you would send questions to the company if you owed this company money.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ArEmailAddress { get; set; }
+#else
         public string? ArEmailAddress { get; set; }
+#endif
     }
 
     /// <summary>
@@ -1718,22 +2282,38 @@ namespace LockstepSDK
         /// The authorization code returned from the first step of the OAuth2 flow
         /// https://oauth.net/2/grant-types/authorization-code/
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AuthCode { get; set; }
+#else
         public string? AuthCode { get; set; }
+#endif
 
         /// <summary>
         /// The realm id of the account being granted permissions to access
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RealmId { get; set; }
+#else
         public string? RealmId { get; set; }
+#endif
 
         /// <summary>
         /// The redirect uri used for step one of the OAuth2.0 flow.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RedirectUri { get; set; }
+#else
         public string? RedirectUri { get; set; }
+#endif
 
         /// <summary>
         /// The email an email connection is being created for.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Email { get; set; }
+#else
         public string? Email { get; set; }
+#endif
     }
 
     /// <summary>
@@ -1775,77 +2355,137 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The name of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ContactName { get; set; }
+#else
         public string? ContactName { get; set; }
+#endif
 
         /// <summary>
         /// A friendly human-readable code that describes this Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ContactCode { get; set; }
+#else
         public string? ContactCode { get; set; }
+#endif
 
         /// <summary>
         /// The title of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Title { get; set; }
+#else
         public string? Title { get; set; }
+#endif
 
         /// <summary>
         /// The role code for the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RoleCode { get; set; }
+#else
         public string? RoleCode { get; set; }
+#endif
 
         /// <summary>
         /// The email address of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailAddress { get; set; }
+#else
         public string? EmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// The phone number of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Phone { get; set; }
+#else
         public string? Phone { get; set; }
+#endif
 
         /// <summary>
         /// The fax number of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Fax { get; set; }
+#else
         public string? Fax { get; set; }
+#endif
 
         /// <summary>
         /// The first line of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// The second line of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// The third line of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// The city of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// The state/region of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StateRegion { get; set; }
+#else
         public string? StateRegion { get; set; }
+#endif
 
         /// <summary>
         /// The postal/zip code of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The two character country code of the address. This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CountryCode { get; set; }
+#else
         public string? CountryCode { get; set; }
+#endif
 
         /// <summary>
         /// Flag indicating if the contact is active.
@@ -1855,17 +2495,29 @@ namespace LockstepSDK
         /// <summary>
         /// The webpage url of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Uri WebpageUrl { get; set; }
+#else
         public Uri? WebpageUrl { get; set; }
+#endif
 
         /// <summary>
         /// The picture/avatar url of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Uri PictureUrl { get; set; }
+#else
         public Uri? PictureUrl { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this record was created.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who created this contact.
@@ -1875,7 +2527,11 @@ namespace LockstepSDK
         /// <summary>
         /// The date on which this record was last modified.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who last modified this contact.
@@ -1888,7 +2544,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -1898,7 +2558,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -1908,7 +2572,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -1918,7 +2586,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -1928,7 +2600,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Contact` and the `ObjectKey` set to the `ContactId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
     }
 
     /// <summary>
@@ -1972,67 +2648,119 @@ namespace LockstepSDK
         /// <summary>
         /// A friendly human-readable code that describes this Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ContactCode { get; set; }
+#else
         public string? ContactCode { get; set; }
+#endif
 
         /// <summary>
         /// The title of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Title { get; set; }
+#else
         public string? Title { get; set; }
+#endif
 
         /// <summary>
         /// The role code for the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RoleCode { get; set; }
+#else
         public string? RoleCode { get; set; }
+#endif
 
         /// <summary>
         /// The email address of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailAddress { get; set; }
+#else
         public string? EmailAddress { get; set; }
+#endif
 
         /// <summary>
         /// The phone number of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Phone { get; set; }
+#else
         public string? Phone { get; set; }
+#endif
 
         /// <summary>
         /// The fax number of the contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Fax { get; set; }
+#else
         public string? Fax { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StateRegion { get; set; }
+#else
         public string? StateRegion { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The mailing address information for this contact. This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CountryCode { get; set; }
+#else
         public string? CountryCode { get; set; }
+#endif
 
         /// <summary>
         /// True if this contact is considered &quot;active&quot;.
@@ -2042,26 +2770,42 @@ namespace LockstepSDK
         /// <summary>
         /// A webpage URL for more information about this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string WebpageUrl { get; set; }
+#else
         public string? WebpageUrl { get; set; }
+#endif
 
         /// <summary>
         /// If available, the URL of a photograph that shows this contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PictureUrl { get; set; }
+#else
         public string? PictureUrl { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2073,17 +2817,29 @@ namespace LockstepSDK
         /// <summary>
         /// Name of the country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// 2 letter alphabetic code for the given country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Alpha2 { get; set; }
+#else
         public string? Alpha2 { get; set; }
+#endif
 
         /// <summary>
         /// 3 letter alphabetic code for the given country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Alpha3 { get; set; }
+#else
         public string? Alpha3 { get; set; }
+#endif
 
         /// <summary>
         /// Unique 3 digit number for the given country
@@ -2093,17 +2849,29 @@ namespace LockstepSDK
         /// <summary>
         /// Region of the country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Region { get; set; }
+#else
         public string? Region { get; set; }
+#endif
 
         /// <summary>
         /// Subregion of the country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SubRegion { get; set; }
+#else
         public string? SubRegion { get; set; }
+#endif
 
         /// <summary>
         /// Intermediate region of the country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string IntermediateRegion { get; set; }
+#else
         public string? IntermediateRegion { get; set; }
+#endif
 
         /// <summary>
         /// Numeric code for a region
@@ -2123,12 +2891,20 @@ namespace LockstepSDK
         /// <summary>
         /// French name of the country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FrenchName { get; set; }
+#else
         public string? FrenchName { get; set; }
+#endif
 
         /// <summary>
         /// A different name for a country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Aliases { get; set; }
+#else
         public string? Aliases { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2185,7 +2961,11 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// Reference number for the applied credit memo.
@@ -2228,7 +3008,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -2238,7 +3022,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -2248,7 +3036,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -2258,7 +3050,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -2268,7 +3064,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `CreditMemoApplied` and the `ObjectKey` set to the `CreditMemoAppliedId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2336,14 +3136,22 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2379,7 +3187,11 @@ namespace LockstepSDK
         /// <summary>
         /// Date invoice applied to credit memo.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ApplyToInvoiceDate { get; set; }
+#else
         public DateTime? ApplyToInvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// Amount applied to credit memo.
@@ -2390,22 +3202,38 @@ namespace LockstepSDK
         /// An additional reference code that is sometimes used to identify this invoice.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the company that created this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CompanyId { get; set; }
+#else
         public Guid? CompanyId { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CustomerId { get; set; }
+#else
         public Guid? CustomerId { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the status of this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceStatusCode { get; set; }
+#else
         public string? InvoiceStatusCode { get; set; }
+#endif
 
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
@@ -2427,17 +3255,29 @@ namespace LockstepSDK
         /// <summary>
         /// Alphabetic code for the given currency
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AlphaCode { get; set; }
+#else
         public string? AlphaCode { get; set; }
+#endif
 
         /// <summary>
         /// Numeric code for the given currency
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string NumericCode { get; set; }
+#else
         public string? NumericCode { get; set; }
+#endif
 
         /// <summary>
         /// Name of currency
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyName { get; set; }
+#else
         public string? CurrencyName { get; set; }
+#endif
 
         /// <summary>
         /// Number of places after the decimal for this currency
@@ -2447,7 +3287,11 @@ namespace LockstepSDK
         /// <summary>
         /// Symbol for the given currency
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Symbol { get; set; }
+#else
         public string? Symbol { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2499,57 +3343,101 @@ namespace LockstepSDK
         /// <summary>
         /// The unique ID of this customer
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// Customer address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// Customer address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// Customer address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// Customer address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// Customer address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string State { get; set; }
+#else
         public string? State { get; set; }
+#endif
 
         /// <summary>
         /// Customer address info
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// Customer address country
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Country { get; set; }
+#else
         public string? Country { get; set; }
+#endif
 
         /// <summary>
         /// Customer phone number
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PhoneNumber { get; set; }
+#else
         public string? PhoneNumber { get; set; }
+#endif
 
         /// <summary>
         /// Customer fax number
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FaxNumber { get; set; }
+#else
         public string? FaxNumber { get; set; }
+#endif
 
         /// <summary>
         /// Customer AR email address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Email { get; set; }
+#else
         public string? Email { get; set; }
+#endif
 
         /// <summary>
         /// Customer primary contact id
@@ -2559,12 +3447,20 @@ namespace LockstepSDK
         /// <summary>
         /// Customer primary contact name
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ContactName { get; set; }
+#else
         public string? ContactName { get; set; }
+#endif
 
         /// <summary>
         /// Customer primary contact email address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ContactEmail { get; set; }
+#else
         public string? ContactEmail { get; set; }
+#endif
 
         /// <summary>
         /// Customer number of outstanding invoices
@@ -2584,7 +3480,11 @@ namespace LockstepSDK
         /// <summary>
         /// Customer payments collected
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomerDetailsPaymentModel[] Payments { get; set; }
+#else
         public CustomerDetailsPaymentModel[]? Payments { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2609,27 +3509,47 @@ namespace LockstepSDK
         /// <summary>
         /// Unique identifier for payment applied
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PaymentAppliedId { get; set; }
+#else
         public Guid? PaymentAppliedId { get; set; }
+#endif
 
         /// <summary>
         /// Payment type
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PaymentType { get; set; }
+#else
         public string? PaymentType { get; set; }
+#endif
 
         /// <summary>
         /// Unique identifier for invoice payment is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid InvoiceId { get; set; }
+#else
         public Guid? InvoiceId { get; set; }
+#endif
 
         /// <summary>
         /// Invoice type payment is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceTypeCode { get; set; }
+#else
         public string? InvoiceTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// Invoice reference code payment is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceReferenceCode { get; set; }
+#else
         public string? InvoiceReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// Invoice total amount payment is associated with
@@ -2669,12 +3589,20 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the company.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CompanyName { get; set; }
+#else
         public string? CompanyName { get; set; }
+#endif
 
         /// <summary>
         /// The name of the primary contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PrimaryContact { get; set; }
+#else
         public string? PrimaryContact { get; set; }
+#endif
 
         /// <summary>
         /// The number of outstanding invoices for this customer.
@@ -2729,7 +3657,11 @@ namespace LockstepSDK
         /// <summary>
         /// The date stamp for the newest Activity on this Customer.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime NewestActivity { get; set; }
+#else
         public DateTime? NewestActivity { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2760,22 +3692,38 @@ namespace LockstepSDK
         /// <summary>
         /// Table to which this definition belongs
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TableKey { get; set; }
+#else
         public string? TableKey { get; set; }
+#endif
 
         /// <summary>
         /// Id of app this definition belongs to
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppId { get; set; }
+#else
         public Guid? AppId { get; set; }
+#endif
 
         /// <summary>
         /// Text to display in-application for custom field
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CustomFieldLabel { get; set; }
+#else
         public string? CustomFieldLabel { get; set; }
+#endif
 
         /// <summary>
         /// Data type of this definition
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DataType { get; set; }
+#else
         public string? DataType { get; set; }
+#endif
 
         /// <summary>
         /// Used for display logic when multiple custom fields exist
@@ -2808,7 +3756,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2869,21 +3821,33 @@ namespace LockstepSDK
         /// <summary>
         /// The value of this custom field.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Value { get; set; }
+#else
         public string? Value { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2942,17 +3906,29 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The value of this custom field.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Value { get; set; }
+#else
         public string? Value { get; set; }
+#endif
 
         /// <summary>
         /// Definition of the value
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel CustomFieldDefinition { get; set; }
+#else
         public CustomFieldDefinitionModel? CustomFieldDefinition { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3030,37 +4006,65 @@ namespace LockstepSDK
         /// <summary>
         /// The ID number of the company that created this email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CompanyId { get; set; }
+#else
         public Guid? CompanyId { get; set; }
+#endif
 
         /// <summary>
         /// The email address for the sender of this email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailFrom { get; set; }
+#else
         public string? EmailFrom { get; set; }
+#endif
 
         /// <summary>
         /// The email address for the recipient(s) of this email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailTo { get; set; }
+#else
         public string? EmailTo { get; set; }
+#endif
 
         /// <summary>
         /// The email address for the CC recipient(s) of this email
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailCC { get; set; }
+#else
         public string? EmailCC { get; set; }
+#endif
 
         /// <summary>
         /// The subject line of this email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailSubject { get; set; }
+#else
         public string? EmailSubject { get; set; }
+#endif
 
         /// <summary>
         /// The body content of this email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailBody { get; set; }
+#else
         public string? EmailBody { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this email was sent.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime SentDate { get; set; }
+#else
         public DateTime? SentDate { get; set; }
+#endif
 
         /// <summary>
         /// A status flag indicating if this email is unread.
@@ -3095,17 +4099,29 @@ namespace LockstepSDK
         /// <summary>
         /// The ID number of the customer that sent this email.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CustomerId { get; set; }
+#else
         public Guid? CustomerId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this email was received.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ReceivedTimeStamp { get; set; }
+#else
         public DateTime? ReceivedTimeStamp { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this email was opened.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime OpenedTimestamp { get; set; }
+#else
         public DateTime? OpenedTimestamp { get; set; }
+#endif
 
         /// <summary>
         /// The number of times this email was viewed.
@@ -3118,27 +4134,47 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The id of the email in an external system if imported.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ExternalEmailId { get; set; }
+#else
         public string? ExternalEmailId { get; set; }
+#endif
 
         /// <summary>
         /// The id of the email thread in an external system if imported.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ExternalThreadId { get; set; }
+#else
         public string? ExternalThreadId { get; set; }
+#endif
 
         /// <summary>
         /// The email address(es) for the BCC recipient(s) of this email
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EmailBcc { get; set; }
+#else
         public string? EmailBcc { get; set; }
+#endif
 
         /// <summary>
         /// The type message being sent (New, Reply, Forward) or null for messages not being sent.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SendType { get; set; }
+#else
         public string? SendType { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this email was modified.
@@ -3156,12 +4192,20 @@ namespace LockstepSDK
         /// If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
         /// Otherwise null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ResponseOriginId { get; set; }
+#else
         public Guid? ResponseOriginId { get; set; }
+#endif
 
         /// <summary>
         /// The email object associated with the response origin id.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public EmailModel ResponseOrigin { get; set; }
+#else
         public EmailModel? ResponseOrigin { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -3171,7 +4215,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -3181,7 +4229,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -3191,7 +4243,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -3201,7 +4257,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Email` and the `ObjectKey` set to the `EmailId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3215,17 +4275,29 @@ namespace LockstepSDK
         /// The authorization code returned from the first step of the OAuth2 flow
         /// https://oauth.net/2/grant-types/authorization-code/
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AuthCode { get; set; }
+#else
         public string? AuthCode { get; set; }
+#endif
 
         /// <summary>
         /// The realm id of the account being granted permissions to access
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RealmId { get; set; }
+#else
         public string? RealmId { get; set; }
+#endif
 
         /// <summary>
         /// The redirect uri used for step one of the OAuth2.0 flow.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RedirectUri { get; set; }
+#else
         public string? RedirectUri { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3242,7 +4314,11 @@ namespace LockstepSDK
         /// <summary>
         /// The data required to store for connector access
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ConnectorInfoModel Data { get; set; }
+#else
         public ConnectorInfoModel? Data { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3259,7 +4335,11 @@ namespace LockstepSDK
         /// <summary>
         /// Name of ERP
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// Flag to indicate if ERP is supported
@@ -3298,7 +4378,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The financial year that this period falls under
@@ -3325,7 +4409,11 @@ namespace LockstepSDK
         /// if not the status should be Open. The status can also be Deleted if there was a recalculation that needed
         /// to occur, for example due to a change in financial year settings.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Status { get; set; }
+#else
         public string? Status { get; set; }
+#endif
 
         /// <summary>
         /// The current or end balance of this period.
@@ -3376,55 +4464,95 @@ namespace LockstepSDK
         /// The code for the Financial Account. Can either be a general ledger or
         /// an account code.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Code { get; set; }
+#else
         public string? Code { get; set; }
+#endif
 
         /// <summary>
         /// The External Id for the Financial Account.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The App Enrollment Id for the Financial Account.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The name of the Financial Account.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// The status of the Financial Account. Possible values are active,
         /// inactive, deleted or archived.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Status { get; set; }
+#else
         public string? Status { get; set; }
+#endif
 
         /// <summary>
         /// The cashflow type for the Financial Account. Examples include cash, financing, investment
         /// or operation.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CashflowType { get; set; }
+#else
         public string? CashflowType { get; set; }
+#endif
 
         /// <summary>
         /// The description for the Financial Account.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Description { get; set; }
+#else
         public string? Description { get; set; }
+#endif
 
         /// <summary>
         /// The classification for the Financial Account. Possible values are Asset, Equity,
         /// Expense, Liability or Revenue.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Classification { get; set; }
+#else
         public string? Classification { get; set; }
+#endif
 
         /// <summary>
         /// The category for the Financial Account. Examples include Current Asset, Current Liability, Common Stock
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Category { get; set; }
+#else
         public string? Category { get; set; }
+#endif
 
         /// <summary>
         /// The subcategory for the Financial Account. Examples include Cash, Property, Bank Loan, etc.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Subcategory { get; set; }
+#else
         public string? Subcategory { get; set; }
+#endif
 
         /// <summary>
         /// The date the FinancialAccount was created.
@@ -3475,12 +4603,20 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The type of financial year, either Calendar or Fiscal.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string YearType { get; set; }
+#else
         public string? YearType { get; set; }
+#endif
 
         /// <summary>
         /// Total number of periods in the year. For Calendar year types this should always be 12. For Fiscal year types
@@ -3491,12 +4627,20 @@ namespace LockstepSDK
         /// <summary>
         /// The start date of the financial year. Should be entered in MM-DD format.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime StartDate { get; set; }
+#else
         public DateTime? StartDate { get; set; }
+#endif
 
         /// <summary>
         /// The end date of the financial year. Should be entered in MM-DD format.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime EndDate { get; set; }
+#else
         public DateTime? EndDate { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this financial year setting record was created.
@@ -3528,12 +4672,20 @@ namespace LockstepSDK
         /// <summary>
         /// The email address of the invited user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Email { get; set; }
+#else
         public string? Email { get; set; }
+#endif
 
         /// <summary>
         /// The status of the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UserStatus { get; set; }
+#else
         public string? UserStatus { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3545,7 +4697,11 @@ namespace LockstepSDK
         /// <summary>
         /// The invited email address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Email { get; set; }
+#else
         public string? Email { get; set; }
+#endif
 
         /// <summary>
         /// True if the invite was sent successfully
@@ -3555,12 +4711,20 @@ namespace LockstepSDK
         /// <summary>
         /// The invited user, may be null if the user could not be invited
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public UserAccountModel InvitedUser { get; set; }
+#else
         public UserAccountModel? InvitedUser { get; set; }
+#endif
 
         /// <summary>
         /// The error message if the invite was not successful
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErrorMessage { get; set; }
+#else
         public string? ErrorMessage { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3603,37 +4767,65 @@ namespace LockstepSDK
         /// <summary>
         /// The first line of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Line1 { get; set; }
+#else
         public string? Line1 { get; set; }
+#endif
 
         /// <summary>
         /// The second line of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Line2 { get; set; }
+#else
         public string? Line2 { get; set; }
+#endif
 
         /// <summary>
         /// The third line of the address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Line3 { get; set; }
+#else
         public string? Line3 { get; set; }
+#endif
 
         /// <summary>
         /// The name of the city for this address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// The state or region part of this address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Region { get; set; }
+#else
         public string? Region { get; set; }
+#endif
 
         /// <summary>
         /// The postal code for this address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The country for this address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Country { get; set; }
+#else
         public string? Country { get; set; }
+#endif
 
         /// <summary>
         /// The latitude of this address, if available.
@@ -3648,22 +4840,38 @@ namespace LockstepSDK
         /// <summary>
         /// The date on which this address record was created.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who created this address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CreatedUserId { get; set; }
+#else
         public Guid? CreatedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this address record was last modified.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who most recently modified this address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ModifiedUserId { get; set; }
+#else
         public Guid? ModifiedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3671,7 +4879,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3722,53 +4934,93 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The purchase order code as it exists in the user&#39;s ERP or accounting system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PurchaseOrderCode { get; set; }
+#else
         public string? PurchaseOrderCode { get; set; }
+#endif
 
         /// <summary>
         /// An additional reference code that is sometimes used to identify this invoice.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the salesperson responsible for writing this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SalespersonCode { get; set; }
+#else
         public string? SalespersonCode { get; set; }
+#endif
 
         /// <summary>
         /// A string identifying the salesperson responsible for writing this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SalespersonName { get; set; }
+#else
         public string? SalespersonName { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the type of this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceTypeCode { get; set; }
+#else
         public string? InvoiceTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the status of this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceStatusCode { get; set; }
+#else
         public string? InvoiceStatusCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the terms given to the purchaser.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TermsCode { get; set; }
+#else
         public string? TermsCode { get; set; }
+#endif
 
         /// <summary>
         /// If the customer negotiated any special terms different from the standard terms above, describe them here.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SpecialTerms { get; set; }
+#else
         public string? SpecialTerms { get; set; }
+#endif
 
         /// <summary>
         /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyCode { get; set; }
+#else
         public string? CurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
@@ -3793,68 +5045,120 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceDate { get; set; }
+#else
         public DateTime? InvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime DiscountDate { get; set; }
+#else
         public DateTime? DiscountDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PostedDate { get; set; }
+#else
         public DateTime? PostedDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceClosedDate { get; set; }
+#else
         public DateTime? InvoiceClosedDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDueDate { get; set; }
+#else
         public DateTime? PaymentDueDate { get; set; }
+#endif
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ImportedDate { get; set; }
+#else
         public DateTime? ImportedDate { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the invoice&#39;s origination address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryOriginAddressId { get; set; }
+#else
         public Guid? PrimaryOriginAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the invoice&#39;s bill-to address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryBillToAddressId { get; set; }
+#else
         public Guid? PrimaryBillToAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the invoice&#39;s ship-to address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryShipToAddressId { get; set; }
+#else
         public Guid? PrimaryShipToAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this invoice record was created.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who created this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CreatedUserId { get; set; }
+#else
         public Guid? CreatedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this invoice record was last modified.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who most recently modified this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ModifiedUserId { get; set; }
+#else
         public Guid? ModifiedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3862,7 +5166,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
     }
 
     /// <summary>
@@ -3902,29 +5210,49 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to
         /// get the original view of lines within the invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string LineNumber { get; set; }
+#else
         public string? LineNumber { get; set; }
+#endif
 
         /// <summary>
         /// A code number identifying the product or service that is specified on this line.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ProductCode { get; set; }
+#else
         public string? ProductCode { get; set; }
+#endif
 
         /// <summary>
         /// Description of this invoice line.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Description { get; set; }
+#else
         public string? Description { get; set; }
+#endif
 
         /// <summary>
         /// For lines measured in a unit other than &quot;quantity&quot;, this code indicates the measurement system for the quantity field.
         /// If the line is measured in quantity, this field is null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UnitMeasureCode { get; set; }
+#else
         public string? UnitMeasureCode { get; set; }
+#endif
 
         /// <summary>
         /// The price of a single unit for this line.
@@ -3954,48 +5282,84 @@ namespace LockstepSDK
         /// <summary>
         /// If this line is tax exempt, this code indicates the reason for the exemption.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ExemptionCode { get; set; }
+#else
         public string? ExemptionCode { get; set; }
+#endif
 
         /// <summary>
         /// If null, the products specified on this line were delivered on the same date as all other lines.
         /// If not null, this line was delivered or finalized on a different date than the overall invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ReportingDate { get; set; }
+#else
         public DateTime? ReportingDate { get; set; }
+#endif
 
         /// <summary>
         /// An optional ID number for the line&#39;s origin address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid OverrideOriginAddressId { get; set; }
+#else
         public Guid? OverrideOriginAddressId { get; set; }
+#endif
 
         /// <summary>
         /// An optional ID number for the line&#39;s bill to address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid OverrideBillToAddressId { get; set; }
+#else
         public Guid? OverrideBillToAddressId { get; set; }
+#endif
 
         /// <summary>
         /// An optional ID number for the line&#39;s ship to address.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid OverrideShipToAddressId { get; set; }
+#else
         public Guid? OverrideShipToAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this line was created.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who created this line.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CreatedUserId { get; set; }
+#else
         public Guid? CreatedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this line was last modified.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who most recently modified this line.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ModifiedUserId { get; set; }
+#else
         public Guid? ModifiedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -4003,7 +5367,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -4013,7 +5381,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `InvoiceLine` and the `ObjectKey` set to the `InvoiceLineId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -4023,7 +5395,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `InvoiceLine` and the `ObjectKey` set to the `InvoiceLineId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
     }
 
     /// <summary>
@@ -4068,18 +5444,30 @@ namespace LockstepSDK
         /// <summary>
         /// A code number identifying the product or service that is specified on this line.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ProductCode { get; set; }
+#else
         public string? ProductCode { get; set; }
+#endif
 
         /// <summary>
         /// Description of this invoice line.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Description { get; set; }
+#else
         public string? Description { get; set; }
+#endif
 
         /// <summary>
         /// For lines measured in a unit other than &quot;quantity&quot;, this code indicates the measurement system for the quantity field.
         /// If the line is measured in quantity, this field is null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UnitMeasureCode { get; set; }
+#else
         public string? UnitMeasureCode { get; set; }
+#endif
 
         /// <summary>
         /// The price of a single unit for this line.
@@ -4109,48 +5497,84 @@ namespace LockstepSDK
         /// <summary>
         /// If this line is tax exempt, this code indicates the reason for the exemption.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ExemptionCode { get; set; }
+#else
         public string? ExemptionCode { get; set; }
+#endif
 
         /// <summary>
         /// If null, the products specified on this line were delivered on the same date as all other lines.
         /// If not null, this line was delivered or finalized on a different date than the overall invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ReportingDate { get; set; }
+#else
         public DateTime? ReportingDate { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressLine1 { get; set; }
+#else
         public string? OriginAddressLine1 { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressLine2 { get; set; }
+#else
         public string? OriginAddressLine2 { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressLine3 { get; set; }
+#else
         public string? OriginAddressLine3 { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressCity { get; set; }
+#else
         public string? OriginAddressCity { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressRegion { get; set; }
+#else
         public string? OriginAddressRegion { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressPostalCode { get; set; }
+#else
         public string? OriginAddressPostalCode { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressCountry { get; set; }
+#else
         public string? OriginAddressCountry { get; set; }
+#endif
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
@@ -4165,37 +5589,65 @@ namespace LockstepSDK
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressLine1 { get; set; }
+#else
         public string? BillToAddressLine1 { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressLine2 { get; set; }
+#else
         public string? BillToAddressLine2 { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressLine3 { get; set; }
+#else
         public string? BillToAddressLine3 { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressCity { get; set; }
+#else
         public string? BillToAddressCity { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressRegion { get; set; }
+#else
         public string? BillToAddressRegion { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressPostalCode { get; set; }
+#else
         public string? BillToAddressPostalCode { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressCountry { get; set; }
+#else
         public string? BillToAddressCountry { get; set; }
+#endif
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
@@ -4210,37 +5662,65 @@ namespace LockstepSDK
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressLine1 { get; set; }
+#else
         public string? ShipToAddressLine1 { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressLine2 { get; set; }
+#else
         public string? ShipToAddressLine2 { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressLine3 { get; set; }
+#else
         public string? ShipToAddressLine3 { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressCity { get; set; }
+#else
         public string? ShipToAddressCity { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressRegion { get; set; }
+#else
         public string? ShipToAddressRegion { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressPostalCode { get; set; }
+#else
         public string? ShipToAddressPostalCode { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressCountry { get; set; }
+#else
         public string? ShipToAddressCountry { get; set; }
+#endif
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
@@ -4257,14 +5737,22 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
     }
 
     /// <summary>
@@ -4313,30 +5801,50 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The &quot;Purchase Order Code&quot; is a code that is sometimes used by companies to refer to the original PO
         /// that was sent that caused this invoice to be written.  If a customer sends a purchase order to a vendor,
         /// the vendor can then create an invoice and refer back to the originating purchase order using this field.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PurchaseOrderCode { get; set; }
+#else
         public string? PurchaseOrderCode { get; set; }
+#endif
 
         /// <summary>
         /// An additional reference code that is sometimes used to identify this invoice.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the salesperson responsible for writing this quote, invoice, or order.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SalespersonCode { get; set; }
+#else
         public string? SalespersonCode { get; set; }
+#endif
 
         /// <summary>
         /// A name identifying the salesperson responsible for writing this quote, invoice, or order.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SalespersonName { get; set; }
+#else
         public string? SalespersonName { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the type of this invoice.
@@ -4346,7 +5854,11 @@ namespace LockstepSDK
         /// * `AP Invoice` - Represents an invoice sent by Customer to the Company
         /// * `Credit Memo` - Represents a credit memo generated by Customer given to Company
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceTypeCode { get; set; }
+#else
         public string? InvoiceTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the status of this invoice.
@@ -4355,23 +5867,39 @@ namespace LockstepSDK
         /// * `Open` - Represents an invoice that is considered open and needs more work to complete
         /// * `Closed` - Represents an invoice that is considered closed and resolved
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceStatusCode { get; set; }
+#else
         public string? InvoiceStatusCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the terms given to the purchaser.  This field is imported directly from the originating
         /// financial system and does not follow a specified format.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TermsCode { get; set; }
+#else
         public string? TermsCode { get; set; }
+#endif
 
         /// <summary>
         /// If the customer negotiated any special terms different from the standard terms above, describe them here.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SpecialTerms { get; set; }
+#else
         public string? SpecialTerms { get; set; }
+#endif
 
         /// <summary>
         /// The three-character ISO 4217 currency code used for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyCode { get; set; }
+#else
         public string? CurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
@@ -4396,68 +5924,120 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceDate { get; set; }
+#else
         public DateTime? InvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime DiscountDate { get; set; }
+#else
         public DateTime? DiscountDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PostedDate { get; set; }
+#else
         public DateTime? PostedDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceClosedDate { get; set; }
+#else
         public DateTime? InvoiceClosedDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDueDate { get; set; }
+#else
         public DateTime? PaymentDueDate { get; set; }
+#endif
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ImportedDate { get; set; }
+#else
         public DateTime? ImportedDate { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the invoice&#39;s origination address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryOriginAddressId { get; set; }
+#else
         public Guid? PrimaryOriginAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the invoice&#39;s bill-to address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryBillToAddressId { get; set; }
+#else
         public Guid? PrimaryBillToAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the invoice&#39;s ship-to address
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid PrimaryShipToAddressId { get; set; }
+#else
         public Guid? PrimaryShipToAddressId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this invoice record was created.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who created this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CreatedUserId { get; set; }
+#else
         public Guid? CreatedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this invoice record was last modified.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the user who most recently modified this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ModifiedUserId { get; set; }
+#else
         public Guid? ModifiedUserId { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -4465,7 +6045,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// Is the invoice voided?
@@ -4486,19 +6070,31 @@ namespace LockstepSDK
         /// All addresses connected to this invoice.
         /// To retrieve this collection, specify `Addresses` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public InvoiceAddressModel[] Addresses { get; set; }
+#else
         public InvoiceAddressModel[]? Addresses { get; set; }
+#endif
 
         /// <summary>
         /// All lines attached to this invoice.
         /// To retrieve this collection, specify `Lines` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public InvoiceLineModel[] Lines { get; set; }
+#else
         public InvoiceLineModel[]? Lines { get; set; }
+#endif
 
         /// <summary>
         /// All payments attached to this invoice, the amount of the payment applied to this Invoice, and the date the Payment was applied.
         /// To retrieve this collection, specify `Payments` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public InvoicePaymentDetailModel[] Payments { get; set; }
+#else
         public InvoicePaymentDetailModel[]? Payments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -4508,7 +6104,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -4518,31 +6118,51 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// The Company associated to this invoice.
         /// To retrieve this item, specify `Company` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CompanyModel Company { get; set; }
+#else
         public CompanyModel? Company { get; set; }
+#endif
 
         /// <summary>
         /// The Customer associated to the invoice customer
         /// To retrieve this item, specify `Customer` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CompanyModel Customer { get; set; }
+#else
         public CompanyModel? Customer { get; set; }
+#endif
 
         /// <summary>
         /// The Contact associated to the invoice customer
         /// To retrieve this item, specify `Customer` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ContactModel CustomerPrimaryContact { get; set; }
+#else
         public ContactModel? CustomerPrimaryContact { get; set; }
+#endif
 
         /// <summary>
         /// The credit memos associated to this invoice.
         /// To retrieve this item, specify `CreditMemos` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CreditMemoInvoiceModel[] CreditMemos { get; set; }
+#else
         public CreditMemoInvoiceModel[]? CreditMemos { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -4552,7 +6172,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -4562,7 +6186,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Invoice` and the `ObjectKey` set to the `InvoiceId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
     }
 
     /// <summary>
@@ -4597,7 +6225,11 @@ namespace LockstepSDK
         /// <summary>
         /// Date Payment applied to Invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ApplyToInvoiceDate { get; set; }
+#else
         public DateTime? ApplyToInvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// Amount applied to Invoice.
@@ -4608,12 +6240,20 @@ namespace LockstepSDK
         /// An additional reference code that is sometimes used to identify this Payment.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// The ID number of the Company (CompanyType = &quot;Customer&quot;) that created this Payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CompanyId { get; set; }
+#else
         public Guid? CompanyId { get; set; }
+#endif
 
         /// <summary>
         /// The total value of this Payment.
@@ -4643,7 +6283,11 @@ namespace LockstepSDK
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CustomerId { get; set; }
+#else
         public Guid? CustomerId { get; set; }
+#endif
 
         /// <summary>
         /// The unique ID number of this invoice.
@@ -4654,27 +6298,47 @@ namespace LockstepSDK
         /// A reference code that is used to identify this invoice.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceNumber { get; set; }
+#else
         public string? InvoiceNumber { get; set; }
+#endif
 
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceDate { get; set; }
+#else
         public DateTime? InvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// The name of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CustomerName { get; set; }
+#else
         public string? CustomerName { get; set; }
+#endif
 
         /// <summary>
         /// The status of the invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Status { get; set; }
+#else
         public string? Status { get; set; }
+#endif
 
         /// <summary>
         /// The due date of the invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDueDate { get; set; }
+#else
         public DateTime? PaymentDueDate { get; set; }
+#endif
 
         /// <summary>
         /// The total amount of the Invoice.
@@ -4689,12 +6353,20 @@ namespace LockstepSDK
         /// <summary>
         /// A code identifying the type of this Invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceTypeCode { get; set; }
+#else
         public string? InvoiceTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime NewestActivity { get; set; }
+#else
         public DateTime? NewestActivity { get; set; }
+#endif
 
         /// <summary>
         /// The number of days this Invoice is past due.
@@ -4704,12 +6376,20 @@ namespace LockstepSDK
         /// <summary>
         /// The memo text of the payments associated to this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string[] PaymentNumbers { get; set; }
+#else
         public string[]? PaymentNumbers { get; set; }
+#endif
 
         /// <summary>
         /// The ids of the payments associated to this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid[] PaymentIds { get; set; }
+#else
         public Guid[]? PaymentIds { get; set; }
+#endif
     }
 
     /// <summary>
@@ -4764,27 +6444,43 @@ namespace LockstepSDK
         /// The name of the salesperson that wrote this invoice.  This is just text, it is not a reference to the
         /// &quot;Contacts&quot; table.  You will not receive an error if this field does not match a known contact person.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SalespersonName { get; set; }
+#else
         public string? SalespersonName { get; set; }
+#endif
 
         /// <summary>
         /// The &quot;Purchase Order Code&quot; is a code that is sometimes used by companies to refer to the original PO
         /// that was sent that caused this invoice to be written.  If a customer sends a purchase order to a vendor,
         /// the vendor can then create an invoice and refer back to the originating purchase order using this field.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PurchaseOrderCode { get; set; }
+#else
         public string? PurchaseOrderCode { get; set; }
+#endif
 
         /// <summary>
         /// An additional reference code that is sometimes used to identify this invoice. The meaning of this field
         /// is specific to the ERP or accounting system used by the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the salesperson responsible for writing this quote, invoice, or order.  This is just
         /// text, it is not a reference to the &quot;Contacts&quot; table.  You will not receive an error if this field does
         /// not match a known contact person.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SalespersonCode { get; set; }
+#else
         public string? SalespersonCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the type of this invoice.
@@ -4794,7 +6490,11 @@ namespace LockstepSDK
         /// * `AP Invoice` - Represents an invoice sent by Customer to the Company
         /// * `Credit Memo` - Represents a credit memo generated by Customer given to Company
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceTypeCode { get; set; }
+#else
         public string? InvoiceTypeCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the status of this invoice.
@@ -4803,23 +6503,39 @@ namespace LockstepSDK
         /// * `Open` - Represents an invoice that is considered open and needs more work to complete
         /// * `Closed` - Represents an invoice that is considered closed and resolved
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceStatusCode { get; set; }
+#else
         public string? InvoiceStatusCode { get; set; }
+#endif
 
         /// <summary>
         /// A code identifying the terms given to the purchaser.  This field is imported directly from the originating
         /// financial system and does not follow a specified format.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TermsCode { get; set; }
+#else
         public string? TermsCode { get; set; }
+#endif
 
         /// <summary>
         /// If the customer negotiated any special terms different from the standard terms above, describe them here.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SpecialTerms { get; set; }
+#else
         public string? SpecialTerms { get; set; }
+#endif
 
         /// <summary>
         /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyCode { get; set; }
+#else
         public string? CurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
@@ -4844,68 +6560,120 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceDate { get; set; }
+#else
         public DateTime? InvoiceDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime DiscountDate { get; set; }
+#else
         public DateTime? DiscountDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PostedDate { get; set; }
+#else
         public DateTime? PostedDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InvoiceClosedDate { get; set; }
+#else
         public DateTime? InvoiceClosedDate { get; set; }
+#endif
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDueDate { get; set; }
+#else
         public DateTime? PaymentDueDate { get; set; }
+#endif
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ImportedDate { get; set; }
+#else
         public DateTime? ImportedDate { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressLine1 { get; set; }
+#else
         public string? OriginAddressLine1 { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressLine2 { get; set; }
+#else
         public string? OriginAddressLine2 { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressLine3 { get; set; }
+#else
         public string? OriginAddressLine3 { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressCity { get; set; }
+#else
         public string? OriginAddressCity { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressRegion { get; set; }
+#else
         public string? OriginAddressRegion { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressPostalCode { get; set; }
+#else
         public string? OriginAddressPostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string OriginAddressCountry { get; set; }
+#else
         public string? OriginAddressCountry { get; set; }
+#endif
 
         /// <summary>
         /// The origination address for this invoice
@@ -4920,37 +6688,65 @@ namespace LockstepSDK
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressLine1 { get; set; }
+#else
         public string? BillToAddressLine1 { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressLine2 { get; set; }
+#else
         public string? BillToAddressLine2 { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressLine3 { get; set; }
+#else
         public string? BillToAddressLine3 { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressCity { get; set; }
+#else
         public string? BillToAddressCity { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressRegion { get; set; }
+#else
         public string? BillToAddressRegion { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressPostalCode { get; set; }
+#else
         public string? BillToAddressPostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string BillToAddressCountry { get; set; }
+#else
         public string? BillToAddressCountry { get; set; }
+#endif
 
         /// <summary>
         /// The billing address for this invoice
@@ -4965,37 +6761,65 @@ namespace LockstepSDK
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressLine1 { get; set; }
+#else
         public string? ShipToAddressLine1 { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressLine2 { get; set; }
+#else
         public string? ShipToAddressLine2 { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressLine3 { get; set; }
+#else
         public string? ShipToAddressLine3 { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressCity { get; set; }
+#else
         public string? ShipToAddressCity { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressRegion { get; set; }
+#else
         public string? ShipToAddressRegion { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressPostalCode { get; set; }
+#else
         public string? ShipToAddressPostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ShipToAddressCountry { get; set; }
+#else
         public string? ShipToAddressCountry { get; set; }
+#endif
 
         /// <summary>
         /// The shipping address for this invoice
@@ -5012,14 +6836,22 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// Is the invoice voided? If not specified, we assume the invoice is not voided.
@@ -5047,22 +6879,38 @@ namespace LockstepSDK
         /// <summary>
         /// Name of lead
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// Name of company of lead
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Company { get; set; }
+#else
         public string? Company { get; set; }
+#endif
 
         /// <summary>
         /// Email of lead
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Email { get; set; }
+#else
         public string? Email { get; set; }
+#endif
 
         /// <summary>
         /// Requested ERP of lead
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpSystem { get; set; }
+#else
         public string? ErpSystem { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5093,7 +6941,11 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the table the note is associated with
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TableKey { get; set; }
+#else
         public string? TableKey { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the object the note is associated with
@@ -5103,12 +6955,20 @@ namespace LockstepSDK
         /// <summary>
         /// The text of the note
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string NoteText { get; set; }
+#else
         public string? NoteText { get; set; }
+#endif
 
         /// <summary>
         /// The type of the note
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string NoteType { get; set; }
+#else
         public string? NoteType { get; set; }
+#endif
 
         /// <summary>
         /// Flag indicating if the note has been archived
@@ -5118,7 +6978,11 @@ namespace LockstepSDK
         /// <summary>
         /// The date the note was created
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user who created the note
@@ -5128,7 +6992,11 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the user who created the note
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CreatedUserName { get; set; }
+#else
         public string? CreatedUserName { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -5136,12 +7004,20 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The person to whom this note is intended for.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RecipientName { get; set; }
+#else
         public string? RecipientName { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5188,7 +7064,11 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,
@@ -5232,12 +7112,20 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The invoice associated with this applied payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public InvoiceModel Invoice { get; set; }
+#else
         public InvoiceModel? Invoice { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5312,14 +7200,22 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5389,27 +7285,47 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the customer to which this Payment belongs.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CustomerName { get; set; }
+#else
         public string? CustomerName { get; set; }
+#endif
 
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string MemoText { get; set; }
+#else
         public string? MemoText { get; set; }
+#endif
 
         /// <summary>
         /// Reference code for the payment for the given Erp system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// The name of the Primary Contact for the Customer.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PrimaryContact { get; set; }
+#else
         public string? PrimaryContact { get; set; }
+#endif
 
         /// <summary>
         /// The Email address of the Customer.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Email { get; set; }
+#else
         public string? Email { get; set; }
+#endif
 
         /// <summary>
         /// Total amount of this Payment.
@@ -5424,62 +7340,110 @@ namespace LockstepSDK
         /// <summary>
         /// The type of payment, Payment or AP Payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PaymentType { get; set; }
+#else
         public string? PaymentType { get; set; }
+#endif
 
         /// <summary>
         /// The date of this Payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDate { get; set; }
+#else
         public DateTime? PaymentDate { get; set; }
+#endif
 
         /// <summary>
         /// Payment post date.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PostDate { get; set; }
+#else
         public DateTime? PostDate { get; set; }
+#endif
 
         /// <summary>
         /// The phone number of the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Phone { get; set; }
+#else
         public string? Phone { get; set; }
+#endif
 
         /// <summary>
         /// The fax number of the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Fax { get; set; }
+#else
         public string? Fax { get; set; }
+#endif
 
         /// <summary>
         /// The first line of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// The second line of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// The third line of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// The city of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// The state/region of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StateRegion { get; set; }
+#else
         public string? StateRegion { get; set; }
+#endif
 
         /// <summary>
         /// The postal/zip code of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// The 2 character country code of the address for the Customer&#39;s Primary Contact.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CountryCode { get; set; }
+#else
         public string? CountryCode { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5524,7 +7488,11 @@ namespace LockstepSDK
         ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErpKey { get; set; }
+#else
         public string? ErpKey { get; set; }
+#endif
 
         /// <summary>
         /// The type of payment, cash or check.
@@ -5555,7 +7523,11 @@ namespace LockstepSDK
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string MemoText { get; set; }
+#else
         public string? MemoText { get; set; }
+#endif
 
         /// <summary>
         /// The date when this payment was received.  This typically is the date when an accounting employee recorded
@@ -5586,12 +7558,20 @@ namespace LockstepSDK
         ///
         /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyCode { get; set; }
+#else
         public string? CurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// Reference code for the payment for the given Erp system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// The date on which this record was created.
@@ -5619,7 +7599,11 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// Is the payment voided?
@@ -5635,7 +7619,11 @@ namespace LockstepSDK
         /// All applications this payment is associated with.
         /// To retrieve this collection, specify `Applications` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public PaymentAppliedModel[] Applications { get; set; }
+#else
         public PaymentAppliedModel[]? Applications { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -5645,7 +7633,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -5655,7 +7647,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -5665,7 +7661,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+#else
         public CustomFieldDefinitionModel[]? CustomFieldDefinitions { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -5675,7 +7675,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `Payment` and the `ObjectKey` set to the `PaymentId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5700,22 +7704,38 @@ namespace LockstepSDK
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string MemoText { get; set; }
+#else
         public string? MemoText { get; set; }
+#endif
 
         /// <summary>
         /// Reference code for the payment for the given Erp system.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// The type of payment, Payment or AP Payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PaymentType { get; set; }
+#else
         public string? PaymentType { get; set; }
+#endif
 
         /// <summary>
         /// The date of this payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime PaymentDate { get; set; }
+#else
         public DateTime? PaymentDate { get; set; }
+#endif
 
         /// <summary>
         /// Total amount of this payment.
@@ -5740,22 +7760,38 @@ namespace LockstepSDK
         /// <summary>
         /// The reference codes of the invoices associated to this payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string[] InvoiceList { get; set; }
+#else
         public string[]? InvoiceList { get; set; }
+#endif
 
         /// <summary>
         /// The ids of the invoices associated to this payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid[] InvoiceIdList { get; set; }
+#else
         public Guid[]? InvoiceIdList { get; set; }
+#endif
 
         /// <summary>
         /// The name of the customer for this payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CustomerName { get; set; }
+#else
         public string? CustomerName { get; set; }
+#endif
 
         /// <summary>
         /// The id of the customer for this payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid CustomerId { get; set; }
+#else
         public Guid? CustomerId { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5798,7 +7834,11 @@ namespace LockstepSDK
         /// * `Cash` - A cash payment or other direct transfer.
         /// * `Check` - A check payment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PaymentType { get; set; }
+#else
         public string? PaymentType { get; set; }
+#endif
 
         /// <summary>
         /// Cash, check, credit card, wire transfer.
@@ -5809,7 +7849,11 @@ namespace LockstepSDK
         /// * `Credit Card` - A payment made via a credit card.
         /// * `Wire Transfer` - A payment made via wire transfer from another financial institution.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TenderType { get; set; }
+#else
         public string? TenderType { get; set; }
+#endif
 
         /// <summary>
         /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
@@ -5820,7 +7864,11 @@ namespace LockstepSDK
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string MemoText { get; set; }
+#else
         public string? MemoText { get; set; }
+#endif
 
         /// <summary>
         /// The date when this payment was received.  This typically is the date when an accounting employee recorded
@@ -5851,28 +7899,44 @@ namespace LockstepSDK
         ///
         /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string CurrencyCode { get; set; }
+#else
         public string? CurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Created { get; set; }
+#else
         public DateTime? Created { get; set; }
+#endif
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Modified { get; set; }
+#else
         public DateTime? Modified { get; set; }
+#endif
 
         /// <summary>
         /// A reference code for the payment for the given financial or ERP system.  This can be any value that the
         /// originating system uses to designate the payment, such as a confirmation number or tracking number, that
         /// is different from the `ErpKey` value.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReferenceCode { get; set; }
+#else
         public string? ReferenceCode { get; set; }
+#endif
 
         /// <summary>
         /// True if this payment was voided.
@@ -5899,22 +7963,38 @@ namespace LockstepSDK
         /// <summary>
         /// The time zone of the user
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string TimeZone { get; set; }
+#else
         public string? TimeZone { get; set; }
+#endif
 
         /// <summary>
         /// The default currency of the user
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DefaultCurrency { get; set; }
+#else
         public string? DefaultCurrency { get; set; }
+#endif
 
         /// <summary>
         /// The company information for the user and group
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CompanyModel Company { get; set; }
+#else
         public CompanyModel? Company { get; set; }
+#endif
 
         /// <summary>
         /// Optional connector information needed to enroll user to their email connector
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ErpInfoModel EmailConnector { get; set; }
+#else
         public ErpInfoModel? EmailConnector { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5926,12 +8006,20 @@ namespace LockstepSDK
         /// <summary>
         /// The full name of the new user
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FullName { get; set; }
+#else
         public string? FullName { get; set; }
+#endif
 
         /// <summary>
         /// The information necessary to enroll the user in their ERP
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ErpInfoModel Erp { get; set; }
+#else
         public ErpInfoModel? Erp { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5943,37 +8031,65 @@ namespace LockstepSDK
         /// <summary>
         /// If provisioning is successful, contains the username of the created user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UserName { get; set; }
+#else
         public string? UserName { get; set; }
+#endif
 
         /// <summary>
         /// If provisioning is successful, contains subscription account name of created user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AccountName { get; set; }
+#else
         public string? AccountName { get; set; }
+#endif
 
         /// <summary>
         /// If provisioning is successful, contains the unique identifier of the created user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid UserId { get; set; }
+#else
         public Guid? UserId { get; set; }
+#endif
 
         /// <summary>
         /// If provisioning is successful, contains the group key of the created user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid GroupKey { get; set; }
+#else
         public Guid? GroupKey { get; set; }
+#endif
 
         /// <summary>
         /// If provisioning is successful, contains the app enrollment id of the created app enrollment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// if provisioning is successful, contains the sync request id of the sync that was started for the app enrollment.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid SyncRequestId { get; set; }
+#else
         public Guid? SyncRequestId { get; set; }
+#endif
 
         /// <summary>
         /// The error message(s).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErrorMessage { get; set; }
+#else
         public string? ErrorMessage { get; set; }
+#endif
     }
 
     /// <summary>
@@ -5998,7 +8114,11 @@ namespace LockstepSDK
         /// <summary>
         /// The string name of the month the risk rate was calculated for
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string InvoiceMonthName { get; set; }
+#else
         public string? InvoiceMonthName { get; set; }
+#endif
 
         /// <summary>
         /// The count of all invoices in the calculation month
@@ -6040,17 +8160,29 @@ namespace LockstepSDK
         /// <summary>
         /// Name of the state
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Name { get; set; }
+#else
         public string? Name { get; set; }
+#endif
 
         /// <summary>
         /// 2 letter alphabetic code for the given state
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Alpha2 { get; set; }
+#else
         public string? Alpha2 { get; set; }
+#endif
 
         /// <summary>
         /// A different name for a state
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Aliases { get; set; }
+#else
         public string? Aliases { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6062,27 +8194,47 @@ namespace LockstepSDK
         /// <summary>
         /// If authentication is successful, contains the username of the logged-in user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UserName { get; set; }
+#else
         public string? UserName { get; set; }
+#endif
 
         /// <summary>
         /// If authentication is successful, contains subscription account name of logged-in user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AccountName { get; set; }
+#else
         public string? AccountName { get; set; }
+#endif
 
         /// <summary>
         /// If authentication is successful, contains subscription account company id of logged-in user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AccountCompanyId { get; set; }
+#else
         public Guid? AccountCompanyId { get; set; }
+#endif
 
         /// <summary>
         /// If authentication is successful, contains the unique identifier of the logged-in user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid UserId { get; set; }
+#else
         public Guid? UserId { get; set; }
+#endif
 
         /// <summary>
         /// If authentication is successful, contains the group key of the logged-in user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid GroupKey { get; set; }
+#else
         public Guid? GroupKey { get; set; }
+#endif
 
         /// <summary>
         /// Returns true if authentication for this API was successful.
@@ -6092,43 +8244,75 @@ namespace LockstepSDK
         /// <summary>
         /// The error message.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ErrorMessage { get; set; }
+#else
         public string? ErrorMessage { get; set; }
+#endif
 
         /// <summary>
         /// The set of roles for this user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string[] Roles { get; set; }
+#else
         public string[]? Roles { get; set; }
+#endif
 
         /// <summary>
         /// Date and time user has last logged into Azure B2C.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime LastLoggedIn { get; set; }
+#else
         public DateTime? LastLoggedIn { get; set; }
+#endif
 
         /// <summary>
         /// The id of the API key used to authenticate.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid ApiKeyId { get; set; }
+#else
         public Guid? ApiKeyId { get; set; }
+#endif
 
         /// <summary>
         /// If authentication is successful, contains the user status of the logged-in user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string UserStatus { get; set; }
+#else
         public string? UserStatus { get; set; }
+#endif
 
         /// <summary>
         /// The environment currently being used
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Environment { get; set; }
+#else
         public string? Environment { get; set; }
+#endif
 
         /// <summary>
         /// The version currently being used
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Version { get; set; }
+#else
         public string? Version { get; set; }
+#endif
 
         /// <summary>
         /// Statuses for the dependencies of this api.
         /// OK if the dependency is working.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public object Dependencies { get; set; }
+#else
         public object? Dependencies { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6160,7 +8344,11 @@ namespace LockstepSDK
         /// <summary>
         /// The errors encountered during sync keyed by ERP key
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public object Errors { get; set; }
+#else
         public object? Errors { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6202,17 +8390,29 @@ namespace LockstepSDK
         /// * Failed
         /// * Success
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StatusCode { get; set; }
+#else
         public string? StatusCode { get; set; }
+#endif
 
         /// <summary>
         /// Message containing information about the sync request results
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ProcessResultMessage { get; set; }
+#else
         public string? ProcessResultMessage { get; set; }
+#endif
 
         /// <summary>
         /// The AppEnrollmentId of the AppEnrollment object that executed this sync request
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AppEnrollmentId { get; set; }
+#else
         public Guid? AppEnrollmentId { get; set; }
+#endif
 
         /// <summary>
         /// The date this sync request was created
@@ -6237,7 +8437,11 @@ namespace LockstepSDK
         /// To retrieve this collection, add the keyword `details` to the `include` parameter on your Retrieve or
         /// Query requests.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public object Details { get; set; }
+#else
         public object? Details { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6269,12 +8473,20 @@ namespace LockstepSDK
         /// <summary>
         /// The previous owner of the account.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public UserAccountModel PreviousOwner { get; set; }
+#else
         public UserAccountModel? PreviousOwner { get; set; }
+#endif
 
         /// <summary>
         /// The new owner of the account.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public UserAccountModel NewOwner { get; set; }
+#else
         public UserAccountModel? NewOwner { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6298,7 +8510,11 @@ namespace LockstepSDK
         /// <summary>
         /// Represents the download link
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Uri DownloadLink { get; set; }
+#else
         public Uri? DownloadLink { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6340,7 +8556,11 @@ namespace LockstepSDK
         /// <summary>
         /// The status of the user&#39;s account
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Status { get; set; }
+#else
         public string? Status { get; set; }
+#endif
 
         /// <summary>
         /// The date that the user account was created
@@ -6365,12 +8585,20 @@ namespace LockstepSDK
         /// <summary>
         /// The name of the user who last modified the user account
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ModifiedUserName { get; set; }
+#else
         public string? ModifiedUserName { get; set; }
+#endif
 
         /// <summary>
         /// The ID of the user in Azure B2C
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid B2CUserId { get; set; }
+#else
         public Guid? B2CUserId { get; set; }
+#endif
 
         /// <summary>
         /// The id of the Permission Level for the user.
@@ -6380,77 +8608,137 @@ namespace LockstepSDK
         /// <summary>
         /// The date timestamp when the invite was sent to the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime InviteSent { get; set; }
+#else
         public DateTime? InviteSent { get; set; }
+#endif
 
         /// <summary>
         /// The phone number of the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PhoneNumber { get; set; }
+#else
         public string? PhoneNumber { get; set; }
+#endif
 
         /// <summary>
         /// The fax number of the user.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string FaxNumber { get; set; }
+#else
         public string? FaxNumber { get; set; }
+#endif
 
         /// <summary>
         /// The title of the user; free text field
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Title { get; set; }
+#else
         public string? Title { get; set; }
+#endif
 
         /// <summary>
         /// FK to the CodeDefinition table; CodeType = &#39;AccountingRole&#39;
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public Guid AccountingRoleCodeDefId { get; set; }
+#else
         public Guid? AccountingRoleCodeDefId { get; set; }
+#endif
 
         /// <summary>
         /// Address Line 1 for this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address1 { get; set; }
+#else
         public string? Address1 { get; set; }
+#endif
 
         /// <summary>
         /// Address Line 2 for this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address2 { get; set; }
+#else
         public string? Address2 { get; set; }
+#endif
 
         /// <summary>
         /// Address Line 3 for this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Address3 { get; set; }
+#else
         public string? Address3 { get; set; }
+#endif
 
         /// <summary>
         /// City for this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string City { get; set; }
+#else
         public string? City { get; set; }
+#endif
 
         /// <summary>
         /// Region (&quot;state&quot; in the US) for this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StateRegion { get; set; }
+#else
         public string? StateRegion { get; set; }
+#endif
 
         /// <summary>
         /// Postal Code this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PostalCode { get; set; }
+#else
         public string? PostalCode { get; set; }
+#endif
 
         /// <summary>
         /// Country for this User This will be validated by the /api/v1/countries data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Country { get; set; }
+#else
         public string? Country { get; set; }
+#endif
 
         /// <summary>
         /// Image URL for this User
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ImageURL { get; set; }
+#else
         public string? ImageURL { get; set; }
+#endif
 
         /// <summary>
         /// Description for this User.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Description { get; set; }
+#else
         public string? Description { get; set; }
+#endif
 
         /// <summary>
         /// Last date time user logged into Azure B2C.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime B2CLastLoggedIn { get; set; }
+#else
         public DateTime? B2CLastLoggedIn { get; set; }
+#endif
 
         /// <summary>
         /// The default currency code used by this user entity.  This value can be overridden
@@ -6458,7 +8746,11 @@ namespace LockstepSDK
         ///
         /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string DefaultCurrencyCode { get; set; }
+#else
         public string? DefaultCurrencyCode { get; set; }
+#endif
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -6468,7 +8760,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `UserAccount` and the `ObjectKey` set to the `UserId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public NoteModel[] Notes { get; set; }
+#else
         public NoteModel[]? Notes { get; set; }
+#endif
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -6478,7 +8774,11 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `UserAccount` and the `ObjectKey` set to the `UserId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public AttachmentModel[] Attachments { get; set; }
+#else
         public AttachmentModel[]? Attachments { get; set; }
+#endif
 
         /// <summary>
         /// A collection of custom fields linked to this record.  To retrieve this collection, specify
@@ -6488,13 +8788,21 @@ namespace LockstepSDK
         /// endpoint with the `TableKey` to `UserAccount` and the `ObjectKey` set to the `UserId` for this record.  For
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
+#else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
+#endif
 
         /// <summary>
         /// Accounting role definition for this User.
         /// To retrieve this collection, specify `AccountingRole` in the &quot;Include&quot; parameter for your query.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public CodeDefinitionModel AccountingRoleCodeDefinition { get; set; }
+#else
         public CodeDefinitionModel? AccountingRoleCodeDefinition { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6573,7 +8881,11 @@ namespace LockstepSDK
         ///
         /// [entity].[action]
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string EventType { get; set; }
+#else
         public string? EventType { get; set; }
+#endif
 
         /// <summary>
         /// Flag whether request was sent to callback url successfully or blocked by failing or because it was disabled.
@@ -6589,12 +8901,20 @@ namespace LockstepSDK
         /// <summary>
         /// Response status code that is returned when calling a callback url.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ResponseStatusCode { get; set; }
+#else
         public string? ResponseStatusCode { get; set; }
+#endif
 
         /// <summary>
         /// Message containing information about the webhook callback results
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ProcessResultMessage { get; set; }
+#else
         public string? ProcessResultMessage { get; set; }
+#endif
 
         /// <summary>
         /// Number of times message failed to be sent over to callback url before succeeding or failing out.
@@ -6606,7 +8926,11 @@ namespace LockstepSDK
         /// Timestamp of when a request is sent to a webhook callback.
         /// Contains the last time message is sent if failures occur.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime Timestamp { get; set; }
+#else
         public DateTime? Timestamp { get; set; }
+#endif
     }
 
     /// <summary>
@@ -6641,18 +8965,30 @@ namespace LockstepSDK
         /// <summary>
         /// The status of the webhook (Active, Inactive, Errored).
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StatusCode { get; set; }
+#else
         public string? StatusCode { get; set; }
+#endif
 
         /// <summary>
         /// When the StatusCode is set to Errored a message is supplied for why it was errored.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string StatusMessage { get; set; }
+#else
         public string? StatusMessage { get; set; }
+#endif
 
         /// <summary>
         /// An secret set during webhook creation that can be used to verify that the notification
         /// is coming from the Lockstep API.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ClientSecret { get; set; }
+#else
         public string? ClientSecret { get; set; }
+#endif
 
         /// <summary>
         /// The format of the content to be returned in the webhook notifications. Options TBD.
@@ -6678,7 +9014,11 @@ namespace LockstepSDK
         /// The expiration date for the given webhook subscription. Once the expiration date passes,
         /// notifications will no longer be sent to the callback url.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public DateTime ExpirationDate { get; set; }
+#else
         public DateTime? ExpirationDate { get; set; }
+#endif
 
         /// <summary>
         /// The amount of times a notification should be retried before marking the webhook as errored.
@@ -6708,6 +9048,10 @@ namespace LockstepSDK
         /// <summary>
         /// The partition key used for the webhook callback history
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string PartitionKey { get; set; }
+#else
         public string? PartitionKey { get; set; }
+#endif
     }
 }
