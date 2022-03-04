@@ -13,6 +13,7 @@
 			Allows you to work with the Lockstep Platform API for financial systems automation.  The SDK provides rich, 
 			context sensitive help and documentation for all methods and objects.
 		</description>
+		<iconUrl>https://raw.githubusercontent.com/Lockstep-Network/lockstep-sdk-csharp/main/images/lockstep_logo.png</iconUrl>
 		<readme>docs/README.md</readme>
 		<summary>SDK for the Lockstep Platform API.</summary>
 		<releaseNotes>

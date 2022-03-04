@@ -4,6 +4,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK", "src\Lockstep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.Net45", "src\LockstepSDK.Net45.csproj", "{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra Files", "Extra Files", "{0EDEB75E-3625-4B55-93C6-0161DC3B7EEA}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+		images\lockstep_logo.png = images\lockstep_logo.png
+		lockstep-sdk.nuspec = lockstep-sdk.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
