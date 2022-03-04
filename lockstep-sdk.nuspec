@@ -33,6 +33,7 @@
 				<dependency id="System.Net.Http" version="4.3.4" />
 				<dependency id="System.Text.Json" version="6.0.2" />
 			</group>
+			<group targetFramework="netcoreapp3.1"/>
 			<group targetFramework="net5.0"/>
 			<group targetFramework="net6.0"/>
 		</dependencies>
@@ -44,6 +45,7 @@
 		<file src="src\net45\bin\Debug\*" target="lib\net45" />
 		<file src="src\net50\bin\Debug\net5.0\*" target="lib\net5.0" />
 		<file src="src\net60\bin\Debug\net6.0\*" target="lib\net6.0" />
+		<file src="src\netcoreapp3.1\bin\Debug\netcoreapp3.1\*" target="lib\netcoreapp3.1" />
 		<file src="src\netstandard20\bin\debug\netstandard2.0\*" target="lib\netstandard20" />
 	</files>
 </package>
