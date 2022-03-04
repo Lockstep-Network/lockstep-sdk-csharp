@@ -26,6 +26,9 @@
     	<tags>Lockstep fintech api client sdk connector</tags>
 		<repository type="git" url="https://github.com/Lockstep-Network/lockstep-sdk-csharp" />
 		<dependencies>
+			<group targetFramework=".NETFramework4.5">
+                <dependency id="Newtonsoft.Json" version="13.0.0.0" />
+			</group>
 			<group targetFramework="netcoreapp3.1"/>
 			<group targetFramework="net5.0"/>
 			<group targetFramework="net6.0"/>
@@ -36,6 +39,7 @@
 		<file src=".\README.md" target="docs/README.md"/>
 		<file src=".\images\lockstep_logo.png" target="docs/lockstep_logo.png"/>
 		<file src="src\bin\Debug\netcoreapp3.1\*" target="lib\netcoreapp3.1" />
+		<file src="src\bin\Debug\net45\*" target="lib\net45" />
 		<file src="src\bin\Debug\net5.0\*" target="lib\net5.0" />
 		<file src="src\bin\Debug\net6.0\*" target="lib\net6.0" />
 	</files>
