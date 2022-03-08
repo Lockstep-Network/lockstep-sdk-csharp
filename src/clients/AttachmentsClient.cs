@@ -115,13 +115,19 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="tableName">The name of the type of object to which this Attachment will be linked</param>
         /// <param name="objectId">The unique ID of the object to which this Attachment will be linked</param>
+        /// <param name="attachmentType">The type of this attachment</param>
         /// <param name="filename">The full path of a file to upload to the API</param>
-        public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId, string filename)
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId, string filename, string attachmentType)
+#else
+        public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId, string filename, string? attachmentType)
+#endif
         {
             var url = $"/api/v1/Attachments";
             var options = new Dictionary<string, object>();
             options["tableName"] = tableName;
             options["objectId"] = objectId;
+            if (attachmentType != null) { options["attachmentType"] = attachmentType; }
             return await _client.Request<AttachmentModel[]>(HttpMethod.Post, url, options, null, filename);
         }
 

@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.9.18
+ * @version    2022.9.56
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private const string _version = "2022.9.18";
+        private const string _version = "2022.9.56";
         private readonly HttpClient _client;
 #if DOT_NET_FRAMEWORK
         private string _appName;
@@ -388,22 +388,30 @@ namespace LockstepSDK
                 if (response.Headers.TryGetValues("ServerDuration", out var durations))
                 {
                     var durationStr = durations.FirstOrDefault();
-                    if (Int32.TryParse(durationStr, out var duration))
+                    if (int.TryParse(durationStr, out var duration))
                     {
                         result.ServerDuration = duration;
                     }
                 }
                 if (result.Success)
                 {
-#if NEWTONSOFT
-                    result.Value = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
-#else
-                    // Successful API responses can be very large, so let's stream them
-                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    // Handle file downloads
+                    if (typeof(T) == typeof(byte[]))
                     {
-                        result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
+                        result.FileData = await response.Content.ReadAsByteArrayAsync();
                     }
+                    else
+                    {
+#if NEWTONSOFT
+                        result.Value = JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+#else
+                        // Successful API responses can be very large, so let's stream them
+                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        {
+                            result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
+                        }
 #endif
+                    }
                 }
                 else
                 {
@@ -412,7 +420,7 @@ namespace LockstepSDK
                     // we fail to parse the response as JSON, just create a simulated error
                     // object with as much information as is available.
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    if (!String.IsNullOrEmpty(errorContent))
+                    if (!string.IsNullOrEmpty(errorContent))
                     {
                         try
                         {

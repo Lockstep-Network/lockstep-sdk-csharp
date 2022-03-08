@@ -84,10 +84,10 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="body">The Financial Account Balance Histories to create</param>
-        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> CreateFinancialAccountBalanceHistory(FinancialAccountBalanceHistoryModel[] body)
+        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel[]>> CreateFinancialAccountBalanceHistory(FinancialAccountBalanceHistoryModel[] body)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory";
-            return await _client.Request<FinancialAccountBalanceHistoryModel>(HttpMethod.Post, url, null, body, null);
+            return await _client.Request<FinancialAccountBalanceHistoryModel[]>(HttpMethod.Post, url, null, body, null);
         }
 
         /// <summary>

@@ -44,6 +44,15 @@ namespace LockstepSDK
 #endif
 
         /// <summary>
+        /// If this API retrieved a file, the contents are here
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public byte[] FileData { get; internal set; }
+#else
+        public byte[]? FileData { get; internal set; }
+#endif
+
+        /// <summary>
         /// If not successful, this contains information about the error
         /// </summary>
 #if DOT_NET_FRAMEWORK

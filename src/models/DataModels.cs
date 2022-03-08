@@ -1392,6 +1392,15 @@ namespace LockstepSDK
         /// Id of the user who made the file
         /// </summary>
         public Guid CreatedUserId { get; set; }
+
+        /// <summary>
+        /// The type of this attachment.
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string AttachmentType { get; set; }
+#else
+        public string? AttachmentType { get; set; }
+#endif
     }
 
     /// <summary>
@@ -2314,6 +2323,56 @@ namespace LockstepSDK
 #else
         public string? Email { get; set; }
 #endif
+
+        /// <summary>
+        /// The username of the web services account with access permissions.
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Username { get; set; }
+#else
+        public string? Username { get; set; }
+#endif
+
+        /// <summary>
+        /// The password for the web services account with access permissions.
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Password { get; set; }
+#else
+        public string? Password { get; set; }
+#endif
+
+        /// <summary>
+        /// The username for sftp client
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SftpUsername { get; set; }
+#else
+        public string? SftpUsername { get; set; }
+#endif
+
+        /// <summary>
+        /// The password for sftp client
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SftpPassword { get; set; }
+#else
+        public string? SftpPassword { get; set; }
+#endif
+
+        /// <summary>
+        /// The Lockstep server URL for sftp client
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string SftpServerUrl { get; set; }
+#else
+        public string? SftpServerUrl { get; set; }
+#endif
+
+        /// <summary>
+        /// The port number for sftp client
+        /// </summary>
+        public int? SftpPortNumber { get; set; }
     }
 
     /// <summary>
@@ -4261,42 +4320,6 @@ namespace LockstepSDK
         public CustomFieldValueModel[] CustomFieldValues { get; set; }
 #else
         public CustomFieldValueModel[]? CustomFieldValues { get; set; }
-#endif
-    }
-
-    /// <summary>
-    /// Represents all the possible data sent as a part of the provisioning post.
-    /// Only send required fields for the given connector.
-    /// </summary>
-    public class ErpInfoDataModel
-    {
-
-        /// <summary>
-        /// The authorization code returned from the first step of the OAuth2 flow
-        /// https://oauth.net/2/grant-types/authorization-code/
-        /// </summary>
-#if DOT_NET_FRAMEWORK
-        public string AuthCode { get; set; }
-#else
-        public string? AuthCode { get; set; }
-#endif
-
-        /// <summary>
-        /// The realm id of the account being granted permissions to access
-        /// </summary>
-#if DOT_NET_FRAMEWORK
-        public string RealmId { get; set; }
-#else
-        public string? RealmId { get; set; }
-#endif
-
-        /// <summary>
-        /// The redirect uri used for step one of the OAuth2.0 flow.
-        /// </summary>
-#if DOT_NET_FRAMEWORK
-        public string RedirectUri { get; set; }
-#else
-        public string? RedirectUri { get; set; }
 #endif
     }
 
@@ -8499,6 +8522,113 @@ namespace LockstepSDK
         /// The ID of the user to transfer ownership to.
         /// </summary>
         public Guid TargetUserId { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a cell of a trial balance report
+    /// </summary>
+    public class TrialBalanceReportCellModel
+    {
+
+        /// <summary>
+        /// The value of the trial balance report cell
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Value { get; set; }
+#else
+        public string? Value { get; set; }
+#endif
+    }
+
+    /// <summary>
+    /// Represents a Trial Balance Report
+    /// </summary>
+    public class TrialBalanceReportModel
+    {
+
+        /// <summary>
+        /// The name of the report (&quot;Trial Balance for *Company*&quot;)
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string ReportName { get; set; }
+#else
+        public string? ReportName { get; set; }
+#endif
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The start date of the trial balance report
+        /// </summary>
+        public DateTime ReportStartDate { get; set; }
+
+        /// <summary>
+        /// The end date of the trial balance report
+        /// </summary>
+        public DateTime ReportEndDate { get; set; }
+
+        /// <summary>
+        /// The created date of the trial balance report
+        /// </summary>
+        public DateTime ReportCreatedDate { get; set; }
+
+        /// <summary>
+        /// The rows of the trial balance report
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public TrialBalanceReportRowModel[] Rows { get; set; }
+#else
+        public TrialBalanceReportRowModel[]? Rows { get; set; }
+#endif
+    }
+
+    /// <summary>
+    /// Represents a row of a trial balance report
+    /// </summary>
+    public class TrialBalanceReportRowModel
+    {
+
+        /// <summary>
+        /// Describes what type of row this row is (Header, Summary, Classification, Category, Subcategory, Data)
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string RowType { get; set; }
+#else
+        public string? RowType { get; set; }
+#endif
+
+        /// <summary>
+        /// The label for the row if it is a Classification, Category, or Subcategory.
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string Label { get; set; }
+#else
+        public string? Label { get; set; }
+#endif
+
+        /// <summary>
+        /// The sub rows of this row if it is a Classification, Category, or Subcategory.
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public TrialBalanceReportRowModel[] Rows { get; set; }
+#else
+        public TrialBalanceReportRowModel[]? Rows { get; set; }
+#endif
+
+        /// <summary>
+        /// The cells of the row
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public TrialBalanceReportCellModel[] Cells { get; set; }
+#else
+        public TrialBalanceReportCellModel[]? Cells { get; set; }
+#endif
     }
 
     /// <summary>

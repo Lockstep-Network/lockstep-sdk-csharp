@@ -154,5 +154,26 @@ namespace LockstepSDK
             if (companyId != null) { options["companyId"] = companyId; }
             return await _client.Request<AttachmentHeaderInfoModel>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        /// Generates a Trial Balance Report for the given time range.
+        ///
+        /// The Attachment Header report contains aggregated information about the `TotalAttachments`, `TotalArchived`, and `TotalActive` attachment classifications.
+        ///
+        /// </summary>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+#if DOT_NET_FRAMEWORK
+        public async Task<LockstepResponse<TrialBalanceReportModel>> TrialBalanceReport(DateTime startDate, DateTime endDate)
+#else
+        public async Task<LockstepResponse<TrialBalanceReportModel>> TrialBalanceReport(DateTime? startDate, DateTime? endDate)
+#endif
+        {
+            var url = $"/api/v1/Reports/trial-balance";
+            var options = new Dictionary<string, object>();
+            if (startDate != null) { options["startDate"] = startDate; }
+            if (endDate != null) { options["endDate"] = endDate; }
+            return await _client.Request<TrialBalanceReportModel>(HttpMethod.Get, url, options, null, null);
+        }
     }
 }
