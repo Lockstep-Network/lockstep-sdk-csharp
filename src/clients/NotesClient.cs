@@ -45,11 +45,11 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Note to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-        public async Task<LockstepResponse<NoteModel>> RetrieveNote(Guid id, string? include)
+        public async Task<LockstepResponse<NoteModel>> RetrieveNote(Guid id, string include)
         {
             var url = $"/api/v1/Notes/{id}";
-            var options = new Dictionary<string, object?>();
-            options["include"] = include;
+            var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             return await _client.Request<NoteModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -98,15 +98,15 @@ namespace LockstepSDK
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
-        public async Task<LockstepResponse<FetchResult<NoteModel>>> QueryNotes(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<NoteModel>>> QueryNotes(string filter, string include, string order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/Notes/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<NoteModel>>(HttpMethod.Get, url, options, null, null);
         }
     }

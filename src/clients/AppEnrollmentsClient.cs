@@ -45,11 +45,11 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync</param>
-        public async Task<LockstepResponse<AppEnrollmentModel>> RetrieveAppEnrollment(Guid id, string? include)
+        public async Task<LockstepResponse<AppEnrollmentModel>> RetrieveAppEnrollment(Guid id, string include)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
-            var options = new Dictionary<string, object?>();
-            options["include"] = include;
+            var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             return await _client.Request<AppEnrollmentModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -68,7 +68,7 @@ namespace LockstepSDK
         public async Task<LockstepResponse<AppEnrollmentModel>> UpdateAppEnrollment(Guid id, object body)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
-            return await _client.Request<AppEnrollmentModel>(HttpMethod.Patch, url, null, body, null);
+            return await _client.Request<AppEnrollmentModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
@@ -82,8 +82,8 @@ namespace LockstepSDK
         public async Task<LockstepResponse<ActionResultModel>> DeleteAppEnrollment(Guid id, bool? removeEnrollmentData)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
-            var options = new Dictionary<string, object?>();
-            options["removeEnrollmentData"] = removeEnrollmentData;
+            var options = new Dictionary<string, object>();
+            if (removeEnrollmentData != null) { options["removeEnrollmentData"] = removeEnrollmentData; }
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, options, null, null);
         }
 
@@ -117,15 +117,15 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<AppEnrollmentModel>>> QueryAppEnrollments(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<AppEnrollmentModel>>> QueryAppEnrollments(string filter, string include, string order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/AppEnrollments/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<AppEnrollmentModel>>(HttpMethod.Get, url, options, null, null);
         }
 

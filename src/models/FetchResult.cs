@@ -41,6 +41,10 @@ namespace LockstepSDK
         /// <summary>
         /// The paginated and filtered list of records matching the parameters you supplied.
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public T[] Records { get; set; }
+#else
         public T[]? Records { get; set; }
+#endif
     }
 }

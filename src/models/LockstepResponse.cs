@@ -37,12 +37,29 @@ namespace LockstepSDK
         /// <summary>
         /// If successful, this contains the results of the API call
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public T Value { get; internal set; }
+#else
         public T? Value { get; internal set; }
+#endif
+
+        /// <summary>
+        /// If this API retrieved a file, the contents are here
+        /// </summary>
+#if DOT_NET_FRAMEWORK
+        public byte[] FileData { get; internal set; }
+#else
+        public byte[]? FileData { get; internal set; }
+#endif
 
         /// <summary>
         /// If not successful, this contains information about the error
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public ErrorResult Error { get; internal set; }
+#else
         public ErrorResult? Error { get; internal set; }
+#endif
 
         /// <summary>
         /// The length of time, in milliseconds, that the Lockstep Platform server took responding to this request. 

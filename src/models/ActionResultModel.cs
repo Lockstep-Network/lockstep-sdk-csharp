@@ -23,6 +23,10 @@ namespace LockstepSDK
         /// <summary>
         /// A list of messages returned by this API call
         /// </summary>
+#if DOT_NET_FRAMEWORK
+        public string[] Messages { get; internal set; }
+#else
         public string[]? Messages { get; internal set; }
+#endif
     }
 }

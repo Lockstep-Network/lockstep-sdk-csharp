@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.9.18.0
+ * @version    2022.9.56
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -20,9 +20,9 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Web;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Web;
 
 
 namespace LockstepSDK 
@@ -34,11 +34,11 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private readonly string _version = "2022.9.18.0";
-        private string? _appName;
-        private string? _bearerToken;
-        private string? _apiKey;
+        private const string _version = "2022.9.56";
         private readonly HttpClient _client;
+        private string _appName;
+        private string _bearerToken;
+        private string _apiKey;
     
         /// <summary>
         /// Lockstep Platform methods related to {cat}
@@ -169,8 +169,7 @@ namespace LockstepSDK
         {
             // Add support for HTTP compression
             var handler = new HttpClientHandler();
-            handler.AutomaticDecompression = DecompressionMethods.All;
-            
+            handler.AutomaticDecompression = DecompressionMethods.GZip;
             // We intentionally use a single HttpClient object for the lifetime of this API connection.
             // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
             this._client = new HttpClient(handler);
@@ -285,7 +284,7 @@ namespace LockstepSDK
         /// <typeparam name="T">The type of the expected response</typeparam>
         /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
         public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
-            Dictionary<string, object?>? query, object? body, string? filename) where T: class
+            Dictionary<string, object> query, object body, string filename) where T: class
         {
             var sw = new Stopwatch();
             sw.Start();
@@ -318,11 +317,11 @@ namespace LockstepSDK
             var sb = new StringBuilder();
             if (query != null)
             {
-                foreach (var (key, value) in query)
+                foreach (var kvp in query)
                 {
-                    if (value != null)
+                    if (kvp.Value != null)
                     {
-                        sb.Append($"{key}={HttpUtility.UrlEncode(value.ToString())}&");
+                        sb.Append($"{kvp.Key}={HttpUtility.UrlEncode(kvp.Value.ToString())}&");
                     }
                 }
             }
@@ -332,11 +331,12 @@ namespace LockstepSDK
             // Add request body content, if any
             if (body != null)
             {
-                request.Content = new StringContent(JsonSerializer.Serialize(body));
+                var content = JsonSerializer.Serialize(body);
+                request.Content = new StringContent(content);
             }
             else if (filename != null)
             {
-                var bytesFile = await File.ReadAllBytesAsync(filename);
+                var bytesFile = File.ReadAllBytes(filename);
                 var fileContent = new ByteArrayContent(bytesFile);
                 var form = new MultipartFormDataContent(Guid.NewGuid().ToString());
                 form.Add(fileContent, "file", Path.GetFileName(filename));
@@ -358,17 +358,25 @@ namespace LockstepSDK
                 if (response.Headers.TryGetValues("ServerDuration", out var durations))
                 {
                     var durationStr = durations.FirstOrDefault();
-                    if (Int32.TryParse(durationStr, out var duration))
+                    if (int.TryParse(durationStr, out var duration))
                     {
                         result.ServerDuration = duration;
                     }
                 }
                 if (result.Success)
                 {
-                    // Successful API responses can be very large, so let's stream them
-                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    // Handle file downloads
+                    if (typeof(T) == typeof(byte[]))
                     {
-                        result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
+                        result.FileData = await response.Content.ReadAsByteArrayAsync();
+                    }
+                    else
+                    {
+                        // Successful API responses can be very large, so let's stream them
+                        using (var stream = await response.Content.ReadAsStreamAsync())
+                        {
+                            result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
+                        }
                     }
                 }
                 else
@@ -378,14 +386,17 @@ namespace LockstepSDK
                     // we fail to parse the response as JSON, just create a simulated error
                     // object with as much information as is available.
                     var errorContent = await response.Content.ReadAsStringAsync();
-                    if (!String.IsNullOrEmpty(errorContent))
+                    if (!string.IsNullOrEmpty(errorContent))
                     {
                         try
                         {
                             result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
                             if (result.Error != null) result.Error.Content = errorContent;
                         }
-                        catch { }
+                        catch
+                        {
+                            // ignored
+                        }
                     }
 
                     if (result.Error == null)

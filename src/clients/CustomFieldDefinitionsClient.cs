@@ -45,11 +45,11 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Custom Field Definition</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No additional data collections are currently defined on this object, but may be supported in the future.</param>
-        public async Task<LockstepResponse<CustomFieldDefinitionModel>> RetrieveFieldDefinition(Guid id, string? include)
+        public async Task<LockstepResponse<CustomFieldDefinitionModel>> RetrieveFieldDefinition(Guid id, string include)
         {
             var url = $"/api/v1/CustomFieldDefinitions/{id}";
-            var options = new Dictionary<string, object?>();
-            options["include"] = include;
+            var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -68,7 +68,7 @@ namespace LockstepSDK
         public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid id, object body)
         {
             var url = $"/api/v1/CustomFieldDefinitions/{id}";
-            return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Patch, url, null, body, null);
+            return await _client.Request<CustomFieldDefinitionModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
@@ -116,15 +116,15 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> QueryFieldDefinitions(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> QueryFieldDefinitions(string filter, string include, string order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/CustomFieldDefinitions/query";
-            var options = new Dictionary<string, object?>();
-            options["filter"] = filter;
-            options["include"] = include;
-            options["order"] = order;
-            options["pageSize"] = pageSize;
-            options["pageNumber"] = pageNumber;
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<CustomFieldDefinitionModel>>(HttpMethod.Get, url, options, null, null);
         }
     }

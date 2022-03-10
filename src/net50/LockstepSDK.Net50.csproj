@@ -1,0 +1,122 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="..\clients\ActivitiesClient.cs">
+        <Link>clients\ActivitiesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\ApiKeysClient.cs">
+        <Link>clients\ApiKeysClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\AppEnrollmentsClient.cs">
+        <Link>clients\AppEnrollmentsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\ApplicationsClient.cs">
+        <Link>clients\ApplicationsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\AttachmentsClient.cs">
+        <Link>clients\AttachmentsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\CodeDefinitionsClient.cs">
+        <Link>clients\CodeDefinitionsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\CompaniesClient.cs">
+        <Link>clients\CompaniesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\ContactsClient.cs">
+        <Link>clients\ContactsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\CreditMemoAppliedClient.cs">
+        <Link>clients\CreditMemoAppliedClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\CurrenciesClient.cs">
+        <Link>clients\CurrenciesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\CustomFieldDefinitionsClient.cs">
+        <Link>clients\CustomFieldDefinitionsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\CustomFieldValuesClient.cs">
+        <Link>clients\CustomFieldValuesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\DefinitionsClient.cs">
+        <Link>clients\DefinitionsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\EmailsClient.cs">
+        <Link>clients\EmailsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\FinancialAccountBalanceHistoryClient.cs">
+        <Link>clients\FinancialAccountBalanceHistoryClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\FinancialAccountClient.cs">
+        <Link>clients\FinancialAccountClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\FinancialYearSettingsClient.cs">
+        <Link>clients\FinancialYearSettingsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\InvoiceHistoryClient.cs">
+        <Link>clients\InvoiceHistoryClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\InvoicesClient.cs">
+        <Link>clients\InvoicesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\LeadsClient.cs">
+        <Link>clients\LeadsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\NotesClient.cs">
+        <Link>clients\NotesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\PaymentApplicationsClient.cs">
+        <Link>clients\PaymentApplicationsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\PaymentsClient.cs">
+        <Link>clients\PaymentsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\ProvisioningClient.cs">
+        <Link>clients\ProvisioningClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\ReportsClient.cs">
+        <Link>clients\ReportsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\StatusClient.cs">
+        <Link>clients\StatusClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\SyncClient.cs">
+        <Link>clients\SyncClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\UserAccountsClient.cs">
+        <Link>clients\UserAccountsClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\UserRolesClient.cs">
+        <Link>clients\UserRolesClient.cs</Link>
+      </Compile>
+      <Compile Include="..\clients\WebhooksClient.cs">
+        <Link>clients\WebhooksClient.cs</Link>
+      </Compile>
+      <Compile Include="..\Enums.cs">
+        <Link>Enums.cs</Link>
+      </Compile>
+      <Compile Include="..\LockstepApi.cs">
+        <Link>LockstepApi.cs</Link>
+      </Compile>
+      <Compile Include="..\models\ActionResultModel.cs">
+        <Link>models\ActionResultModel.cs</Link>
+      </Compile>
+      <Compile Include="..\models\DataModels.cs">
+        <Link>models\DataModels.cs</Link>
+      </Compile>
+      <Compile Include="..\models\ErrorResult.cs">
+        <Link>models\ErrorResult.cs</Link>
+      </Compile>
+      <Compile Include="..\models\FetchResult.cs">
+        <Link>models\FetchResult.cs</Link>
+      </Compile>
+      <Compile Include="..\models\LockstepResponse.cs">
+        <Link>models\LockstepResponse.cs</Link>
+      </Compile>
+    </ItemGroup>
+</Project>
