@@ -8,15 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra Files", "Extra Files"
 		lockstep-sdk.nuspec = lockstep-sdk.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.Net45", "src\net45\LockstepSDK.Net45.csproj", "{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.Net50", "src\net50\LockstepSDK.Net50.csproj", "{A1A847D4-6641-412F-BE91-F5A326E65010}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.Net60", "src\net60\LockstepSDK.Net60.csproj", "{B1AF3B91-652A-487F-A94C-DD79750C0D63}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.NetStandard20", "src\netstandard20\LockstepSDK.NetStandard20.csproj", "{BE98C905-6B64-4805-9332-B7966C1E4ED0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.NetCoreApp3.1", "src\netcoreapp3.1\LockstepSDK.NetCoreApp3.1.csproj", "{B2CAE23D-C7F6-46BF-B8DF-A07648E5F0D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,25 +16,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D1DB970-E70F-4252-B30E-4E5ED3CA47FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1A847D4-6641-412F-BE91-F5A326E65010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1A847D4-6641-412F-BE91-F5A326E65010}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1A847D4-6641-412F-BE91-F5A326E65010}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1A847D4-6641-412F-BE91-F5A326E65010}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1AF3B91-652A-487F-A94C-DD79750C0D63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1AF3B91-652A-487F-A94C-DD79750C0D63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1AF3B91-652A-487F-A94C-DD79750C0D63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1AF3B91-652A-487F-A94C-DD79750C0D63}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2CAE23D-C7F6-46BF-B8DF-A07648E5F0D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2CAE23D-C7F6-46BF-B8DF-A07648E5F0D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2CAE23D-C7F6-46BF-B8DF-A07648E5F0D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2CAE23D-C7F6-46BF-B8DF-A07648E5F0D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
