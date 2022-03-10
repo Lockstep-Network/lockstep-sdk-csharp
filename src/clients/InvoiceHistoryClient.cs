@@ -59,11 +59,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> QueryInvoiceHistory(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> QueryInvoiceHistory(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/InvoiceHistory/query";
             var options = new Dictionary<string, object>();

@@ -43,11 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Payment; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Applications, Notes, Attachments, CustomFields</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<PaymentModel>> RetrievePayment(Guid id, string include)
-#else
-        public async Task<LockstepResponse<PaymentModel>> RetrievePayment(Guid id, string? include)
-#endif
         {
             var url = $"/api/v1/Payments/{id}";
             var options = new Dictionary<string, object>();
@@ -110,11 +106,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<PaymentModel>>> QueryPayments(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<PaymentModel>>> QueryPayments(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Payments/query";
             var options = new Dictionary<string, object>();
@@ -152,11 +144,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<PaymentSummaryModel>>> QueryPaymentSummaryView(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<PaymentSummaryModel>>> QueryPaymentSummaryView(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Payments/views/summary";
             var options = new Dictionary<string, object>();
@@ -189,11 +177,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<PaymentDetailModel>>> QueryPaymentDetailView(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<PaymentDetailModel>>> QueryPaymentDetailView(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Payments/views/detail";
             var options = new Dictionary<string, object>();

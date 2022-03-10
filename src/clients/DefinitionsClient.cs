@@ -48,11 +48,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<CountryModel>>> QueryCountries(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<CountryModel>>> QueryCountries(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Definitions/countries";
             var options = new Dictionary<string, object>();
@@ -77,11 +73,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<CurrencyModel>>> QueryCurrencies(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<CurrencyModel>>> QueryCurrencies(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Definitions/currencies";
             var options = new Dictionary<string, object>();
@@ -106,11 +98,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<StateModel>>> QueryStates(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<StateModel>>> QueryStates(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Definitions/states";
             var options = new Dictionary<string, object>();
@@ -135,11 +123,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<ErpModel>>> QueryFinancialSystems(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<ErpModel>>> QueryFinancialSystems(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Definitions/financialsystems";
             var options = new Dictionary<string, object>();

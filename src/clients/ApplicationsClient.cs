@@ -45,11 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Application to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid id, string include)
-#else
-        public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid id, string? include)
-#endif
         {
             var url = $"/api/v1/Applications/{id}";
             var options = new Dictionary<string, object>();
@@ -120,11 +116,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<ApplicationModel>>> QueryApplications(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<ApplicationModel>>> QueryApplications(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Applications/query";
             var options = new Dictionary<string, object>();

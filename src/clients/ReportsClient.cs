@@ -80,11 +80,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="reportDate">The date of the report.</param>
         /// <param name="companyId">Include a company to get AR data for a specific company, leave as null to include all Companies.</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime reportDate, Guid companyId)
-#else
-        public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime reportDate, Guid? companyId)
-#endif
         {
             var url = $"/api/v1/Reports/ar-header";
             var options = new Dictionary<string, object>();
@@ -108,11 +104,7 @@ namespace LockstepSDK
         /// <param name="CurrencyCode">Currency aging buckets are converted to (all aging data returned without currency conversion if no currency is specified)</param>
         /// <param name="CurrencyProvider">Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)</param>
         /// <param name="Buckets">Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid CompanyId, bool? Recalculate, string CurrencyCode, string CurrencyProvider, int[] Buckets)
-#else
-        public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId, bool? Recalculate, string? CurrencyCode, string? CurrencyProvider, int[]? Buckets)
-#endif
         {
             var url = $"/api/v1/Reports/aging";
             var options = new Dictionary<string, object>();
@@ -143,11 +135,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="companyId">Include a specific company to get Attachment data for, leave as null to include all Companies.</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid companyId)
-#else
-        public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid? companyId)
-#endif
         {
             var url = $"/api/v1/Reports/attachments-header";
             var options = new Dictionary<string, object>();
@@ -163,11 +151,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<TrialBalanceReportModel>> TrialBalanceReport(DateTime startDate, DateTime endDate)
-#else
-        public async Task<LockstepResponse<TrialBalanceReportModel>> TrialBalanceReport(DateTime? startDate, DateTime? endDate)
-#endif
         {
             var url = $"/api/v1/Reports/trial-balance";
             var options = new Dictionary<string, object>();

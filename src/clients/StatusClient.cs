@@ -56,11 +56,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="err">The type of error test to execute. Supported error types: 500, timeout</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<TestTimeoutException>> ErrorTest(string err)
-#else
-        public async Task<LockstepResponse<TestTimeoutException>> ErrorTest(string? err)
-#endif
         {
             var url = $"/api/v1/Status/testing";
             var options = new Dictionary<string, object>();

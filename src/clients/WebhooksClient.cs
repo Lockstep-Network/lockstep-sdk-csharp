@@ -103,11 +103,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<WebhookModel>>> QueryWebhooks(string filter, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<WebhookModel>>> QueryWebhooks(string? filter, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Webhooks/query";
             var options = new Dictionary<string, object>();
@@ -127,11 +123,7 @@ namespace LockstepSDK
         /// <param name="select">The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
         /// <param name="pageSize">The page size for results (default 200).</param>
         /// <param name="pageNumber">The page number for results (default 0).</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string filter, string select, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string? filter, string? select, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Webhooks/{webhookId}/history/query";
             var options = new Dictionary<string, object>();

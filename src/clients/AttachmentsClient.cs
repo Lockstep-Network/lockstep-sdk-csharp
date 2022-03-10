@@ -45,11 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Attachment to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<AttachmentModel>> RetrieveAttachment(Guid id, string include)
-#else
-        public async Task<LockstepResponse<AttachmentModel>> RetrieveAttachment(Guid id, string? include)
-#endif
         {
             var url = $"/api/v1/Attachments/{id}";
             var options = new Dictionary<string, object>();
@@ -117,11 +113,7 @@ namespace LockstepSDK
         /// <param name="objectId">The unique ID of the object to which this Attachment will be linked</param>
         /// <param name="attachmentType">The type of this attachment</param>
         /// <param name="filename">The full path of a file to upload to the API</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId, string filename, string attachmentType)
-#else
-        public async Task<LockstepResponse<AttachmentModel[]>> UploadAttachment(string tableName, Guid objectId, string filename, string? attachmentType)
-#endif
         {
             var url = $"/api/v1/Attachments";
             var options = new Dictionary<string, object>();
@@ -146,11 +138,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<FetchResult<AttachmentModel>>> QueryAttachments(string filter, string include, string order, int? pageSize, int? pageNumber)
-#else
-        public async Task<LockstepResponse<FetchResult<AttachmentModel>>> QueryAttachments(string? filter, string? include, string? order, int? pageSize, int? pageNumber)
-#endif
         {
             var url = $"/api/v1/Attachments/query";
             var options = new Dictionary<string, object>();

@@ -45,11 +45,7 @@ namespace LockstepSDK
         /// <param name="destinationCurrency">The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.</param>
         /// <param name="date">The date for which we should cto use for this currency conversion.</param>
         /// <param name="dataProvider">Optionally, you can specify a data provider.</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, DateTime date, string dataProvider)
-#else
-        public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, DateTime? date, string? dataProvider)
-#endif
         {
             var url = $"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}";
             var options = new Dictionary<string, object>();
@@ -64,11 +60,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="destinationCurrency">The currency to convert to.</param>
         /// <param name="body">A list of dates and source currencies.</param>
-#if DOT_NET_FRAMEWORK
         public async Task<LockstepResponse<CurrencyRateModel[]>> Bulkcurrencydata(BulkCurrencyConversionModel[] body, string destinationCurrency)
-#else
-        public async Task<LockstepResponse<CurrencyRateModel[]>> Bulkcurrencydata(BulkCurrencyConversionModel[] body, string? destinationCurrency)
-#endif
         {
             var url = $"/api/v1/Currencies/bulk";
             var options = new Dictionary<string, object>();
