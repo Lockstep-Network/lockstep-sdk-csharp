@@ -20,7 +20,7 @@ Create a new project folder with an empty `Program.cs` file inside it and add th
 - One way to add the SDK to your project is by using the [package manager](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli):
 
     ```
-    dotnet add package lockstep-sdk
+    dotnet add package LockstepSdk
     ```
 
 - Another way is to locate the source code in the `/src/` folder of this repository and ensure that your project folder has access to it (download and add it using your IDE).
