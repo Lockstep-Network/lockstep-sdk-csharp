@@ -45,7 +45,7 @@ namespace LockstepSDK
         /// <param name="destinationCurrency">The ISO 4217 currency code of the target currency. For a list of currency codes, call List Currencies.</param>
         /// <param name="date">The date for which we should cto use for this currency conversion.</param>
         /// <param name="dataProvider">Optionally, you can specify a data provider.</param>
-        public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, DateTime date, string dataProvider)
+        public async Task<LockstepResponse<CurrencyRateModel>> Retrievecurrencyrate(string sourceCurrency, string destinationCurrency, string date, string dataProvider)
         {
             var url = $"/api/v1/Currencies/{sourceCurrency}/{destinationCurrency}";
             var options = new Dictionary<string, object>();

@@ -621,12 +621,12 @@ namespace LockstepSDK
         /// <summary>
         /// The URL to visit for more information about this application
         /// </summary>
-        public Uri ProjectUrl { get; set; }
+        public string ProjectUrl { get; set; }
 
         /// <summary>
         /// The URL for the icon for this application
         /// </summary>
-        public Uri IconUrl { get; set; }
+        public string IconUrl { get; set; }
 
         /// <summary>
         /// The description of the price for this application
@@ -661,7 +661,7 @@ namespace LockstepSDK
         /// <summary>
         /// URL to the Wiki for the Application
         /// </summary>
-        public Uri WikiURL { get; set; }
+        public string WikiURL { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -774,7 +774,7 @@ namespace LockstepSDK
         /// <summary>
         /// The date of the report
         /// </summary>
-        public DateTime ReportPeriod { get; set; }
+        public string ReportPeriod { get; set; }
 
         /// <summary>
         /// The total number of customers.
@@ -881,7 +881,7 @@ namespace LockstepSDK
         /// <summary>
         /// The date of the report
         /// </summary>
-        public DateTime ReportDate { get; set; }
+        public string ReportDate { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -910,7 +910,7 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
-        public DateTime InvoiceDate { get; set; }
+        public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The name of the counterparty for the invoice, for example, a customer or vendor.
@@ -925,7 +925,7 @@ namespace LockstepSDK
         /// <summary>
         /// The due date of the invoice.
         /// </summary>
-        public DateTime PaymentDueDate { get; set; }
+        public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The total amount of the Invoice.
@@ -945,7 +945,7 @@ namespace LockstepSDK
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
         /// </summary>
-        public DateTime NewestActivity { get; set; }
+        public string NewestActivity { get; set; }
 
         /// <summary>
         /// The number of days this Invoice is past due.
@@ -1000,7 +1000,12 @@ namespace LockstepSDK
     }
 
     /// <summary>
-    /// Represents a user uploaded attachment
+    /// An Attachment is a file that can be attached to various account attributes within Lockstep.
+    /// This data model contains metadata about the attachment.  You can upload and download attachments
+    /// into the Lockstep Platform along with this metadata.  Attachments can be used for invoices, payments,
+    /// legal documents, or any other external files that you wish to track.
+    ///
+    /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
     /// </summary>
     public class AttachmentModel
     {
@@ -1020,37 +1025,57 @@ namespace LockstepSDK
         public Guid GroupKey { get; set; }
 
         /// <summary>
-        /// The name of the table the attachment is associated with
+        /// An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
+        /// `Invoice` and an `ObjectKey` value of `12345`.
+        ///
+        /// The `TableKey` value contains the name of the table within the Lockstep Platform to which this Attachment
+        /// is connected.
+        ///
+        /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public string TableKey { get; set; }
 
         /// <summary>
-        /// The ID of the object the attachment is associated with
+        /// An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
+        /// `Invoice` and an `ObjectKey` value of `12345`.
+        ///
+        /// The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+        /// Attachment is connected.
+        ///
+        /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public Guid ObjectKey { get; set; }
 
         /// <summary>
-        /// Name of the file
+        /// An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+        /// name of the file on disk, without its extension.
         /// </summary>
         public string FileName { get; set; }
 
         /// <summary>
-        /// Extension type of the file
+        /// An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+        /// extension name of the file on disk.
         /// </summary>
         public string FileExt { get; set; }
 
         /// <summary>
-        /// Corresponding AttachmentType object to describe this attachment
+        /// DEPRECATED: This field is replaced by `AttachmentType`.
         /// </summary>
         public Guid AttachmentTypeId { get; set; }
 
         /// <summary>
-        /// Flag indicating the attachment was archived
+        /// A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
+        /// [ArchiveAttachment](https://developer.lockstep.io/reference/delete_api-v1-attachments-id) this field will
+        /// be set to true.
+        ///
+        /// You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
         /// </summary>
         public bool IsArchived { get; set; }
 
         /// <summary>
-        /// Tracks the original record for this attachment, not currently used.
+        /// DEPRECATED - Do not use
         /// </summary>
         public Guid OriginAttachmentId { get; set; }
 
@@ -1084,17 +1109,18 @@ namespace LockstepSDK
         public Guid AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// The date the attachment was created
+        /// The date the attachment was created.
         /// </summary>
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// Id of the user who made the file
+        /// The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+        /// who created this Attachment.
         /// </summary>
         public Guid CreatedUserId { get; set; }
 
         /// <summary>
-        /// The type of this attachment.
+        /// A text string describing the type of this Attachment.
         /// </summary>
         public string AttachmentType { get; set; }
     }
@@ -1162,8 +1188,10 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date for the currency rate
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// The currency code This will be validated by the /api/v1/currencies data set
@@ -1751,24 +1779,14 @@ namespace LockstepSDK
         public string Password { get; set; }
 
         /// <summary>
-        /// The username for sftp client
+        /// The server name a connection is being created for.
         /// </summary>
-        public string SftpUsername { get; set; }
+        public string ServerName { get; set; }
 
         /// <summary>
-        /// The password for sftp client
+        /// The port number of the server a connection is being created for.
         /// </summary>
-        public string SftpPassword { get; set; }
-
-        /// <summary>
-        /// The Lockstep server URL for sftp client
-        /// </summary>
-        public string SftpServerUrl { get; set; }
-
-        /// <summary>
-        /// The port number for sftp client
-        /// </summary>
-        public int? SftpPortNumber { get; set; }
+        public int? ServerPort { get; set; }
     }
 
     /// <summary>
@@ -1890,12 +1908,12 @@ namespace LockstepSDK
         /// <summary>
         /// The webpage url of the contact.
         /// </summary>
-        public Uri WebpageUrl { get; set; }
+        public string WebpageUrl { get; set; }
 
         /// <summary>
         /// The picture/avatar url of the contact.
         /// </summary>
-        public Uri PictureUrl { get; set; }
+        public string PictureUrl { get; set; }
 
         /// <summary>
         /// The date on which this record was created.
@@ -2414,7 +2432,7 @@ namespace LockstepSDK
         /// <summary>
         /// Date invoice applied to credit memo.
         /// </summary>
-        public DateTime ApplyToInvoiceDate { get; set; }
+        public string ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// Amount applied to credit memo.
@@ -2503,13 +2521,238 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date for the currency rate
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
         /// <summary>
         /// The currency rate value
         /// </summary>
         public double? CurrencyRate { get; set; }
+    }
+
+    /// <summary>
+    /// A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
+    /// core definition for each object.  The core definition is intended to represent a level of compatibility
+    /// that provides support across most accounting systems and products.  When a user or developer requires
+    /// information beyond this core definition, you can use Custom Fields to represent this information.
+    ///
+    /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+    /// </summary>
+    public class CustomFieldDefinitionModel
+    {
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The unique ID of this record, automatically assigned by Lockstep when this record is
+        /// added to the Lockstep platform.
+        /// </summary>
+        public Guid CustomFieldDefinitionId { get; set; }
+
+        /// <summary>
+        /// Table to which this definition belongs
+        /// </summary>
+        public string TableKey { get; set; }
+
+        /// <summary>
+        /// Id of app this definition belongs to
+        /// </summary>
+        public Guid AppId { get; set; }
+
+        /// <summary>
+        /// Text to display in-application for custom field
+        /// </summary>
+        public string CustomFieldLabel { get; set; }
+
+        /// <summary>
+        /// Data type of this definition
+        /// </summary>
+        public string DataType { get; set; }
+
+        /// <summary>
+        /// Used for display logic when multiple custom fields exist
+        /// </summary>
+        public int SortOrder { get; set; }
+
+        /// <summary>
+        /// Date created
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// Id of user who created this definition
+        /// </summary>
+        public Guid CreatedUserId { get; set; }
+
+        /// <summary>
+        /// Date modified
+        /// </summary>
+        public DateTime Modified { get; set; }
+
+        /// <summary>
+        /// Id of user who modified this definition
+        /// </summary>
+        public Guid ModifiedUserId { get; set; }
+
+        /// <summary>
+        /// The AppEnrollmentId of the application that imported this record.  For accounts
+        /// with more than one financial system connected, this field identifies the originating
+        /// financial system that produced this record.  This value is null if this record
+        /// was not loaded from an external ERP or financial system.
+        /// </summary>
+        public Guid AppEnrollmentId { get; set; }
+    }
+
+    /// <summary>
+    /// The CustomFieldSyncModel represents information coming into Lockstep from an external financial system or other
+    /// enterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)
+    /// represent custom data extensions that you can use with the Lockstep Platform.  If you need to store extra
+    /// information about an object that does not match Lockstep&#39;s official schema, you can store it in the Custom
+    /// Field system using CustomFieldSyncModel.
+    ///
+    /// To store a custom field for an object, create a CustomFieldSyncModel record containing the `EntityType` and
+    /// `ErpKey` of the entity to which you will attach a custom field. Next specify the field&#39;s `CustomFieldLabel`
+    /// and either a `StringValue` or `NumericValue`.
+    ///
+    /// Once imported, this record will be available in the Lockstep API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
+    ///
+    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
+    /// </summary>
+    public class CustomFieldSyncModel
+    {
+
+        /// <summary>
+        /// This is the primary key of the record to which you will attach this custom field. You should provide the
+        /// identifying number as it is stored in the originating financial system. Search for a unique, non-changing
+        /// number within the originating financial system for this record.
+        ///
+        /// Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+        ///
+        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+        /// invoice named &quot;ApprovalStatusCode&quot;.  For the `ErpKey` field, specify the value `100047878`.
+        ///
+        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
+        /// </summary>
+        public string ErpKey { get; set; }
+
+        /// <summary>
+        /// Custom Fields are identified by the `EntityType` and `ErpKey` values together.
+        ///
+        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+        /// invoice named &quot;ApprovalStatusCode&quot;.  For the `EntityType` field, specify the value `Invoice`.
+        ///
+        /// Recognized types include:
+        /// * `Company` - Link this custom field to a CompanySyncModel
+        /// * `Contact` - Link this custom field to a ContactSyncModel
+        /// * `Invoice` - Link this custom field to an InvoiceSyncModel
+        /// * `InvoiceLine` - Link this custom field to an InvoiceLineSyncModel
+        /// * `Payment` - Link this custom field to a PaymentSyncModel
+        /// </summary>
+        public string EntityType { get; set; }
+
+        /// <summary>
+        /// A label that uniquely identifies this custom field within your software.
+        ///
+        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
+        /// invoice named &quot;ApprovalStatusCode&quot;.  For the `CustomFieldLabel` field, specify the value `ApprovalStatusCode`.
+        /// </summary>
+        public string CustomFieldLabel { get; set; }
+
+        /// <summary>
+        /// The value of this custom field.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was created according to the originating financial system
+        /// in which this record is maintained.  If the originating financial system does not maintain a
+        /// created-date, leave this field null.
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// If known, the date when this record was most recently modified according to the originating
+        /// financial system in which this record is maintained.  If the originating financial system does
+        /// not maintain a most-recently-modified-date, leave this field null.
+        /// </summary>
+        public DateTime Modified { get; set; }
+    }
+
+    /// <summary>
+    /// A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
+    /// core definition for each object.  The core definition is intended to represent a level of compatibility
+    /// that provides support across most accounting systems and products.  When a user or developer requires
+    /// information beyond this core definition, you can use Custom Fields to represent this information.
+    ///
+    /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+    /// </summary>
+    public class CustomFieldValueModel
+    {
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The unique ID of this record, automatically assigned by Lockstep when this record is
+        /// added to the Lockstep platform.
+        /// </summary>
+        public Guid CustomFieldDefinitionId { get; set; }
+
+        /// <summary>
+        /// Additional key if source table doesn&#39;t have a unique id
+        /// </summary>
+        public Guid RecordKey { get; set; }
+
+        /// <summary>
+        /// Date created
+        /// </summary>
+        public DateTime Created { get; set; }
+
+        /// <summary>
+        /// Id of user who created this value
+        /// </summary>
+        public Guid CreatedUserId { get; set; }
+
+        /// <summary>
+        /// Date modified
+        /// </summary>
+        public DateTime Modified { get; set; }
+
+        /// <summary>
+        /// Id of user who modified this value
+        /// </summary>
+        public Guid ModifiedUserId { get; set; }
+
+        /// <summary>
+        /// The AppEnrollmentId of the application that imported this attachment record.  For accounts
+        /// with more than one financial system connected, this field identifies the originating
+        /// financial system that produced this record.  This value is null if this record
+        /// was not loaded from an external ERP or financial system.
+        /// </summary>
+        public Guid AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The value of this custom field.
+        /// </summary>
+        public string Value { get; set; }
+
+        /// <summary>
+        /// Definition of the value
+        /// </summary>
+        public CustomFieldDefinitionModel CustomFieldDefinition { get; set; }
     }
 
     /// <summary>
@@ -2764,230 +3007,7 @@ namespace LockstepSDK
         /// <summary>
         /// The date stamp for the newest Activity on this Customer.
         /// </summary>
-        public DateTime NewestActivity { get; set; }
-    }
-
-    /// <summary>
-    /// A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
-    /// core definition for each object.  The core definition is intended to represent a level of compatibility
-    /// that provides support across most accounting systems and products.  When a user or developer requires
-    /// information beyond this core definition, you can use Custom Fields to represent this information.
-    ///
-    /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
-    /// </summary>
-    public class CustomFieldDefinitionModel
-    {
-
-        /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-        ///
-        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-        /// </summary>
-        public Guid GroupKey { get; set; }
-
-        /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
-        /// </summary>
-        public Guid CustomFieldDefinitionId { get; set; }
-
-        /// <summary>
-        /// Table to which this definition belongs
-        /// </summary>
-        public string TableKey { get; set; }
-
-        /// <summary>
-        /// Id of app this definition belongs to
-        /// </summary>
-        public Guid AppId { get; set; }
-
-        /// <summary>
-        /// Text to display in-application for custom field
-        /// </summary>
-        public string CustomFieldLabel { get; set; }
-
-        /// <summary>
-        /// Data type of this definition
-        /// </summary>
-        public string DataType { get; set; }
-
-        /// <summary>
-        /// Used for display logic when multiple custom fields exist
-        /// </summary>
-        public int SortOrder { get; set; }
-
-        /// <summary>
-        /// Date created
-        /// </summary>
-        public DateTime Created { get; set; }
-
-        /// <summary>
-        /// Id of user who created this definition
-        /// </summary>
-        public Guid CreatedUserId { get; set; }
-
-        /// <summary>
-        /// Date modified
-        /// </summary>
-        public DateTime Modified { get; set; }
-
-        /// <summary>
-        /// Id of user who modified this definition
-        /// </summary>
-        public Guid ModifiedUserId { get; set; }
-
-        /// <summary>
-        /// The AppEnrollmentId of the application that imported this record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
-        /// </summary>
-        public Guid AppEnrollmentId { get; set; }
-    }
-
-    /// <summary>
-    /// The CustomFieldSyncModel represents information coming into Lockstep from an external financial system or other
-    /// enterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)
-    /// represent custom data extensions that you can use with the Lockstep Platform.  If you need to store extra
-    /// information about an object that does not match Lockstep&#39;s official schema, you can store it in the Custom
-    /// Field system using CustomFieldSyncModel.
-    ///
-    /// To store a custom field for an object, create a CustomFieldSyncModel record containing the `EntityType` and
-    /// `ErpKey` of the entity to which you will attach a custom field. Next specify the field&#39;s `CustomFieldLabel`
-    /// and either a `StringValue` or `NumericValue`.
-    ///
-    /// Once imported, this record will be available in the Lockstep API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
-    ///
-    /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
-    /// </summary>
-    public class CustomFieldSyncModel
-    {
-
-        /// <summary>
-        /// This is the primary key of the record to which you will attach this custom field. You should provide the
-        /// identifying number as it is stored in the originating financial system. Search for a unique, non-changing
-        /// number within the originating financial system for this record.
-        ///
-        /// Custom Fields are identified by the `EntityType` and `ErpKey` values together.
-        ///
-        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-        /// invoice named &quot;ApprovalStatusCode&quot;.  For the `ErpKey` field, specify the value `100047878`.
-        ///
-        /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
-        /// </summary>
-        public string ErpKey { get; set; }
-
-        /// <summary>
-        /// Custom Fields are identified by the `EntityType` and `ErpKey` values together.
-        ///
-        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-        /// invoice named &quot;ApprovalStatusCode&quot;.  For the `EntityType` field, specify the value `Invoice`.
-        ///
-        /// Recognized types include:
-        /// * `Company` - Link this custom field to a CompanySyncModel
-        /// * `Contact` - Link this custom field to a ContactSyncModel
-        /// * `Invoice` - Link this custom field to an InvoiceSyncModel
-        /// * `InvoiceLine` - Link this custom field to an InvoiceLineSyncModel
-        /// * `Payment` - Link this custom field to a PaymentSyncModel
-        /// </summary>
-        public string EntityType { get; set; }
-
-        /// <summary>
-        /// A label that uniquely identifies this custom field within your software.
-        ///
-        /// Example: You have an invoice whose ID number is 100047878, and you wish to store a custom field on that
-        /// invoice named &quot;ApprovalStatusCode&quot;.  For the `CustomFieldLabel` field, specify the value `ApprovalStatusCode`.
-        /// </summary>
-        public string CustomFieldLabel { get; set; }
-
-        /// <summary>
-        /// The value of this custom field.
-        /// </summary>
-        public string Value { get; set; }
-
-        /// <summary>
-        /// If known, the date when this record was created according to the originating financial system
-        /// in which this record is maintained.  If the originating financial system does not maintain a
-        /// created-date, leave this field null.
-        /// </summary>
-        public DateTime Created { get; set; }
-
-        /// <summary>
-        /// If known, the date when this record was most recently modified according to the originating
-        /// financial system in which this record is maintained.  If the originating financial system does
-        /// not maintain a most-recently-modified-date, leave this field null.
-        /// </summary>
-        public DateTime Modified { get; set; }
-    }
-
-    /// <summary>
-    /// A Custom Field represents metadata added to an object within the Lockstep Platform.  Lockstep provides a
-    /// core definition for each object.  The core definition is intended to represent a level of compatibility
-    /// that provides support across most accounting systems and products.  When a user or developer requires
-    /// information beyond this core definition, you can use Custom Fields to represent this information.
-    ///
-    /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
-    /// </summary>
-    public class CustomFieldValueModel
-    {
-
-        /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-        ///
-        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-        /// </summary>
-        public Guid GroupKey { get; set; }
-
-        /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
-        /// </summary>
-        public Guid CustomFieldDefinitionId { get; set; }
-
-        /// <summary>
-        /// Additional key if source table doesn&#39;t have a unique id
-        /// </summary>
-        public Guid RecordKey { get; set; }
-
-        /// <summary>
-        /// Date created
-        /// </summary>
-        public DateTime Created { get; set; }
-
-        /// <summary>
-        /// Id of user who created this value
-        /// </summary>
-        public Guid CreatedUserId { get; set; }
-
-        /// <summary>
-        /// Date modified
-        /// </summary>
-        public DateTime Modified { get; set; }
-
-        /// <summary>
-        /// Id of user who modified this value
-        /// </summary>
-        public Guid ModifiedUserId { get; set; }
-
-        /// <summary>
-        /// The AppEnrollmentId of the application that imported this attachment record.  For accounts
-        /// with more than one financial system connected, this field identifies the originating
-        /// financial system that produced this record.  This value is null if this record
-        /// was not loaded from an external ERP or financial system.
-        /// </summary>
-        public Guid AppEnrollmentId { get; set; }
-
-        /// <summary>
-        /// The value of this custom field.
-        /// </summary>
-        public string Value { get; set; }
-
-        /// <summary>
-        /// Definition of the value
-        /// </summary>
-        public CustomFieldDefinitionModel CustomFieldDefinition { get; set; }
+        public string NewestActivity { get; set; }
     }
 
     /// <summary>
@@ -3459,6 +3479,85 @@ namespace LockstepSDK
     }
 
     /// <summary>
+    /// Represents a cell of a financial report
+    /// </summary>
+    public class FinancialReportCellModel
+    {
+
+        /// <summary>
+        /// The value of the financial report cell
+        /// </summary>
+        public string Value { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a Financial Report
+    /// </summary>
+    public class FinancialReportModel
+    {
+
+        /// <summary>
+        /// The name of the report (&quot;*Report Type* for *Company*&quot;)
+        /// </summary>
+        public string ReportName { get; set; }
+
+        /// <summary>
+        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
+        ///
+        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
+        /// </summary>
+        public Guid GroupKey { get; set; }
+
+        /// <summary>
+        /// The start date of the financial report
+        /// </summary>
+        public DateTime ReportStartDate { get; set; }
+
+        /// <summary>
+        /// The end date of the financial report
+        /// </summary>
+        public DateTime ReportEndDate { get; set; }
+
+        /// <summary>
+        /// The created date of the financial report
+        /// </summary>
+        public DateTime ReportCreatedDate { get; set; }
+
+        /// <summary>
+        /// The rows of the financial report
+        /// </summary>
+        public FinancialReportRowModel[] Rows { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a row of a financial Report report
+    /// </summary>
+    public class FinancialReportRowModel
+    {
+
+        /// <summary>
+        /// Describes what type of row this row is (Header, Summary, Classification, Category, Subcategory, Data)
+        /// </summary>
+        public string RowType { get; set; }
+
+        /// <summary>
+        /// The label for the row if it is a Classification, Category, or Subcategory.
+        /// </summary>
+        public string Label { get; set; }
+
+        /// <summary>
+        /// The sub rows of this row if it is a Classification, Category, or Subcategory.
+        /// </summary>
+        public FinancialReportRowModel[] Rows { get; set; }
+
+        /// <summary>
+        /// The cells of the row
+        /// </summary>
+        public FinancialReportCellModel[] Cells { get; set; }
+    }
+
+    /// <summary>
     /// A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to
     /// calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync
     /// or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
@@ -3502,12 +3601,12 @@ namespace LockstepSDK
         /// <summary>
         /// The start date of the financial year. Should be entered in MM-DD format.
         /// </summary>
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
 
         /// <summary>
         /// The end date of the financial year. Should be entered in MM-DD format.
         /// </summary>
-        public DateTime EndDate { get; set; }
+        public string EndDate { get; set; }
 
         /// <summary>
         /// The date on which this financial year setting record was created.
@@ -3804,28 +3903,28 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
-        public DateTime InvoiceDate { get; set; }
+        public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
         /// </summary>
-        public DateTime DiscountDate { get; set; }
+        public string DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
         /// </summary>
-        public DateTime PostedDate { get; set; }
+        public string PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
         /// </summary>
-        public DateTime InvoiceClosedDate { get; set; }
+        public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
         /// </summary>
-        public DateTime PaymentDueDate { get; set; }
+        public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
@@ -3971,7 +4070,7 @@ namespace LockstepSDK
         /// If null, the products specified on this line were delivered on the same date as all other lines.
         /// If not null, this line was delivered or finalized on a different date than the overall invoice.
         /// </summary>
-        public DateTime ReportingDate { get; set; }
+        public string ReportingDate { get; set; }
 
         /// <summary>
         /// An optional ID number for the line&#39;s origin address.
@@ -4407,28 +4506,28 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
-        public DateTime InvoiceDate { get; set; }
+        public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
         /// </summary>
-        public DateTime DiscountDate { get; set; }
+        public string DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
         /// </summary>
-        public DateTime PostedDate { get; set; }
+        public string PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
         /// </summary>
-        public DateTime InvoiceClosedDate { get; set; }
+        public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
         /// </summary>
-        public DateTime PaymentDueDate { get; set; }
+        public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
@@ -4608,7 +4707,7 @@ namespace LockstepSDK
         /// <summary>
         /// Date Payment applied to Invoice.
         /// </summary>
-        public DateTime ApplyToInvoiceDate { get; set; }
+        public string ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// Amount applied to Invoice.
@@ -4670,7 +4769,7 @@ namespace LockstepSDK
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
-        public DateTime InvoiceDate { get; set; }
+        public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The name of the counterparty for the invoice, for example, a customer or vendor.
@@ -4685,7 +4784,7 @@ namespace LockstepSDK
         /// <summary>
         /// The due date of the invoice.
         /// </summary>
-        public DateTime PaymentDueDate { get; set; }
+        public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The total amount of the Invoice.
@@ -4705,7 +4804,7 @@ namespace LockstepSDK
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
         /// </summary>
-        public DateTime NewestActivity { get; set; }
+        public string NewestActivity { get; set; }
 
         /// <summary>
         /// The number of days this Invoice is past due.
@@ -5102,17 +5201,31 @@ namespace LockstepSDK
         public Guid GroupKey { get; set; }
 
         /// <summary>
-        /// The name of the table the note is associated with
+        /// A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
+        /// `Invoice` and an `ObjectKey` value of `12345`.
+        ///
+        /// The `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata
+        /// is connected.
+        ///
+        /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public string TableKey { get; set; }
 
         /// <summary>
-        /// The ID of the object the note is associated with
+        /// A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
+        /// `Invoice` and an `ObjectKey` value of `12345`.
+        ///
+        /// The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+        /// metadata is connected.
+        ///
+        /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public Guid ObjectKey { get; set; }
 
         /// <summary>
-        /// The text of the note
+        /// The full text of the note
         /// </summary>
         public string NoteText { get; set; }
 
@@ -5122,7 +5235,11 @@ namespace LockstepSDK
         public string NoteType { get; set; }
 
         /// <summary>
-        /// Flag indicating if the note has been archived
+        /// A flag indicating whether this Note is archived (also known as hidden or deleted).  When you call
+        /// [ArchiveNote](https://developer.lockstep.io/reference/delete_api-v1-notes-id) this field will
+        /// be set to true.
+        ///
+        /// You should avoid displaying Notes with the IsArchived field set to true in your user interface.
         /// </summary>
         public bool IsArchived { get; set; }
 
@@ -5132,7 +5249,8 @@ namespace LockstepSDK
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// The ID of the user who created the note
+        /// The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+        /// who created this Note.
         /// </summary>
         public Guid CreatedUserId { get; set; }
 
@@ -5440,12 +5558,12 @@ namespace LockstepSDK
         /// <summary>
         /// The date of this Payment.
         /// </summary>
-        public DateTime PaymentDate { get; set; }
+        public string PaymentDate { get; set; }
 
         /// <summary>
         /// Payment post date.
         /// </summary>
-        public DateTime PostDate { get; set; }
+        public string PostDate { get; set; }
 
         /// <summary>
         /// The phone number of the Customer&#39;s Primary Contact.
@@ -5572,15 +5690,19 @@ namespace LockstepSDK
         /// The date when this payment was received.  This typically is the date when an accounting employee recorded
         /// that they received notification that the payment had occurred, whether they were notified by email, postal
         /// mail, or financial transaction notification.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
-        public DateTime PaymentDate { get; set; }
+        public string PaymentDate { get; set; }
 
         /// <summary>
         /// The date when a payment was posted to a ledger.  This date is often determined by a company&#39;s accounting
         /// practices and may be different than the date when the payment was received.  This date may be affected by
         /// issues such as temporary holds on funds transferred, bank holidays, or other actions.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
-        public DateTime PostDate { get; set; }
+        public string PostDate { get; set; }
 
         /// <summary>
         /// Total amount of this payment.
@@ -5726,7 +5848,7 @@ namespace LockstepSDK
         /// <summary>
         /// The date of this payment.
         /// </summary>
-        public DateTime PaymentDate { get; set; }
+        public string PaymentDate { get; set; }
 
         /// <summary>
         /// Total amount of this payment.
@@ -6301,85 +6423,6 @@ namespace LockstepSDK
     }
 
     /// <summary>
-    /// Represents a cell of a trial balance report
-    /// </summary>
-    public class TrialBalanceReportCellModel
-    {
-
-        /// <summary>
-        /// The value of the trial balance report cell
-        /// </summary>
-        public string Value { get; set; }
-    }
-
-    /// <summary>
-    /// Represents a Trial Balance Report
-    /// </summary>
-    public class TrialBalanceReportModel
-    {
-
-        /// <summary>
-        /// The name of the report (&quot;Trial Balance for *Company*&quot;)
-        /// </summary>
-        public string ReportName { get; set; }
-
-        /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
-        /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
-        ///
-        /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
-        /// </summary>
-        public Guid GroupKey { get; set; }
-
-        /// <summary>
-        /// The start date of the trial balance report
-        /// </summary>
-        public DateTime ReportStartDate { get; set; }
-
-        /// <summary>
-        /// The end date of the trial balance report
-        /// </summary>
-        public DateTime ReportEndDate { get; set; }
-
-        /// <summary>
-        /// The created date of the trial balance report
-        /// </summary>
-        public DateTime ReportCreatedDate { get; set; }
-
-        /// <summary>
-        /// The rows of the trial balance report
-        /// </summary>
-        public TrialBalanceReportRowModel[] Rows { get; set; }
-    }
-
-    /// <summary>
-    /// Represents a row of a trial balance report
-    /// </summary>
-    public class TrialBalanceReportRowModel
-    {
-
-        /// <summary>
-        /// Describes what type of row this row is (Header, Summary, Classification, Category, Subcategory, Data)
-        /// </summary>
-        public string RowType { get; set; }
-
-        /// <summary>
-        /// The label for the row if it is a Classification, Category, or Subcategory.
-        /// </summary>
-        public string Label { get; set; }
-
-        /// <summary>
-        /// The sub rows of this row if it is a Classification, Category, or Subcategory.
-        /// </summary>
-        public TrialBalanceReportRowModel[] Rows { get; set; }
-
-        /// <summary>
-        /// The cells of the row
-        /// </summary>
-        public TrialBalanceReportCellModel[] Cells { get; set; }
-    }
-
-    /// <summary>
     /// Represents a Uri for download link
     /// </summary>
     public class UriModel
@@ -6388,7 +6431,7 @@ namespace LockstepSDK
         /// <summary>
         /// Represents the download link
         /// </summary>
-        public Uri DownloadLink { get; set; }
+        public string DownloadLink { get; set; }
     }
 
     /// <summary>
@@ -6762,7 +6805,7 @@ namespace LockstepSDK
         /// string. To successfully create the webhook, the call must return a successful status code
         /// with the query parameter&#39;s value as the plain text content.
         /// </summary>
-        public Uri CallbackUrl { get; set; }
+        public string CallbackUrl { get; set; }
 
         /// <summary>
         /// The expiration date for the given webhook subscription. Once the expiration date passes,

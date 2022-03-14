@@ -95,10 +95,10 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the Attachment whose URI will be returned</param>
-        public async Task<LockstepResponse<string>> DownloadAttachment(Guid id)
+        public async Task<LockstepResponse<UriModel>> DownloadAttachment(Guid id)
         {
             var url = $"/api/v1/Attachments/{id}/download";
-            return await _client.Request<string>(HttpMethod.Get, url, null, null, null);
+            return await _client.Request<UriModel>(HttpMethod.Get, url, null, null, null);
         }
 
         /// <summary>

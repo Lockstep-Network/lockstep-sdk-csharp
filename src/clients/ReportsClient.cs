@@ -80,7 +80,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="reportDate">The date of the report.</param>
         /// <param name="companyId">Include a company to get AR data for a specific company, leave as null to include all Companies.</param>
-        public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(DateTime reportDate, Guid companyId)
+        public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(string reportDate, Guid companyId)
         {
             var url = $"/api/v1/Reports/ar-header";
             var options = new Dictionary<string, object>();
@@ -151,13 +151,13 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
-        public async Task<LockstepResponse<TrialBalanceReportModel>> TrialBalanceReport(DateTime startDate, DateTime endDate)
+        public async Task<LockstepResponse<FinancialReportModel>> TrialBalanceReport(DateTime startDate, DateTime endDate)
         {
             var url = $"/api/v1/Reports/trial-balance";
             var options = new Dictionary<string, object>();
             if (startDate != null) { options["startDate"] = startDate; }
             if (endDate != null) { options["endDate"] = endDate; }
-            return await _client.Request<TrialBalanceReportModel>(HttpMethod.Get, url, options, null, null);
+            return await _client.Request<FinancialReportModel>(HttpMethod.Get, url, options, null, null);
         }
     }
 }

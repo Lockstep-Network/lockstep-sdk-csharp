@@ -12,7 +12,7 @@ We use the [Query Invoices API](https://developer.lockstep.io/reference/get_api-
 
 ## How to Write a Program Using This SDK
 
-### Step 0: Install Lockstep SDK for C#
+### Step 1: Install Lockstep SDK for C#
 
 Before you start, make sure you [generated a valid API key](https://developer.lockstep.io/docs/api-keys) and saved it as an environment variable in your system (referred to as `LOCKSTEPAPI_SBX` in this example). That way, you'll have access to the server.
 
@@ -27,7 +27,7 @@ Create a new project folder with an empty `Program.cs` file inside it and add th
 
 There may be some additional dependencies you have to install.
 
-### Step 1: Declare and initialize Lockstep API
+### Step 2: Declare and initialize Lockstep API
 
 Open your `Program.cs` file. Start by listing the dependencies and creating the main method. This main method should have variables for the `client` and `apiKey`. Note that the string passed in `Environment.GetEnvironmentVariable()` matches the environment variable name you created on your system. The `Ping()` method verifies your program can access the Lockstep Platfom API, regardless of authentication status or permissions. 
 
@@ -41,26 +41,30 @@ namespace LockstepExamples
     {
         public static async Task Main(string[] args)
         { 
-            # Lockstep provides sandbox and production environments.
-            var client = LockstepApi.WithEnvironment(LockstepEnv.SBX);
-            # Add your API key here.
-            var apiKey = Environment.GetEnvironmentVariable("LOCKSTEPAPI_SBX");
-            
-            if (apiKey != null)
-            {
-                client.WithApiKey(apiKey);
-            }
-            
-            var result = await client.Status.Ping();
-            Console.WriteLine("Ping result: " + JsonSerializer.Serialize(result));
+            var client = LockstepApi.WithEnvironment(LockstepEnv.SBX)
+                .WithApiKey(Environment.GetEnvironmentVariable("LOCKSTEPAPI_SBX"));
 
-            while(true) {...}
+            // Test first API call
+            var result = await client.Status.Ping();
+            if (!result.Success || !result.Value.LoggedIn)
+            {
+                Console.WriteLine("Your API key is not valid.");
+                Console.WriteLine("Please set the environment variable LOCKSTEPAPI_SBX and try again.");
+                return;
+            }
+
+            // Print some information about our current user
+            Console.WriteLine($"Ping result: {result.Value.UserName} ({result.Value.UserStatus})");
+            Console.WriteLine($"Server status: {result.Value.Environment} {result.Value.Version}");
+            Console.WriteLine();
+            
+            // You may now use the client object to make API calls
         }
     }
 }
 ```
 
-### Step 2: Create API query
+### Step 3: Create API query
 
 In the `while` loop, we can begin querying invoices by storing the results in the `invoices` variable. Using the `QueryInvoices` API, we will fetch all invoices dated from December 1st, 2021 and later. We specify a page size of 100, which gives us a small number of invoices in each query.
 
@@ -97,7 +101,7 @@ The results from this API call will list the first 100 invoices, since you speci
 
 The results we get back also includes information about the company that wrote the invoice, since we added `"Customer"` to the `include` parameter of the query. Thus, we can fetch invoices and companies within the same query rather than making separate API calls.
 
-### Step 3: Iterate through query results
+### Step 4: Iterate through query results
 
 Looking at the previous output, notice that `records` was returned. We can access each invoice by iterating through `invoices.Value.Records`. We can print details about each invoice by accessing its fields, such as `InvoiceId` and `OutstandingBalanceAmount`. And since we added `"Customer"` to the `include` parameter, we can access that to print the `CompanyName`:
 
@@ -112,7 +116,7 @@ foreach (var invoice in invoices.Value.Records)
 
 To format the outstanding balance to print like `$0.00`, replace with `Console.WriteLine($"Outstanding Balance: {string.Format("{0:C}", invoice.OutstandingBalanceAmount)}");`.
 
-### Step 4: Examine Results
+### Step 5: Examine Results
 
 If everything is working when you build or debug your program, you will see the query results print to the console with the following format:
 
