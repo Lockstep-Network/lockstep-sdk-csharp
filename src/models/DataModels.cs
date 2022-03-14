@@ -1188,6 +1188,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date for the currency rate
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string Date { get; set; }
 
@@ -2519,6 +2521,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date for the currency rate
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string Date { get; set; }
 
@@ -5686,6 +5690,8 @@ namespace LockstepSDK
         /// The date when this payment was received.  This typically is the date when an accounting employee recorded
         /// that they received notification that the payment had occurred, whether they were notified by email, postal
         /// mail, or financial transaction notification.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDate { get; set; }
 
@@ -5693,6 +5699,8 @@ namespace LockstepSDK
         /// The date when a payment was posted to a ledger.  This date is often determined by a company&#39;s accounting
         /// practices and may be different than the date when the payment was received.  This date may be affected by
         /// issues such as temporary holds on funds transferred, bank holidays, or other actions.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostDate { get; set; }
 
