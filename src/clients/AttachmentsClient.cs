@@ -95,10 +95,25 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the Attachment whose URI will be returned</param>
-        public async Task<LockstepResponse<UriModel>> DownloadAttachment(Guid id)
+        public async Task<LockstepResponse<UriModel>> DownloadAttachmentURL(Guid id)
         {
-            var url = $"/api/v1/Attachments/{id}/download";
+            var url = $"/api/v1/Attachments/{id}/download-url";
             return await _client.Request<UriModel>(HttpMethod.Get, url, null, null, null);
+        }
+
+        /// <summary>
+        /// Returns the Attachment file to be downloaded, based on the ID provided.
+        ///
+        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        ///
+        /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+        ///
+        /// </summary>
+        /// <param name="id">The unique ID number of the Attachment whose URI will be returned</param>
+        public async Task<LockstepResponse<byte[]>> DownloadAttachmentFile(Guid id)
+        {
+            var url = $"/api/v1/Attachments/{id}/download-file";
+            return await _client.Request<byte[]>(HttpMethod.Get, url, null, null, null);
         }
 
         /// <summary>
