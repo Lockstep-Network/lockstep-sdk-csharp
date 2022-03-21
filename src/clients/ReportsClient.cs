@@ -166,7 +166,7 @@ namespace LockstepSDK
         /// <param name="endDate">The end date of the report</param>
         /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
         /// <param name="displayDepth">The desired row splitting of the report data. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
-        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime startDate, DateTime endDate, string columnOption, ReportDepth displayDepth)
+        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime startDate, DateTime endDate, string columnOption, int? displayDepth)
         {
             var url = $"/api/v1/Reports/income-statement";
             var options = new Dictionary<string, object>();
