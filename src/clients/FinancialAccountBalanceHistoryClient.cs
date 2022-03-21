@@ -42,7 +42,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Financial Account Balance History</param>
-        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> RetrieveFinancialAccountBalanceHistory(Guid id)
+        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> RetrieveBalanceHistory(Guid id)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
             return await _client.Request<FinancialAccountBalanceHistoryModel>(HttpMethod.Get, url, null, null, null);
@@ -58,7 +58,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Account Balance History to update</param>
         /// <param name="body">A list of changes to apply to this Financial Account Balance History</param>
-        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> UpdateFinancialAccountBalanceHistory(Guid id, object body)
+        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> UpdateBalanceHistory(Guid id, object body)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
             return await _client.Request<FinancialAccountBalanceHistoryModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -71,7 +71,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Account Balance History to disable</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteFinancialAccountBalanceHistory(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteBalanceHistory(Guid id)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -84,7 +84,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="body">The Financial Account Balance Histories to create</param>
-        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel[]>> CreateFinancialAccountBalanceHistory(FinancialAccountBalanceHistoryModel[] body)
+        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel[]>> CreateBalanceHistory(FinancialAccountBalanceHistoryModel[] body)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory";
             return await _client.Request<FinancialAccountBalanceHistoryModel[]>(HttpMethod.Post, url, null, body, null);
@@ -102,7 +102,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<FinancialAccountBalanceHistoryModel>>> QueryFinancialAccountBalanceHistory(string filter, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<FinancialAccountBalanceHistoryModel>>> QueryBalanceHistory(string filter, string order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/query";
             var options = new Dictionary<string, object>();
