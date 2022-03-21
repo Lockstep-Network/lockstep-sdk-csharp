@@ -1194,7 +1194,7 @@ namespace LockstepSDK
         public string Date { get; set; }
 
         /// <summary>
-        /// The currency code This will be validated by the /api/v1/currencies data set
+        /// The currency code This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string SourceCurrency { get; set; }
     }
@@ -1643,7 +1643,7 @@ namespace LockstepSDK
 
         /// <summary>
         /// The default currency code for transactions related to this company.  For a list of currency codes, see
-        /// [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+        /// [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string DefaultCurrencyCode { get; set; }
 
@@ -1689,7 +1689,7 @@ namespace LockstepSDK
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The company&#39;s primary mailing address information This will be validated by the /api/v1/countries data set
+        /// The company&#39;s primary mailing address information This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string Country { get; set; }
 
@@ -1896,7 +1896,7 @@ namespace LockstepSDK
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The two character country code of the address. This will be validated by the /api/v1/countries data set
+        /// The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string CountryCode { get; set; }
 
@@ -2083,7 +2083,7 @@ namespace LockstepSDK
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The mailing address information for this contact. This will be validated by the /api/v1/countries data set
+        /// The mailing address information for this contact. This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string CountryCode { get; set; }
 
@@ -3443,7 +3443,7 @@ namespace LockstepSDK
 
         /// <summary>
         /// The classification for the Financial Account. Possible values are Asset, Equity,
-        /// Expense, Liability or Revenue.
+        /// Expense, Liability or Income.
         /// </summary>
         public string Classification { get; set; }
 
@@ -3876,7 +3876,7 @@ namespace LockstepSDK
         public string SpecialTerms { get; set; }
 
         /// <summary>
-        /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
+        /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string CurrencyCode { get; set; }
 
@@ -4258,7 +4258,7 @@ namespace LockstepSDK
         public string OriginAddressPostalCode { get; set; }
 
         /// <summary>
-        /// Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/countries data set
+        /// Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string OriginAddressCountry { get; set; }
 
@@ -4303,7 +4303,7 @@ namespace LockstepSDK
         public string BillToAddressPostalCode { get; set; }
 
         /// <summary>
-        /// Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/countries data set
+        /// Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string BillToAddressCountry { get; set; }
 
@@ -4348,7 +4348,7 @@ namespace LockstepSDK
         public string ShipToAddressPostalCode { get; set; }
 
         /// <summary>
-        /// Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/countries data set
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string ShipToAddressCountry { get; set; }
 
@@ -4927,7 +4927,7 @@ namespace LockstepSDK
         public string SpecialTerms { get; set; }
 
         /// <summary>
-        /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/currencies data set
+        /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string CurrencyCode { get; set; }
 
@@ -5013,7 +5013,7 @@ namespace LockstepSDK
         public string OriginAddressPostalCode { get; set; }
 
         /// <summary>
-        /// The origination address for this invoice This will be validated by the /api/v1/countries data set
+        /// The origination address for this invoice This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string OriginAddressCountry { get; set; }
 
@@ -5058,7 +5058,7 @@ namespace LockstepSDK
         public string BillToAddressPostalCode { get; set; }
 
         /// <summary>
-        /// The billing address for this invoice This will be validated by the /api/v1/countries data set
+        /// The billing address for this invoice This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string BillToAddressCountry { get; set; }
 
@@ -5103,7 +5103,7 @@ namespace LockstepSDK
         public string ShipToAddressPostalCode { get; set; }
 
         /// <summary>
-        /// The shipping address for this invoice This will be validated by the /api/v1/countries data set
+        /// The shipping address for this invoice This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string ShipToAddressCountry { get; set; }
 
@@ -5717,7 +5717,7 @@ namespace LockstepSDK
         /// <summary>
         /// The ISO 4217 currency code for this payment.
         ///
-        /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+        /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string CurrencyCode { get; set; }
 
@@ -5982,7 +5982,7 @@ namespace LockstepSDK
         /// <summary>
         /// The ISO 4217 currency code for this payment.
         ///
-        /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/currencies data set
+        /// For a list of ISO 4217 currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string CurrencyCode { get; set; }
 
@@ -6566,7 +6566,7 @@ namespace LockstepSDK
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// Country for this User This will be validated by the /api/v1/countries data set
+        /// Country for this User This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string Country { get; set; }
 
@@ -6589,7 +6589,7 @@ namespace LockstepSDK
         /// The default currency code used by this user entity.  This value can be overridden
         /// for invoices in a different currency code.
         ///
-        /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/currencies data set
+        /// For a list of defined currency codes, see [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies) This will be validated by the /api/v1/definitions/currencies data set
         /// </summary>
         public string DefaultCurrencyCode { get; set; }
 

@@ -6,6 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra Files", "Extra Files"
 		README.md = README.md
 		images\lockstep_logo.png = images\lockstep_logo.png
 		lockstep-sdk.nuspec = lockstep-sdk.nuspec
+		.github\workflows\Nuget-publish.yml = .github\workflows\Nuget-publish.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.NetStandard20", "src\netstandard20\LockstepSDK.NetStandard20.csproj", "{BE98C905-6B64-4805-9332-B7966C1E4ED0}"

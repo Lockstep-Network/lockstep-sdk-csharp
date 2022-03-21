@@ -169,7 +169,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<AtRiskInvoiceSummaryModel>>> QueryAtRiskInvoiceSummaryView(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<AtRiskInvoiceSummaryModel>>> QueryAtRiskView(string filter, string include, string order, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/Invoices/views/at-risk-summary";
             var options = new Dictionary<string, object>();
