@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Email to retrieve.</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes, ResponseOrigin</param>
-        public async Task<LockstepResponse<EmailModel>> RetrieveEmail(Guid? id, string include)
+        public async Task<LockstepResponse<EmailModel>> RetrieveEmail(Guid id, string include = null)
         {
             var url = $"/api/v1/Emails/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the email to update</param>
         /// <param name="body">A list of changes to apply to this Email</param>
-        public async Task<LockstepResponse<EmailModel>> UpdateEmail(Guid? id, object body)
+        public async Task<LockstepResponse<EmailModel>> UpdateEmail(Guid id, object body)
         {
             var url = $"/api/v1/Emails/{id}";
             return await _client.Request<EmailModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Email to delete</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteEmail(Guid? id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteEmail(Guid id)
         {
             var url = $"/api/v1/Emails/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -88,7 +88,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="emailId">The unique ID number of the Email to retrieve.</param>
         /// <param name="nonce">The random nonce applied at time of url creation.</param>
-        public async Task<LockstepResponse<string>> RetrieveEmailLogo(Guid? emailId, Guid? nonce)
+        public async Task<LockstepResponse<string>> RetrieveEmailLogo(Guid emailId, Guid nonce)
         {
             var url = $"/api/v1/Emails/{emailId}/logo/{nonce}";
             return await _client.Request<string>(HttpMethod.Get, url, null, null, null);
@@ -120,7 +120,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<EmailModel>>> QueryEmails(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<EmailModel>>> QueryEmails(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Emails/query";
             var options = new Dictionary<string, object>();

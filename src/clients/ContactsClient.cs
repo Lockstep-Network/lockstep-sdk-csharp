@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Contact; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes</param>
-        public async Task<LockstepResponse<ContactModel>> RetrieveContact(Guid? id, string include)
+        public async Task<LockstepResponse<ContactModel>> RetrieveContact(Guid id, string include = null)
         {
             var url = $"/api/v1/Contacts/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Contact to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Contact</param>
-        public async Task<LockstepResponse<ContactModel>> UpdateContact(Guid? id, object body)
+        public async Task<LockstepResponse<ContactModel>> UpdateContact(Guid id, object body)
         {
             var url = $"/api/v1/Contacts/{id}";
             return await _client.Request<ContactModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Contact to disable; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DisableContact(Guid? id)
+        public async Task<LockstepResponse<ActionResultModel>> DisableContact(Guid id)
         {
             var url = $"/api/v1/Contacts/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -106,7 +106,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<ContactModel>>> QueryContacts(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<ContactModel>>> QueryContacts(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Contacts/query";
             var options = new Dictionary<string, object>();

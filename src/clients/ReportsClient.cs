@@ -42,7 +42,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="timeframe">Number of days of data to include for the Cash Flow Report (default is 30 days from today)</param>
-        public async Task<LockstepResponse<CashflowReportModel>> CashFlow(int? timeframe)
+        public async Task<LockstepResponse<CashflowReportModel>> CashFlow(int? timeframe = null)
         {
             var url = $"/api/v1/Reports/cashflow";
             var options = new Dictionary<string, object>();
@@ -80,7 +80,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="reportDate">The date of the report.</param>
         /// <param name="companyId">Include a company to get AR data for a specific company, leave as null to include all Companies.</param>
-        public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(string reportDate, Guid? companyId)
+        public async Task<LockstepResponse<ArHeaderInfoModel>> AccountsReceivableHeader(string reportDate, Guid? companyId = null)
         {
             var url = $"/api/v1/Reports/ar-header";
             var options = new Dictionary<string, object>();
@@ -104,7 +104,7 @@ namespace LockstepSDK
         /// <param name="CurrencyCode">Currency aging buckets are converted to (all aging data returned without currency conversion if no currency is specified)</param>
         /// <param name="CurrencyProvider">Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)</param>
         /// <param name="Buckets">Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)</param>
-        public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId, bool? Recalculate, string CurrencyCode, string CurrencyProvider, int[] Buckets)
+        public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId = null, bool? Recalculate = null, string CurrencyCode = null, string CurrencyProvider = null, int[] Buckets = null)
         {
             var url = $"/api/v1/Reports/aging";
             var options = new Dictionary<string, object>();
@@ -135,7 +135,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="companyId">Include a specific company to get Attachment data for, leave as null to include all Companies.</param>
-        public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid? companyId)
+        public async Task<LockstepResponse<AttachmentHeaderInfoModel>> AttachmentsHeaderInformation(Guid? companyId = null)
         {
             var url = $"/api/v1/Reports/attachments-header";
             var options = new Dictionary<string, object>();
@@ -149,7 +149,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
-        public async Task<LockstepResponse<FinancialReportModel>> TrialBalanceReport(DateTime? startDate, DateTime? endDate)
+        public async Task<LockstepResponse<FinancialReportModel>> TrialBalanceReport(DateTime? startDate = null, DateTime? endDate = null)
         {
             var url = $"/api/v1/Reports/trial-balance";
             var options = new Dictionary<string, object>();
@@ -166,7 +166,7 @@ namespace LockstepSDK
         /// <param name="endDate">The end date of the report</param>
         /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
         /// <param name="displayDepth">The desired row splitting of the report data. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
-        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime? startDate, DateTime? endDate, string columnOption, int? displayDepth)
+        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime? startDate = null, DateTime? endDate = null, string columnOption = null, int? displayDepth = null)
         {
             var url = $"/api/v1/Reports/income-statement";
             var options = new Dictionary<string, object>();

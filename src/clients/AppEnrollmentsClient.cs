@@ -45,7 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync</param>
-        public async Task<LockstepResponse<AppEnrollmentModel>> RetrieveAppEnrollment(Guid? id, string include)
+        public async Task<LockstepResponse<AppEnrollmentModel>> RetrieveAppEnrollment(Guid id, string include = null)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
             var options = new Dictionary<string, object>();
@@ -65,7 +65,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment to update</param>
         /// <param name="body">A list of changes to apply to this App Enrollment</param>
-        public async Task<LockstepResponse<AppEnrollmentModel>> UpdateAppEnrollment(Guid? id, object body)
+        public async Task<LockstepResponse<AppEnrollmentModel>> UpdateAppEnrollment(Guid id, object body)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
             return await _client.Request<AppEnrollmentModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -79,7 +79,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment to delete</param>
         /// <param name="removeEnrollmentData">Option to remove all associated app enrollment data when deleting app enrollment (default false)</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteAppEnrollment(Guid? id, bool? removeEnrollmentData)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteAppEnrollment(Guid id, bool? removeEnrollmentData = null)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
             var options = new Dictionary<string, object>();
@@ -117,7 +117,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<AppEnrollmentModel>>> QueryAppEnrollments(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<AppEnrollmentModel>>> QueryAppEnrollments(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/AppEnrollments/query";
             var options = new Dictionary<string, object>();
@@ -140,7 +140,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment for which we retrieve custom fields</param>
-        public async Task<LockstepResponse<FetchResult<AppEnrollmentCustomFieldModel>>> QueryEnrollmentFields(Guid? id)
+        public async Task<LockstepResponse<FetchResult<AppEnrollmentCustomFieldModel>>> QueryEnrollmentFields(Guid id)
         {
             var url = $"/api/v1/AppEnrollments/settings/{id}";
             return await _client.Request<FetchResult<AppEnrollmentCustomFieldModel>>(HttpMethod.Get, url, null, null, null);

@@ -42,7 +42,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Financial Year Setting</param>
-        public async Task<LockstepResponse<FinancialYearSettingModel>> RetrieveFinancialYearSetting(Guid? id)
+        public async Task<LockstepResponse<FinancialYearSettingModel>> RetrieveFinancialYearSetting(Guid id)
         {
             var url = $"/api/v1/FinancialYearSettings/{id}";
             return await _client.Request<FinancialYearSettingModel>(HttpMethod.Get, url, null, null, null);
@@ -58,7 +58,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Year Setting to update</param>
         /// <param name="body">A list of changes to apply to this Financial Year Setting</param>
-        public async Task<LockstepResponse<FinancialYearSettingModel>> UpdateFinancialYearSetting(Guid? id, object body)
+        public async Task<LockstepResponse<FinancialYearSettingModel>> UpdateFinancialYearSetting(Guid id, object body)
         {
             var url = $"/api/v1/FinancialYearSettings/{id}";
             return await _client.Request<FinancialYearSettingModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -71,7 +71,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Year Setting to disable</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteFinancialYearSetting(Guid? id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteFinancialYearSetting(Guid id)
         {
             var url = $"/api/v1/FinancialYearSettings/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -102,7 +102,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<FinancialYearSettingModel>>> QueryFinancialYearSettings(string filter, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<FinancialYearSettingModel>>> QueryFinancialYearSettings(string filter = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/FinancialYearSettings/query";
             var options = new Dictionary<string, object>();

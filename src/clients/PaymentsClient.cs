@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Payment; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Applications, Notes, Attachments, CustomFields</param>
-        public async Task<LockstepResponse<PaymentModel>> RetrievePayment(Guid? id, string include)
+        public async Task<LockstepResponse<PaymentModel>> RetrievePayment(Guid id, string include = null)
         {
             var url = $"/api/v1/Payments/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Payment to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Payment</param>
-        public async Task<LockstepResponse<PaymentModel>> UpdatePayment(Guid? id, object body)
+        public async Task<LockstepResponse<PaymentModel>> UpdatePayment(Guid id, object body)
         {
             var url = $"/api/v1/Payments/{id}";
             return await _client.Request<PaymentModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Payment to delete; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeletePayment(Guid? id)
+        public async Task<LockstepResponse<ActionResultModel>> DeletePayment(Guid id)
         {
             var url = $"/api/v1/Payments/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -106,7 +106,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<PaymentModel>>> QueryPayments(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<PaymentModel>>> QueryPayments(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Payments/query";
             var options = new Dictionary<string, object>();
@@ -125,7 +125,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<byte[]>> RetrievepaymentPDF(Guid? id)
+        public async Task<LockstepResponse<byte[]>> RetrievepaymentPDF(Guid id)
         {
             var url = $"/api/v1/Payments/{id}/pdf";
             return await _client.Request<byte[]>(HttpMethod.Get, url, null, null, null);
@@ -144,7 +144,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<PaymentSummaryModel>>> QueryPaymentSummaryView(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<PaymentSummaryModel>>> QueryPaymentSummaryView(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Payments/views/summary";
             var options = new Dictionary<string, object>();
@@ -177,7 +177,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<PaymentDetailModel>>> QueryPaymentDetailView(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<PaymentDetailModel>>> QueryPaymentDetailView(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Payments/views/detail";
             var options = new Dictionary<string, object>();

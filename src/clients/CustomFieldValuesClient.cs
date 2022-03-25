@@ -46,7 +46,7 @@ namespace LockstepSDK
         /// <param name="definitionId">The unique Lockstep Platform ID number of the Custom Field Definition for the Custom Field Value to retrieve.</param>
         /// <param name="recordKey">The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: CustomFieldDefinition</param>
-        public async Task<LockstepResponse<CustomFieldValueModel>> RetrieveField(Guid? definitionId, Guid? recordKey, string include)
+        public async Task<LockstepResponse<CustomFieldValueModel>> RetrieveField(Guid definitionId, Guid recordKey, string include = null)
         {
             var url = $"/api/v1/CustomFieldValues/{definitionId}/{recordKey}";
             var options = new Dictionary<string, object>();
@@ -67,7 +67,7 @@ namespace LockstepSDK
         /// <param name="definitionId">The unique Lockstep Platform ID number of the Custom Field Definition for the Custom Field Value to retrieve.</param>
         /// <param name="recordKey">The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.</param>
         /// <param name="body">A list of changes to apply to this Custom Field</param>
-        public async Task<LockstepResponse<CustomFieldValueModel>> UpdateField(Guid? definitionId, Guid? recordKey, object body)
+        public async Task<LockstepResponse<CustomFieldValueModel>> UpdateField(Guid definitionId, Guid recordKey, object body)
         {
             var url = $"/api/v1/CustomFieldValues/{definitionId}/{recordKey}";
             return await _client.Request<CustomFieldValueModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -83,7 +83,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="definitionId">The unique Lockstep Platform ID number of the Custom Field Definition for the Custom Field Value to retrieve.</param>
         /// <param name="recordKey">The unique Lockstep Platform ID number of the Lockstep Platform object the Custom Field Value is attached to.</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteField(Guid? definitionId, Guid? recordKey)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteField(Guid definitionId, Guid recordKey)
         {
             var url = $"/api/v1/CustomFieldValues/{definitionId}/{recordKey}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -119,7 +119,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<CustomFieldValueModel>>> QueryFields(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<CustomFieldValueModel>>> QueryFields(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/CustomFieldValues/query";
             var options = new Dictionary<string, object>();

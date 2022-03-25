@@ -773,6 +773,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of the report
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportPeriod { get; set; }
 
@@ -880,6 +882,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of the report
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportDate { get; set; }
 
@@ -909,6 +913,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
@@ -924,6 +930,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The due date of the invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
@@ -944,6 +952,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string NewestActivity { get; set; }
 
@@ -2431,6 +2441,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// Date invoice applied to credit memo.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ApplyToInvoiceDate { get; set; }
 
@@ -3006,6 +3018,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date stamp for the newest Activity on this Customer.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string NewestActivity { get; set; }
     }
@@ -3600,11 +3614,15 @@ namespace LockstepSDK
 
         /// <summary>
         /// The start date of the financial year. Should be entered in MM-DD format.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string StartDate { get; set; }
 
         /// <summary>
         /// The end date of the financial year. Should be entered in MM-DD format.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string EndDate { get; set; }
 
@@ -3902,27 +3920,37 @@ namespace LockstepSDK
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
@@ -4069,6 +4097,8 @@ namespace LockstepSDK
         /// <summary>
         /// If null, the products specified on this line were delivered on the same date as all other lines.
         /// If not null, this line was delivered or finalized on a different date than the overall invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportingDate { get; set; }
 
@@ -4505,27 +4535,37 @@ namespace LockstepSDK
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
@@ -4706,6 +4746,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// Date Payment applied to Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ApplyToInvoiceDate { get; set; }
 
@@ -4768,6 +4810,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
@@ -4783,6 +4827,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The due date of the invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
@@ -4803,6 +4849,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string NewestActivity { get; set; }
 
@@ -5557,11 +5605,15 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of this Payment.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDate { get; set; }
 
         /// <summary>
         /// Payment post date.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostDate { get; set; }
 
@@ -5847,6 +5899,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of this payment.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDate { get; set; }
 

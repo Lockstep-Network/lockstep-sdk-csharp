@@ -45,7 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Application to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields</param>
-        public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid? id, string include)
+        public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid id, string include = null)
         {
             var url = $"/api/v1/Applications/{id}";
             var options = new Dictionary<string, object>();
@@ -65,7 +65,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Application to update</param>
         /// <param name="body">A list of changes to apply to this Application</param>
-        public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid? id, object body)
+        public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid id, object body)
         {
             var url = $"/api/v1/Applications/{id}";
             return await _client.Request<ApplicationModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -80,7 +80,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the Application to delete</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid? id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid id)
         {
             var url = $"/api/v1/Applications/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -116,7 +116,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<ApplicationModel>>> QueryApplications(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<ApplicationModel>>> QueryApplications(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Applications/query";
             var options = new Dictionary<string, object>();

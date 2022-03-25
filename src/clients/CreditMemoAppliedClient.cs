@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Credit Memo Application; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes</param>
-        public async Task<LockstepResponse<CreditMemoAppliedModel>> RetrieveCreditMemoApplication(Guid? id, string include)
+        public async Task<LockstepResponse<CreditMemoAppliedModel>> RetrieveCreditMemoApplication(Guid id, string include = null)
         {
             var url = $"/api/v1/CreditMemoApplied/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Credit Memo Application to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Credit Memo Application</param>
-        public async Task<LockstepResponse<CreditMemoAppliedModel>> UpdateCreditMemoApplication(Guid? id, object body)
+        public async Task<LockstepResponse<CreditMemoAppliedModel>> UpdateCreditMemoApplication(Guid id, object body)
         {
             var url = $"/api/v1/CreditMemoApplied/{id}";
             return await _client.Request<CreditMemoAppliedModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Credit Memo Application to delete; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<CreditMemoAppliedModel>> DeleteCreditMemoApplication(Guid? id)
+        public async Task<LockstepResponse<CreditMemoAppliedModel>> DeleteCreditMemoApplication(Guid id)
         {
             var url = $"/api/v1/CreditMemoApplied/{id}";
             return await _client.Request<CreditMemoAppliedModel>(HttpMethod.Delete, url, null, null, null);
@@ -106,7 +106,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<CreditMemoAppliedModel>>> QueryCreditMemoApplications(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<CreditMemoAppliedModel>>> QueryCreditMemoApplications(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/CreditMemoApplied/query";
             var options = new Dictionary<string, object>();
