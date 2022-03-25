@@ -42,7 +42,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid id)
+        public async Task<LockstepResponse<FetchResult<InvoiceHistoryModel>>> RetrieveInvoiceHistory(Guid? id)
         {
             var url = $"/api/v1/InvoiceHistory/{id}";
             return await _client.Request<FetchResult<InvoiceHistoryModel>>(HttpMethod.Get, url, null, null, null);

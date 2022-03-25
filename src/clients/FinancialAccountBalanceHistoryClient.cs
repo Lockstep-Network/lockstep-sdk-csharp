@@ -42,7 +42,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Financial Account Balance History</param>
-        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> RetrieveBalanceHistory(Guid id)
+        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> RetrieveBalanceHistory(Guid? id)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
             return await _client.Request<FinancialAccountBalanceHistoryModel>(HttpMethod.Get, url, null, null, null);
@@ -58,7 +58,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Account Balance History to update</param>
         /// <param name="body">A list of changes to apply to this Financial Account Balance History</param>
-        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> UpdateBalanceHistory(Guid id, object body)
+        public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> UpdateBalanceHistory(Guid? id, object body)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
             return await _client.Request<FinancialAccountBalanceHistoryModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -71,7 +71,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Account Balance History to disable</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteBalanceHistory(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteBalanceHistory(Guid? id)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);

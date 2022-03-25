@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Addresses, Lines, Payments, Notes, Attachments, Company, Customer, CustomFields, CreditMemos</param>
-        public async Task<LockstepResponse<InvoiceModel>> RetrieveInvoice(Guid id, string include)
+        public async Task<LockstepResponse<InvoiceModel>> RetrieveInvoice(Guid? id, string include)
         {
             var url = $"/api/v1/Invoices/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the invoice to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Invoice</param>
-        public async Task<LockstepResponse<InvoiceModel>> UpdateInvoice(Guid id, object body)
+        public async Task<LockstepResponse<InvoiceModel>> UpdateInvoice(Guid? id, object body)
         {
             var url = $"/api/v1/Invoices/{id}";
             return await _client.Request<InvoiceModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -72,7 +72,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the invoice to delete; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteInvoice(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteInvoice(Guid? id)
         {
             var url = $"/api/v1/Invoices/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -125,7 +125,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<byte[]>> RetrieveinvoicePDF(Guid id)
+        public async Task<LockstepResponse<byte[]>> RetrieveinvoicePDF(Guid? id)
         {
             var url = $"/api/v1/Invoices/{id}/pdf";
             return await _client.Request<byte[]>(HttpMethod.Get, url, null, null, null);

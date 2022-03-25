@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Activity</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Company, Attachments, CustomFields, Notes, References, and UserAssignedToName</param>
-        public async Task<LockstepResponse<ActivityModel>> RetrieveActivity(Guid id, string include)
+        public async Task<LockstepResponse<ActivityModel>> RetrieveActivity(Guid? id, string include)
         {
             var url = $"/api/v1/Activities/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Activity to update</param>
         /// <param name="body">A list of changes to apply to this Activity</param>
-        public async Task<LockstepResponse<ActivityModel>> UpdateActivity(Guid id, object body)
+        public async Task<LockstepResponse<ActivityModel>> UpdateActivity(Guid? id, object body)
         {
             var url = $"/api/v1/Activities/{id}";
             return await _client.Request<ActivityModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Activity to delete</param>
-        public async Task<LockstepResponse<ActivityModel>> DeleteActivity(Guid id)
+        public async Task<LockstepResponse<ActivityModel>> DeleteActivity(Guid? id)
         {
             var url = $"/api/v1/Activities/{id}";
             return await _client.Request<ActivityModel>(HttpMethod.Delete, url, null, null, null);
@@ -125,7 +125,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Activity</param>
-        public async Task<LockstepResponse<ActivityStreamItemModel[]>> RetrieveActivityStream(Guid id)
+        public async Task<LockstepResponse<ActivityStreamItemModel[]>> RetrieveActivityStream(Guid? id)
         {
             var url = $"/api/v1/Activities/{id}/stream";
             return await _client.Request<ActivityStreamItemModel[]>(HttpMethod.Get, url, null, null, null);
@@ -139,7 +139,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="activityId"></param>
         /// <param name="userId"></param>
-        public async Task<LockstepResponse<ActivityModel>> ForwardActivity(Guid activityId, Guid userId)
+        public async Task<LockstepResponse<ActivityModel>> ForwardActivity(Guid? activityId, Guid? userId)
         {
             var url = $"/api/v1/Activities/{activityId}/forward/{userId}";
             return await _client.Request<ActivityModel>(HttpMethod.Post, url, null, null, null);

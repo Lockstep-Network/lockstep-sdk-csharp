@@ -40,7 +40,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Webhook</param>
-        public async Task<LockstepResponse<WebhookModel>> RetrieveWebhook(Guid id)
+        public async Task<LockstepResponse<WebhookModel>> RetrieveWebhook(Guid? id)
         {
             var url = $"/api/v1/Webhooks/{id}";
             return await _client.Request<WebhookModel>(HttpMethod.Get, url, null, null, null);
@@ -54,7 +54,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Webhook to update.</param>
         /// <param name="body">A list of changes to apply to this Webhook</param>
-        public async Task<LockstepResponse<WebhookModel>> UpdateWebhook(Guid id, object body)
+        public async Task<LockstepResponse<WebhookModel>> UpdateWebhook(Guid? id, object body)
         {
             var url = $"/api/v1/Webhooks/{id}";
             return await _client.Request<WebhookModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -65,7 +65,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Webhook to delete.</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteWebhook(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteWebhook(Guid? id)
         {
             var url = $"/api/v1/Webhooks/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
@@ -87,7 +87,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Webhook to update.</param>
-        public async Task<LockstepResponse<WebhookModel>> RegenerateClientSecret(Guid id)
+        public async Task<LockstepResponse<WebhookModel>> RegenerateClientSecret(Guid? id)
         {
             var url = $"/api/v1/Webhooks/{id}/regenerateclientsecret";
             return await _client.Request<WebhookModel>(new HttpMethod("PATCH"), url, null, null, null);
@@ -123,7 +123,7 @@ namespace LockstepSDK
         /// <param name="select">The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
         /// <param name="pageSize">The page size for results (default 200).</param>
         /// <param name="pageNumber">The page number for results (default 0).</param>
-        public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string filter, string select, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid? webhookId, string filter, string select, int? pageSize, int? pageNumber)
         {
             var url = $"/api/v1/Webhooks/{webhookId}/history/query";
             var options = new Dictionary<string, object>();

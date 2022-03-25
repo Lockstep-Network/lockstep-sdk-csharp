@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this CodeDefinition</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-        public async Task<LockstepResponse<CodeDefinitionModel>> RetrieveCodeDefinition(Guid id, string include)
+        public async Task<LockstepResponse<CodeDefinitionModel>> RetrieveCodeDefinition(Guid? id, string include)
         {
             var url = $"/api/v1/CodeDefinitions/{id}";
             var options = new Dictionary<string, object>();

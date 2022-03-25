@@ -45,7 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Note to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-        public async Task<LockstepResponse<NoteModel>> RetrieveNote(Guid id, string include)
+        public async Task<LockstepResponse<NoteModel>> RetrieveNote(Guid? id, string include)
         {
             var url = $"/api/v1/Notes/{id}";
             var options = new Dictionary<string, object>();
@@ -62,7 +62,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">Note id to be archived</param>
-        public async Task<LockstepResponse<ActionResultModel>> ArchiveNote(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> ArchiveNote(Guid? id)
         {
             var url = $"/api/v1/Notes/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);

@@ -88,7 +88,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Sync to update</param>
         /// <param name="body">A list of changes to apply to this Application</param>
-        public async Task<LockstepResponse<SyncRequestModel>> UpdateSync(Guid id, object body)
+        public async Task<LockstepResponse<SyncRequestModel>> UpdateSync(Guid? id, object body)
         {
             var url = $"/api/v1/Sync/{id}";
             return await _client.Request<SyncRequestModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -102,7 +102,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Sync task to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details</param>
-        public async Task<LockstepResponse<SyncRequestModel>> RetrieveSync(Guid id, string include)
+        public async Task<LockstepResponse<SyncRequestModel>> RetrieveSync(Guid? id, string include)
         {
             var url = $"/api/v1/Sync/{id}";
             var options = new Dictionary<string, object>();

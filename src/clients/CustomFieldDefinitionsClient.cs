@@ -45,7 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Custom Field Definition</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No additional data collections are currently defined on this object, but may be supported in the future.</param>
-        public async Task<LockstepResponse<CustomFieldDefinitionModel>> RetrieveFieldDefinition(Guid id, string include)
+        public async Task<LockstepResponse<CustomFieldDefinitionModel>> RetrieveFieldDefinition(Guid? id, string include)
         {
             var url = $"/api/v1/CustomFieldDefinitions/{id}";
             var options = new Dictionary<string, object>();
@@ -65,7 +65,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Custom Field Definition to update</param>
         /// <param name="body">A list of changes to apply to this Custom Field Definition</param>
-        public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid id, object body)
+        public async Task<LockstepResponse<CustomFieldDefinitionModel>> UpdateFieldDefinition(Guid? id, object body)
         {
             var url = $"/api/v1/CustomFieldDefinitions/{id}";
             return await _client.Request<CustomFieldDefinitionModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -80,7 +80,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Custom Field Definition to delete</param>
-        public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid id)
+        public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid? id)
         {
             var url = $"/api/v1/CustomFieldDefinitions/{id}";
             return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Delete, url, null, null, null);

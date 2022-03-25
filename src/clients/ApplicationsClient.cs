@@ -45,7 +45,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Application to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields</param>
-        public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid id, string include)
+        public async Task<LockstepResponse<ApplicationModel>> RetrieveApplication(Guid? id, string include)
         {
             var url = $"/api/v1/Applications/{id}";
             var options = new Dictionary<string, object>();
@@ -65,7 +65,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Application to update</param>
         /// <param name="body">A list of changes to apply to this Application</param>
-        public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid id, object body)
+        public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid? id, object body)
         {
             var url = $"/api/v1/Applications/{id}";
             return await _client.Request<ApplicationModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -80,7 +80,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the Application to delete</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid? id)
         {
             var url = $"/api/v1/Applications/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);

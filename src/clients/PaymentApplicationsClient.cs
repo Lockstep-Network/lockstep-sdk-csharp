@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Payment Application; NOT the customer's ERP key</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice</param>
-        public async Task<LockstepResponse<PaymentAppliedModel>> RetrievePaymentApplication(Guid id, string include)
+        public async Task<LockstepResponse<PaymentAppliedModel>> RetrievePaymentApplication(Guid? id, string include)
         {
             var url = $"/api/v1/PaymentApplications/{id}";
             var options = new Dictionary<string, object>();
@@ -61,7 +61,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Payment Application to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Payment Application</param>
-        public async Task<LockstepResponse<PaymentAppliedModel>> UpdatePaymentApplication(Guid id, object body)
+        public async Task<LockstepResponse<PaymentAppliedModel>> UpdatePaymentApplication(Guid? id, object body)
         {
             var url = $"/api/v1/PaymentApplications/{id}";
             return await _client.Request<PaymentAppliedModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Payment Application to delete; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeletePaymentApplication(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeletePaymentApplication(Guid? id)
         {
             var url = $"/api/v1/PaymentApplications/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);

@@ -51,7 +51,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Account; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<FinancialAccountModel>> RetrieveFinancialAccount(Guid id)
+        public async Task<LockstepResponse<FinancialAccountModel>> RetrieveFinancialAccount(Guid? id)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
             return await _client.Request<FinancialAccountModel>(HttpMethod.Get, url, null, null, null);
@@ -63,7 +63,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Account to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Account</param>
-        public async Task<LockstepResponse<FinancialAccountModel>> UpdateFinancialAccount(Guid id, object body)
+        public async Task<LockstepResponse<FinancialAccountModel>> UpdateFinancialAccount(Guid? id, object body)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
             return await _client.Request<FinancialAccountModel>(new HttpMethod("PATCH"), url, null, body, null);
@@ -74,7 +74,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Account to disable; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeletesFinancialAccount(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeletesFinancialAccount(Guid? id)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);

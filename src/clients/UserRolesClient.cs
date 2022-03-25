@@ -41,7 +41,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the User Role to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
-        public async Task<LockstepResponse<UserRoleModel>> RetrieveUserRole(Guid id, string include)
+        public async Task<LockstepResponse<UserRoleModel>> RetrieveUserRole(Guid? id, string include)
         {
             var url = $"/api/v1/UserRoles/{id}";
             var options = new Dictionary<string, object>();

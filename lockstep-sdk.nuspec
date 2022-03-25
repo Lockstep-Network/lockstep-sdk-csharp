@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LockstepSdk</id>
-		<version>2022.11.60</version>
+		<version>2022.12.49</version>
 		<title>LockstepSdk</title>
 		<authors>Ted Spence</authors>
 		<owners>Lockstep</owners>
@@ -18,7 +18,7 @@
 		<readme>docs/README.md</readme>
 		<summary>SDK for the Lockstep Platform API.</summary>
 		<releaseNotes>
-            # 2022.11.60
+            # 2022.12.49
         
             For full patch notes see [Patch Notes](https://medium.com/lockstep-developer/tagged/patch-notes) on the [Lockstep Developer website](https://developer.lockstep.io)
         </releaseNotes>
