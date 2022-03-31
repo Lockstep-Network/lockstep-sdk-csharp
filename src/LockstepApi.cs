@@ -8,7 +8,7 @@
  *
  * @author     Ted Spence <tspence@lockstep.io>
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.11.60
+ * @version    2022.13.29
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,6 +21,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -34,11 +35,12 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private const string _version = "2022.11.60";
+        private const string _version = "2022.13.29";
         private readonly HttpClient _client;
         private string _appName;
         private string _bearerToken;
         private string _apiKey;
+        private JsonSerializerOptions _options;
     
         /// <summary>
         /// Lockstep Platform methods related to {cat}
@@ -204,6 +206,13 @@ namespace LockstepSDK
             this.UserAccounts = new UserAccountsClient(this);
             this.UserRoles = new UserRolesClient(this);
             this.Webhooks = new WebhooksClient(this);
+                
+            // Configure serializer options once
+            this._options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
+            };
         }
     
         /// <summary>
@@ -331,8 +340,8 @@ namespace LockstepSDK
             // Add request body content, if any
             if (body != null)
             {
-                var content = JsonSerializer.Serialize(body);
-                request.Content = new StringContent(content);
+                var content = JsonSerializer.Serialize(body, _options);
+                request.Content = new StringContent(content, Encoding.UTF8, "application/json");
             }
             else if (filename != null)
             {
@@ -346,10 +355,6 @@ namespace LockstepSDK
             // Send the request and convert the response into a success or failure
             using (var response = await _client.SendAsync(request))
             {
-                var options = new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                };
                 var result = new LockstepResponse<T>
                 {
                     Success = response.IsSuccessStatusCode,
@@ -375,7 +380,7 @@ namespace LockstepSDK
                         // Successful API responses can be very large, so let's stream them
                         using (var stream = await response.Content.ReadAsStreamAsync())
                         {
-                            result.Value = await JsonSerializer.DeserializeAsync<T>(stream, options);
+                            result.Value = await JsonSerializer.DeserializeAsync<T>(stream, _options);
                         }
                     }
                 }
@@ -390,7 +395,7 @@ namespace LockstepSDK
                     {
                         try
                         {
-                            result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, options);
+                            result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, _options);
                             if (result.Error != null) result.Error.Content = errorContent;
                         }
                         catch

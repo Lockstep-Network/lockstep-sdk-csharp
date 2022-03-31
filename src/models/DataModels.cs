@@ -33,7 +33,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid ActivityId { get; set; }
+        public Guid? ActivityId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -41,12 +41,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The ID of the company to which this activity belongs.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The type code of the activity
@@ -74,7 +74,7 @@ namespace LockstepSDK
         /// True if this activity is currently &quot;open&quot;, which indicates that the activity is
         /// currently in progress.
         /// </summary>
-        public bool IsOpen { get; set; }
+        public bool? IsOpen { get; set; }
 
         /// <summary>
         /// The priority of the activity.
@@ -84,71 +84,71 @@ namespace LockstepSDK
         /// <summary>
         /// The ID of the user the activity is assigned to.
         /// </summary>
-        public Guid UserAssignedTo { get; set; }
+        public Guid? UserAssignedTo { get; set; }
 
         /// <summary>
         /// The date the activity was assigned.
         /// </summary>
-        public DateTime DateAssigned { get; set; }
+        public DateTime? DateAssigned { get; set; }
 
         /// <summary>
         /// The date the activity was closed.
         /// </summary>
-        public DateTime DateClosed { get; set; }
+        public DateTime? DateClosed { get; set; }
 
         /// <summary>
         /// If this activity has been &quot;snoozed&quot;, this field will be non-null and will contain
         /// the date when the activity will be displayed.  Until that date arrives, the activity
         /// will remain hidden.
         /// </summary>
-        public DateTime SnoozeUntilDate { get; set; }
+        public DateTime? SnoozeUntilDate { get; set; }
 
         /// <summary>
         /// The date on which this activity was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created this activity.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this activity was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified this activity.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// Amount collected (if any) for the activity.
         /// </summary>
-        public double? AmountCollected { get; set; }
+        public decimal? AmountCollected { get; set; }
 
         /// <summary>
         /// Amount paid (if any) for the activity.
         /// </summary>
-        public double? AmountPaid { get; set; }
+        public decimal? AmountPaid { get; set; }
 
         /// <summary>
         /// Credit given (if any) for the activity.
         /// </summary>
-        public double? CreditGiven { get; set; }
+        public decimal? CreditGiven { get; set; }
 
         /// <summary>
         /// True if this activity is to be shown in an &quot;unread&quot; state.  When an activity
         /// is read by a person it is assigned to, this flag is set to false.
         /// </summary>
-        public bool IsUnread { get; set; }
+        public bool? IsUnread { get; set; }
 
         /// <summary>
         /// Activities may be archived when they should be hidden from the user.  When
         /// this flag is true, this activity should be hidden.
         /// </summary>
-        public bool IsArchived { get; set; }
+        public bool? IsArchived { get; set; }
 
         /// <summary>
         /// The company associated with the activity
@@ -219,7 +219,7 @@ namespace LockstepSDK
         /// <summary>
         /// The object key of the activity stream item.
         /// </summary>
-        public Guid ObjectKey { get; set; }
+        public Guid? ObjectKey { get; set; }
 
         /// <summary>
         /// The type code of the activity stream item.
@@ -234,12 +234,12 @@ namespace LockstepSDK
         /// <summary>
         /// The date on which this activity stream item was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created this activity.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -247,7 +247,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The sender&#39;s email address if activity stream item is an Email.
@@ -280,12 +280,12 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid ActivityXRefId { get; set; }
+        public Guid? ActivityXRefId { get; set; }
 
         /// <summary>
         /// The ID of the activity to which this reference belongs.
         /// </summary>
-        public Guid ActivityId { get; set; }
+        public Guid? ActivityId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -293,7 +293,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The name of the table the activity reference is associated with
@@ -315,7 +315,7 @@ namespace LockstepSDK
         /// <summary>
         /// Aging bucket of outstanding balance data (days past due date of invoice)
         /// </summary>
-        public int Bucket { get; set; }
+        public int? Bucket { get; set; }
 
         /// <summary>
         /// Currency code of aging bucket
@@ -325,7 +325,7 @@ namespace LockstepSDK
         /// <summary>
         /// Outstanding balance for the given aging bucket
         /// </summary>
-        public double OutstandingBalance { get; set; }
+        public decimal? OutstandingBalance { get; set; }
     }
 
     /// <summary>
@@ -343,7 +343,7 @@ namespace LockstepSDK
         /// <summary>
         /// The unique identifier for the API key.
         /// </summary>
-        public Guid ApiKeyId { get; set; }
+        public Guid? ApiKeyId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -351,7 +351,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The name of the API key.
@@ -382,27 +382,27 @@ namespace LockstepSDK
         /// <summary>
         /// The date the API key was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The user that created the API key.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date the API key was revoked.
         /// </summary>
-        public DateTime Revoked { get; set; }
+        public DateTime? Revoked { get; set; }
 
         /// <summary>
         /// The user who revoked the API key.
         /// </summary>
-        public Guid RevokedUserId { get; set; }
+        public Guid? RevokedUserId { get; set; }
 
         /// <summary>
         /// The UTC datetime when the API key expires.
         /// </summary>
-        public DateTime Expires { get; set; }
+        public DateTime? Expires { get; set; }
     }
 
     /// <summary>
@@ -414,12 +414,12 @@ namespace LockstepSDK
         /// <summary>
         /// Unique id for the app enrollment
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// Id of enrolled app
         /// </summary>
-        public Guid AppId { get; set; }
+        public Guid? AppId { get; set; }
 
         /// <summary>
         /// The name of the application
@@ -437,12 +437,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// Unique Id for the custom field definition
         /// </summary>
-        public Guid CustomFieldDefinitionId { get; set; }
+        public Guid? CustomFieldDefinitionId { get; set; }
 
         /// <summary>
         /// Text to display in-application for custom field
@@ -457,7 +457,7 @@ namespace LockstepSDK
         /// <summary>
         /// Used for display logic when multiple app enrollment custom fields exist
         /// </summary>
-        public int SortOrder { get; set; }
+        public int? SortOrder { get; set; }
 
         /// <summary>
         /// Value for the field
@@ -480,13 +480,13 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The ID number of the Application that this enrollment represents.  You can fetch information
         /// about this Application object by specifying `App` in the &quot;Include&quot; parameter for your request.
         /// </summary>
-        public Guid AppId { get; set; }
+        public Guid? AppId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -494,32 +494,32 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// Determines whether the app enrollment is in use
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// Created date
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// Created user ID
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// Last modified date
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// Last user ID to modify
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// Stores schedule information for the application enrollment
@@ -530,7 +530,7 @@ namespace LockstepSDK
         /// <summary>
         /// Flag indicating if the Sync process should be ran on the specified schedule
         /// </summary>
-        public bool SyncScheduleIsActive { get; set; }
+        public bool? SyncScheduleIsActive { get; set; }
 
         /// <summary>
         /// The Application to which this AppEnrollment belongs.  Contains general name, description,
@@ -596,7 +596,7 @@ namespace LockstepSDK
         /// <summary>
         /// A unique code identifying this application
         /// </summary>
-        public Guid AppId { get; set; }
+        public Guid? AppId { get; set; }
 
         /// <summary>
         /// The name of this application
@@ -616,7 +616,7 @@ namespace LockstepSDK
         /// <summary>
         /// The ID of the owner
         /// </summary>
-        public Guid OwnerId { get; set; }
+        public Guid? OwnerId { get; set; }
 
         /// <summary>
         /// The URL to visit for more information about this application
@@ -636,27 +636,27 @@ namespace LockstepSDK
         /// <summary>
         /// The ID of the user who created this application
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified this application
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The date this application was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The date this application was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// Flag indicating if the application is active.
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// URL to the Wiki for the Application
@@ -669,7 +669,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -724,7 +724,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The aging bucket this data belongs to.
@@ -734,27 +734,27 @@ namespace LockstepSDK
         /// <summary>
         /// The total number of customers.
         /// </summary>
-        public int TotalCustomers { get; set; }
+        public int? TotalCustomers { get; set; }
 
         /// <summary>
         /// The total number of invoices outstanding.
         /// </summary>
-        public int TotalInvoicesOutstanding { get; set; }
+        public int? TotalInvoicesOutstanding { get; set; }
 
         /// <summary>
         /// The total amount outstanding.
         /// </summary>
-        public double TotalOutstandingAmount { get; set; }
+        public decimal? TotalOutstandingAmount { get; set; }
 
         /// <summary>
         /// The total amount for AR.
         /// </summary>
-        public double TotalArAmount { get; set; }
+        public decimal? TotalArAmount { get; set; }
 
         /// <summary>
         /// Portion of Total AR this data represents.
         /// </summary>
-        public double PercentageOfTotalAr { get; set; }
+        public decimal? PercentageOfTotalAr { get; set; }
     }
 
     /// <summary>
@@ -769,107 +769,109 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The date of the report
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportPeriod { get; set; }
 
         /// <summary>
         /// The total number of customers.
         /// </summary>
-        public int TotalCustomers { get; set; }
+        public int? TotalCustomers { get; set; }
 
         /// <summary>
         /// The total number of invoices.
         /// </summary>
-        public int TotalInvoices { get; set; }
+        public int? TotalInvoices { get; set; }
 
         /// <summary>
         /// The total amount invoiced.
         /// </summary>
-        public double TotalInvoicedAmount { get; set; }
+        public decimal? TotalInvoicedAmount { get; set; }
 
         /// <summary>
         /// The total number of unapplied payments.
         /// </summary>
-        public double TotalUnappliedPayments { get; set; }
+        public decimal? TotalUnappliedPayments { get; set; }
 
         /// <summary>
         /// The total amount of collected payments.
         /// </summary>
-        public double TotalCollected { get; set; }
+        public decimal? TotalCollected { get; set; }
 
         /// <summary>
         /// The total accounts receivable amount.
         /// </summary>
-        public double TotalArAmount { get; set; }
+        public decimal? TotalArAmount { get; set; }
 
         /// <summary>
         /// The number of paid invoices.
         /// </summary>
-        public int TotalInvoicesPaid { get; set; }
+        public int? TotalInvoicesPaid { get; set; }
 
         /// <summary>
         /// The number of past due invoices.
         /// </summary>
-        public int TotalInvoicesPastDue { get; set; }
+        public int? TotalInvoicesPastDue { get; set; }
 
         /// <summary>
         /// The number of past due invoices for the last 90 days.
         /// </summary>
-        public int TotalInvoices90DaysPastDue { get; set; }
+        public int? TotalInvoices90DaysPastDue { get; set; }
 
         /// <summary>
         /// The total amount past due.
         /// </summary>
-        public double TotalPastDueAmount { get; set; }
+        public decimal? TotalPastDueAmount { get; set; }
 
         /// <summary>
         /// The total past due for the past 90 days.
         /// </summary>
-        public double TotalPastDueAmount90Days { get; set; }
+        public decimal? TotalPastDueAmount90Days { get; set; }
 
         /// <summary>
         /// Portion of Total AR that is Past due.
         /// </summary>
-        public double PercentageOfTotalAr { get; set; }
+        public decimal? PercentageOfTotalAr { get; set; }
 
         /// <summary>
         /// Daily sales outstanding.
         /// </summary>
-        public double Dso { get; set; }
+        public decimal? Dso { get; set; }
 
         /// <summary>
         /// The total amount invoiced, due this year.
         /// </summary>
-        public double TotalInvoiceAmountCurrentYear { get; set; }
+        public decimal? TotalInvoiceAmountCurrentYear { get; set; }
 
         /// <summary>
         /// The total amount invoiced, due last year.
         /// </summary>
-        public double TotalInvoiceAmountPreviousYear { get; set; }
+        public decimal? TotalInvoiceAmountPreviousYear { get; set; }
 
         /// <summary>
         /// The total of all payments received this year.
         /// </summary>
-        public double TotalPaymentAmountCurrentYear { get; set; }
+        public decimal? TotalPaymentAmountCurrentYear { get; set; }
 
         /// <summary>
         /// The total amount of payments received in the last 30 days
         /// </summary>
-        public int TotalCollectedPastThirtyDays { get; set; }
+        public int? TotalCollectedPastThirtyDays { get; set; }
 
         /// <summary>
         /// The total amount of Invoices paid in the last 30 days
         /// </summary>
-        public int TotalInvoicesPaidPastThirtyDays { get; set; }
+        public int? TotalInvoicesPaidPastThirtyDays { get; set; }
 
         /// <summary>
         /// Portion of Total AR that is 90+ days Past due.
         /// </summary>
-        public double PercentageOfTotalAr90DaysPastDue { get; set; }
+        public decimal? PercentageOfTotalAr90DaysPastDue { get; set; }
     }
 
     /// <summary>
@@ -880,6 +882,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of the report
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportDate { get; set; }
 
@@ -889,17 +893,17 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The unique ID number of this invoice.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// A reference code that is used to identify this invoice.
@@ -909,6 +913,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
@@ -924,18 +930,20 @@ namespace LockstepSDK
 
         /// <summary>
         /// The due date of the invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The total amount of the Invoice.
         /// </summary>
-        public double? InvoiceAmount { get; set; }
+        public decimal? InvoiceAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this invoice.
         /// </summary>
-        public double? OutstandingBalance { get; set; }
+        public decimal? OutstandingBalance { get; set; }
 
         /// <summary>
         /// A code identifying the type of this Invoice.
@@ -944,6 +952,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string NewestActivity { get; set; }
 
@@ -975,28 +985,28 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The CompanyId associated with the attachment status report. Providing a null value will
         /// return an attachment summary for all attachments associated to the provided GroupKey
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The total number of attachments associated with the provided GroupKey and CompanyId.
         /// </summary>
-        public int TotalAttachments { get; set; }
+        public int? TotalAttachments { get; set; }
 
         /// <summary>
         /// The total number of archived attachments associated with the provided GroupKey and CompanyId.
         /// </summary>
-        public int TotalArchived { get; set; }
+        public int? TotalArchived { get; set; }
 
         /// <summary>
         /// The total number of active attachments associated with the provided GroupKey and CompanyId.
         /// </summary>
-        public int TotalActive { get; set; }
+        public int? TotalActive { get; set; }
     }
 
     /// <summary>
@@ -1014,7 +1024,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid AttachmentId { get; set; }
+        public Guid? AttachmentId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -1022,7 +1032,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
@@ -1046,7 +1056,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
-        public Guid ObjectKey { get; set; }
+        public Guid? ObjectKey { get; set; }
 
         /// <summary>
         /// An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
@@ -1063,7 +1073,7 @@ namespace LockstepSDK
         /// <summary>
         /// DEPRECATED: This field is replaced by `AttachmentType`.
         /// </summary>
-        public Guid AttachmentTypeId { get; set; }
+        public Guid? AttachmentTypeId { get; set; }
 
         /// <summary>
         /// A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
@@ -1072,22 +1082,22 @@ namespace LockstepSDK
         ///
         /// You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
         /// </summary>
-        public bool IsArchived { get; set; }
+        public bool? IsArchived { get; set; }
 
         /// <summary>
         /// DEPRECATED - Do not use
         /// </summary>
-        public Guid OriginAttachmentId { get; set; }
+        public Guid? OriginAttachmentId { get; set; }
 
         /// <summary>
         /// Flag for if LS clients can see this file
         /// </summary>
-        public bool ViewInternal { get; set; }
+        public bool? ViewInternal { get; set; }
 
         /// <summary>
         /// Flag for if Vendors and customers can see this file
         /// </summary>
-        public bool ViewExternal { get; set; }
+        public bool? ViewExternal { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -1106,18 +1116,18 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The date the attachment was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
         /// who created this Attachment.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// A text string describing the type of this Attachment.
@@ -1208,27 +1218,27 @@ namespace LockstepSDK
         /// <summary>
         /// Timeframe in days the cashflow report is generated on
         /// </summary>
-        public int Timeframe { get; set; }
+        public int? Timeframe { get; set; }
 
         /// <summary>
         /// Amount of payments collected based in the timeframe
         /// </summary>
-        public double PaymentsCollected { get; set; }
+        public decimal? PaymentsCollected { get; set; }
 
         /// <summary>
         /// Number of payments collected based in the timeframe
         /// </summary>
-        public int PaymentsCollectedCount { get; set; }
+        public int? PaymentsCollectedCount { get; set; }
 
         /// <summary>
         /// Amount of invoices billed based in the timeframe
         /// </summary>
-        public double InvoicesBilled { get; set; }
+        public decimal? InvoicesBilled { get; set; }
 
         /// <summary>
         /// Number of invoices billed in the timeframe
         /// </summary>
-        public int InvoicesBilledCount { get; set; }
+        public int? InvoicesBilledCount { get; set; }
     }
 
     /// <summary>
@@ -1242,7 +1252,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid CodeDefinitionId { get; set; }
+        public Guid? CodeDefinitionId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -1250,7 +1260,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The type of the Code Definition
@@ -1270,22 +1280,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date that the Code Definition was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created the Code Definition
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date the Code Definition was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified the Code Definition
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
     }
 
     /// <summary>
@@ -1304,7 +1314,7 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The short name of the company.
@@ -1349,13 +1359,13 @@ namespace LockstepSDK
         ///
         /// If this value is null, this business entity is a standalone.
         /// </summary>
-        public Guid ParentCompanyId { get; set; }
+        public Guid? ParentCompanyId { get; set; }
 
         /// <summary>
         /// For convenience, this field indicates the top-level parent company.  This can be used
         /// to jump directly to the top parent in complex organizational hierarchies.
         /// </summary>
-        public Guid EnterpriseId { get; set; }
+        public Guid? EnterpriseId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -1363,13 +1373,13 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// This flag indicates whether the company is currently active.  An inactive company
         /// should be hidden from the user interface but will still be available for querying.
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// The default currency code used by this business entity.  This value can be overridden
@@ -1387,7 +1397,7 @@ namespace LockstepSDK
         /// <summary>
         /// The Lockstep `ContactId` of the primary contact for this company.
         /// </summary>
-        public Guid PrimaryContactId { get; set; }
+        public Guid? PrimaryContactId { get; set; }
 
         /// <summary>
         /// Address info
@@ -1425,6 +1435,11 @@ namespace LockstepSDK
         public string Country { get; set; }
 
         /// <summary>
+        /// Time zone
+        /// </summary>
+        public string TimeZone { get; set; }
+
+        /// <summary>
         /// Phone number
         /// </summary>
         public string PhoneNumber { get; set; }
@@ -1437,22 +1452,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date this company was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created this company
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date this company was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified this company
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The name of the user who last modified this company
@@ -1489,7 +1504,7 @@ namespace LockstepSDK
         /// <summary>
         /// Identifier for classification of this company.
         /// </summary>
-        public Guid CompanyClassificationCodeDefId { get; set; }
+        public Guid? CompanyClassificationCodeDefId { get; set; }
 
         /// <summary>
         /// Description of the company.
@@ -1507,7 +1522,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -1639,7 +1654,7 @@ namespace LockstepSDK
         /// This flag indicates whether the company is currently active. An inactive company will be hidden from the
         /// user interface but will still be available for querying.
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// The default currency code for transactions related to this company.  For a list of currency codes, see
@@ -1708,14 +1723,14 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The company&#39;s Tax ID number for the appropriate government for this company.
@@ -1804,12 +1819,12 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid ContactId { get; set; }
+        public Guid? ContactId { get; set; }
 
         /// <summary>
         /// The ID of the company to which this contact belongs.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -1817,7 +1832,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -1903,7 +1918,7 @@ namespace LockstepSDK
         /// <summary>
         /// Flag indicating if the contact is active.
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// The webpage url of the contact.
@@ -1918,22 +1933,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date on which this record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created this contact.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this record was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified this contact.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -1941,7 +1956,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -2090,7 +2105,7 @@ namespace LockstepSDK
         /// <summary>
         /// True if this contact is considered &quot;active&quot;.
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
         /// A webpage URL for more information about this contact.
@@ -2107,14 +2122,14 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -2141,7 +2156,7 @@ namespace LockstepSDK
         /// <summary>
         /// Unique 3 digit number for the given country
         /// </summary>
-        public int CountryCode { get; set; }
+        public int? CountryCode { get; set; }
 
         /// <summary>
         /// Region of the country
@@ -2161,17 +2176,17 @@ namespace LockstepSDK
         /// <summary>
         /// Numeric code for a region
         /// </summary>
-        public int RegionCode { get; set; }
+        public int? RegionCode { get; set; }
 
         /// <summary>
         /// Numeric code for a subregion
         /// </summary>
-        public int SubRegionCode { get; set; }
+        public int? SubRegionCode { get; set; }
 
         /// <summary>
         /// Numeric code for an intermediate region
         /// </summary>
-        public int IntermediateRegionCode { get; set; }
+        public int? IntermediateRegionCode { get; set; }
 
         /// <summary>
         /// French name of the country
@@ -2200,7 +2215,7 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid CreditMemoAppliedId { get; set; }
+        public Guid? CreditMemoAppliedId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -2208,7 +2223,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The Lockstep ID of the Invoice to which this credit memo was applied.  This Invoice&#39;s outstanding balance
@@ -2218,7 +2233,7 @@ namespace LockstepSDK
         /// credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is the Lockstep Platform
         /// ID number of Invoice `PO1000578`.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The Lockstep ID of the Invoice of type &quot;Credit Memo&quot; that was consumed in this payment application event.
@@ -2227,7 +2242,7 @@ namespace LockstepSDK
         /// credit memo to reduce the balance of the invoice PO1000578.  The `CreditMemoInvoiceId` is the Lockstep
         /// Platform ID number of Invoice `CM000123`.
         /// </summary>
-        public Guid CreditMemoInvoiceId { get; set; }
+        public Guid? CreditMemoInvoiceId { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -2243,37 +2258,37 @@ namespace LockstepSDK
         /// <summary>
         /// Reference number for the applied credit memo.
         /// </summary>
-        public int EntryNumber { get; set; }
+        public int? EntryNumber { get; set; }
 
         /// <summary>
         /// The date on which this credit memo was applied to the Invoice represented by `InvoiceId`.
         /// </summary>
-        public DateTime ApplyToInvoiceDate { get; set; }
+        public DateTime? ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// The amount of the credit memo that was applied to the Invoice represented by `InvoiceId`.
         /// </summary>
-        public double CreditMemoAppliedAmount { get; set; }
+        public decimal? CreditMemoAppliedAmount { get; set; }
 
         /// <summary>
         /// Date credit memo applied record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The id of the user who created this applied credit memo.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// Date credit memo applied record was modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The id of the user who modified this applied credit memo.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -2281,7 +2296,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
@@ -2372,31 +2387,31 @@ namespace LockstepSDK
         /// <summary>
         /// Reference number for the applied credit memo.
         /// </summary>
-        public int EntryNumber { get; set; }
+        public int? EntryNumber { get; set; }
 
         /// <summary>
         /// The date on which this credit memo was applied to the Invoice.
         /// </summary>
-        public DateTime ApplyToInvoiceDate { get; set; }
+        public DateTime? ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// The amount of this credit memo that was applied to this Invoice.
         /// </summary>
-        public double CreditMemoAppliedAmount { get; set; }
+        public decimal? CreditMemoAppliedAmount { get; set; }
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -2411,33 +2426,35 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid CreditMemoAppliedId { get; set; }
+        public Guid? CreditMemoAppliedId { get; set; }
 
         /// <summary>
         /// The id of the invoice
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The id of the credit memo invoice
         /// </summary>
-        public Guid CreditMemoInvoiceId { get; set; }
+        public Guid? CreditMemoInvoiceId { get; set; }
 
         /// <summary>
         /// Date invoice applied to credit memo.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// Amount applied to credit memo.
         /// </summary>
-        public double CreditMemoAppliedAmount { get; set; }
+        public decimal? CreditMemoAppliedAmount { get; set; }
 
         /// <summary>
         /// An additional reference code that is sometimes used to identify this invoice.
@@ -2448,12 +2465,12 @@ namespace LockstepSDK
         /// <summary>
         /// The ID number of the company that created this invoice.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// A code identifying the status of this invoice.
@@ -2463,12 +2480,12 @@ namespace LockstepSDK
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
         /// </summary>
-        public double? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this invoice.
         /// </summary>
-        public double? OutstandingBalanceAmount { get; set; }
+        public decimal? OutstandingBalanceAmount { get; set; }
     }
 
     /// <summary>
@@ -2495,7 +2512,7 @@ namespace LockstepSDK
         /// <summary>
         /// Number of places after the decimal for this currency
         /// </summary>
-        public int MinorUnit { get; set; }
+        public int? MinorUnit { get; set; }
 
         /// <summary>
         /// Symbol for the given currency
@@ -2529,7 +2546,7 @@ namespace LockstepSDK
         /// <summary>
         /// The currency rate value
         /// </summary>
-        public double? CurrencyRate { get; set; }
+        public decimal? CurrencyRate { get; set; }
     }
 
     /// <summary>
@@ -2549,13 +2566,13 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid CustomFieldDefinitionId { get; set; }
+        public Guid? CustomFieldDefinitionId { get; set; }
 
         /// <summary>
         /// Table to which this definition belongs
@@ -2565,7 +2582,7 @@ namespace LockstepSDK
         /// <summary>
         /// Id of app this definition belongs to
         /// </summary>
-        public Guid AppId { get; set; }
+        public Guid? AppId { get; set; }
 
         /// <summary>
         /// Text to display in-application for custom field
@@ -2580,27 +2597,27 @@ namespace LockstepSDK
         /// <summary>
         /// Used for display logic when multiple custom fields exist
         /// </summary>
-        public int SortOrder { get; set; }
+        public int? SortOrder { get; set; }
 
         /// <summary>
         /// Date created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// Id of user who created this definition
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// Date modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// Id of user who modified this definition
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -2608,7 +2625,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
     }
 
     /// <summary>
@@ -2676,14 +2693,14 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -2703,38 +2720,38 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid CustomFieldDefinitionId { get; set; }
+        public Guid? CustomFieldDefinitionId { get; set; }
 
         /// <summary>
         /// Additional key if source table doesn&#39;t have a unique id
         /// </summary>
-        public Guid RecordKey { get; set; }
+        public Guid? RecordKey { get; set; }
 
         /// <summary>
         /// Date created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// Id of user who created this value
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// Date modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// Id of user who modified this value
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this attachment record.  For accounts
@@ -2742,7 +2759,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The value of this custom field.
@@ -2767,12 +2784,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this customer
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The unique ID of this customer
@@ -2832,7 +2849,7 @@ namespace LockstepSDK
         /// <summary>
         /// Customer primary contact id
         /// </summary>
-        public Guid ContactId { get; set; }
+        public Guid? ContactId { get; set; }
 
         /// <summary>
         /// Customer primary contact name
@@ -2847,17 +2864,17 @@ namespace LockstepSDK
         /// <summary>
         /// Customer number of outstanding invoices
         /// </summary>
-        public int OutstandingInvoices { get; set; }
+        public int? OutstandingInvoices { get; set; }
 
         /// <summary>
         /// Customer total outstanding invoice amount
         /// </summary>
-        public double OutstandingAmount { get; set; }
+        public decimal? OutstandingAmount { get; set; }
 
         /// <summary>
         /// Customer total past due amount
         /// </summary>
-        public double AmountPastDue { get; set; }
+        public decimal? AmountPastDue { get; set; }
 
         /// <summary>
         /// Customer payments collected
@@ -2877,17 +2894,17 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// Unique identifier for payment
         /// </summary>
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         /// <summary>
         /// Unique identifier for payment applied
         /// </summary>
-        public Guid PaymentAppliedId { get; set; }
+        public Guid? PaymentAppliedId { get; set; }
 
         /// <summary>
         /// Payment type
@@ -2897,7 +2914,7 @@ namespace LockstepSDK
         /// <summary>
         /// Unique identifier for invoice payment is associated with
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// Invoice type payment is associated with
@@ -2912,17 +2929,17 @@ namespace LockstepSDK
         /// <summary>
         /// Invoice total amount payment is associated with
         /// </summary>
-        public double InvoiceTotalAmount { get; set; }
+        public decimal? InvoiceTotalAmount { get; set; }
 
         /// <summary>
         /// Date payment placed
         /// </summary>
-        public DateTime PaymentDate { get; set; }
+        public DateTime? PaymentDate { get; set; }
 
         /// <summary>
         /// Amount payment was made for
         /// </summary>
-        public double PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
     }
 
     /// <summary>
@@ -2937,12 +2954,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this company.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The name of the company.
@@ -2977,35 +2994,37 @@ namespace LockstepSDK
         /// <summary>
         /// The total from collected payments.
         /// </summary>
-        public double? AmountCollected { get; set; }
+        public decimal? AmountCollected { get; set; }
 
         /// <summary>
         /// The total balance of outstanding invoices.
         /// </summary>
-        public double? OutstandingAmount { get; set; }
+        public decimal? OutstandingAmount { get; set; }
 
         /// <summary>
         /// The total amount past due for this customer.
         /// </summary>
-        public double? AmountPastDue { get; set; }
+        public decimal? AmountPastDue { get; set; }
 
         /// <summary>
         /// The total value of unapplied Payments for this Customer.
         /// </summary>
-        public double? UnappliedPayments { get; set; }
+        public decimal? UnappliedPayments { get; set; }
 
         /// <summary>
         /// Portion of Total AR for this Customer that is Past due. (TotalPastDue / Total AR).
         /// </summary>
-        public double? PercentOfTotalAr { get; set; }
+        public decimal? PercentOfTotalAr { get; set; }
 
         /// <summary>
         /// Daily sales outstanding value for this Customer.
         /// </summary>
-        public double? Dso { get; set; }
+        public decimal? Dso { get; set; }
 
         /// <summary>
         /// The date stamp for the newest Activity on this Customer.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string NewestActivity { get; set; }
     }
@@ -3019,17 +3038,17 @@ namespace LockstepSDK
         /// <summary>
         /// Timeframe (month) the daily sales outstanding values are associated with
         /// </summary>
-        public DateTime Timeframe { get; set; }
+        public DateTime? Timeframe { get; set; }
 
         /// <summary>
         /// Number of invoices the average daily sales outstanding is calculated on
         /// </summary>
-        public int InvoiceCount { get; set; }
+        public int? InvoiceCount { get; set; }
 
         /// <summary>
         /// Time (in days) between an invoice was completed paid off and when the invoice was issued
         /// </summary>
-        public double DailySalesOutstanding { get; set; }
+        public decimal? DailySalesOutstanding { get; set; }
     }
 
     /// <summary>
@@ -3067,12 +3086,12 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid EmailId { get; set; }
+        public Guid? EmailId { get; set; }
 
         /// <summary>
         /// The unique ID number of this email&#39;s conversation thread.
         /// </summary>
-        public Guid ThreadId { get; set; }
+        public Guid? ThreadId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3080,12 +3099,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The ID number of the company that created this email.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The email address for the sender of this email.
@@ -3115,57 +3134,57 @@ namespace LockstepSDK
         /// <summary>
         /// The date on which this email was sent.
         /// </summary>
-        public DateTime SentDate { get; set; }
+        public DateTime? SentDate { get; set; }
 
         /// <summary>
         /// A status flag indicating if this email is unread.
         /// </summary>
-        public bool IsUnread { get; set; }
+        public bool? IsUnread { get; set; }
 
         /// <summary>
         /// A status flag indicating if this email is priority status.
         /// </summary>
-        public bool IsPriority { get; set; }
+        public bool? IsPriority { get; set; }
 
         /// <summary>
         /// A status flag indicating if this email is marked as spam.
         /// </summary>
-        public bool IsSpam { get; set; }
+        public bool? IsSpam { get; set; }
 
         /// <summary>
         /// The date on which this email was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this email.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// A status flag indicating if this email is to be sent.
         /// </summary>
-        public bool ToBeSent { get; set; }
+        public bool? ToBeSent { get; set; }
 
         /// <summary>
         /// The ID number of the customer that sent this email.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The date on which this email was received.
         /// </summary>
-        public DateTime ReceivedTimeStamp { get; set; }
+        public DateTime? ReceivedTimeStamp { get; set; }
 
         /// <summary>
         /// The date on which this email was opened.
         /// </summary>
-        public DateTime OpenedTimestamp { get; set; }
+        public DateTime? OpenedTimestamp { get; set; }
 
         /// <summary>
         /// The number of times this email was viewed.
         /// </summary>
-        public int ViewCount { get; set; }
+        public int? ViewCount { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3173,7 +3192,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The id of the email in an external system if imported.
@@ -3199,19 +3218,19 @@ namespace LockstepSDK
         /// The date on which this email was modified.
         /// Email modification should only be done by internal services.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who modified this email.
         /// Email modification should only be done by internal services.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// If the message being sent is a reply or a forward, the id of the the email being replied to or forwarded.
         /// Otherwise null.
         /// </summary>
-        public Guid ResponseOriginId { get; set; }
+        public Guid? ResponseOriginId { get; set; }
 
         /// <summary>
         /// The email object associated with the response origin id.
@@ -3268,7 +3287,7 @@ namespace LockstepSDK
         /// <summary>
         /// The id of the ERP&#39;s App
         /// </summary>
-        public Guid AppId { get; set; }
+        public Guid? AppId { get; set; }
 
         /// <summary>
         /// The data required to store for connector access
@@ -3285,7 +3304,7 @@ namespace LockstepSDK
         /// <summary>
         /// Unique ID for this ERP
         /// </summary>
-        public Guid ErpSystemId { get; set; }
+        public Guid? ErpSystemId { get; set; }
 
         /// <summary>
         /// Name of ERP
@@ -3295,7 +3314,7 @@ namespace LockstepSDK
         /// <summary>
         /// Flag to indicate if ERP is supported
         /// </summary>
-        public bool IsSupported { get; set; }
+        public bool? IsSupported { get; set; }
     }
 
     /// <summary>
@@ -3308,7 +3327,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid FinancialAccountBalanceHistoryId { get; set; }
+        public Guid? FinancialAccountBalanceHistoryId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3316,12 +3335,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The id of the Financial Account that this balance history is for.
         /// </summary>
-        public Guid FinancialAccountId { get; set; }
+        public Guid? FinancialAccountId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3329,27 +3348,27 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The financial year that this period falls under
         /// </summary>
-        public int FinancialYear { get; set; }
+        public int? FinancialYear { get; set; }
 
         /// <summary>
         /// The period number (1-12 or 1-13) that this balance history is for
         /// </summary>
-        public int PeriodNumber { get; set; }
+        public int? PeriodNumber { get; set; }
 
         /// <summary>
         /// The start date of this period.
         /// </summary>
-        public DateTime PeriodStartDate { get; set; }
+        public DateTime? PeriodStartDate { get; set; }
 
         /// <summary>
         /// The end date of this period.
         /// </summary>
-        public DateTime PeriodEndDate { get; set; }
+        public DateTime? PeriodEndDate { get; set; }
 
         /// <summary>
         /// The status of this period. The status should be Closed if the books for this period have been closed,
@@ -3361,27 +3380,27 @@ namespace LockstepSDK
         /// <summary>
         /// The current or end balance of this period.
         /// </summary>
-        public double Balance { get; set; }
+        public decimal? Balance { get; set; }
 
         /// <summary>
         /// The date on which this financial account balance history record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this financial account balance history.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this financial account balance history record was modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this financial account balance history.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
     }
 
     /// <summary>
@@ -3393,7 +3412,7 @@ namespace LockstepSDK
         /// <summary>
         /// The unique identifier for the Financial Account.
         /// </summary>
-        public Guid FinancialAccountId { get; set; }
+        public Guid? FinancialAccountId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3401,7 +3420,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The code for the Financial Account. Can either be a general ledger or
@@ -3417,7 +3436,7 @@ namespace LockstepSDK
         /// <summary>
         /// The App Enrollment Id for the Financial Account.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The name of the Financial Account.
@@ -3460,22 +3479,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date the FinancialAccount was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The user that has created the Financial Account.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date the Financial Account was modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The user that has modified the Financial Account.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
     }
 
     /// <summary>
@@ -3507,22 +3526,22 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The start date of the financial report
         /// </summary>
-        public DateTime ReportStartDate { get; set; }
+        public DateTime? ReportStartDate { get; set; }
 
         /// <summary>
         /// The end date of the financial report
         /// </summary>
-        public DateTime ReportEndDate { get; set; }
+        public DateTime? ReportEndDate { get; set; }
 
         /// <summary>
         /// The created date of the financial report
         /// </summary>
-        public DateTime ReportCreatedDate { get; set; }
+        public DateTime? ReportCreatedDate { get; set; }
 
         /// <summary>
         /// The rows of the financial report
@@ -3569,7 +3588,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid FinancialYearSettingId { get; set; }
+        public Guid? FinancialYearSettingId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3577,7 +3596,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3585,7 +3604,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The type of financial year, either Calendar or Fiscal.
@@ -3596,37 +3615,41 @@ namespace LockstepSDK
         /// Total number of periods in the year. For Calendar year types this should always be 12. For Fiscal year types
         /// this can either be 12 or 13 for a 4 week 13 period year.
         /// </summary>
-        public int TotalPeriods { get; set; }
+        public int? TotalPeriods { get; set; }
 
         /// <summary>
         /// The start date of the financial year. Should be entered in MM-DD format.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string StartDate { get; set; }
 
         /// <summary>
         /// The end date of the financial year. Should be entered in MM-DD format.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string EndDate { get; set; }
 
         /// <summary>
         /// The date on which this financial year setting record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this financial year setting.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this financial year setting record was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this financial year setting.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
     }
 
     /// <summary>
@@ -3660,7 +3683,7 @@ namespace LockstepSDK
         /// <summary>
         /// True if the invite was sent successfully
         /// </summary>
-        public bool Success { get; set; }
+        public bool? Success { get; set; }
 
         /// <summary>
         /// The invited user, may be null if the user could not be invited
@@ -3695,7 +3718,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid InvoiceAddressId { get; set; }
+        public Guid? InvoiceAddressId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3703,12 +3726,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The ID number of the invoice this address belongs to
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The first line of the address.
@@ -3748,32 +3771,32 @@ namespace LockstepSDK
         /// <summary>
         /// The latitude of this address, if available.
         /// </summary>
-        public float? Latitude { get; set; }
+        public decimal? Latitude { get; set; }
 
         /// <summary>
         /// The longitude of this address, if available.
         /// </summary>
-        public float? Longitude { get; set; }
+        public decimal? Longitude { get; set; }
 
         /// <summary>
         /// The date on which this address record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this address.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this address record was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this address.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3781,7 +3804,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
     }
 
     /// <summary>
@@ -3798,12 +3821,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID number of this invoice history entry.
         /// </summary>
-        public Guid InvoiceHistoryId { get; set; }
+        public Guid? InvoiceHistoryId { get; set; }
 
         /// <summary>
         /// The unique ID of the Invoice represented by this history entry.  This ID was automatically assigned
@@ -3811,17 +3834,17 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The ID number of the company that created this invoice.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -3883,88 +3906,98 @@ namespace LockstepSDK
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
         /// </summary>
-        public double? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// The total sales (or transactional) tax calculated for this invoice.
         /// </summary>
-        public double? SalesTaxAmount { get; set; }
+        public decimal? SalesTaxAmount { get; set; }
 
         /// <summary>
         /// The total discounts given by the seller to the buyer on this invoice.
         /// </summary>
-        public double? DiscountAmount { get; set; }
+        public decimal? DiscountAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this invoice.
         /// </summary>
-        public double? OutstandingBalanceAmount { get; set; }
+        public decimal? OutstandingBalanceAmount { get; set; }
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
-        public DateTime ImportedDate { get; set; }
+        public DateTime? ImportedDate { get; set; }
 
         /// <summary>
         /// The ID number of the invoice&#39;s origination address
         /// </summary>
-        public Guid PrimaryOriginAddressId { get; set; }
+        public Guid? PrimaryOriginAddressId { get; set; }
 
         /// <summary>
         /// The ID number of the invoice&#39;s bill-to address
         /// </summary>
-        public Guid PrimaryBillToAddressId { get; set; }
+        public Guid? PrimaryBillToAddressId { get; set; }
 
         /// <summary>
         /// The ID number of the invoice&#39;s ship-to address
         /// </summary>
-        public Guid PrimaryShipToAddressId { get; set; }
+        public Guid? PrimaryShipToAddressId { get; set; }
 
         /// <summary>
         /// The date on which this invoice record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this invoice.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this invoice record was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this invoice.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -3972,7 +4005,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
     }
 
     /// <summary>
@@ -3987,7 +4020,7 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid InvoiceLineId { get; set; }
+        public Guid? InvoiceLineId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -3995,12 +4028,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The ID number of the invoice this line belongs to.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system, if it was
@@ -4039,27 +4072,27 @@ namespace LockstepSDK
         /// <summary>
         /// The price of a single unit for this line.
         /// </summary>
-        public double UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         /// <summary>
         /// The quantity of items for ths line.
         /// </summary>
-        public double? Quantity { get; set; }
+        public decimal? Quantity { get; set; }
 
         /// <summary>
         /// The number of items that have been shipped.
         /// </summary>
-        public double? QuantityShipped { get; set; }
+        public decimal? QuantityShipped { get; set; }
 
         /// <summary>
         /// The number of items that has been received.
         /// </summary>
-        public double? QuantityReceived { get; set; }
+        public decimal? QuantityReceived { get; set; }
 
         /// <summary>
         /// The total amount for this line.
         /// </summary>
-        public double? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// If this line is tax exempt, this code indicates the reason for the exemption.
@@ -4069,43 +4102,45 @@ namespace LockstepSDK
         /// <summary>
         /// If null, the products specified on this line were delivered on the same date as all other lines.
         /// If not null, this line was delivered or finalized on a different date than the overall invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportingDate { get; set; }
 
         /// <summary>
         /// An optional ID number for the line&#39;s origin address.
         /// </summary>
-        public Guid OverrideOriginAddressId { get; set; }
+        public Guid? OverrideOriginAddressId { get; set; }
 
         /// <summary>
         /// An optional ID number for the line&#39;s bill to address.
         /// </summary>
-        public Guid OverrideBillToAddressId { get; set; }
+        public Guid? OverrideBillToAddressId { get; set; }
 
         /// <summary>
         /// An optional ID number for the line&#39;s ship to address.
         /// </summary>
-        public Guid OverrideShipToAddressId { get; set; }
+        public Guid? OverrideShipToAddressId { get; set; }
 
         /// <summary>
         /// The date on which this line was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this line.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this line was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this line.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -4113,7 +4148,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
@@ -4194,27 +4229,27 @@ namespace LockstepSDK
         /// <summary>
         /// The price of a single unit for this line.
         /// </summary>
-        public double? UnitPrice { get; set; }
+        public decimal? UnitPrice { get; set; }
 
         /// <summary>
         /// The quantity of items for ths line.
         /// </summary>
-        public double? Quantity { get; set; }
+        public decimal? Quantity { get; set; }
 
         /// <summary>
         /// The number of items that have been shipped.
         /// </summary>
-        public double? QuantityShipped { get; set; }
+        public decimal? QuantityShipped { get; set; }
 
         /// <summary>
         /// The number of items that has been received.
         /// </summary>
-        public double? QuantityReceived { get; set; }
+        public decimal? QuantityReceived { get; set; }
 
         /// <summary>
         /// The total amount for this line.
         /// </summary>
-        public double? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// If this line is tax exempt, this code indicates the reason for the exemption.
@@ -4225,7 +4260,7 @@ namespace LockstepSDK
         /// If null, the products specified on this line were delivered on the same date as all other lines.
         /// If not null, this line was delivered or finalized on a different date than the overall invoice.
         /// </summary>
-        public DateTime ReportingDate { get; set; }
+        public DateTime? ReportingDate { get; set; }
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
@@ -4265,12 +4300,12 @@ namespace LockstepSDK
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
-        public float? OriginAddressLatitude { get; set; }
+        public decimal? OriginAddressLatitude { get; set; }
 
         /// <summary>
         /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
-        public float? OriginAddressLongitude { get; set; }
+        public decimal? OriginAddressLongitude { get; set; }
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
@@ -4310,12 +4345,12 @@ namespace LockstepSDK
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
-        public float? BillToAddressLatitude { get; set; }
+        public decimal? BillToAddressLatitude { get; set; }
 
         /// <summary>
         /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
-        public float? BillToAddressLongitude { get; set; }
+        public decimal? BillToAddressLongitude { get; set; }
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
@@ -4355,26 +4390,26 @@ namespace LockstepSDK
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
-        public float? ShipToAddressLatitude { get; set; }
+        public decimal? ShipToAddressLatitude { get; set; }
 
         /// <summary>
         /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
-        public float? ShipToAddressLongitude { get; set; }
+        public decimal? ShipToAddressLongitude { get; set; }
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -4394,7 +4429,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -4402,17 +4437,17 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The ID number of the company that created this invoice.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -4486,88 +4521,98 @@ namespace LockstepSDK
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
         /// </summary>
-        public double? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// The total sales (or transactional) tax calculated for this invoice.
         /// </summary>
-        public double? SalesTaxAmount { get; set; }
+        public decimal? SalesTaxAmount { get; set; }
 
         /// <summary>
         /// The total discounts given by the seller to the buyer on this invoice.
         /// </summary>
-        public double? DiscountAmount { get; set; }
+        public decimal? DiscountAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this invoice.
         /// </summary>
-        public double? OutstandingBalanceAmount { get; set; }
+        public decimal? OutstandingBalanceAmount { get; set; }
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
-        public DateTime ImportedDate { get; set; }
+        public DateTime? ImportedDate { get; set; }
 
         /// <summary>
         /// The ID number of the invoice&#39;s origination address
         /// </summary>
-        public Guid PrimaryOriginAddressId { get; set; }
+        public Guid? PrimaryOriginAddressId { get; set; }
 
         /// <summary>
         /// The ID number of the invoice&#39;s bill-to address
         /// </summary>
-        public Guid PrimaryBillToAddressId { get; set; }
+        public Guid? PrimaryBillToAddressId { get; set; }
 
         /// <summary>
         /// The ID number of the invoice&#39;s ship-to address
         /// </summary>
-        public Guid PrimaryShipToAddressId { get; set; }
+        public Guid? PrimaryShipToAddressId { get; set; }
 
         /// <summary>
         /// The date on which this invoice record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID number of the user who created this invoice.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this invoice record was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this invoice.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -4575,22 +4620,22 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// Is the invoice voided?
         /// </summary>
-        public bool IsVoided { get; set; }
+        public bool? IsVoided { get; set; }
 
         /// <summary>
         /// Is the invoice in dispute?
         /// </summary>
-        public bool InDispute { get; set; }
+        public bool? InDispute { get; set; }
 
         /// <summary>
         /// Should the invoice be excluded from aging calculations?
         /// </summary>
-        public bool ExcludeFromAging { get; set; }
+        public bool? ExcludeFromAging { get; set; }
 
         /// <summary>
         /// All addresses connected to this invoice.
@@ -4687,32 +4732,34 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique identifier of this PaymentApplied record.
         /// </summary>
-        public Guid PaymentAppliedId { get; set; }
+        public Guid? PaymentAppliedId { get; set; }
 
         /// <summary>
         /// The database id of the invoice
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The database id of the Payment.
         /// </summary>
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         /// <summary>
         /// Date Payment applied to Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// Amount applied to Invoice.
         /// </summary>
-        public double PaymentAppliedAmount { get; set; }
+        public decimal? PaymentAppliedAmount { get; set; }
 
         /// <summary>
         /// An additional reference code that is sometimes used to identify this Payment.
@@ -4723,17 +4770,17 @@ namespace LockstepSDK
         /// <summary>
         /// The ID number of the Company (CompanyType = &quot;Customer&quot;) that created this Payment.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The total value of this Payment.
         /// </summary>
-        public double? PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this Payment.
         /// </summary>
-        public double? UnappliedAmount { get; set; }
+        public decimal? UnappliedAmount { get; set; }
     }
 
     /// <summary>
@@ -4748,17 +4795,17 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The ID number of the counterparty for the invoice, for example, a customer or vendor.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The unique ID number of this invoice.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// A reference code that is used to identify this invoice.
@@ -4768,6 +4815,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The reporting date for this invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
 
@@ -4783,18 +4832,20 @@ namespace LockstepSDK
 
         /// <summary>
         /// The due date of the invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDueDate { get; set; }
 
         /// <summary>
         /// The total amount of the Invoice.
         /// </summary>
-        public double? InvoiceAmount { get; set; }
+        public decimal? InvoiceAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this invoice.
         /// </summary>
-        public double? OutstandingBalance { get; set; }
+        public decimal? OutstandingBalance { get; set; }
 
         /// <summary>
         /// A code identifying the type of this Invoice.
@@ -4803,6 +4854,8 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date stamp for the newest Activity on this Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string NewestActivity { get; set; }
 
@@ -4934,53 +4987,53 @@ namespace LockstepSDK
         /// <summary>
         /// The total value of this invoice, inclusive of all taxes and line items.
         /// </summary>
-        public double? TotalAmount { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
         /// The total sales (or transactional) tax calculated for this invoice.
         /// </summary>
-        public double? SalesTaxAmount { get; set; }
+        public decimal? SalesTaxAmount { get; set; }
 
         /// <summary>
         /// The total discounts given by the seller to the buyer on this invoice.
         /// </summary>
-        public double? DiscountAmount { get; set; }
+        public decimal? DiscountAmount { get; set; }
 
         /// <summary>
         /// The remaining balance value of this invoice.
         /// </summary>
-        public double? OutstandingBalanceAmount { get; set; }
+        public decimal? OutstandingBalanceAmount { get; set; }
 
         /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
-        public DateTime InvoiceDate { get; set; }
+        public DateTime? InvoiceDate { get; set; }
 
         /// <summary>
         /// The date when discounts were adjusted for this invoice.
         /// </summary>
-        public DateTime DiscountDate { get; set; }
+        public DateTime? DiscountDate { get; set; }
 
         /// <summary>
         /// The date when this invoice posted to the company&#39;s general ledger.
         /// </summary>
-        public DateTime PostedDate { get; set; }
+        public DateTime? PostedDate { get; set; }
 
         /// <summary>
         /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
         /// services.
         /// </summary>
-        public DateTime InvoiceClosedDate { get; set; }
+        public DateTime? InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The date when the remaining outstanding balance is due.
         /// </summary>
-        public DateTime PaymentDueDate { get; set; }
+        public DateTime? PaymentDueDate { get; set; }
 
         /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
-        public DateTime ImportedDate { get; set; }
+        public DateTime? ImportedDate { get; set; }
 
         /// <summary>
         /// The origination address for this invoice
@@ -5020,12 +5073,12 @@ namespace LockstepSDK
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
-        public float? OriginAddressLatitude { get; set; }
+        public decimal? OriginAddressLatitude { get; set; }
 
         /// <summary>
         /// The origination address for this invoice
         /// </summary>
-        public float? OriginAddressLongitude { get; set; }
+        public decimal? OriginAddressLongitude { get; set; }
 
         /// <summary>
         /// The billing address for this invoice
@@ -5065,12 +5118,12 @@ namespace LockstepSDK
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
-        public float? BillToAddressLatitude { get; set; }
+        public decimal? BillToAddressLatitude { get; set; }
 
         /// <summary>
         /// The billing address for this invoice
         /// </summary>
-        public float? BillToAddressLongitude { get; set; }
+        public decimal? BillToAddressLongitude { get; set; }
 
         /// <summary>
         /// The shipping address for this invoice
@@ -5110,26 +5163,26 @@ namespace LockstepSDK
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
-        public float? ShipToAddressLatitude { get; set; }
+        public decimal? ShipToAddressLatitude { get; set; }
 
         /// <summary>
         /// The shipping address for this invoice
         /// </summary>
-        public float? ShipToAddressLongitude { get; set; }
+        public decimal? ShipToAddressLongitude { get; set; }
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// Is the invoice voided? If not specified, we assume the invoice is not voided.
@@ -5152,7 +5205,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid LeadId { get; set; }
+        public Guid? LeadId { get; set; }
 
         /// <summary>
         /// Name of lead
@@ -5190,7 +5243,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid NoteId { get; set; }
+        public Guid? NoteId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -5198,7 +5251,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
@@ -5222,7 +5275,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
-        public Guid ObjectKey { get; set; }
+        public Guid? ObjectKey { get; set; }
 
         /// <summary>
         /// The full text of the note
@@ -5241,18 +5294,18 @@ namespace LockstepSDK
         ///
         /// You should avoid displaying Notes with the IsArchived field set to true in your user interface.
         /// </summary>
-        public bool IsArchived { get; set; }
+        public bool? IsArchived { get; set; }
 
         /// <summary>
         /// The date the note was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
         /// who created this Note.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The name of the user who created the note
@@ -5265,7 +5318,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The person to whom this note is intended for.
@@ -5288,7 +5341,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -5296,17 +5349,17 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid PaymentAppliedId { get; set; }
+        public Guid? PaymentAppliedId { get; set; }
 
         /// <summary>
         /// The Invoice this payment is applied to.
         /// </summary>
-        public Guid InvoiceId { get; set; }
+        public Guid? InvoiceId { get; set; }
 
         /// <summary>
         /// The Payment applied to the invoice.
         /// </summary>
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -5323,37 +5376,37 @@ namespace LockstepSDK
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,
         /// or other identifying field for this payment application.
         /// </summary>
-        public int EntryNumber { get; set; }
+        public int? EntryNumber { get; set; }
 
         /// <summary>
         /// The date this payment was applied to this invoice.
         /// </summary>
-        public DateTime ApplyToInvoiceDate { get; set; }
+        public DateTime? ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// The total amount that was applied to this Invoice from the Payment.
         /// </summary>
-        public double PaymentAppliedAmount { get; set; }
+        public decimal? PaymentAppliedAmount { get; set; }
 
         /// <summary>
         /// Date payment applied record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The id of the user who created this applied payment.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// Date payment applied record was modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The id of the user who modified this applied payment.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -5361,7 +5414,7 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The invoice associated with this applied payment.
@@ -5424,31 +5477,31 @@ namespace LockstepSDK
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,
         /// or other identifying field for this payment application.
         /// </summary>
-        public int EntryNumber { get; set; }
+        public int? EntryNumber { get; set; }
 
         /// <summary>
         /// The date this payment was applied to this invoice.
         /// </summary>
-        public DateTime ApplyToInvoiceDate { get; set; }
+        public DateTime? ApplyToInvoiceDate { get; set; }
 
         /// <summary>
         /// The total amount that was applied to this Invoice from the Payment.
         /// </summary>
-        public double PaymentAppliedAmount { get; set; }
+        public decimal? PaymentAppliedAmount { get; set; }
 
         /// <summary>
         /// If known, the date when this record was created according to the originating financial system
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
     }
 
     /// <summary>
@@ -5463,7 +5516,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The total number of Customers.
@@ -5473,12 +5526,12 @@ namespace LockstepSDK
         /// <summary>
         /// The total amount collected.
         /// </summary>
-        public double? AmountCollected { get; set; }
+        public decimal? AmountCollected { get; set; }
 
         /// <summary>
         /// The total unapplied amount.
         /// </summary>
-        public double? UnappliedAmount { get; set; }
+        public decimal? UnappliedAmount { get; set; }
 
         /// <summary>
         /// The number of paid invoices.
@@ -5503,17 +5556,17 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this Payment.
         /// </summary>
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         /// <summary>
         /// The ID of the customer to which this Payment belongs.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
 
         /// <summary>
         /// The name of the customer to which this Payment belongs.
@@ -5543,12 +5596,12 @@ namespace LockstepSDK
         /// <summary>
         /// Total amount of this Payment.
         /// </summary>
-        public double PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
 
         /// <summary>
         /// Unapplied balance of this Payment.
         /// </summary>
-        public double UnappliedAmount { get; set; }
+        public decimal? UnappliedAmount { get; set; }
 
         /// <summary>
         /// The type of payment, Payment or AP Payment.
@@ -5557,11 +5610,15 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of this Payment.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDate { get; set; }
 
         /// <summary>
         /// Payment post date.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PostDate { get; set; }
 
@@ -5629,7 +5686,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -5637,12 +5694,12 @@ namespace LockstepSDK
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         /// <summary>
         /// The ID of the company to which this payment belongs.
         /// </summary>
-        public Guid CompanyId { get; set; }
+        public Guid? CompanyId { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
@@ -5679,7 +5736,7 @@ namespace LockstepSDK
         /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
         /// value is true, the field `UnappliedAmount` will be nonzero.
         /// </summary>
-        public bool IsOpen { get; set; }
+        public bool? IsOpen { get; set; }
 
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
@@ -5707,12 +5764,12 @@ namespace LockstepSDK
         /// <summary>
         /// Total amount of this payment.
         /// </summary>
-        public double PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
 
         /// <summary>
         /// Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
         /// </summary>
-        public double UnappliedAmount { get; set; }
+        public decimal? UnappliedAmount { get; set; }
 
         /// <summary>
         /// The ISO 4217 currency code for this payment.
@@ -5729,22 +5786,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date on which this record was created.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created this payment.
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date on which this record was last modified.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified this payment.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
@@ -5752,17 +5809,17 @@ namespace LockstepSDK
         /// financial system that produced this record.  This value is null if this record
         /// was not loaded from an external ERP or financial system.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// Is the payment voided?
         /// </summary>
-        public bool IsVoided { get; set; }
+        public bool? IsVoided { get; set; }
 
         /// <summary>
         /// Is the payment in dispute?
         /// </summary>
-        public bool InDispute { get; set; }
+        public bool? InDispute { get; set; }
 
         /// <summary>
         /// All applications this payment is associated with.
@@ -5823,12 +5880,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The id of the payment
         /// </summary>
-        public Guid PaymentId { get; set; }
+        public Guid? PaymentId { get; set; }
 
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
@@ -5847,18 +5904,20 @@ namespace LockstepSDK
 
         /// <summary>
         /// The date of this payment.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string PaymentDate { get; set; }
 
         /// <summary>
         /// Total amount of this payment.
         /// </summary>
-        public double PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
 
         /// <summary>
         /// Unapplied balance of this payment.
         /// </summary>
-        public double UnappliedAmount { get; set; }
+        public decimal? UnappliedAmount { get; set; }
 
         /// <summary>
         /// The number of invoices associated to this payment.
@@ -5868,7 +5927,7 @@ namespace LockstepSDK
         /// <summary>
         /// The number of payments applied to this payment.
         /// </summary>
-        public double? TotalPaymentsApplied { get; set; }
+        public decimal? TotalPaymentsApplied { get; set; }
 
         /// <summary>
         /// The reference codes of the invoices associated to this payment.
@@ -5888,7 +5947,7 @@ namespace LockstepSDK
         /// <summary>
         /// The id of the customer for this payment.
         /// </summary>
-        public Guid CustomerId { get; set; }
+        public Guid? CustomerId { get; set; }
     }
 
     /// <summary>
@@ -5948,7 +6007,7 @@ namespace LockstepSDK
         /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
         /// value is true, the field `UnappliedAmount` will be nonzero.
         /// </summary>
-        public bool IsOpen { get; set; }
+        public bool? IsOpen { get; set; }
 
         /// <summary>
         /// Memo or reference text (ex. memo field on a check).
@@ -5960,24 +6019,24 @@ namespace LockstepSDK
         /// that they received notification that the payment had occurred, whether they were notified by email, postal
         /// mail, or financial transaction notification.
         /// </summary>
-        public DateTime PaymentDate { get; set; }
+        public DateTime? PaymentDate { get; set; }
 
         /// <summary>
         /// The date when a payment was posted to a ledger.  This date is often determined by a company&#39;s accounting
         /// practices and may be different than the date when the payment was received.  This date may be affected by
         /// issues such as temporary holds on funds transferred, bank holidays, or other actions.
         /// </summary>
-        public DateTime PostDate { get; set; }
+        public DateTime? PostDate { get; set; }
 
         /// <summary>
         /// Total amount of this payment.
         /// </summary>
-        public double PaymentAmount { get; set; }
+        public decimal? PaymentAmount { get; set; }
 
         /// <summary>
         /// Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
         /// </summary>
-        public double UnappliedAmount { get; set; }
+        public decimal? UnappliedAmount { get; set; }
 
         /// <summary>
         /// The ISO 4217 currency code for this payment.
@@ -5991,14 +6050,14 @@ namespace LockstepSDK
         /// in which this record is maintained.  If the originating financial system does not maintain a
         /// created-date, leave this field null.
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// If known, the date when this record was most recently modified according to the originating
         /// financial system in which this record is maintained.  If the originating financial system does
         /// not maintain a most-recently-modified-date, leave this field null.
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// A reference code for the payment for the given financial or ERP system.  This can be any value that the
@@ -6010,12 +6069,12 @@ namespace LockstepSDK
         /// <summary>
         /// True if this payment was voided.
         /// </summary>
-        public bool IsVoided { get; set; }
+        public bool? IsVoided { get; set; }
 
         /// <summary>
         /// True if this payment is in dispute.
         /// </summary>
-        public bool InDispute { get; set; }
+        public bool? InDispute { get; set; }
     }
 
     /// <summary>
@@ -6086,22 +6145,22 @@ namespace LockstepSDK
         /// <summary>
         /// If provisioning is successful, contains the unique identifier of the created user.
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         /// <summary>
         /// If provisioning is successful, contains the group key of the created user.
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// If provisioning is successful, contains the app enrollment id of the created app enrollment.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// if provisioning is successful, contains the sync request id of the sync that was started for the app enrollment.
         /// </summary>
-        public Guid SyncRequestId { get; set; }
+        public Guid? SyncRequestId { get; set; }
 
         /// <summary>
         /// The error message(s).
@@ -6121,12 +6180,12 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The month the risk rate was calculated for
         /// </summary>
-        public DateTime ReportPeriod { get; set; }
+        public DateTime? ReportPeriod { get; set; }
 
         /// <summary>
         /// The string name of the month the risk rate was calculated for
@@ -6136,32 +6195,32 @@ namespace LockstepSDK
         /// <summary>
         /// The count of all invoices in the calculation month
         /// </summary>
-        public int TotalInvoiceCount { get; set; }
+        public int? TotalInvoiceCount { get; set; }
 
         /// <summary>
         /// The sum of the total amount for invoices in the calculation month
         /// </summary>
-        public double TotalInvoiceAmount { get; set; }
+        public decimal? TotalInvoiceAmount { get; set; }
 
         /// <summary>
         /// The count of open invoices over 90 days from the calculation month
         /// </summary>
-        public int AtRiskCount { get; set; }
+        public int? AtRiskCount { get; set; }
 
         /// <summary>
         /// The sum of the outstanding balance of open invoices over 90 days from the calculation month
         /// </summary>
-        public double AtRiskAmount { get; set; }
+        public decimal? AtRiskAmount { get; set; }
 
         /// <summary>
         /// The percentage of all open invoices for the calculation month that are over 90 days based on count
         /// </summary>
-        public double AtRiskCountPercentage { get; set; }
+        public decimal? AtRiskCountPercentage { get; set; }
 
         /// <summary>
         /// The percentage of all open invoices for the calculation month that are over 90 days based on outstanding balance
         /// </summary>
-        public double AtRiskPercentage { get; set; }
+        public decimal? AtRiskPercentage { get; set; }
     }
 
     /// <summary>
@@ -6205,22 +6264,22 @@ namespace LockstepSDK
         /// <summary>
         /// If authentication is successful, contains subscription account company id of logged-in user.
         /// </summary>
-        public Guid AccountCompanyId { get; set; }
+        public Guid? AccountCompanyId { get; set; }
 
         /// <summary>
         /// If authentication is successful, contains the unique identifier of the logged-in user.
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         /// <summary>
         /// If authentication is successful, contains the group key of the logged-in user.
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// Returns true if authentication for this API was successful.
         /// </summary>
-        public bool LoggedIn { get; set; }
+        public bool? LoggedIn { get; set; }
 
         /// <summary>
         /// The error message.
@@ -6235,12 +6294,12 @@ namespace LockstepSDK
         /// <summary>
         /// Date and time user has last logged into Azure B2C.
         /// </summary>
-        public DateTime LastLoggedIn { get; set; }
+        public DateTime? LastLoggedIn { get; set; }
 
         /// <summary>
         /// The id of the API key used to authenticate.
         /// </summary>
-        public Guid ApiKeyId { get; set; }
+        public Guid? ApiKeyId { get; set; }
 
         /// <summary>
         /// If authentication is successful, contains the user status of the logged-in user.
@@ -6273,22 +6332,22 @@ namespace LockstepSDK
         /// <summary>
         /// The number of entities inserted
         /// </summary>
-        public int InsertCount { get; set; }
+        public int? InsertCount { get; set; }
 
         /// <summary>
         /// The number of entities updated
         /// </summary>
-        public int UpdateCount { get; set; }
+        public int? UpdateCount { get; set; }
 
         /// <summary>
         /// The number of entities skipped
         /// </summary>
-        public int SkipCount { get; set; }
+        public int? SkipCount { get; set; }
 
         /// <summary>
         /// The number of errors encountered during sync
         /// </summary>
-        public int ErrorCount { get; set; }
+        public int? ErrorCount { get; set; }
 
         /// <summary>
         /// The errors encountered during sync keyed by ERP key
@@ -6313,7 +6372,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid SyncRequestId { get; set; }
+        public Guid? SyncRequestId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -6321,7 +6380,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The status of processing for this SyncRequest.  When a SyncRequest is created, it is flagged as `Ready`.
@@ -6345,22 +6404,22 @@ namespace LockstepSDK
         /// <summary>
         /// The AppEnrollmentId of the AppEnrollment object that executed this sync request
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
         /// The date this sync request was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The date this sync request was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID number of the user who most recently modified this sync request.
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The detailed list of results and errors that occurred during the processing of this SyncRequest.  This
@@ -6390,7 +6449,7 @@ namespace LockstepSDK
         /// <summary>
         /// The unique identifier of the app enrollment that is creating this sync request.
         /// </summary>
-        public Guid AppEnrollmentId { get; set; }
+        public Guid? AppEnrollmentId { get; set; }
     }
 
     /// <summary>
@@ -6419,7 +6478,7 @@ namespace LockstepSDK
         /// <summary>
         /// The ID of the user to transfer ownership to.
         /// </summary>
-        public Guid TargetUserId { get; set; }
+        public Guid? TargetUserId { get; set; }
     }
 
     /// <summary>
@@ -6450,7 +6509,7 @@ namespace LockstepSDK
         ///
         /// This record provides a link to the user&#39;s Azure AD B2C OID.
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -6458,7 +6517,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The full name of the user
@@ -6478,22 +6537,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date that the user account was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created the user account
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date the user account was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified the user account
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The name of the user who last modified the user account
@@ -6503,17 +6562,17 @@ namespace LockstepSDK
         /// <summary>
         /// The ID of the user in Azure B2C
         /// </summary>
-        public Guid B2CUserId { get; set; }
+        public Guid? B2CUserId { get; set; }
 
         /// <summary>
         /// The id of the Permission Level for the user.
         /// </summary>
-        public Guid UserRole { get; set; }
+        public Guid? UserRole { get; set; }
 
         /// <summary>
         /// The date timestamp when the invite was sent to the user.
         /// </summary>
-        public DateTime InviteSent { get; set; }
+        public DateTime? InviteSent { get; set; }
 
         /// <summary>
         /// The phone number of the user.
@@ -6533,7 +6592,7 @@ namespace LockstepSDK
         /// <summary>
         /// FK to the CodeDefinition table; CodeType = &#39;AccountingRole&#39;
         /// </summary>
-        public Guid AccountingRoleCodeDefId { get; set; }
+        public Guid? AccountingRoleCodeDefId { get; set; }
 
         /// <summary>
         /// Address Line 1 for this User
@@ -6571,6 +6630,11 @@ namespace LockstepSDK
         public string Country { get; set; }
 
         /// <summary>
+        /// Time zone for this user
+        /// </summary>
+        public string TimeZone { get; set; }
+
+        /// <summary>
         /// Image URL for this User
         /// </summary>
         public string ImageURL { get; set; }
@@ -6583,7 +6647,7 @@ namespace LockstepSDK
         /// <summary>
         /// Last date time user logged into Azure B2C.
         /// </summary>
-        public DateTime B2CLastLoggedIn { get; set; }
+        public DateTime? B2CLastLoggedIn { get; set; }
 
         /// <summary>
         /// The default currency code used by this user entity.  This value can be overridden
@@ -6640,7 +6704,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid UserRoleId { get; set; }
+        public Guid? UserRoleId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -6648,7 +6712,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The name of the user role
@@ -6658,22 +6722,22 @@ namespace LockstepSDK
         /// <summary>
         /// The date that the user role was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created the user role
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date the user role was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified the user role
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
     }
 
     /// <summary>
@@ -6688,18 +6752,18 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// The WebhookId uniquely identifies the webhook used to send notification that an event action has taken place.
         /// </summary>
-        public Guid WebhookId { get; set; }
+        public Guid? WebhookId { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid WebhookHistoryId { get; set; }
+        public Guid? WebhookHistoryId { get; set; }
 
         /// <summary>
         /// Event type which fired webhook
@@ -6711,13 +6775,13 @@ namespace LockstepSDK
         /// <summary>
         /// Flag whether request was sent to callback url successfully or blocked by failing or because it was disabled.
         /// </summary>
-        public bool RequestSent { get; set; }
+        public bool? RequestSent { get; set; }
 
         /// <summary>
         /// Flag whether webhook notification was successful overall (if webhook disabled should always return true otherwise
         /// depends on the response from the callback url)
         /// </summary>
-        public bool IsSuccessful { get; set; }
+        public bool? IsSuccessful { get; set; }
 
         /// <summary>
         /// Response status code that is returned when calling a callback url.
@@ -6733,13 +6797,13 @@ namespace LockstepSDK
         /// Number of times message failed to be sent over to callback url before succeeding or failing out.
         /// The maximum value should is based on webhook.
         /// </summary>
-        public int FailureCount { get; set; }
+        public int? FailureCount { get; set; }
 
         /// <summary>
         /// Timestamp of when a request is sent to a webhook callback.
         /// Contains the last time message is sent if failures occur.
         /// </summary>
-        public DateTime Timestamp { get; set; }
+        public DateTime? Timestamp { get; set; }
     }
 
     /// <summary>
@@ -6756,7 +6820,7 @@ namespace LockstepSDK
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
         /// added to the Lockstep platform.
         /// </summary>
-        public Guid WebhookId { get; set; }
+        public Guid? WebhookId { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
@@ -6764,7 +6828,7 @@ namespace LockstepSDK
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
-        public Guid GroupKey { get; set; }
+        public Guid? GroupKey { get; set; }
 
         /// <summary>
         /// A name for the webhook subscription.
@@ -6811,32 +6875,32 @@ namespace LockstepSDK
         /// The expiration date for the given webhook subscription. Once the expiration date passes,
         /// notifications will no longer be sent to the callback url.
         /// </summary>
-        public DateTime ExpirationDate { get; set; }
+        public DateTime? ExpirationDate { get; set; }
 
         /// <summary>
         /// The amount of times a notification should be retried before marking the webhook as errored.
         /// </summary>
-        public int RetryCount { get; set; }
+        public int? RetryCount { get; set; }
 
         /// <summary>
         /// The date this webhook was created
         /// </summary>
-        public DateTime Created { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
         /// The ID of the user who created this webhook
         /// </summary>
-        public Guid CreatedUserId { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
         /// The date this webhook was last modified
         /// </summary>
-        public DateTime Modified { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
         /// The ID of the user who last modified this webhook
         /// </summary>
-        public Guid ModifiedUserId { get; set; }
+        public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
         /// The partition key used for the webhook callback history

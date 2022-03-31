@@ -102,12 +102,25 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Sync task to retrieve</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Details</param>
-        public async Task<LockstepResponse<SyncRequestModel>> RetrieveSync(Guid id, string include)
+        public async Task<LockstepResponse<SyncRequestModel>> RetrieveSync(Guid id, string include = null)
         {
             var url = $"/api/v1/Sync/{id}";
             var options = new Dictionary<string, object>();
             if (include != null) { options["include"] = include; }
             return await _client.Request<SyncRequestModel>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
+        /// Cancels a Sync process for an Application if the request is still being processed within the Application. This does not cancel Sync processes which have already proceeded to completion within the Application, or Sync processes outside of Applications such as from a Zip file or Batch Import.
+        ///
+        /// A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
+        ///
+        /// </summary>
+        /// <param name="id">The unique ID number of the Sync task to cancel</param>
+        public async Task<LockstepResponse<SyncRequestModel>> CancelSync(Guid id)
+        {
+            var url = $"/api/v1/Sync/{id}";
+            return await _client.Request<SyncRequestModel>(HttpMethod.Delete, url, null, null, null);
         }
 
         /// <summary>
@@ -123,7 +136,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Sync/query";
             var options = new Dictionary<string, object>();

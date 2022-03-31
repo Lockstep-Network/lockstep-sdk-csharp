@@ -43,7 +43,7 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="id">The unique ID number of the Email to retrieve.</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes, ResponseOrigin</param>
-        public async Task<LockstepResponse<EmailModel>> RetrieveEmail(Guid id, string include)
+        public async Task<LockstepResponse<EmailModel>> RetrieveEmail(Guid id, string include = null)
         {
             var url = $"/api/v1/Emails/{id}";
             var options = new Dictionary<string, object>();
@@ -120,7 +120,7 @@ namespace LockstepSDK
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<EmailModel>>> QueryEmails(string filter, string include, string order, int? pageSize, int? pageNumber)
+        public async Task<LockstepResponse<FetchResult<EmailModel>>> QueryEmails(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Emails/query";
             var options = new Dictionary<string, object>();
