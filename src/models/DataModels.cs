@@ -1435,6 +1435,11 @@ namespace LockstepSDK
         public string Country { get; set; }
 
         /// <summary>
+        /// Time zone
+        /// </summary>
+        public string TimeZone { get; set; }
+
+        /// <summary>
         /// Phone number
         /// </summary>
         public string PhoneNumber { get; set; }
@@ -6623,6 +6628,11 @@ namespace LockstepSDK
         /// Country for this User This will be validated by the /api/v1/definitions/countries data set
         /// </summary>
         public string Country { get; set; }
+
+        /// <summary>
+        /// Time zone for this user
+        /// </summary>
+        public string TimeZone { get; set; }
 
         /// <summary>
         /// Image URL for this User
