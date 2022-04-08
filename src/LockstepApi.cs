@@ -1,12 +1,13 @@
 /***
- * Lockstep Software Development Kit for C#
+ * Lockstep Platform SDK for C#
  *
  * (c) 2021-2022 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @author     Ted Spence <tspence@lockstep.io>
+ * @author     Lockstep Network <support@lockstep.io>
+ *             
  * @copyright  2021-2022 Lockstep, Inc.
  * @version    2022.13.29
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
@@ -29,7 +30,7 @@ using System.Web;
 namespace LockstepSDK 
 {
     /// <summary>
-    /// A client object that connects to the Lockstep Platform API
+    /// A client object that connects to the Lockstep Platform SDK
     /// </summary>
     public class LockstepApi
     {
@@ -43,123 +44,123 @@ namespace LockstepSDK
         private JsonSerializerOptions _options;
     
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Activities
         /// </summary>
         public ActivitiesClient Activities { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to ApiKeys
         /// </summary>
         public ApiKeysClient ApiKeys { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to AppEnrollments
         /// </summary>
         public AppEnrollmentsClient AppEnrollments { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Applications
         /// </summary>
         public ApplicationsClient Applications { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Attachments
         /// </summary>
         public AttachmentsClient Attachments { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to CodeDefinitions
         /// </summary>
         public CodeDefinitionsClient CodeDefinitions { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Companies
         /// </summary>
         public CompaniesClient Companies { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Contacts
         /// </summary>
         public ContactsClient Contacts { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to CreditMemoApplied
         /// </summary>
         public CreditMemoAppliedClient CreditMemoApplied { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Currencies
         /// </summary>
         public CurrenciesClient Currencies { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to CustomFieldDefinitions
         /// </summary>
         public CustomFieldDefinitionsClient CustomFieldDefinitions { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to CustomFieldValues
         /// </summary>
         public CustomFieldValuesClient CustomFieldValues { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Definitions
         /// </summary>
         public DefinitionsClient Definitions { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Emails
         /// </summary>
         public EmailsClient Emails { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to FinancialAccount
         /// </summary>
         public FinancialAccountClient FinancialAccount { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to FinancialAccountBalanceHistory
         /// </summary>
         public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to FinancialYearSettings
         /// </summary>
         public FinancialYearSettingsClient FinancialYearSettings { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to InvoiceHistory
         /// </summary>
         public InvoiceHistoryClient InvoiceHistory { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Invoices
         /// </summary>
         public InvoicesClient Invoices { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Leads
         /// </summary>
         public LeadsClient Leads { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Notes
         /// </summary>
         public NotesClient Notes { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to PaymentApplications
         /// </summary>
         public PaymentApplicationsClient PaymentApplications { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Payments
         /// </summary>
         public PaymentsClient Payments { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Provisioning
         /// </summary>
         public ProvisioningClient Provisioning { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Reports
         /// </summary>
         public ReportsClient Reports { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Status
         /// </summary>
         public StatusClient Status { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Sync
         /// </summary>
         public SyncClient Sync { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to UserAccounts
         /// </summary>
         public UserAccountsClient UserAccounts { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to UserRoles
         /// </summary>
         public UserRolesClient UserRoles { get; set; }
         /// <summary>
-        /// Lockstep Platform methods related to {cat}
+        /// API methods related to Webhooks
         /// </summary>
         public WebhooksClient Webhooks { get; set; }
     
@@ -216,18 +217,18 @@ namespace LockstepSDK
         }
     
         /// <summary>
-        /// Construct a new Lockstep API client to target the specific environment.
+        /// Construct a new API client to target the specific environment.
         /// </summary>
         /// <param name="env">The environment to use, either "prd" for production or "sbx" for sandbox.</param>
-        /// <returns>The Lockstep API client to use</returns>
-        public static LockstepApi WithEnvironment(LockstepEnv env)
+        /// <returns>The API client to use</returns>
+        public static LockstepApi WithEnvironment(string env)
         {
             switch (env)
             {
-                case LockstepEnv.PRD:
-                    return new LockstepApi("https://api.lockstep.io");
-                case LockstepEnv.SBX:
-                    return new LockstepApi("https://api.sbx.lockstep.io");
+                case "sbx":
+                    return new LockstepApi("https://api.sbx.lockstep.io/");
+                case "prd":
+                    return new LockstepApi("https://api.lockstep.io/");
             }
     
             throw new NotImplementedException("Unknown environment");
@@ -249,16 +250,15 @@ namespace LockstepSDK
         /// when using proxy servers or an API gateway.  Please be careful when using this
         /// mode.  You should prefer to use `WithEnvironment()` instead wherever possible.
         /// </summary>
-        /// <param name="unsafeUrl">The non-Lockstep URL to use for this client</param>
-        /// <returns>The Lockstep API client to use</returns>
+        /// <param name="unsafeUrl">The custom environment URL to use for this client</param>
+        /// <returns>The API client to use</returns>
         public static LockstepApi WithCustomEnvironment(string unsafeUrl)
         {
             return new LockstepApi(unsafeUrl);
         }
     
         /// <summary>
-        /// Configure this Lockstep API client to use a JWT bearer token.
-        /// More documentation is available on [JWT Bearer Tokens](https://developer.lockstep.io/docs/jwt-bearer-tokens).
+        /// Configure this API client to use a JWT bearer token.
         /// </summary>
         /// <param name="token">The JWT bearer token to use for this API session</param>
         /// <returns></returns>
@@ -270,8 +270,7 @@ namespace LockstepSDK
         }
     
         /// <summary>
-        /// Configures this Lockstep API client to use an API Key.
-        /// More documentation is available on [API Keys](https://developer.lockstep.io/docs/api-keys).
+        /// Configures this API client to use an API Key.
         /// </summary>
         /// <param name="apiKey">The API key to use for this API session</param>
         /// <returns></returns>
