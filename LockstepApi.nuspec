@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>LockstepSdk</id>
+		<version>2022.14.30</version>
+		<title>LockstepSdk</title>
+		<authors>Lockstep Network</authors>
+		<owners>Lockstep, Inc.</owners>
+		<license type="file">docs/LICENSE</license>
+		<projectUrl>https://github.com/Lockstep-Network/lockstep-sdk-csharp</projectUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Allows you to work with the Lockstep Platform API for financial systems automation.  The SDK provides rich, context sensitive help and documentation for all methods and objects.</description>
+		<icon>docs/logo.png</icon>
+		<readme>docs/README.md</readme>
+		<summary>Lockstep Platform SDK for CSharp</summary>
+		<releaseNotes>
+            # 2022.14.30
+        
+            For full patch notes see [Patch Notes](https://medium.com/lockstep-developer/tagged/patch-notes) on the [Lockstep Developer website](https://developer.lockstep.io)
+        </releaseNotes>
+		<copyright>Copyright 2021 - 2022</copyright>
+    	<tags>Lockstep fintech api client sdk connector</tags>
+		<repository type="git" url="https://github.com/Lockstep-Network/lockstep-sdk-csharp" />
+		<dependencies>
+			<group targetFramework=".NETStandard2.0">
+				<dependency id="System.Net.Http" version="4.3.4" />
+				<dependency id="System.Text.Json" version="6.0.2" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src=".\LICENSE" target="docs/LICENSE"/>
+		<file src=".\README.md" target="docs/README.md"/>
+		<file src=".\images\logo.png" target="docs/logo.png"/>
+		<file src="src\bin\debug\netstandard2.0\*" target="lib\netstandard20" />
+	</files>
+</package>

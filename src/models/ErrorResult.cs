@@ -23,20 +23,12 @@ namespace LockstepSDK
         /// <summary>
         /// A description of the type of error that occurred.
         /// </summary>
-#if DOT_NET_FRAMEWORK
         public string Type { get; internal set; }
-#else
-        public string? Type { get; internal set; }
-#endif
 
         /// <summary>
         /// A short title describing the error.
         /// </summary>
-#if DOT_NET_FRAMEWORK
         public string Title { get; internal set; }
-#else
-        public string? Title { get; internal set; }
-#endif
 
         /// <summary>
         /// If an error code is applicable, this contains an error number.
@@ -46,29 +38,17 @@ namespace LockstepSDK
         /// <summary>
         /// If detailed information about this error is available, this value contains more information.
         /// </summary>
-#if DOT_NET_FRAMEWORK
         public string Detail { get; internal set; }
-#else
-        public string? Detail { get; internal set; }
-#endif
 
         /// <summary>
         /// If this error corresponds to a specific instance or object, this field indicates which one.
         /// </summary>
-#if DOT_NET_FRAMEWORK
         public string Instance { get; internal set; }
-#else
-        public string? Instance { get; internal set; }
-#endif
 
         /// <summary>
         /// The full content of the HTTP response
         /// </summary>
-#if DOT_NET_FRAMEWORK
         public string Content { get; internal set; }
-#else
-        public string? Content { get; internal set; }
-#endif
     }
 
     /// <summary>

@@ -34,7 +34,7 @@ jobs:
           nuget-version: '5.x'
           
       - name: Run Nuget pack
-        run: nuget pack lockstep-sdk.nuspec
+        run: nuget pack LockstepApi.nuspec
       
       - name: Push generated package to GitHub registry
         if: github.ref == 'refs/heads/main' && github.event_name == 'push' 

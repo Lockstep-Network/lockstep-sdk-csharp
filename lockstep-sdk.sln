@@ -5,11 +5,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra Files", "Extra Files"
 		LICENSE = LICENSE
 		README.md = README.md
 		images\lockstep_logo.png = images\lockstep_logo.png
-		lockstep-sdk.nuspec = lockstep-sdk.nuspec
 		.github\workflows\Nuget-publish.yml = .github\workflows\Nuget-publish.yml
+		LockstepApi.nuspec = LockstepApi.nuspec
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.NetStandard20", "src\netstandard20\LockstepSDK.NetStandard20.csproj", "{BE98C905-6B64-4805-9332-B7966C1E4ED0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LockstepSDK.NetStandard20", "src\LockstepSDK.NetStandard20.csproj", "{9B8CCD40-4A4E-47F4-B3CC-CDCECCDA2948}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,9 +17,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BE98C905-6B64-4805-9332-B7966C1E4ED0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B8CCD40-4A4E-47F4-B3CC-CDCECCDA2948}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B8CCD40-4A4E-47F4-B3CC-CDCECCDA2948}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B8CCD40-4A4E-47F4-B3CC-CDCECCDA2948}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B8CCD40-4A4E-47F4-B3CC-CDCECCDA2948}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
