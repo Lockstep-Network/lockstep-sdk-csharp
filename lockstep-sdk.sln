@@ -5,7 +5,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extra Files", "Extra Files"
 		LICENSE = LICENSE
 		README.md = README.md
 		images\lockstep_logo.png = images\lockstep_logo.png
-		lockstep-sdk.nuspec = lockstep-sdk.nuspec
 		.github\workflows\Nuget-publish.yml = .github\workflows\Nuget-publish.yml
 		LockstepApi.nuspec = LockstepApi.nuspec
 	EndProjectSection
