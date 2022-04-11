@@ -182,5 +182,30 @@ namespace LockstepSDK
             if (showPercentageDifference != null) { options["showPercentageDifference"] = showPercentageDifference; }
             return await _client.Request<FinancialReportModel>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        /// Generates a balance sheet for the given time range.
+        ///
+        /// </summary>
+        /// <param name="startDate">The start date of the report</param>
+        /// <param name="endDate">The end date of the report</param>
+        /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
+        /// <param name="displayDepth">The desired row splitting of the report data. For Balance Sheets, the minimum report depth is 1. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
+        /// <param name="comparisonPeriod">Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior)</param>
+        /// <param name="showCurrencyDifference">A boolean to turn on a currency based difference between the reporting period and the comparison period.</param>
+        /// <param name="showPercentageDifference">A boolean to turn on a percent based difference between the reporting period and the comparison period.</param>
+        public async Task<LockstepResponse<FinancialReportModel>> BalanceSheetReport(DateTime? startDate = null, DateTime? endDate = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
+        {
+            var url = $"/api/v1/Reports/balance-sheet";
+            var options = new Dictionary<string, object>();
+            if (startDate != null) { options["startDate"] = startDate; }
+            if (endDate != null) { options["endDate"] = endDate; }
+            if (columnOption != null) { options["columnOption"] = columnOption; }
+            if (displayDepth != null) { options["displayDepth"] = displayDepth; }
+            if (comparisonPeriod != null) { options["comparisonPeriod"] = comparisonPeriod; }
+            if (showCurrencyDifference != null) { options["showCurrencyDifference"] = showCurrencyDifference; }
+            if (showPercentageDifference != null) { options["showPercentageDifference"] = showPercentageDifference; }
+            return await _client.Request<FinancialReportModel>(HttpMethod.Get, url, options, null, null);
+        }
     }
 }

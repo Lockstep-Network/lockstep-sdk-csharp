@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.13.29
+ * @version    2022.14.30
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,7 +36,7 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private const string _version = "2022.13.29";
+        private const string _version = "2022.14.30";
         private readonly HttpClient _client;
         private string _appName;
         private string _bearerToken;
@@ -259,6 +259,8 @@ namespace LockstepSDK
     
         /// <summary>
         /// Configure this API client to use a JWT bearer token.
+        ///
+        /// Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
         /// </summary>
         /// <param name="token">The JWT bearer token to use for this API session</param>
         /// <returns></returns>
@@ -271,6 +273,8 @@ namespace LockstepSDK
     
         /// <summary>
         /// Configures this API client to use an API Key.
+        ///
+        /// Authentication is either via [Lockstep Platform API key](https://developer.lockstep.io/docs/api-keys) or [JWT Bearer Token](https://developer.lockstep.io/docs/jwt-bearer-tokens)
         /// </summary>
         /// <param name="apiKey">The API key to use for this API session</param>
         /// <returns></returns>
