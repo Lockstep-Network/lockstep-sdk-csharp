@@ -2,19 +2,19 @@
 {
 
     /// <summary>
-    /// An enumeration listing all publicly available Lockstep Platform environments
+    /// A collection of publicly available Lockstep Platform environments
     /// </summary>
-    public enum LockstepEnv
+    public class LockstepEnv
     {
         /// <summary>
         /// Production environment - https://api.lockstep.io
         /// </summary>
-        PRD,
+        public static string PRD = "prd";
 
         /// <summary>
         /// Sandbox environment - https://api.sbx.lockstep.io
         /// </summary>
-        SBX
+        public static string SBX = "sbx";
     }
 
     /// <summary>
