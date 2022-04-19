@@ -42,6 +42,12 @@ namespace LockstepSDK
         /// Example: If you store your contact records in a database, whatever the primary key for the contact table is
         /// in the database should be the &quot;ErpKey&quot;.
         ///
+        /// As some ERP systems don&#39;t maintain a unique key for Contacts, we also support syncing Contacts with ERP keys
+        /// of the form {CompanyErpKey}|{index}, for example CompanyErpKey|1, CompanyErpKey|2 and so on.
+        ///
+        /// For this reason, please ensure that your Company/Contact ERP keys don&#39;t contain the &#39;|&#39; symbol or that it
+        /// is replaced by an alternate symbol if they do.
+        ///
         /// For more information, see [Identity Columns](https://developer.lockstep.io/docs/identity-columns).
         /// </summary>
         public string ErpKey { get; set; }
