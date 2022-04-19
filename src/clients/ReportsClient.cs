@@ -147,8 +147,8 @@ namespace LockstepSDK
         /// Generates a Trial Balance Report for the given time range.
         ///
         /// </summary>
-        /// <param name="startDate"></param>
-        /// <param name="endDate"></param>
+        /// <param name="startDate">The start date of the report</param>
+        /// <param name="endDate">The end date of the report</param>
         public async Task<LockstepResponse<FinancialReportModel>> TrialBalanceReport(DateTime? startDate = null, DateTime? endDate = null)
         {
             var url = $"/api/v1/Reports/trial-balance";

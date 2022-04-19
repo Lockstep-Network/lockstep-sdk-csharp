@@ -27,9 +27,14 @@ namespace LockstepSDK
     {
 
         /// <summary>
-        /// The name of the developer.
+        /// The first name of the person requesting the developer account.
         /// </summary>
-        public string Name { get; set; }
+        public string FirstName { get; set; }
+
+        /// <summary>
+        /// The last name of the person requesting the developer account.
+        /// </summary>
+        public string LastName { get; set; }
 
         /// <summary>
         /// The email address of the developer.

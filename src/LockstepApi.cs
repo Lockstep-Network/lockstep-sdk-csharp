@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.14.30
+ * @version    2022.15.31
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,7 +36,7 @@ namespace LockstepSDK
     {
         // The URL of the environment we will use
         private readonly string _serverUrl;
-        private const string _version = "2022.14.30";
+        private const string _version = "2022.15.31";
         private readonly HttpClient _client;
         private string _appName;
         private string _bearerToken;
