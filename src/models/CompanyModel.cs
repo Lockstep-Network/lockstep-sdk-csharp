@@ -217,6 +217,11 @@ namespace LockstepSDK
         public string ArEmailAddress { get; set; }
 
         /// <summary>
+        /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+        /// </summary>
+        public string PreferredDeliveryMethod { get; set; }
+
+        /// <summary>
         /// For companies that use a custom domain name for their email system, this is
         /// the domain name used by this company.  If this value is known, new emails that
         /// come in from this domain will be connected to this company.
