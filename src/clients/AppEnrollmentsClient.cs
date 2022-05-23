@@ -103,6 +103,18 @@ namespace LockstepSDK
         }
 
         /// <summary>
+        /// Updates the OAuth settings associated with this App Enrollment
+        ///
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="body"></param>
+        public async Task<LockstepResponse<AppEnrollmentModel>> ReconnectAppEnrollmentOAuth(Guid id, string body)
+        {
+            var url = $"/api/v1/AppEnrollments/{id}/reconnect";
+            return await _client.Request<AppEnrollmentModel>(new HttpMethod("PATCH"), url, null, body, null);
+        }
+
+        /// <summary>
         /// Queries App Enrollments for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
         /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.

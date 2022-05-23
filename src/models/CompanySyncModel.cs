@@ -187,5 +187,10 @@ namespace LockstepSDK
         /// address where you would send questions to the company if you owed this company money.
         /// </summary>
         public string ArEmailAddress { get; set; }
+
+        /// <summary>
+        /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+        /// </summary>
+        public string PreferredDeliveryMethod { get; set; }
     }
 }

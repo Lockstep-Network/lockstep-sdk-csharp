@@ -63,6 +63,18 @@ namespace LockstepSDK
         }
 
         /// <summary>
+        /// Retrieves a current Days Payable Outstanding (DPO) report for this account.
+        ///
+        /// Days payable outstanding (DPO) is a financial ratio that indicates the average time (in days) that a company takes to pay its bills to its trade creditors, which may include suppliers, vendors, or financiers.
+        ///
+        /// </summary>
+        public async Task<LockstepResponse<DailyPayableOutstandingReportModel[]>> DaysPayableOutstanding()
+        {
+            var url = $"/api/v1/Reports/daily-payable-outstanding";
+            return await _client.Request<DailyPayableOutstandingReportModel[]>(HttpMethod.Get, url, null, null, null);
+        }
+
+        /// <summary>
         /// Retrieves a current Risk Rate report for this account.
         ///
         /// Risk Rate is a metric that indicates the percentage of total AR balance left unpaid after 90 days.  You can use this report to identify the percentage of invoice value that is not being collected in a timely manner.
@@ -104,7 +116,8 @@ namespace LockstepSDK
         /// <param name="CurrencyCode">Currency aging buckets are converted to (all aging data returned without currency conversion if no currency is specified)</param>
         /// <param name="CurrencyProvider">Currency provider currency rates should be returned from to convert aging amounts to (default Lockstep currency provider used if no data provider specified)</param>
         /// <param name="Buckets">Customized buckets used for aging calculations (default buckets [0,30,60,90,120,180] will be used if buckets not specified)</param>
-        public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId = null, bool? Recalculate = null, string CurrencyCode = null, string CurrencyProvider = null, int[] Buckets = null)
+        /// <param name="ApReport">A boolean to turn on AP Aging reports</param>
+        public async Task<LockstepResponse<AgingModel[]>> Invoiceagingreport(Guid? CompanyId = null, bool? Recalculate = null, string CurrencyCode = null, string CurrencyProvider = null, int[] Buckets = null, bool? ApReport = null)
         {
             var url = $"/api/v1/Reports/aging";
             var options = new Dictionary<string, object>();
@@ -113,6 +126,7 @@ namespace LockstepSDK
             if (CurrencyCode != null) { options["CurrencyCode"] = CurrencyCode; }
             if (CurrencyProvider != null) { options["CurrencyProvider"] = CurrencyProvider; }
             if (Buckets != null) { options["Buckets"] = Buckets; }
+            if (ApReport != null) { options["ApReport"] = ApReport; }
             return await _client.Request<AgingModel[]>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -149,12 +163,14 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="startDate">The start date of the report</param>
         /// <param name="endDate">The end date of the report</param>
-        public async Task<LockstepResponse<FinancialReportModel>> TrialBalanceReport(DateTime? startDate = null, DateTime? endDate = null)
+        /// <param name="appEnrollmentId">The app enrollment id of the app enrollment whose data will be used.</param>
+        public async Task<LockstepResponse<FinancialReportModel>> TrialBalanceReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null)
         {
             var url = $"/api/v1/Reports/trial-balance";
             var options = new Dictionary<string, object>();
             if (startDate != null) { options["startDate"] = startDate; }
             if (endDate != null) { options["endDate"] = endDate; }
+            if (appEnrollmentId != null) { options["appEnrollmentId"] = appEnrollmentId; }
             return await _client.Request<FinancialReportModel>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -164,17 +180,19 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="startDate">The start date of the report</param>
         /// <param name="endDate">The end date of the report</param>
+        /// <param name="appEnrollmentId">The app enrollment id of the app enrollment whose data will be used.</param>
         /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
         /// <param name="displayDepth">The desired row splitting of the report data. For Income Statements, the minimum report depth is 1. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
         /// <param name="comparisonPeriod">Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. Options are as follows (note for YTD the data will be compared as a percentage of YTD and showCurrencyDifference and showPercentageDifference should not be used): "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior) "YTD" - year to date (the current financial year to the current period)</param>
         /// <param name="showCurrencyDifference">A boolean to turn on a currency based difference between the reporting period and the comparison period.</param>
         /// <param name="showPercentageDifference">A boolean to turn on a percent based difference between the reporting period and the comparison period.</param>
-        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime? startDate = null, DateTime? endDate = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
+        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
         {
             var url = $"/api/v1/Reports/income-statement";
             var options = new Dictionary<string, object>();
             if (startDate != null) { options["startDate"] = startDate; }
             if (endDate != null) { options["endDate"] = endDate; }
+            if (appEnrollmentId != null) { options["appEnrollmentId"] = appEnrollmentId; }
             if (columnOption != null) { options["columnOption"] = columnOption; }
             if (displayDepth != null) { options["displayDepth"] = displayDepth; }
             if (comparisonPeriod != null) { options["comparisonPeriod"] = comparisonPeriod; }
@@ -189,22 +207,45 @@ namespace LockstepSDK
         /// </summary>
         /// <param name="startDate">The start date of the report</param>
         /// <param name="endDate">The end date of the report</param>
+        /// <param name="appEnrollmentId">The app enrollment id of the app enrollment whose data will be used.</param>
         /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
         /// <param name="displayDepth">The desired row splitting of the report data. For Balance Sheets, the minimum report depth is 1. Options are as follows: 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
         /// <param name="comparisonPeriod">Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior)</param>
         /// <param name="showCurrencyDifference">A boolean to turn on a currency based difference between the reporting period and the comparison period.</param>
         /// <param name="showPercentageDifference">A boolean to turn on a percent based difference between the reporting period and the comparison period.</param>
-        public async Task<LockstepResponse<FinancialReportModel>> BalanceSheetReport(DateTime? startDate = null, DateTime? endDate = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
+        public async Task<LockstepResponse<FinancialReportModel>> BalanceSheetReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
         {
             var url = $"/api/v1/Reports/balance-sheet";
             var options = new Dictionary<string, object>();
             if (startDate != null) { options["startDate"] = startDate; }
             if (endDate != null) { options["endDate"] = endDate; }
+            if (appEnrollmentId != null) { options["appEnrollmentId"] = appEnrollmentId; }
             if (columnOption != null) { options["columnOption"] = columnOption; }
             if (displayDepth != null) { options["displayDepth"] = displayDepth; }
             if (comparisonPeriod != null) { options["comparisonPeriod"] = comparisonPeriod; }
             if (showCurrencyDifference != null) { options["showCurrencyDifference"] = showCurrencyDifference; }
             if (showPercentageDifference != null) { options["showPercentageDifference"] = showPercentageDifference; }
+            return await _client.Request<FinancialReportModel>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
+        /// Generates a cash flow statement for the given time range.
+        ///
+        /// </summary>
+        /// <param name="startDate">The start date of the report</param>
+        /// <param name="endDate">The end date of the report</param>
+        /// <param name="appEnrollmentId">The app enrollment id of the app enrollment whose data will be used.</param>
+        /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
+        /// <param name="displayDepth">The desired row splitting of the report data. Options are as follows: 0 - combine all accounts by their classification 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
+        public async Task<LockstepResponse<FinancialReportModel>> CashFlowStatementReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, int? displayDepth = null)
+        {
+            var url = $"/api/v1/Reports/cash-flow-statement";
+            var options = new Dictionary<string, object>();
+            if (startDate != null) { options["startDate"] = startDate; }
+            if (endDate != null) { options["endDate"] = endDate; }
+            if (appEnrollmentId != null) { options["appEnrollmentId"] = appEnrollmentId; }
+            if (columnOption != null) { options["columnOption"] = columnOption; }
+            if (displayDepth != null) { options["displayDepth"] = displayDepth; }
             return await _client.Request<FinancialReportModel>(HttpMethod.Get, url, options, null, null);
         }
     }
