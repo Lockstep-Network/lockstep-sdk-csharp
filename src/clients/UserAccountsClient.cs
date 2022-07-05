@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to UserAccounts
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public UserAccountsClient(LockstepApi client) {
+        public UserAccountsClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -155,6 +157,21 @@ namespace LockstepSDK
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<UserAccountModel>>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
+        /// Change the active GroupKey of the calling user.
+        ///
+        /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
+        ///
+        /// </summary>
+        /// <param name="groupKey"></param>
+        public async Task<LockstepResponse<UserAccountModel>> ChangeUserGroup(Guid groupKey)
+        {
+            var url = $"/api/v1/UserAccounts/change-group";
+            var options = new Dictionary<string, object>();
+            options["groupKey"] = groupKey;
+            return await _client.Request<UserAccountModel>(HttpMethod.Post, url, options, null, null);
         }
     }
 }

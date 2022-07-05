@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -56,6 +56,14 @@ namespace LockstepSDK
         /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string InvoiceDate { get; set; }
+
+        /// <summary>
+        /// The date when the invoice was closed and finalized after completion of all payments and delivery of all products and
+        /// services.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
+        /// </summary>
+        public string InvoiceClosedDate { get; set; }
 
         /// <summary>
         /// The name of the counterparty for the invoice, for example, a customer or vendor.

@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -48,6 +48,21 @@ namespace LockstepSDK
         /// The total number of invoices outstanding.
         /// </summary>
         public int? TotalInvoicesOutstanding { get; set; }
+
+        /// <summary>
+        /// The total amount outstanding on invoices.
+        /// </summary>
+        public decimal? TotalInvoiceOutstandingAmount { get; set; }
+
+        /// <summary>
+        /// The total amount outstanding on credit memos.
+        /// </summary>
+        public decimal? TotalCreditMemoOutstandingAmount { get; set; }
+
+        /// <summary>
+        /// The total amount of unapplied payments.
+        /// </summary>
+        public decimal? TotalUnappliedPaymentAmount { get; set; }
 
         /// <summary>
         /// The total amount outstanding.

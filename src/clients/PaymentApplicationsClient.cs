@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to PaymentApplications
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public PaymentApplicationsClient(LockstepApi client) {
+        public PaymentApplicationsClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -42,7 +44,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Payment Application; NOT the customer's ERP key</param>
-        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice, Payment</param>
         public async Task<LockstepResponse<PaymentAppliedModel>> RetrievePaymentApplication(Guid id, string include = null)
         {
             var url = $"/api/v1/PaymentApplications/{id}";

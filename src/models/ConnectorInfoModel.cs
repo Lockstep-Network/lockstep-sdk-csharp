@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -34,9 +34,24 @@ namespace LockstepSDK
         public string AuthCode { get; set; }
 
         /// <summary>
+        /// The access token id for the connector enrollment.
+        /// </summary>
+        public string TokenId { get; set; }
+
+        /// <summary>
+        /// The access token secret for the connector enrollment.
+        /// </summary>
+        public string TokenSecret { get; set; }
+
+        /// <summary>
         /// The realm id of the account being granted permissions to access
         /// </summary>
         public string RealmId { get; set; }
+
+        /// <summary>
+        /// The subsidiary id that corresponds to a legal entity.
+        /// </summary>
+        public string SubsidiaryId { get; set; }
 
         /// <summary>
         /// The redirect uri used for step one of the OAuth2.0 flow.

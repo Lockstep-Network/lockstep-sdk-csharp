@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to Provisioning
@@ -31,30 +32,9 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProvisioningClient(LockstepApi client) {
+        public ProvisioningClient(LockstepApi client)
+        {
             _client = client;
-        }
-
-        /// <summary>
-        /// Creates a new User or updates an Invited user based on metadata provided by the User during the onboarding process
-        ///
-        /// </summary>
-        /// <param name="body">Represents a User and their related metadata</param>
-        public async Task<LockstepResponse<ProvisioningResponseModel>> ProvisionUserAccount(ProvisioningModel body)
-        {
-            var url = $"/api/v1/Provisioning";
-            return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
-        }
-
-        /// <summary>
-        /// Updates user, company and group metadata for a User of status &#39;Onboarding&#39; and finalizes a user&#39;s onboarding process by changing the user status to &#39;Active&#39;
-        ///
-        /// </summary>
-        /// <param name="body">Represents a User and their related metadata</param>
-        public async Task<LockstepResponse<ProvisioningResponseModel>> FinalizeUserAccountProvisioning(ProvisioningFinalizeRequestModel body)
-        {
-            var url = $"/api/v1/Provisioning/finalize";
-            return await _client.Request<ProvisioningResponseModel>(HttpMethod.Post, url, null, body, null);
         }
 
         /// <summary>

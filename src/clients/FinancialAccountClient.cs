@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to FinancialAccount
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public FinancialAccountClient(LockstepApi client) {
+        public FinancialAccountClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -74,7 +76,7 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Financial Account to disable; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeletesFinancialAccount(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteFinancialAccount(Guid id)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);

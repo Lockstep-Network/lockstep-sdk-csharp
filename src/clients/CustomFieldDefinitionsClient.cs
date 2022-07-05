@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to CustomFieldDefinitions
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public CustomFieldDefinitionsClient(LockstepApi client) {
+        public CustomFieldDefinitionsClient(LockstepApi client)
+        {
             _client = client;
         }
 

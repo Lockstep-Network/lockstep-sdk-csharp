@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -80,9 +80,25 @@ namespace LockstepSDK
         public decimal? UnappliedAmount { get; set; }
 
         /// <summary>
-        /// The type of payment, Payment or AP Payment.
+        /// The type of payment, AR Payment or AP Payment.
+        ///
+        /// Recognized PaymentType values are:
+        /// * `AR Payment` - A payment made by a Customer to the Company
+        /// * `AP Payment` - A payment made by the Company to a Vendor
         /// </summary>
         public string PaymentType { get; set; }
+
+        /// <summary>
+        /// Cash, check, credit card, wire transfer.
+        ///
+        /// Recognized TenderType values are:
+        /// * `Cash` - A cash payment or other direct transfer.
+        /// * `Check` - A check payment.
+        /// * `Credit Card` - A payment made via a credit card.
+        /// * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+        /// * `Other` - A payment made via another method not listed above.
+        /// </summary>
+        public string TenderType { get; set; }
 
         /// <summary>
         /// The date of this Payment.

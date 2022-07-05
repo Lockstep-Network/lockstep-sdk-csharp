@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -109,6 +109,11 @@ namespace LockstepSDK
         /// was not loaded from an external ERP or financial system.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The payment associated with this applied payment
+        /// </summary>
+        public PaymentModel Payment { get; set; }
 
         /// <summary>
         /// The invoice associated with this applied payment.

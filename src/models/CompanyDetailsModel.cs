@@ -17,13 +17,13 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// Contains customer details data
+    /// Contains company details data
     /// </summary>
-    public class CustomerDetailsModel
+    public class CompanyDetailsModel
     {
 
         /// <summary>
@@ -35,98 +35,98 @@ namespace LockstepSDK
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// The unique ID of this customer
+        /// The unique ID of this company
         /// </summary>
         public Guid? CustomerId { get; set; }
 
         /// <summary>
-        /// The unique ID of this customer
+        /// The unique ID of this company
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Customer address info
+        /// Company address info
         /// </summary>
         public string Address1 { get; set; }
 
         /// <summary>
-        /// Customer address info
+        /// Company address info
         /// </summary>
         public string Address2 { get; set; }
 
         /// <summary>
-        /// Customer address info
+        /// Company address info
         /// </summary>
         public string Address3 { get; set; }
 
         /// <summary>
-        /// Customer address info
+        /// Company address info
         /// </summary>
         public string City { get; set; }
 
         /// <summary>
-        /// Customer address info
+        /// Company address info
         /// </summary>
         public string State { get; set; }
 
         /// <summary>
-        /// Customer address info
+        /// Company address info
         /// </summary>
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// Customer address country
+        /// Company address country
         /// </summary>
         public string Country { get; set; }
 
         /// <summary>
-        /// Customer phone number
+        /// Company phone number
         /// </summary>
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// Customer fax number
+        /// Company fax number
         /// </summary>
         public string FaxNumber { get; set; }
 
         /// <summary>
-        /// Customer AR email address
+        /// Company email address
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// Customer primary contact id
+        /// Company primary contact id
         /// </summary>
         public Guid? ContactId { get; set; }
 
         /// <summary>
-        /// Customer primary contact name
+        /// Company primary contact name
         /// </summary>
         public string ContactName { get; set; }
 
         /// <summary>
-        /// Customer primary contact email address
+        /// Company primary contact email address
         /// </summary>
         public string ContactEmail { get; set; }
 
         /// <summary>
-        /// Customer number of outstanding invoices
+        /// Company number of outstanding invoices
         /// </summary>
         public int? OutstandingInvoices { get; set; }
 
         /// <summary>
-        /// Customer total outstanding invoice amount
+        /// Company total outstanding invoice amount
         /// </summary>
         public decimal? OutstandingAmount { get; set; }
 
         /// <summary>
-        /// Customer total past due amount
+        /// Company total past due amount
         /// </summary>
         public decimal? AmountPastDue { get; set; }
 
         /// <summary>
-        /// Customer payments collected
+        /// Company payments collected
         /// </summary>
-        public CustomerDetailsPaymentModel[] Payments { get; set; }
+        public CompanyDetailsPaymentModel[] Payments { get; set; }
     }
 }

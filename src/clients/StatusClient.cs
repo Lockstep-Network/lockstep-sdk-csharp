@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to Status
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public StatusClient(LockstepApi client) {
+        public StatusClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -56,12 +58,12 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="err">The type of error test to execute. Supported error types: 500, timeout</param>
-        public async Task<LockstepResponse<TestTimeoutException>> ErrorTest(string err = null)
+        public async Task<LockstepResponse<ErrorResult>> ErrorTest(string err = null)
         {
             var url = $"/api/v1/Status/testing";
             var options = new Dictionary<string, object>();
             if (err != null) { options["err"] = err; }
-            return await _client.Request<TestTimeoutException>(HttpMethod.Get, url, options, null, null);
+            return await _client.Request<ErrorResult>(HttpMethod.Get, url, options, null, null);
         }
     }
 }

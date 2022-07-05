@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -30,11 +30,6 @@ namespace LockstepSDK
         /// Timeframe (month) the daily sales outstanding values are associated with
         /// </summary>
         public DateTime? Timeframe { get; set; }
-
-        /// <summary>
-        /// Number of invoices the average daily sales outstanding is calculated on
-        /// </summary>
-        public int? InvoiceCount { get; set; }
 
         /// <summary>
         /// Time (in days) between an invoice was completed paid off and when the invoice was issued

@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -35,6 +35,11 @@ namespace LockstepSDK
         /// The number of entities updated
         /// </summary>
         public int? UpdateCount { get; set; }
+
+        /// <summary>
+        /// The number of entities deleted
+        /// </summary>
+        public int? DeleteCount { get; set; }
 
         /// <summary>
         /// The number of entities skipped
