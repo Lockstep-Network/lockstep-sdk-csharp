@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to Companies
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public CompaniesClient(LockstepApi client) {
+        public CompaniesClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -183,18 +185,18 @@ namespace LockstepSDK
         }
 
         /// <summary>
-        /// Retrieves the Customer Details specified by this unique identifier, optionally including nested data sets.
+        /// Retrieves the Company Details specified by this unique identifier, optionally including nested data sets.
         ///
-        /// The Customer Detail View represents a slightly different view of the data and includes some extra fields that might be useful. For more information, see the data format of the Customer Detail Model.
+        /// The Company Detail View represents a slightly different view of the data and includes some extra fields that might be useful. For more information, see the data format of the Company Detail Model.
         ///
         /// See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<CustomerDetailsModel>> RetrieveCustomerDetail(Guid id)
+        /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the company's ERP key</param>
+        public async Task<LockstepResponse<CompanyDetailsModel>> RetrieveCompanyDetail(Guid id)
         {
-            var url = $"/api/v1/Companies/views/customer-details/{id}";
-            return await _client.Request<CustomerDetailsModel>(HttpMethod.Get, url, null, null, null);
+            var url = $"/api/v1/Companies/views/details/{id}";
+            return await _client.Request<CompanyDetailsModel>(HttpMethod.Get, url, null, null, null);
         }
     }
 }

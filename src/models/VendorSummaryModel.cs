@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -65,6 +65,11 @@ namespace LockstepSDK
         public decimal? AmountPaidLast30 { get; set; }
 
         /// <summary>
+        /// The outstanding advance pay balance on payments in the last 30 days
+        /// </summary>
+        public decimal? AdvancePayLast30 { get; set; }
+
+        /// <summary>
         /// The outstanding advance pay balance with this Vendor
         /// </summary>
         public decimal? AdvancePayOutstanding { get; set; }
@@ -75,9 +80,24 @@ namespace LockstepSDK
         public decimal? AmountBilledLast30 { get; set; }
 
         /// <summary>
+        /// The outstanding balance with this Vendor for bills in the last 30 days
+        /// </summary>
+        public decimal? AmountBilledOutstandingLast30 { get; set; }
+
+        /// <summary>
         /// The outstanding balance with this Vendor
         /// </summary>
         public decimal? AmountBilledOutstanding { get; set; }
+
+        /// <summary>
+        /// The number of bills received from this Vendor in the last 30 days
+        /// </summary>
+        public int? BillCountLast30 { get; set; }
+
+        /// <summary>
+        /// The number of bills from this Vendor that were paid in full in the last 30 days
+        /// </summary>
+        public int? PaidBillCountLast30 { get; set; }
 
         /// <summary>
         /// The number of open bills with this Vendor
@@ -85,12 +105,12 @@ namespace LockstepSDK
         public int? OpenBillCount { get; set; }
 
         /// <summary>
-        /// The number of bills paid to this Vendor in the last 30 days
+        /// The number of bills paid to this Vendor
         /// </summary>
         public int? PaidBillCount { get; set; }
 
         /// <summary>
-        /// The total count of open bills and those paid in the last 30 days
+        /// The total count of open and closed bills.
         /// </summary>
         public int? TotalBillCount { get; set; }
     }
