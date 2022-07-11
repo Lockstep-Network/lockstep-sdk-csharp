@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to FinancialAccountBalanceHistory
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public FinancialAccountBalanceHistoryClient(LockstepApi client) {
+        public FinancialAccountBalanceHistoryClient(LockstepApi client)
+        {
             _client = client;
         }
 

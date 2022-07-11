@@ -2,7 +2,8 @@
 
     <PropertyGroup>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>LockstepSDK</RootNamespace>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -16,6 +17,6 @@
 
     <ItemGroup>
       <PackageReference Include="System.Net.Http" Version="4.3.4" />
-      <PackageReference Include="System.Text.Json" Version="6.0.2" />
+      <PackageReference Include="System.Text.Json" Version="6.0.5" />
     </ItemGroup>
 </Project>

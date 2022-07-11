@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -92,9 +92,20 @@ namespace LockstepSDK
         public string Version { get; set; }
 
         /// <summary>
+        /// If authentication is successful, contains the onboarding session status of the logged-in user&#39;s group account.
+        /// </summary>
+        public bool? OnboardingScheduled { get; set; }
+
+        /// <summary>
         /// Statuses for the dependencies of this api.
         /// OK if the dependency is working.
         /// </summary>
         public object Dependencies { get; set; }
+
+        /// <summary>
+        /// The set of Groups that the user has access to.
+        /// You can use the /api/v1/useraccounts/change-group endpoint to change your active group.
+        /// </summary>
+        public UserGroupModel[] UserGroups { get; set; }
     }
 }

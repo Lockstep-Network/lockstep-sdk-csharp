@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to ApiKeys
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public ApiKeysClient(LockstepApi client) {
+        public ApiKeysClient(LockstepApi client)
+        {
             _client = client;
         }
 

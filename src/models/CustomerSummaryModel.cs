@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -70,14 +70,39 @@ namespace LockstepSDK
         public int? ClosedInvoices { get; set; }
 
         /// <summary>
+        /// The number of closed invoices for this customer in the past thirty days.
+        /// </summary>
+        public int? ClosedInvoicesPastThirtyDays { get; set; }
+
+        /// <summary>
         /// The total from collected payments.
         /// </summary>
         public decimal? AmountCollected { get; set; }
 
         /// <summary>
+        /// The total from collected payments in the past thirty days.
+        /// </summary>
+        public decimal? AmountCollectedPastThirtyDays { get; set; }
+
+        /// <summary>
         /// The total balance of outstanding invoices.
         /// </summary>
         public decimal? OutstandingAmount { get; set; }
+
+        /// <summary>
+        /// The total amount invoiced in the past thirty days.
+        /// </summary>
+        public decimal? InvoicedAmountPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The total amount outstanding from the invoices invoiced in the past thirty days.
+        /// </summary>
+        public decimal? OutstandingAmountPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The number of invoices invoiced in the past thirty days.
+        /// </summary>
+        public int? InvoicesPastThirtyDays { get; set; }
 
         /// <summary>
         /// The total amount past due for this customer.
@@ -88,6 +113,11 @@ namespace LockstepSDK
         /// The total value of unapplied Payments for this Customer.
         /// </summary>
         public decimal? UnappliedPayments { get; set; }
+
+        /// <summary>
+        /// The total value of unapplied Payments for this Customer in the past thirty days.
+        /// </summary>
+        public decimal? UnappliedAmountPastThirtyDays { get; set; }
 
         /// <summary>
         /// Portion of Total AR for this Customer that is Past due. (TotalPastDue / Total AR).

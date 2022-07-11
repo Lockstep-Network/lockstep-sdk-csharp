@@ -17,9 +17,10 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using LockstepSDK.Models;
 
 
-namespace LockstepSDK
+namespace LockstepSDK.Clients
 {
     /// <summary>
     /// API methods related to Webhooks
@@ -31,7 +32,8 @@ namespace LockstepSDK
         /// <summary>
         /// Constructor
         /// </summary>
-        public WebhooksClient(LockstepApi client) {
+        public WebhooksClient(LockstepApi client)
+        {
             _client = client;
         }
 
@@ -100,14 +102,16 @@ namespace LockstepSDK
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collection: WebhookRules</param>
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<WebhookModel>>> QueryWebhooks(string filter = null, string order = null, int? pageSize = null, int? pageNumber = null)
+        public async Task<LockstepResponse<FetchResult<WebhookModel>>> QueryWebhooks(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Webhooks/query";
             var options = new Dictionary<string, object>();
             if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
             if (order != null) { options["order"] = order; }
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
@@ -132,6 +136,18 @@ namespace LockstepSDK
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<WebhookHistoryTableStorageModel>>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
+        ///
+        ///
+        /// </summary>
+        /// <param name="webhookId">The unique Lockstep Platform ID number of this Webhook</param>
+        /// <param name="webhookHistoryId">The unique Lockstep Platform ID number of the Webhook History to be retried. Note: the webhook history supplied must have a isSuccessful status of false to be retried.</param>
+        public async Task<LockstepResponse<string>> RetryFailedWebhookHistory(Guid webhookId, Guid webhookHistoryId)
+        {
+            var url = $"/api/v1/Webhooks/{webhookId}/history/{webhookHistoryId}/retry";
+            return await _client.Request<string>(HttpMethod.Get, url, null, null, null);
         }
     }
 }

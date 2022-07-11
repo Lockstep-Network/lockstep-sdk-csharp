@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.17.35
+ * @version    2022.26.12
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -25,6 +25,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web;
+using LockstepSDK.Clients;
+using LockstepSDK.Models;
 
 
 namespace LockstepSDK 
@@ -34,136 +36,177 @@ namespace LockstepSDK
     /// </summary>
     public class LockstepApi
     {
-        // The URL of the environment we will use
+        public const string SdkVersion = "2022.26.12";
+        
         private readonly string _serverUrl;
-        private const string _version = "2022.17.35";
         private readonly HttpClient _client;
+        private readonly JsonSerializerOptions _options;
+        
         private string _appName;
         private string _bearerToken;
         private string _apiKey;
-        private JsonSerializerOptions _options;
     
         /// <summary>
         /// API methods related to Activities
         /// </summary>
-        public ActivitiesClient Activities { get; set; }
+        public ActivitiesClient Activities { get; }
+
         /// <summary>
         /// API methods related to ApiKeys
         /// </summary>
-        public ApiKeysClient ApiKeys { get; set; }
+        public ApiKeysClient ApiKeys { get; }
+
         /// <summary>
         /// API methods related to AppEnrollments
         /// </summary>
-        public AppEnrollmentsClient AppEnrollments { get; set; }
+        public AppEnrollmentsClient AppEnrollments { get; }
+
         /// <summary>
         /// API methods related to Applications
         /// </summary>
-        public ApplicationsClient Applications { get; set; }
+        public ApplicationsClient Applications { get; }
+
         /// <summary>
         /// API methods related to Attachments
         /// </summary>
-        public AttachmentsClient Attachments { get; set; }
+        public AttachmentsClient Attachments { get; }
+
         /// <summary>
         /// API methods related to CodeDefinitions
         /// </summary>
-        public CodeDefinitionsClient CodeDefinitions { get; set; }
+        public CodeDefinitionsClient CodeDefinitions { get; }
+
         /// <summary>
         /// API methods related to Companies
         /// </summary>
-        public CompaniesClient Companies { get; set; }
+        public CompaniesClient Companies { get; }
+
         /// <summary>
         /// API methods related to Contacts
         /// </summary>
-        public ContactsClient Contacts { get; set; }
+        public ContactsClient Contacts { get; }
+
         /// <summary>
         /// API methods related to CreditMemoApplied
         /// </summary>
-        public CreditMemoAppliedClient CreditMemoApplied { get; set; }
+        public CreditMemoAppliedClient CreditMemoApplied { get; }
+
         /// <summary>
         /// API methods related to Currencies
         /// </summary>
-        public CurrenciesClient Currencies { get; set; }
+        public CurrenciesClient Currencies { get; }
+
         /// <summary>
         /// API methods related to CustomFieldDefinitions
         /// </summary>
-        public CustomFieldDefinitionsClient CustomFieldDefinitions { get; set; }
+        public CustomFieldDefinitionsClient CustomFieldDefinitions { get; }
+
         /// <summary>
         /// API methods related to CustomFieldValues
         /// </summary>
-        public CustomFieldValuesClient CustomFieldValues { get; set; }
+        public CustomFieldValuesClient CustomFieldValues { get; }
+
         /// <summary>
         /// API methods related to Definitions
         /// </summary>
-        public DefinitionsClient Definitions { get; set; }
+        public DefinitionsClient Definitions { get; }
+
         /// <summary>
         /// API methods related to Emails
         /// </summary>
-        public EmailsClient Emails { get; set; }
+        public EmailsClient Emails { get; }
+
         /// <summary>
         /// API methods related to FinancialAccount
         /// </summary>
-        public FinancialAccountClient FinancialAccount { get; set; }
+        public FinancialAccountClient FinancialAccount { get; }
+
         /// <summary>
         /// API methods related to FinancialAccountBalanceHistory
         /// </summary>
-        public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; set; }
+        public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; }
+
         /// <summary>
         /// API methods related to FinancialYearSettings
         /// </summary>
-        public FinancialYearSettingsClient FinancialYearSettings { get; set; }
+        public FinancialYearSettingsClient FinancialYearSettings { get; }
+
+        /// <summary>
+        /// API methods related to GroupAccounts
+        /// </summary>
+        public GroupAccountsClient GroupAccounts { get; }
+
         /// <summary>
         /// API methods related to InvoiceHistory
         /// </summary>
-        public InvoiceHistoryClient InvoiceHistory { get; set; }
+        public InvoiceHistoryClient InvoiceHistory { get; }
+
         /// <summary>
         /// API methods related to Invoices
         /// </summary>
-        public InvoicesClient Invoices { get; set; }
+        public InvoicesClient Invoices { get; }
+
         /// <summary>
         /// API methods related to Leads
         /// </summary>
-        public LeadsClient Leads { get; set; }
+        public LeadsClient Leads { get; }
+
         /// <summary>
         /// API methods related to Notes
         /// </summary>
-        public NotesClient Notes { get; set; }
+        public NotesClient Notes { get; }
+
         /// <summary>
         /// API methods related to PaymentApplications
         /// </summary>
-        public PaymentApplicationsClient PaymentApplications { get; set; }
+        public PaymentApplicationsClient PaymentApplications { get; }
+
         /// <summary>
         /// API methods related to Payments
         /// </summary>
-        public PaymentsClient Payments { get; set; }
+        public PaymentsClient Payments { get; }
+
         /// <summary>
         /// API methods related to Provisioning
         /// </summary>
-        public ProvisioningClient Provisioning { get; set; }
+        public ProvisioningClient Provisioning { get; }
+
         /// <summary>
         /// API methods related to Reports
         /// </summary>
-        public ReportsClient Reports { get; set; }
+        public ReportsClient Reports { get; }
+
         /// <summary>
         /// API methods related to Status
         /// </summary>
-        public StatusClient Status { get; set; }
+        public StatusClient Status { get; }
+
         /// <summary>
         /// API methods related to Sync
         /// </summary>
-        public SyncClient Sync { get; set; }
+        public SyncClient Sync { get; }
+
         /// <summary>
         /// API methods related to UserAccounts
         /// </summary>
-        public UserAccountsClient UserAccounts { get; set; }
+        public UserAccountsClient UserAccounts { get; }
+
         /// <summary>
         /// API methods related to UserRoles
         /// </summary>
-        public UserRolesClient UserRoles { get; set; }
+        public UserRolesClient UserRoles { get; }
+
+        /// <summary>
+        /// API methods related to WebhookRules
+        /// </summary>
+        public WebhookRulesClient WebhookRules { get; }
+
         /// <summary>
         /// API methods related to Webhooks
         /// </summary>
-        public WebhooksClient Webhooks { get; set; }
-    
+        public WebhooksClient Webhooks { get; }
+
+
         /// <summary>
         /// Internal constructor for the client.  You should always begin with `withEnvironment()`.
         /// </summary>
@@ -173,43 +216,47 @@ namespace LockstepSDK
             // Add support for HTTP compression
             var handler = new HttpClientHandler();
             handler.AutomaticDecompression = DecompressionMethods.GZip;
+            
             // We intentionally use a single HttpClient object for the lifetime of this API connection.
             // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
-            this._client = new HttpClient(handler);
-            this._serverUrl = customUrl;
-            this.Activities = new ActivitiesClient(this);
-            this.ApiKeys = new ApiKeysClient(this);
-            this.AppEnrollments = new AppEnrollmentsClient(this);
-            this.Applications = new ApplicationsClient(this);
-            this.Attachments = new AttachmentsClient(this);
-            this.CodeDefinitions = new CodeDefinitionsClient(this);
-            this.Companies = new CompaniesClient(this);
-            this.Contacts = new ContactsClient(this);
-            this.CreditMemoApplied = new CreditMemoAppliedClient(this);
-            this.Currencies = new CurrenciesClient(this);
-            this.CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
-            this.CustomFieldValues = new CustomFieldValuesClient(this);
-            this.Definitions = new DefinitionsClient(this);
-            this.Emails = new EmailsClient(this);
-            this.FinancialAccount = new FinancialAccountClient(this);
-            this.FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
-            this.FinancialYearSettings = new FinancialYearSettingsClient(this);
-            this.InvoiceHistory = new InvoiceHistoryClient(this);
-            this.Invoices = new InvoicesClient(this);
-            this.Leads = new LeadsClient(this);
-            this.Notes = new NotesClient(this);
-            this.PaymentApplications = new PaymentApplicationsClient(this);
-            this.Payments = new PaymentsClient(this);
-            this.Provisioning = new ProvisioningClient(this);
-            this.Reports = new ReportsClient(this);
-            this.Status = new StatusClient(this);
-            this.Sync = new SyncClient(this);
-            this.UserAccounts = new UserAccountsClient(this);
-            this.UserRoles = new UserRolesClient(this);
-            this.Webhooks = new WebhooksClient(this);
+            _client = new HttpClient(handler);
+            
+            _serverUrl = customUrl;
+            Activities = new ActivitiesClient(this);
+            ApiKeys = new ApiKeysClient(this);
+            AppEnrollments = new AppEnrollmentsClient(this);
+            Applications = new ApplicationsClient(this);
+            Attachments = new AttachmentsClient(this);
+            CodeDefinitions = new CodeDefinitionsClient(this);
+            Companies = new CompaniesClient(this);
+            Contacts = new ContactsClient(this);
+            CreditMemoApplied = new CreditMemoAppliedClient(this);
+            Currencies = new CurrenciesClient(this);
+            CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
+            CustomFieldValues = new CustomFieldValuesClient(this);
+            Definitions = new DefinitionsClient(this);
+            Emails = new EmailsClient(this);
+            FinancialAccount = new FinancialAccountClient(this);
+            FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
+            FinancialYearSettings = new FinancialYearSettingsClient(this);
+            GroupAccounts = new GroupAccountsClient(this);
+            InvoiceHistory = new InvoiceHistoryClient(this);
+            Invoices = new InvoicesClient(this);
+            Leads = new LeadsClient(this);
+            Notes = new NotesClient(this);
+            PaymentApplications = new PaymentApplicationsClient(this);
+            Payments = new PaymentsClient(this);
+            Provisioning = new ProvisioningClient(this);
+            Reports = new ReportsClient(this);
+            Status = new StatusClient(this);
+            Sync = new SyncClient(this);
+            UserAccounts = new UserAccountsClient(this);
+            UserRoles = new UserRolesClient(this);
+            WebhookRules = new WebhookRulesClient(this);
+            Webhooks = new WebhooksClient(this);
                 
-            // Configure serializer options once
-            this._options = new JsonSerializerOptions
+            // Configure JSON serializer options
+            _options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
@@ -231,18 +278,7 @@ namespace LockstepSDK
                     return new LockstepApi("https://api.lockstep.io/");
             }
     
-            throw new NotImplementedException("Unknown environment");
-        }
-    
-        /// <summary>
-        /// Set the application name
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public LockstepApi WithAppName(string name)
-        {
-            this._appName = name;
-            return this;
+            throw new InvalidOperationException($"Unknown environment: {env}");
         }
     
         /// <summary>
@@ -256,6 +292,17 @@ namespace LockstepSDK
         {
             return new LockstepApi(unsafeUrl);
         }
+        
+        /// <summary>
+        /// Set the application name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public LockstepApi WithAppName(string name)
+        {
+            _appName = name;
+            return this;
+        }
     
         /// <summary>
         /// Configure this API client to use a JWT bearer token.
@@ -266,8 +313,8 @@ namespace LockstepSDK
         /// <returns></returns>
         public LockstepApi WithBearerToken(string token)
         {
-            this._bearerToken = token;
-            this._apiKey = null;
+            _bearerToken = token;
+            _apiKey = null;
             return this;
         }
     
@@ -280,8 +327,8 @@ namespace LockstepSDK
         /// <returns></returns>
         public LockstepApi WithApiKey(string apiKey)
         {
-            this._apiKey = apiKey;
-            this._bearerToken = null;
+            _apiKey = apiKey;
+            _bearerToken = null;
             return this;
         }
     
@@ -304,7 +351,7 @@ namespace LockstepSDK
             request.Method = method;
             request.Headers.Add("Accept", "application/json");
             request.Headers.Add("SdkName", "DotNet");
-            request.Headers.Add("SdkVersion", _version);
+            request.Headers.Add("SdkVersion", SdkVersion);
             request.Headers.Add("MachineName", Environment.MachineName);
             if (_appName != null)
             {
@@ -312,17 +359,17 @@ namespace LockstepSDK
             }
     
             // Add authentication headers, if any
-            if (!string.IsNullOrWhiteSpace(this._bearerToken))
+            if (!string.IsNullOrWhiteSpace(_bearerToken))
             {
-                request.Headers.Add("Authorization", "Bearer " + this._bearerToken);
+                request.Headers.Add("Authorization", "Bearer " + _bearerToken);
             }
-            else if (!string.IsNullOrWhiteSpace(this._apiKey))
+            else if (!string.IsNullOrWhiteSpace(_apiKey))
             {
-                request.Headers.Add("Api-Key", this._apiKey);
+                request.Headers.Add("Api-Key", _apiKey);
             }
     
             // Construct the request URI and query string
-            var uriBuilder = new UriBuilder(this._serverUrl)
+            var uriBuilder = new UriBuilder(_serverUrl)
             {
                 Path = path
             };

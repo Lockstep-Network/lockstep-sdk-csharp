@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -122,18 +122,48 @@ namespace LockstepSDK
         public decimal? TotalPaymentAmountCurrentYear { get; set; }
 
         /// <summary>
-        /// The total amount of payments received in the last 30 days
-        /// </summary>
-        public int? TotalCollectedPastThirtyDays { get; set; }
-
-        /// <summary>
-        /// The total amount of Invoices paid in the last 30 days
-        /// </summary>
-        public int? TotalInvoicesPaidPastThirtyDays { get; set; }
-
-        /// <summary>
         /// Portion of Total AR that is 90+ days Past due.
         /// </summary>
         public decimal? PercentageOfTotalAr90DaysPastDue { get; set; }
+
+        /// <summary>
+        /// The number of customers who paid within the past thirty days.
+        /// </summary>
+        public int? CustomersPaidPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The total amount collected over the past thirty days.
+        /// </summary>
+        public decimal? AmountCollectedPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The amount unapplied from the payments collected over the past thirty days.
+        /// </summary>
+        public decimal? UnappliedAmountPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The number of invoices paid over the past thirty days.
+        /// </summary>
+        public int? InvoicesPaidPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The number of customers invoiced over the the past thirty days.
+        /// </summary>
+        public int? CustomersInvoicedPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The total amount invoiced over the past thirty days.
+        /// </summary>
+        public decimal? AmountInvoicedPastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The amount outstanding on the invoices invoiced over the past thirty days.
+        /// </summary>
+        public decimal? AmountDuePastThirtyDays { get; set; }
+
+        /// <summary>
+        /// The number of invoices invoiced over the past thirty days.
+        /// </summary>
+        public int? InvoicesPastThirtyDays { get; set; }
     }
 }

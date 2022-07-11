@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -142,7 +142,7 @@ namespace LockstepSDK
         public string OriginAddressPostalCode { get; set; }
 
         /// <summary>
-        /// Origination address for this invoice line, if this line item was originated from a different address This will be validated by the /api/v1/definitions/countries data set
+        /// Origination address for this invoice line, if this line item was originated from a different address
         /// </summary>
         public string OriginAddressCountry { get; set; }
 
@@ -187,7 +187,7 @@ namespace LockstepSDK
         public string BillToAddressPostalCode { get; set; }
 
         /// <summary>
-        /// Billing address for this invoice line, if this line item is to be billed to a different address This will be validated by the /api/v1/definitions/countries data set
+        /// Billing address for this invoice line, if this line item is to be billed to a different address
         /// </summary>
         public string BillToAddressCountry { get; set; }
 
@@ -232,7 +232,7 @@ namespace LockstepSDK
         public string ShipToAddressPostalCode { get; set; }
 
         /// <summary>
-        /// Shipping address for this invoice line, if this line item is to be shipped to a different address This will be validated by the /api/v1/definitions/countries data set
+        /// Shipping address for this invoice line, if this line item is to be shipped to a different address
         /// </summary>
         public string ShipToAddressCountry { get; set; }
 

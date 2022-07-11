@@ -17,6 +17,6 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 }

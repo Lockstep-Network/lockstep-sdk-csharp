@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -81,6 +81,7 @@ namespace LockstepSDK
         /// * `Check` - A check payment.
         /// * `Credit Card` - A payment made via a credit card.
         /// * `Wire Transfer` - A payment made via wire transfer from another financial institution.
+        /// * `Other` - A payment made via another method not listed above.
         /// </summary>
         public string TenderType { get; set; }
 

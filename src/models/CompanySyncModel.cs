@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -138,7 +138,7 @@ namespace LockstepSDK
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The company&#39;s primary mailing address information This will be validated by the /api/v1/definitions/countries data set
+        /// The company&#39;s primary mailing address information
         /// </summary>
         public string Country { get; set; }
 
@@ -192,5 +192,10 @@ namespace LockstepSDK
         /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
         /// </summary>
         public string PreferredDeliveryMethod { get; set; }
+
+        /// <summary>
+        /// An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.
+        /// </summary>
+        public string ExternalReference { get; set; }
     }
 }

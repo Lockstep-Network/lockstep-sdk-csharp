@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -66,7 +66,7 @@ namespace LockstepSDK
         public string ClientSecret { get; set; }
 
         /// <summary>
-        /// The format of the content to be returned in the webhook notifications. Options TBD.
+        /// The format of the content to be returned in the webhook notifications. Current options are &#39;Full&#39; or &#39;Id&#39;.
         /// </summary>
         public string RequestContentType { get; set; }
 
@@ -115,6 +115,11 @@ namespace LockstepSDK
         /// The ID of the user who last modified this webhook
         /// </summary>
         public Guid? ModifiedUserId { get; set; }
+
+        /// <summary>
+        /// A list of Webhook Rules associated with this Webhook.
+        /// </summary>
+        public WebhookRuleModel[] WebhookRules { get; set; }
 
         /// <summary>
         /// The partition key used for the webhook callback history

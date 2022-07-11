@@ -17,13 +17,13 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// Customer payment collected information
+    /// Represents an account for an entire group
     /// </summary>
-    public class CustomerDetailsPaymentModel
+    public class GroupAccountModel
     {
 
         /// <summary>
@@ -35,48 +35,48 @@ namespace LockstepSDK
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// Unique identifier for payment
+        /// The name of the group
         /// </summary>
-        public Guid? PaymentId { get; set; }
+        public string GroupName { get; set; }
 
         /// <summary>
-        /// Unique identifier for payment applied
+        /// The primary user for the group
         /// </summary>
-        public Guid? PaymentAppliedId { get; set; }
+        public Guid? PrimaryUserId { get; set; }
 
         /// <summary>
-        /// Payment type
+        /// The CompanyId of the Company the group is associated with
         /// </summary>
-        public string PaymentType { get; set; }
+        public Guid? GroupCompanyId { get; set; }
 
         /// <summary>
-        /// Unique identifier for invoice payment is associated with
+        /// The active status of the group
         /// </summary>
-        public Guid? InvoiceId { get; set; }
+        public bool? IsActive { get; set; }
 
         /// <summary>
-        /// Invoice type payment is associated with
+        /// The onboarding session status of the group
         /// </summary>
-        public string InvoiceTypeCode { get; set; }
+        public bool? OnboardingScheduled { get; set; }
 
         /// <summary>
-        /// Invoice reference code payment is associated with
+        /// The date this group account was created
         /// </summary>
-        public string InvoiceReferenceCode { get; set; }
+        public DateTime? Created { get; set; }
 
         /// <summary>
-        /// Invoice total amount payment is associated with
+        /// The ID of the user who created this group account
         /// </summary>
-        public decimal? InvoiceTotalAmount { get; set; }
+        public Guid? CreatedUserId { get; set; }
 
         /// <summary>
-        /// Date payment placed
+        /// The date this group account was last modified
         /// </summary>
-        public DateTime? PaymentDate { get; set; }
+        public DateTime? Modified { get; set; }
 
         /// <summary>
-        /// Amount payment was made for
+        /// The ID of the user who last modified this group account
         /// </summary>
-        public decimal? PaymentAmount { get; set; }
+        public Guid? ModifiedUserId { get; set; }
     }
 }

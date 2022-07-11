@@ -17,7 +17,7 @@
 
 using System;
 
-namespace LockstepSDK
+namespace LockstepSDK.Models
 {
 
     /// <summary>
@@ -50,7 +50,12 @@ namespace LockstepSDK
         public string ReferenceCode { get; set; }
 
         /// <summary>
-        /// The type of payment, Payment or AP Payment.
+        /// The tender type of payment (Cash, Check, etc.)
+        /// </summary>
+        public string TenderType { get; set; }
+
+        /// <summary>
+        /// The type of payment, AR Payment or AP Payment.
         /// </summary>
         public string PaymentType { get; set; }
 
@@ -70,6 +75,12 @@ namespace LockstepSDK
         /// Unapplied balance of this payment.
         /// </summary>
         public decimal? UnappliedAmount { get; set; }
+
+        /// <summary>
+        /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
+        /// value is true, the field `UnappliedAmount` will be nonzero.
+        /// </summary>
+        public bool? IsOpen { get; set; }
 
         /// <summary>
         /// The number of invoices associated to this payment.
@@ -92,13 +103,33 @@ namespace LockstepSDK
         public Guid[] InvoiceIdList { get; set; }
 
         /// <summary>
-        /// The name of the customer for this payment.
+        /// The id of the company for this payment.
         /// </summary>
-        public string CustomerName { get; set; }
+        public Guid? PaymentCompanyId { get; set; }
 
         /// <summary>
-        /// The id of the customer for this payment.
+        /// The name of the company for this payment.
         /// </summary>
-        public Guid? CustomerId { get; set; }
+        public string PaymentCompanyName { get; set; }
+
+        /// <summary>
+        /// The ids of the customer for the associated invoices.
+        /// </summary>
+        public Guid[] CustomerIds { get; set; }
+
+        /// <summary>
+        /// The names of the customer for the associated invoices.
+        /// </summary>
+        public string[] CustomerNames { get; set; }
+
+        /// <summary>
+        /// The ids of the company for the associated invoices.
+        /// </summary>
+        public Guid[] CompanyIds { get; set; }
+
+        /// <summary>
+        /// The names of the company for the associated invoices.
+        /// </summary>
+        public string[] CompanyNames { get; set; }
     }
 }
