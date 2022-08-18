@@ -73,10 +73,13 @@ namespace LockstepSDK.Clients
         /// Daily Sales Outstanding, or DSO, is a metric that indicates the average number of days that it takes for an invoice to be fully paid.  You can use this report to identify whether a company is improving on its ability to collect on invoices.
         ///
         /// </summary>
-        public async Task<LockstepResponse<DailySalesOutstandingReportModel[]>> DailySalesOutstanding()
+        /// <param name="reportDate">Optional: Specify the specific report date to generate the from (default UTC now)</param>
+        public async Task<LockstepResponse<DailySalesOutstandingReportModel[]>> DailySalesOutstanding(DateTime? reportDate = null)
         {
             var url = $"/api/v1/Reports/dailysalesoutstanding";
-            return await _client.Request<DailySalesOutstandingReportModel[]>(HttpMethod.Get, url, null, null, null);
+            var options = new Dictionary<string, object>();
+            if (reportDate != null) { options["reportDate"] = reportDate; }
+            return await _client.Request<DailySalesOutstandingReportModel[]>(HttpMethod.Get, url, options, null, null);
         }
 
         /// <summary>

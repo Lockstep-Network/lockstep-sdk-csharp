@@ -145,7 +145,8 @@ namespace LockstepSDK.Clients
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
-        public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
+        /// <param name="reportDate">The date to calculate the fields on. If no date is entered the current UTC date will be used.</param>
+        public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, DateTime? reportDate = null)
         {
             var url = $"/api/v1/Companies/views/customer-summary";
             var options = new Dictionary<string, object>();
@@ -154,6 +155,7 @@ namespace LockstepSDK.Clients
             if (order != null) { options["order"] = order; }
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
+            if (reportDate != null) { options["reportDate"] = reportDate; }
             return await _client.Request<FetchResult<CustomerSummaryModel>>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -172,7 +174,8 @@ namespace LockstepSDK.Clients
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
-        public async Task<LockstepResponse<FetchResult<VendorSummaryModel>>> QueryVendorSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
+        /// <param name="reportDate">The date to calculate the fields on. If no date is entered the current UTC date will be used.</param>
+        public async Task<LockstepResponse<FetchResult<VendorSummaryModel>>> QueryVendorSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, DateTime? reportDate = null)
         {
             var url = $"/api/v1/Companies/views/vendor-summary";
             var options = new Dictionary<string, object>();
@@ -181,6 +184,7 @@ namespace LockstepSDK.Clients
             if (order != null) { options["order"] = order; }
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
+            if (reportDate != null) { options["reportDate"] = reportDate; }
             return await _client.Request<FetchResult<VendorSummaryModel>>(HttpMethod.Get, url, options, null, null);
         }
 
@@ -197,6 +201,24 @@ namespace LockstepSDK.Clients
         {
             var url = $"/api/v1/Companies/views/details/{id}";
             return await _client.Request<CompanyDetailsModel>(HttpMethod.Get, url, null, null, null);
+        }
+
+        /// <summary>
+        /// Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.
+        ///
+        /// .jpg, .jpeg, and .png are supported. 5MB maximum. If no logo is uploaded, the existing logo will be deleted.
+        ///
+        /// A Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.
+        ///
+        /// See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
+        ///
+        /// </summary>
+        /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
+        /// <param name="filename">The full path of a file to upload to the API</param>
+        public async Task<LockstepResponse<CompanyModel>> SetCompanyLogo(Guid id, string filename)
+        {
+            var url = $"/api/v1/Companies/{id}/logo";
+            return await _client.Request<CompanyModel>(HttpMethod.Post, url, null, null, filename);
         }
     }
 }

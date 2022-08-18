@@ -21,10 +21,10 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// A Webhook Rule is a subscription to receive notifications automatically for
+    /// A Webhook Rule is a subscription to receive notifications whenever a specific event occurs.
     ///
-    /// Currently supported objects:
-    ///  * `SyncRequest` - Receive a notification when a new sync request has completed for the group key.
+    /// With the rule, you specify the Table and event you want to subscribe to.
+    /// You can also optionally specify a filter to further refine the updates you want to receive.
     /// </summary>
     public class WebhookRuleModel
     {
@@ -75,20 +75,9 @@ namespace LockstepSDK.Models
         public string EventType { get; set; }
 
         /// <summary>
-        /// The expiration date for the given webhook subscription. Once the expiration date passes,
-        /// notifications will no longer be sent to the callback url.
-        /// </summary>
-        public DateTime? ExpirationDate { get; set; }
-
-        /// <summary>
-        /// The filter for this webhook rule (if necessary) . See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
+        /// An optional Searchlight filter for this webhook rule. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)
         /// </summary>
         public string Filter { get; set; }
-
-        /// <summary>
-        /// The format of the content to be returned in the webhook notifications. Current options are &#39;Full&#39; or &#39;Id&#39;.
-        /// </summary>
-        public string RequestContentType { get; set; }
 
         /// <summary>
         /// The date this webhook rule was created

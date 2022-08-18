@@ -126,7 +126,7 @@ namespace LockstepSDK.Models
         public string SpecialTerms { get; set; }
 
         /// <summary>
-        /// The three-character ISO 4217 currency code used for this invoice. This will be validated by the /api/v1/definitions/currencies data set
+        /// The three-character ISO 4217 currency code used for this invoice.
         /// </summary>
         public string CurrencyCode { get; set; }
 

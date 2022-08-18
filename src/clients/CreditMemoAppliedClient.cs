@@ -44,7 +44,7 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Credit Memo Application; NOT the customer's ERP key</param>
-        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, CustomFields, Notes, Invoice, CreditMemoInvoice</param>
         public async Task<LockstepResponse<CreditMemoAppliedModel>> RetrieveCreditMemoApplication(Guid id, string include = null)
         {
             var url = $"/api/v1/CreditMemoApplied/{id}";

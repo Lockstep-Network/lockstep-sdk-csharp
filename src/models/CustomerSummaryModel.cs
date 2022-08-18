@@ -50,6 +50,11 @@ namespace LockstepSDK.Models
         public string PrimaryContact { get; set; }
 
         /// <summary>
+        /// The app enrollment ID this Customer is associated with
+        /// </summary>
+        public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
         /// The number of outstanding invoices for this customer.
         /// </summary>
         public int? OutstandingInvoices { get; set; }

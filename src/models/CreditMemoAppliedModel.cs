@@ -158,5 +158,15 @@ namespace LockstepSDK.Models
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public CustomFieldValueModel[] CustomFieldValues { get; set; }
+
+        /// <summary>
+        /// The credit memo invoice associated with this applied credit memo
+        /// </summary>
+        public InvoiceModel CreditMemoInvoice { get; set; }
+
+        /// <summary>
+        /// The invoice associated with this applied credit memo
+        /// </summary>
+        public InvoiceModel Invoice { get; set; }
     }
 }

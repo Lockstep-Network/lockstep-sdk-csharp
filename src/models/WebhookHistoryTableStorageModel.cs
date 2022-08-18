@@ -84,5 +84,20 @@ namespace LockstepSDK.Models
         /// Contains the last time message is sent if failures occur.
         /// </summary>
         public DateTime? Timestamp { get; set; }
+
+        /// <summary>
+        /// The records sent with the webhook.
+        /// </summary>
+        public string Records { get; set; }
+
+        /// <summary>
+        /// The request message sent with the webhook.
+        /// </summary>
+        public string RequestMessage { get; set; }
+
+        /// <summary>
+        /// The response received back from the webhook.
+        /// </summary>
+        public string ResponseMessage { get; set; }
     }
 }
