@@ -207,16 +207,6 @@ namespace LockstepSDK.Models
         public string DunsNumber { get; set; }
 
         /// <summary>
-        /// AP (Accounts Payable) Email Address
-        /// </summary>
-        public string ApEmailAddress { get; set; }
-
-        /// <summary>
-        /// AR (Accounts Receivable) Email Address
-        /// </summary>
-        public string ArEmailAddress { get; set; }
-
-        /// <summary>
         /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
         /// </summary>
         public string PreferredDeliveryMethod { get; set; }
@@ -250,6 +240,11 @@ namespace LockstepSDK.Models
         /// was not loaded from an external ERP or financial system.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// Company Email Address
+        /// </summary>
+        public string EmailAddress { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

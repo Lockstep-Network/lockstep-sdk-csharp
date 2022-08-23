@@ -73,5 +73,20 @@ namespace LockstepSDK.Models
         /// A list of PaymentApplied records to merge with your Lockstep Platform data
         /// </summary>
         public PaymentAppliedSyncModel[] PaymentApplications { get; set; }
+
+        /// <summary>
+        /// A list of FinancialYearSetting records to merge with your Lockstep Platform data
+        /// </summary>
+        public FinancialYearSettingSyncModel[] FinancialYearSettings { get; set; }
+
+        /// <summary>
+        /// A list of FinancialAccount records to merge with your Lockstep Platform data
+        /// </summary>
+        public FinancialAccountSyncModel[] FinancialAccounts { get; set; }
+
+        /// <summary>
+        /// A list of FinancialAccountBalanceHistory records to merge with your Lockstep Platform data
+        /// </summary>
+        public FinancialAccountBalanceHistorySyncModel[] FinancialAccountBalanceHistories { get; set; }
     }
 }

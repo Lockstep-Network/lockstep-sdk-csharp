@@ -123,14 +123,16 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="webhookId">The unique Lockstep Platform ID number of this Webhook</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collection: Records, RequestMessage, ResponseMessage</param>
         /// <param name="filter">The filter for this query. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
         /// <param name="select">The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
         /// <param name="pageSize">The page size for results (default 200).</param>
         /// <param name="pageNumber">The page number for results (default 0).</param>
-        public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string filter = null, string select = null, int? pageSize = null, int? pageNumber = null)
+        public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string include = null, string filter = null, string select = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Webhooks/{webhookId}/history/query";
             var options = new Dictionary<string, object>();
+            if (include != null) { options["include"] = include; }
             if (filter != null) { options["filter"] = filter; }
             if (select != null) { options["select"] = select; }
             if (pageSize != null) { options["pageSize"] = pageSize; }

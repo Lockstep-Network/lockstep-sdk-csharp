@@ -35,6 +35,11 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
+        /// Indicates what action to take when a sync model has been found during the sync process.
+        /// </summary>
+        public int? OnMatchAction { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Company record. For this field, you should use whatever the company&#39;s unique
         /// identifying number is in the originating system. Search for a unique, non-changing number within the
         /// originating financial system for this record.
@@ -92,7 +97,7 @@ namespace LockstepSDK.Models
 
         /// <summary>
         /// The default currency code for transactions related to this company.  For a list of currency codes, see
-        /// [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies). This will be validated by the /api/v1/definitions/currencies data set
+        /// [Query Currencies](https://developer.lockstep.io/reference/get_api-v1-definitions-currencies).
         /// </summary>
         public string DefaultCurrencyCode { get; set; }
 
@@ -192,6 +197,11 @@ namespace LockstepSDK.Models
         /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
         /// </summary>
         public string PreferredDeliveryMethod { get; set; }
+
+        /// <summary>
+        /// The company email address.
+        /// </summary>
+        public string EmailAddress { get; set; }
 
         /// <summary>
         /// An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.

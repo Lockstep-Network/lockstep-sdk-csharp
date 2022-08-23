@@ -97,23 +97,26 @@ namespace LockstepSDK.Clients
         /// See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
         ///
         /// </summary>
+        /// <param name="startSync">Option to start sync immediately after creation of app enrollments (default false)</param>
         /// <param name="body">The App Enrollments to create</param>
-        public async Task<LockstepResponse<AppEnrollmentModel[]>> CreateAppEnrollments(AppEnrollmentModel[] body)
+        public async Task<LockstepResponse<AppEnrollmentModel[]>> CreateAppEnrollments(AppEnrollmentModel[] body, bool? startSync = null)
         {
             var url = $"/api/v1/AppEnrollments";
-            return await _client.Request<AppEnrollmentModel[]>(HttpMethod.Post, url, null, body, null);
+            var options = new Dictionary<string, object>();
+            if (startSync != null) { options["startSync"] = startSync; }
+            return await _client.Request<AppEnrollmentModel[]>(HttpMethod.Post, url, options, body, null);
         }
 
         /// <summary>
         /// Updates the OAuth settings associated with this App Enrollment
         ///
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="body"></param>
-        public async Task<LockstepResponse<AppEnrollmentModel>> ReconnectAppEnrollmentOAuth(Guid id, string body)
+        /// <param name="id">The unique ID number of the App Enrollment to reconnect</param>
+        /// <param name="body">Information to reconnect the App Enrollment</param>
+        public async Task<LockstepResponse<CustomFieldValueModel[]>> ReconnectAppEnrollmentOAuth(Guid id, AppEnrollmentReconnectRequest body)
         {
             var url = $"/api/v1/AppEnrollments/{id}/reconnect";
-            return await _client.Request<AppEnrollmentModel>(new HttpMethod("PATCH"), url, null, body, null);
+            return await _client.Request<CustomFieldValueModel[]>(HttpMethod.Post, url, null, body, null);
         }
 
         /// <summary>

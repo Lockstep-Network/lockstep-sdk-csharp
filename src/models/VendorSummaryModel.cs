@@ -113,5 +113,10 @@ namespace LockstepSDK.Models
         /// The total count of open and closed bills.
         /// </summary>
         public int? TotalBillCount { get; set; }
+
+        /// <summary>
+        /// The days payabale outstanding.
+        /// </summary>
+        public decimal? Dpo { get; set; }
     }
 }

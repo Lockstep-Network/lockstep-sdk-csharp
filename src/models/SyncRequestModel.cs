@@ -67,6 +67,12 @@ namespace LockstepSDK.Models
         public string ProcessResultMessage { get; set; }
 
         /// <summary>
+        /// A boolean indicating whether a sync from an ERP system should process all the data from the ERP
+        /// as opposed to just the delta of changes since the previous sync run
+        /// </summary>
+        public string RunFullSync { get; set; }
+
+        /// <summary>
         /// The AppEnrollmentId of the AppEnrollment object that executed this sync request
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
