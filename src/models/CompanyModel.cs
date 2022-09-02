@@ -247,6 +247,11 @@ namespace LockstepSDK.Models
         public string EmailAddress { get; set; }
 
         /// <summary>
+        /// The public url slug for the Company.
+        /// </summary>
+        public string PublicUrlSlug { get; set; }
+
+        /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
         /// `include` parameter when retrieving data.
         ///

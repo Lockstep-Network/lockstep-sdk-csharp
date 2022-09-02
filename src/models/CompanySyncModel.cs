@@ -182,18 +182,6 @@ namespace LockstepSDK.Models
         public string DunsNumber { get; set; }
 
         /// <summary>
-        /// If you know the AP (accounts payable) email address of this company, fill it in here. This is the email
-        /// address where you would send questions to the company if the company owed you money.
-        /// </summary>
-        public string ApEmailAddress { get; set; }
-
-        /// <summary>
-        /// If you know the AR (accounts receivable) email address of this company, fill it in here. This is the email
-        /// address where you would send questions to the company if you owed this company money.
-        /// </summary>
-        public string ArEmailAddress { get; set; }
-
-        /// <summary>
         /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
         /// </summary>
         public string PreferredDeliveryMethod { get; set; }
