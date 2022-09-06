@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.33.14
+ * @version    2022.35.5
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,7 +36,7 @@ namespace LockstepSDK
     /// </summary>
     public class LockstepApi
     {
-        public const string SdkVersion = "2022.33.14";
+        public const string SdkVersion = "2022.35.5";
         
         private readonly string _serverUrl;
         private readonly HttpClient _client;
@@ -167,6 +167,11 @@ namespace LockstepSDK
         public PaymentsClient Payments { get; }
 
         /// <summary>
+        /// API methods related to Profiles
+        /// </summary>
+        public ProfilesClient Profiles { get; }
+
+        /// <summary>
         /// API methods related to Provisioning
         /// </summary>
         public ProvisioningClient Provisioning { get; }
@@ -246,6 +251,7 @@ namespace LockstepSDK
             Notes = new NotesClient(this);
             PaymentApplications = new PaymentApplicationsClient(this);
             Payments = new PaymentsClient(this);
+            Profiles = new ProfilesClient(this);
             Provisioning = new ProvisioningClient(this);
             Reports = new ReportsClient(this);
             Status = new StatusClient(this);
