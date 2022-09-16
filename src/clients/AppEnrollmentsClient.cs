@@ -108,12 +108,12 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Updates the OAuth settings associated with this App Enrollment
+        /// Updates the settings associated with this App Enrollment
         ///
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment to reconnect</param>
         /// <param name="body">Information to reconnect the App Enrollment</param>
-        public async Task<LockstepResponse<CustomFieldValueModel[]>> ReconnectAppEnrollmentOAuth(Guid id, AppEnrollmentReconnectRequest body)
+        public async Task<LockstepResponse<CustomFieldValueModel[]>> ReconnectAppEnrollment(Guid id, AppEnrollmentReconnectRequest body)
         {
             var url = $"/api/v1/AppEnrollments/{id}/reconnect";
             return await _client.Request<CustomFieldValueModel[]>(HttpMethod.Post, url, null, body, null);

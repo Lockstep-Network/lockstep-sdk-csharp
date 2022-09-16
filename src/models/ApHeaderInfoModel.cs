@@ -37,7 +37,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// The date of the report
         /// </summary>
-        public DateTime? ReportPeriod { get; set; }
+        public DateTime? ReportDate { get; set; }
 
         /// <summary>
         /// The total number of vendors.

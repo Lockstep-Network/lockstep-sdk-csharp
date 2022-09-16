@@ -37,7 +37,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// The month the risk rate was calculated for
         /// </summary>
-        public DateTime? ReportPeriod { get; set; }
+        public DateTime? ReportDate { get; set; }
 
         /// <summary>
         /// The string name of the month the risk rate was calculated for

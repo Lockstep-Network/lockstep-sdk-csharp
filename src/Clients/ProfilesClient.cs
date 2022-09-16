@@ -40,7 +40,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Retrieves the Public Company Profile specified by the public url slug.
         ///
-        /// A Public Company Profile makes available the following information: &lt;list type=&quot;bullet&quot;&gt;&lt;item&gt;Company Name&lt;/item&gt;&lt;item&gt;Company Logo Url&lt;/item&gt;&lt;item&gt;Description&lt;/item&gt;&lt;item&gt;Website&lt;/item&gt;&lt;/list&gt;
+        /// A Public Company Profile makes available the following information: &lt;ul&gt;&lt;li&gt;Company Name&lt;/li&gt;&lt;li&gt;Company Logo Url&lt;/li&gt;&lt;li&gt;Description&lt;/li&gt;&lt;li&gt;Website&lt;/li&gt;&lt;/ul&gt;
         ///
         /// </summary>
         /// <param name="urlSlug"></param>
@@ -51,9 +51,13 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Queries Public Company Profiles &lt;p&gt; More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website. &lt;/p&gt;&lt;p&gt; A Public Company Profile makes available the following information:
+        /// Queries Public Company Profiles
         ///
-        /// &lt;list type=&quot;bullet&quot;&gt;&lt;item&gt;`Company Name`  &lt;/item&gt;&lt;item&gt;`Company Logo Url`  &lt;/item&gt;&lt;item&gt;`Description`  &lt;/item&gt;&lt;item&gt;`Website`  &lt;/item&gt;&lt;/list&gt;&lt;/p&gt;
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        ///
+        /// A Public Company Profile makes available the following information:
+        ///
+        /// &lt;ul&gt;&lt;li&gt;Company Name&lt;/li&gt;&lt;li&gt;Company Logo Url&lt;/li&gt;&lt;li&gt;Description&lt;/li&gt;&lt;li&gt;Website&lt;/li&gt;&lt;/ul&gt;
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>

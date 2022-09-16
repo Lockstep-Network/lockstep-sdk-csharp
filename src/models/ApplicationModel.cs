@@ -113,6 +113,11 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
+        /// The B2C Client ID of the application
+        /// </summary>
+        public Guid? B2CClientId { get; set; }
+
+        /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
         /// `include` parameter when retrieving data.
         ///

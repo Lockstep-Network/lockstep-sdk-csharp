@@ -91,7 +91,7 @@ namespace LockstepSDK.Clients
         /// <param name="id">The unique Lockstep Platform ID number of the Webhook to update.</param>
         public async Task<LockstepResponse<WebhookModel>> RegenerateClientSecret(Guid id)
         {
-            var url = $"/api/v1/Webhooks/{id}/regenerateclientsecret";
+            var url = $"/api/v1/Webhooks/{id}/regenerate-client-secret";
             return await _client.Request<WebhookModel>(new HttpMethod("PATCH"), url, null, null, null);
         }
 
