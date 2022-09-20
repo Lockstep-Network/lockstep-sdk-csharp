@@ -76,7 +76,7 @@ namespace LockstepSDK.Clients
         /// <param name="reportDate">Optional: Specify the specific report date to generate the from (default UTC now)</param>
         public async Task<LockstepResponse<DailySalesOutstandingReportModel[]>> DailySalesOutstanding(DateTime? reportDate = null)
         {
-            var url = $"/api/v1/Reports/dailysalesoutstanding";
+            var url = $"/api/v1/Reports/daily-sales-outstanding";
             var options = new Dictionary<string, object>();
             if (reportDate != null) { options["reportDate"] = reportDate; }
             return await _client.Request<DailySalesOutstandingReportModel[]>(HttpMethod.Get, url, options, null, null);
@@ -146,7 +146,7 @@ namespace LockstepSDK.Clients
         /// </summary>
         public async Task<LockstepResponse<RiskRateModel[]>> RiskRates()
         {
-            var url = $"/api/v1/Reports/riskrates";
+            var url = $"/api/v1/Reports/risk-rates";
             return await _client.Request<RiskRateModel[]>(HttpMethod.Get, url, null, null, null);
         }
 

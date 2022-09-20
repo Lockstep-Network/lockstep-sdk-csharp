@@ -39,7 +39,7 @@ namespace LockstepSDK.Models
         ///
         /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
-        public string ReportPeriod { get; set; }
+        public string ReportDate { get; set; }
 
         /// <summary>
         /// The total number of customers.
