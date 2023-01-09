@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -40,15 +40,24 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
-        /// </summary>
-        public Guid? CustomFieldDefinitionId { get; set; }
-
-        /// <summary>
         /// Additional key if source table doesn&#39;t have a unique id
         /// </summary>
         public Guid? RecordKey { get; set; }
+
+        /// <summary>
+        /// Table to which this definition belongs
+        /// </summary>
+        public string TableKey { get; set; }
+
+        /// <summary>
+        /// Text to display in-application for custom field
+        /// </summary>
+        public string CustomFieldLabel { get; set; }
+
+        /// <summary>
+        /// Data type of this definition
+        /// </summary>
+        public string DataType { get; set; }
 
         /// <summary>
         /// Date created

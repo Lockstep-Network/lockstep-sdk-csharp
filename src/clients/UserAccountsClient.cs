@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -83,21 +83,6 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Reenable the user referred to by this unique identifier.
-        ///
-        /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
-        ///
-        /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this User</param>
-        public async Task<LockstepResponse<ActionResultModel>> ReenableUser(Guid? id = null)
-        {
-            var url = $"/api/v1/UserAccounts/reenable";
-            var options = new Dictionary<string, object>();
-            if (id != null) { options["id"] = id; }
-            return await _client.Request<ActionResultModel>(HttpMethod.Post, url, options, null, null);
-        }
-
-        /// <summary>
         /// Invite a user with the specified email to join your accounting group. The user will receive an email to set up their account.
         ///
         /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
@@ -145,7 +130,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Notes, Attachments, CustomFields, AccountingRole</param>
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         public async Task<LockstepResponse<FetchResult<UserAccountModel>>> QueryUsers(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
@@ -172,6 +157,19 @@ namespace LockstepSDK.Clients
             var options = new Dictionary<string, object>();
             options["groupKey"] = groupKey;
             return await _client.Request<UserAccountModel>(HttpMethod.Post, url, options, null, null);
+        }
+
+        /// <summary>
+        /// Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.
+        ///
+        /// </summary>
+        /// <param name="include">The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case in storage. Possible values are: UTM</param>
+        public async Task<LockstepResponse<UserDataResponseModel>> GetUserData(string[] include)
+        {
+            var url = $"/api/v1/UserAccounts/user-data";
+            var options = new Dictionary<string, object>();
+            options["include"] = include;
+            return await _client.Request<UserDataResponseModel>(HttpMethod.Get, url, options, null, null);
         }
     }
 }

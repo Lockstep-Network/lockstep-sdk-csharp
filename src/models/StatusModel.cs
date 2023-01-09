@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -30,6 +30,11 @@ namespace LockstepSDK.Models
         /// If authentication is successful, contains the username of the logged-in user.
         /// </summary>
         public string UserName { get; set; }
+
+        /// <summary>
+        /// If authentication is successful, contains the email address of the logged-in user.
+        /// </summary>
+        public string EmailAddress { get; set; }
 
         /// <summary>
         /// If authentication is successful, contains subscription account name of logged-in user.
@@ -97,6 +102,11 @@ namespace LockstepSDK.Models
         public bool? OnboardingScheduled { get; set; }
 
         /// <summary>
+        /// Magic link information about the user
+        /// </summary>
+        public MagicLinkStatusModel MagicLink { get; set; }
+
+        /// <summary>
         /// Statuses for the dependencies of this api.
         /// OK if the dependency is working.
         /// </summary>
@@ -107,5 +117,10 @@ namespace LockstepSDK.Models
         /// You can use the /api/v1/useraccounts/change-group endpoint to change your active group.
         /// </summary>
         public UserGroupModel[] UserGroups { get; set; }
+
+        /// <summary>
+        /// Base Currency of the group
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
     }
 }

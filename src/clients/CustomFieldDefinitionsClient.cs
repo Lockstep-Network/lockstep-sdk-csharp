@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -82,10 +82,10 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of the Custom Field Definition to delete</param>
-        public async Task<LockstepResponse<CustomFieldDefinitionModel>> DeleteFieldDefinition(Guid id)
+        public async Task<LockstepResponse<ActionResultModel>> DeleteFieldDefinition(Guid id)
         {
             var url = $"/api/v1/CustomFieldDefinitions/{id}";
-            return await _client.Request<CustomFieldDefinitionModel>(HttpMethod.Delete, url, null, null, null);
+            return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
         }
 
         /// <summary>
@@ -116,7 +116,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No additional data collections are currently defined on this object, but may be supported in the future.</param>
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         public async Task<LockstepResponse<FetchResult<CustomFieldDefinitionModel>>> QueryFieldDefinitions(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {

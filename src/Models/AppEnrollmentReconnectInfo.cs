@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -23,7 +23,7 @@ namespace LockstepSDK.Models
     /// <summary>
     /// Information to reconnect an ERP.
     /// </summary>
-    public class AppEnrollmentReconnectRequest
+    public class AppEnrollmentReconnectInfo
     {
 
         /// <summary>
@@ -40,6 +40,11 @@ namespace LockstepSDK.Models
         /// The password for the web services account with access permissions.
         /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// The Realm Id for the app enrollment to reconnect.
+        /// </summary>
+        public string RealmId { get; set; }
 
         /// <summary>
         /// The access token id for the connector enrollment.

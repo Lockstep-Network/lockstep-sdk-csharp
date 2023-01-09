@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -83,6 +83,11 @@ namespace LockstepSDK.Models
         public string PaymentDueDate { get; set; }
 
         /// <summary>
+        /// The currency code for the invoice.
+        /// </summary>
+        public string CurrencyCode { get; set; }
+
+        /// <summary>
         /// The total amount of the Invoice.
         /// </summary>
         public decimal? InvoiceAmount { get; set; }
@@ -91,6 +96,21 @@ namespace LockstepSDK.Models
         /// The remaining balance value of this invoice.
         /// </summary>
         public decimal? OutstandingBalance { get; set; }
+
+        /// <summary>
+        /// The group&#39;s base currency code.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The invoice amount in the group&#39;s base currency
+        /// </summary>
+        public decimal? BaseCurrencyInvoiceAmount { get; set; }
+
+        /// <summary>
+        /// The outstanding balance amount in the group&#39;s base currency
+        /// </summary>
+        public decimal? BaseCurrencyOutstandingBalance { get; set; }
 
         /// <summary>
         /// A code identifying the type of this Invoice.
@@ -110,6 +130,17 @@ namespace LockstepSDK.Models
         public int? DaysPastDue { get; set; }
 
         /// <summary>
+        /// The number of payments associated to this invoice.
+        /// </summary>
+        public int? PaymentCount { get; set; }
+
+        /// <summary>
+        /// Specific invoices have support for pdf retrieval from their respective erp. When this flag is true, an additional
+        /// call to Invoices/{id}/pdf can be made to retrieve a pdf directly from the erp.
+        /// </summary>
+        public bool? SupportsErpPdfRetrieval { get; set; }
+
+        /// <summary>
         /// The memo text of the payments associated to this invoice.
         /// </summary>
         public string[] PaymentNumbers { get; set; }
@@ -118,5 +149,10 @@ namespace LockstepSDK.Models
         /// The ids of the payments associated to this invoice.
         /// </summary>
         public Guid[] PaymentIds { get; set; }
+
+        /// <summary>
+        /// The modified date of the invoice.
+        /// </summary>
+        public DateTime? Modified { get; set; }
     }
 }
