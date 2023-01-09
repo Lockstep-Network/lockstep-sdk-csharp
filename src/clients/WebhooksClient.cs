@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -104,7 +104,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collection: WebhookRules</param>
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         public async Task<LockstepResponse<FetchResult<WebhookModel>>> QueryWebhooks(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
@@ -126,7 +126,7 @@ namespace LockstepSDK.Clients
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collection: Records, RequestMessage, ResponseMessage</param>
         /// <param name="filter">The filter for this query. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
         /// <param name="select">The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
-        /// <param name="pageSize">The page size for results (default 200).</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500).</param>
         /// <param name="pageNumber">The page number for results (default 0).</param>
         public async Task<LockstepResponse<FetchResult<WebhookHistoryTableStorageModel>>> QueryWebhookHistory(Guid webhookId, string include = null, string filter = null, string select = null, int? pageSize = null, int? pageNumber = null)
         {

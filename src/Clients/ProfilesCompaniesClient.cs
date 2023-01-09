@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -23,16 +23,16 @@ using LockstepSDK.Models;
 namespace LockstepSDK.Clients
 {
     /// <summary>
-    /// API methods related to Profiles
+    /// API methods related to ProfilesCompanies
     /// </summary>
-    public class ProfilesClient
+    public class ProfilesCompaniesClient
     {
         private readonly LockstepApi _client;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public ProfilesClient(LockstepApi client)
+        public ProfilesCompaniesClient(LockstepApi client)
         {
             _client = client;
         }
@@ -46,7 +46,7 @@ namespace LockstepSDK.Clients
         /// <param name="urlSlug"></param>
         public async Task<LockstepResponse<PublicCompanyProfileModel>> RetrievePublicCompanyProfile(string urlSlug)
         {
-            var url = $"/api/v1/Profiles/companies/{urlSlug}";
+            var url = $"/api/v1/profiles/companies/{urlSlug}";
             return await _client.Request<PublicCompanyProfileModel>(HttpMethod.Get, url, null, null, null);
         }
 
@@ -62,11 +62,11 @@ namespace LockstepSDK.Clients
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
         public async Task<LockstepResponse<FetchResult<PublicCompanyProfileModel>>> QueryPublicCompanyProfiles(string filter = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
-            var url = $"/api/v1/Profiles/companies/query";
+            var url = $"/api/v1/profiles/companies/query";
             var options = new Dictionary<string, object>();
             if (filter != null) { options["filter"] = filter; }
             if (order != null) { options["order"] = order; }

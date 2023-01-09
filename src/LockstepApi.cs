@@ -1,15 +1,15 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
  *             
- * @copyright  2021-2022 Lockstep, Inc.
- * @version    2022.37.24
+ * @copyright  2021-2023 Lockstep, Inc.
+ * @version    2023.1.3
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,7 +36,7 @@ namespace LockstepSDK
     /// </summary>
     public class LockstepApi
     {
-        public const string SdkVersion = "2022.37.24";
+        public const string SdkVersion = "2023.1.3";
         
         private readonly string _serverUrl;
         private readonly HttpClient _client;
@@ -46,11 +46,6 @@ namespace LockstepSDK
         private string _bearerToken;
         private string _apiKey;
     
-        /// <summary>
-        /// API methods related to Activities
-        /// </summary>
-        public ActivitiesClient Activities { get; }
-
         /// <summary>
         /// API methods related to ApiKeys
         /// </summary>
@@ -87,9 +82,9 @@ namespace LockstepSDK
         public ContactsClient Contacts { get; }
 
         /// <summary>
-        /// API methods related to CreditMemoApplied
+        /// API methods related to CreditMemosApplied
         /// </summary>
-        public CreditMemoAppliedClient CreditMemoApplied { get; }
+        public CreditMemosAppliedClient CreditMemosApplied { get; }
 
         /// <summary>
         /// API methods related to Currencies
@@ -112,9 +107,9 @@ namespace LockstepSDK
         public DefinitionsClient Definitions { get; }
 
         /// <summary>
-        /// API methods related to Emails
+        /// API methods related to FeatureFlags
         /// </summary>
-        public EmailsClient Emails { get; }
+        public FeatureFlagsClient FeatureFlags { get; }
 
         /// <summary>
         /// API methods related to FinancialAccount
@@ -137,9 +132,19 @@ namespace LockstepSDK
         public GroupAccountsClient GroupAccounts { get; }
 
         /// <summary>
+        /// API methods related to InvoiceAddresses
+        /// </summary>
+        public InvoiceAddressesClient InvoiceAddresses { get; }
+
+        /// <summary>
         /// API methods related to InvoiceHistory
         /// </summary>
         public InvoiceHistoryClient InvoiceHistory { get; }
+
+        /// <summary>
+        /// API methods related to InvoiceLines
+        /// </summary>
+        public InvoiceLinesClient InvoiceLines { get; }
 
         /// <summary>
         /// API methods related to Invoices
@@ -152,14 +157,14 @@ namespace LockstepSDK
         public LeadsClient Leads { get; }
 
         /// <summary>
+        /// API methods related to MagicLinks
+        /// </summary>
+        public MagicLinksClient MagicLinks { get; }
+
+        /// <summary>
         /// API methods related to Notes
         /// </summary>
         public NotesClient Notes { get; }
-
-        /// <summary>
-        /// API methods related to PaymentApplications
-        /// </summary>
-        public PaymentApplicationsClient PaymentApplications { get; }
 
         /// <summary>
         /// API methods related to Payments
@@ -167,9 +172,24 @@ namespace LockstepSDK
         public PaymentsClient Payments { get; }
 
         /// <summary>
-        /// API methods related to Profiles
+        /// API methods related to PaymentsApplied
         /// </summary>
-        public ProfilesClient Profiles { get; }
+        public PaymentsAppliedClient PaymentsApplied { get; }
+
+        /// <summary>
+        /// API methods related to ProfilesAccounting
+        /// </summary>
+        public ProfilesAccountingClient ProfilesAccounting { get; }
+
+        /// <summary>
+        /// API methods related to ProfilesAccountingContacts
+        /// </summary>
+        public ProfilesAccountingContactsClient ProfilesAccountingContacts { get; }
+
+        /// <summary>
+        /// API methods related to ProfilesCompanies
+        /// </summary>
+        public ProfilesCompaniesClient ProfilesCompanies { get; }
 
         /// <summary>
         /// API methods related to Provisioning
@@ -190,6 +210,16 @@ namespace LockstepSDK
         /// API methods related to Sync
         /// </summary>
         public SyncClient Sync { get; }
+
+        /// <summary>
+        /// API methods related to Transactions
+        /// </summary>
+        public TransactionsClient Transactions { get; }
+
+        /// <summary>
+        /// API methods related to Transcriptions
+        /// </summary>
+        public TranscriptionsClient Transcriptions { get; }
 
         /// <summary>
         /// API methods related to UserAccounts
@@ -227,7 +257,6 @@ namespace LockstepSDK
             _client = new HttpClient(handler);
             
             _serverUrl = customUrl;
-            Activities = new ActivitiesClient(this);
             ApiKeys = new ApiKeysClient(this);
             AppEnrollments = new AppEnrollmentsClient(this);
             Applications = new ApplicationsClient(this);
@@ -235,27 +264,34 @@ namespace LockstepSDK
             CodeDefinitions = new CodeDefinitionsClient(this);
             Companies = new CompaniesClient(this);
             Contacts = new ContactsClient(this);
-            CreditMemoApplied = new CreditMemoAppliedClient(this);
+            CreditMemosApplied = new CreditMemosAppliedClient(this);
             Currencies = new CurrenciesClient(this);
             CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
             CustomFieldValues = new CustomFieldValuesClient(this);
             Definitions = new DefinitionsClient(this);
-            Emails = new EmailsClient(this);
+            FeatureFlags = new FeatureFlagsClient(this);
             FinancialAccount = new FinancialAccountClient(this);
             FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
             FinancialYearSettings = new FinancialYearSettingsClient(this);
             GroupAccounts = new GroupAccountsClient(this);
+            InvoiceAddresses = new InvoiceAddressesClient(this);
             InvoiceHistory = new InvoiceHistoryClient(this);
+            InvoiceLines = new InvoiceLinesClient(this);
             Invoices = new InvoicesClient(this);
             Leads = new LeadsClient(this);
+            MagicLinks = new MagicLinksClient(this);
             Notes = new NotesClient(this);
-            PaymentApplications = new PaymentApplicationsClient(this);
             Payments = new PaymentsClient(this);
-            Profiles = new ProfilesClient(this);
+            PaymentsApplied = new PaymentsAppliedClient(this);
+            ProfilesAccounting = new ProfilesAccountingClient(this);
+            ProfilesAccountingContacts = new ProfilesAccountingContactsClient(this);
+            ProfilesCompanies = new ProfilesCompaniesClient(this);
             Provisioning = new ProvisioningClient(this);
             Reports = new ReportsClient(this);
             Status = new StatusClient(this);
             Sync = new SyncClient(this);
+            Transactions = new TransactionsClient(this);
+            Transcriptions = new TranscriptionsClient(this);
             UserAccounts = new UserAccountsClient(this);
             UserRoles = new UserRolesClient(this);
             WebhookRules = new WebhookRulesClient(this);

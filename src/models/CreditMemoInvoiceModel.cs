@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -33,6 +33,16 @@ namespace LockstepSDK.Models
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
         public Guid? GroupKey { get; set; }
+
+        /// <summary>
+        /// The base currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The currency code of the credit memo invoice.
+        /// </summary>
+        public string CurrencyCode { get; set; }
 
         /// <summary>
         /// The unique ID of this record, automatically assigned by Lockstep when this record is
@@ -61,6 +71,11 @@ namespace LockstepSDK.Models
         /// Amount applied to credit memo.
         /// </summary>
         public decimal? CreditMemoAppliedAmount { get; set; }
+
+        /// <summary>
+        /// The amount applied to credit memo in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyCreditMemoAppliedAmount { get; set; }
 
         /// <summary>
         /// An additional reference code that is sometimes used to identify this invoice.
@@ -92,5 +107,15 @@ namespace LockstepSDK.Models
         /// The remaining balance value of this invoice.
         /// </summary>
         public decimal? OutstandingBalanceAmount { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice, inclusive of all taxes and line items in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyTotalAmount { get; set; }
+
+        /// <summary>
+        /// The remaining balance value of this invoice in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyOutstandingBalanceAmount { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -153,7 +153,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter to use to select from the list of available Attachments, in the [Searchlight query syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available for querying but may be available in the future.</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
         public async Task<LockstepResponse<FetchResult<AttachmentModel>>> QueryAttachments(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {

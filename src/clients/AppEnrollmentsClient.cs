@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -81,12 +81,12 @@ namespace LockstepSDK.Clients
         /// </summary>
         /// <param name="id">The unique ID number of the App Enrollment to delete</param>
         /// <param name="removeEnrollmentData">Option to remove all associated app enrollment data when deleting app enrollment (default false)</param>
-        public async Task<LockstepResponse<ActionResultModel>> DeleteAppEnrollment(Guid id, bool? removeEnrollmentData = null)
+        public async Task<LockstepResponse<DeleteResult>> DeleteAppEnrollment(Guid id, bool? removeEnrollmentData = null)
         {
             var url = $"/api/v1/AppEnrollments/{id}";
             var options = new Dictionary<string, object>();
             if (removeEnrollmentData != null) { options["removeEnrollmentData"] = removeEnrollmentData; }
-            return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, options, null, null);
+            return await _client.Request<DeleteResult>(HttpMethod.Delete, url, options, null, null);
         }
 
         /// <summary>
@@ -111,9 +111,9 @@ namespace LockstepSDK.Clients
         /// Updates the settings associated with this App Enrollment
         ///
         /// </summary>
-        /// <param name="id">The unique ID number of the App Enrollment to reconnect</param>
+        /// <param name="id">The id for the app enrollment</param>
         /// <param name="body">Information to reconnect the App Enrollment</param>
-        public async Task<LockstepResponse<CustomFieldValueModel[]>> ReconnectAppEnrollment(Guid id, AppEnrollmentReconnectRequest body)
+        public async Task<LockstepResponse<CustomFieldValueModel[]>> ReconnectAppEnrollment(Guid id, AppEnrollmentReconnectInfo body)
         {
             var url = $"/api/v1/AppEnrollments/{id}/reconnect";
             return await _client.Request<CustomFieldValueModel[]>(HttpMethod.Post, url, null, body, null);
@@ -132,7 +132,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: App, CustomFields, LastSync, LastSuccessfulSync</param>
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        /// <param name="pageSize">The page size for results (default 200). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         public async Task<LockstepResponse<FetchResult<AppEnrollmentModel>>> QueryAppEnrollments(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {

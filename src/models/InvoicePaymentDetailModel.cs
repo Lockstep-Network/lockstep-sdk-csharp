@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -33,6 +33,16 @@ namespace LockstepSDK.Models
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
         /// </summary>
         public Guid? GroupKey { get; set; }
+
+        /// <summary>
+        /// The base currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The payment&#39;s currency code.
+        /// </summary>
+        public string CurrencyCode { get; set; }
 
         /// <summary>
         /// The unique identifier of this PaymentApplied record.
@@ -62,6 +72,11 @@ namespace LockstepSDK.Models
         public decimal? PaymentAppliedAmount { get; set; }
 
         /// <summary>
+        /// Amount applied to Invoice in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyPaymentAppliedAmount { get; set; }
+
+        /// <summary>
         /// An additional reference code that is sometimes used to identify this Payment.
         /// The meaning of this field is specific to the ERP or accounting system used by the user.
         /// </summary>
@@ -81,5 +96,15 @@ namespace LockstepSDK.Models
         /// The remaining balance value of this Payment.
         /// </summary>
         public decimal? UnappliedAmount { get; set; }
+
+        /// <summary>
+        /// The total value of this Payment in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyPaymentAmount { get; set; }
+
+        /// <summary>
+        /// The remaining balance value of this Payment in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyUnappliedAmount { get; set; }
     }
 }

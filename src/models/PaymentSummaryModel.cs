@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -67,6 +67,11 @@ namespace LockstepSDK.Models
         public string PaymentDate { get; set; }
 
         /// <summary>
+        /// The currency code of the payment.
+        /// </summary>
+        public string CurrencyCode { get; set; }
+
+        /// <summary>
         /// Total amount of this payment.
         /// </summary>
         public decimal? PaymentAmount { get; set; }
@@ -75,6 +80,21 @@ namespace LockstepSDK.Models
         /// Unapplied balance of this payment.
         /// </summary>
         public decimal? UnappliedAmount { get; set; }
+
+        /// <summary>
+        /// The base currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The payment amount in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyPaymentAmount { get; set; }
+
+        /// <summary>
+        /// The unapplied amount in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyUnappliedAmount { get; set; }
 
         /// <summary>
         /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
@@ -113,6 +133,12 @@ namespace LockstepSDK.Models
         public string PaymentCompanyName { get; set; }
 
         /// <summary>
+        /// Specific payments have support for pdf retrieval from their respective erp. When this flag is true, an additional
+        /// call to Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
+        /// </summary>
+        public bool? SupportsErpPdfRetrieval { get; set; }
+
+        /// <summary>
         /// The ids of the customer for the associated invoices.
         /// </summary>
         public Guid[] CustomerIds { get; set; }
@@ -131,5 +157,10 @@ namespace LockstepSDK.Models
         /// The names of the company for the associated invoices.
         /// </summary>
         public string[] CompanyNames { get; set; }
+
+        /// <summary>
+        /// The modified date of the payment
+        /// </summary>
+        public DateTime? Modified { get; set; }
     }
 }

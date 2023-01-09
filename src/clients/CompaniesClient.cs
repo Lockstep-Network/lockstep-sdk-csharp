@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -74,7 +74,7 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Disable the Company referred to by this unique identifier.
+        /// Delete the Company referred to by this unique identifier.
         ///
         /// A Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.
         ///
@@ -82,10 +82,10 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
-        public async Task<LockstepResponse<ActionResultModel>> DisableCompany(Guid id)
+        public async Task<LockstepResponse<DeleteResult>> DeleteCompany(Guid id)
         {
             var url = $"/api/v1/Companies/{id}";
-            return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
+            return await _client.Request<DeleteResult>(HttpMethod.Delete, url, null, null, null);
         }
 
         /// <summary>
@@ -104,6 +104,21 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
+        /// Delete the Companies referred to by these unique identifiers.
+        ///
+        /// A Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.
+        ///
+        /// See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
+        ///
+        /// </summary>
+        /// <param name="body">The unique Lockstep Platform ID numbers of the Companies to delete; NOT the customer's ERP key</param>
+        public async Task<LockstepResponse<DeleteResult>> DeleteCompanies(BulkDeleteRequestModel body)
+        {
+            var url = $"/api/v1/Companies";
+            return await _client.Request<DeleteResult>(HttpMethod.Delete, url, null, body, null);
+        }
+
+        /// <summary>
         /// Queries Companies for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
         /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
@@ -116,7 +131,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Attachments, Contacts, CustomFields, Invoices, Notes, Classification</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
         public async Task<LockstepResponse<FetchResult<CompanyModel>>> QueryCompanies(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
@@ -143,7 +158,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
         /// <param name="reportDate">The date to calculate the fields on. If no date is entered the current UTC date will be used.</param>
         public async Task<LockstepResponse<FetchResult<CustomerSummaryModel>>> QueryCustomerSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, DateTime? reportDate = null)
@@ -172,7 +187,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
         /// <param name="reportDate">The date to calculate the fields on. If no date is entered the current UTC date will be used.</param>
         public async Task<LockstepResponse<FetchResult<VendorSummaryModel>>> QueryVendorSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, DateTime? reportDate = null)
@@ -206,19 +221,42 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Sets the logo for specified company. The logo will be stored in the Lockstep Platform and will be **publicly accessible**.
         ///
-        /// .jpg, .jpeg, and .png are supported. 5MB maximum. If no logo is uploaded, the existing logo will be deleted.
+        /// .jpg, .jpeg, .png, and .webp are supported. 2MB maximum. If no logo is uploaded, the existing logo will be deleted.
         ///
         /// A Company represents a customer, a vendor, or a company within the organization of the account holder. Companies can have parents and children, representing an organizational hierarchy of corporate entities. You can use Companies to track projects and financial data under this Company label.
+        ///
+        /// Optional view box meta data for the provided logo may be supplied using the following query parameters. Please note that you must supply either all of the values or none of the values. &lt;ul&gt;&lt;li&gt;min_x&lt;/li&gt;&lt;li&gt;min_y&lt;/li&gt;&lt;li&gt;width&lt;/li&gt;&lt;li&gt;height&lt;/li&gt;&lt;/ul&gt;
         ///
         /// See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
+        /// <param name="min_x">ViewBox minX setting for this Company's logo.</param>
+        /// <param name="min_y">ViewBox minY setting for this Company's logo.</param>
+        /// <param name="width">ViewBox width setting for this Company's logo.</param>
+        /// <param name="height">ViewBox height setting for this Company's logo.</param>
         /// <param name="filename">The full path of a file to upload to the API</param>
-        public async Task<LockstepResponse<CompanyModel>> SetCompanyLogo(Guid id, string filename)
+        public async Task<LockstepResponse<CompanyModel>> SetCompanyLogo(Guid id, string filename, decimal? min_x = null, decimal? min_y = null, decimal? width = null, decimal? height = null)
         {
             var url = $"/api/v1/Companies/{id}/logo";
-            return await _client.Request<CompanyModel>(HttpMethod.Post, url, null, null, filename);
+            var options = new Dictionary<string, object>();
+            if (min_x != null) { options["min_x"] = min_x; }
+            if (min_y != null) { options["min_y"] = min_y; }
+            if (width != null) { options["width"] = width; }
+            if (height != null) { options["height"] = height; }
+            return await _client.Request<CompanyModel>(HttpMethod.Post, url, options, null, filename);
+        }
+
+        /// <summary>
+        /// Update view box meta data for the given Company id.
+        ///
+        /// </summary>
+        /// <param name="id">The unique Lockstep Platform ID number of this Company; NOT the customer's ERP key</param>
+        /// <param name="body">The `ViewBoxSettingsModel` containing meta data value updates</param>
+        public async Task<LockstepResponse<CompanyModel>> Updatelogoviewboxsettings(Guid id, ViewBoxSettingsModel body)
+        {
+            var url = $"/api/v1/Companies/{id}/logo-settings";
+            return await _client.Request<CompanyModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
     }
 }

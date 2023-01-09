@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -67,13 +67,6 @@ namespace LockstepSDK.Models
         /// * `CustomerVendor` - Both a customer and a vendor.
         /// </summary>
         public string CompanyType { get; set; }
-
-        /// <summary>
-        /// The status of the company.  Companies can be either `Active` or `Inactive`.  When matched to a
-        /// Lockstep corporate profile, this value will change to reflect that this record will be kept
-        /// in sync with that company&#39;s identity.
-        /// </summary>
-        public string CompanyStatus { get; set; }
 
         /// <summary>
         /// If this business entity is part of an organization, this value is non-null and it is set
@@ -250,6 +243,11 @@ namespace LockstepSDK.Models
         /// The public url slug for the Company.
         /// </summary>
         public string PublicUrlSlug { get; set; }
+
+        /// <summary>
+        /// View box settings for the company logo.
+        /// </summary>
+        public ViewBoxSettingsModel ViewBoxSettings { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

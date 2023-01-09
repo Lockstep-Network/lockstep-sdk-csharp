@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -82,6 +82,11 @@ namespace LockstepSDK.Models
         public string PaymentDueDate { get; set; }
 
         /// <summary>
+        /// The currency code of the invoice
+        /// </summary>
+        public string CurrencyCode { get; set; }
+
+        /// <summary>
         /// The total amount of the Invoice.
         /// </summary>
         public decimal? InvoiceAmount { get; set; }
@@ -90,6 +95,21 @@ namespace LockstepSDK.Models
         /// The remaining balance value of this invoice.
         /// </summary>
         public decimal? OutstandingBalance { get; set; }
+
+        /// <summary>
+        /// The currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The total amount of the Invoice in the group&#39;s currency.
+        /// </summary>
+        public decimal? BaseCurrencyInvoiceAmount { get; set; }
+
+        /// <summary>
+        /// The remaining balance value of this invoice in the group&#39;s currency.
+        /// </summary>
+        public decimal? BaseCurrencyOutstandingBalance { get; set; }
 
         /// <summary>
         /// A code identifying the type of this Invoice.

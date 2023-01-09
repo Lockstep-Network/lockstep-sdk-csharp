@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -70,6 +70,11 @@ namespace LockstepSDK.Models
         public string Email { get; set; }
 
         /// <summary>
+        /// The currency code of the payment.
+        /// </summary>
+        public string CurrencyCode { get; set; }
+
+        /// <summary>
         /// Total amount of this Payment.
         /// </summary>
         public decimal? PaymentAmount { get; set; }
@@ -78,6 +83,21 @@ namespace LockstepSDK.Models
         /// Unapplied balance of this Payment.
         /// </summary>
         public decimal? UnappliedAmount { get; set; }
+
+        /// <summary>
+        /// The base currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The payment amount in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyPaymentAmount { get; set; }
+
+        /// <summary>
+        /// The payment amount in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyUnappliedAmount { get; set; }
 
         /// <summary>
         /// The type of payment, AR Payment or AP Payment.

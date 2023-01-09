@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -35,6 +35,11 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
+        /// The base currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
         /// The month the risk rate was calculated for
         /// </summary>
         public DateTime? ReportDate { get; set; }
@@ -50,7 +55,7 @@ namespace LockstepSDK.Models
         public int? TotalInvoiceCount { get; set; }
 
         /// <summary>
-        /// The sum of the total amount for invoices in the calculation month
+        /// The sum of the total amount for invoices in the calculation month in the group&#39;s base currency.
         /// </summary>
         public decimal? TotalInvoiceAmount { get; set; }
 
@@ -60,7 +65,7 @@ namespace LockstepSDK.Models
         public int? AtRiskCount { get; set; }
 
         /// <summary>
-        /// The sum of the outstanding balance of open invoices over 90 days from the calculation month
+        /// The sum of the outstanding balance of open invoices over 90 days from the calculation month in the group&#39;s base currency.
         /// </summary>
         public decimal? AtRiskAmount { get; set; }
 

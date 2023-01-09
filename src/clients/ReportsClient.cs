@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2022 Lockstep, Inc.
+ * (c) 2021-2023 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2022 Lockstep, Inc.
+ * @copyright  2021-2023 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -111,7 +111,7 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
         public async Task<LockstepResponse<FetchResult<PayablesComingDueModel>>> PayablesComingDueSummary(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
@@ -352,9 +352,9 @@ namespace LockstepSDK.Clients
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. No collections are currently available but may be offered in the future</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
-        /// <param name="pageSize">The page size for results (default 200, maximum of 10,000)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>
-        public async Task<LockstepResponse<DpoSummaryModel[]>> DaysPayableOutstandingSummary(DateTime reportDate, string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
+        public async Task<LockstepResponse<FetchResult<DpoSummaryModel>>> DaysPayableOutstandingSummary(DateTime reportDate, string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
         {
             var url = $"/api/v1/Reports/daily-payable-outstanding-summary";
             var options = new Dictionary<string, object>();
@@ -364,7 +364,7 @@ namespace LockstepSDK.Clients
             if (order != null) { options["order"] = order; }
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
-            return await _client.Request<DpoSummaryModel[]>(HttpMethod.Get, url, options, null, null);
+            return await _client.Request<FetchResult<DpoSummaryModel>>(HttpMethod.Get, url, options, null, null);
         }
 
         /// <summary>
@@ -374,12 +374,12 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="reportDate">The date the outstanding values are calculated on. Should be either the current day or the end of a previous quarter.</param>
-        public async Task<LockstepResponse<DpoSummaryGroupTotalModel[]>> DaysPayableOutstandingSummaryTotal(DateTime reportDate)
+        public async Task<LockstepResponse<DpoSummaryGroupTotalModel>> DaysPayableOutstandingSummaryTotal(DateTime reportDate)
         {
             var url = $"/api/v1/Reports/daily-payable-outstanding-summary-total";
             var options = new Dictionary<string, object>();
             options["reportDate"] = reportDate;
-            return await _client.Request<DpoSummaryGroupTotalModel[]>(HttpMethod.Get, url, options, null, null);
+            return await _client.Request<DpoSummaryGroupTotalModel>(HttpMethod.Get, url, options, null, null);
         }
     }
 }
