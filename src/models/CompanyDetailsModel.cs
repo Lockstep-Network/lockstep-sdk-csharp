@@ -115,12 +115,17 @@ namespace LockstepSDK.Models
         public int? OutstandingInvoices { get; set; }
 
         /// <summary>
-        /// Company total outstanding invoice amount
+        /// The group&#39;s base currency code.
+        /// </summary>
+        public string GroupBaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// Company total outstanding invoice amount in the group&#39;s base currency.
         /// </summary>
         public decimal? OutstandingAmount { get; set; }
 
         /// <summary>
-        /// Company total past due amount
+        /// Company total past due amount in the group&#39;s base currency.
         /// </summary>
         public decimal? AmountPastDue { get; set; }
 

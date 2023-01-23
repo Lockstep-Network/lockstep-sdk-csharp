@@ -163,13 +163,28 @@ namespace LockstepSDK.Clients
         /// Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.
         ///
         /// </summary>
-        /// <param name="include">The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case in storage. Possible values are: UTM</param>
+        /// <param name="include">The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case. Possible values are: UTM</param>
         public async Task<LockstepResponse<UserDataResponseModel>> GetUserData(string[] include)
         {
             var url = $"/api/v1/UserAccounts/user-data";
             var options = new Dictionary<string, object>();
             options["include"] = include;
             return await _client.Request<UserDataResponseModel>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
+        /// Set support access for the calling user.
+        ///
+        /// Support access allows Lockstep to access the user&#39;s account to troubleshoot issues. Access is granted for a limited time, can be revoked at any time, and requires a code to verify the access.
+        ///
+        /// Every call to this API will regenerate the support access code.
+        ///
+        /// </summary>
+        /// <param name="body"></param>
+        public async Task<LockstepResponse<SupportAccessModel>> SetSupportAccess(SupportAccessRequest body)
+        {
+            var url = $"/api/v1/UserAccounts/support-access";
+            return await _client.Request<SupportAccessModel>(HttpMethod.Post, url, null, body, null);
         }
     }
 }

@@ -20,22 +20,15 @@ using System;
 namespace LockstepSDK.Models
 {
 
-    public class InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult
+    /// <summary>
+    /// Sets support access data for a user.
+    /// </summary>
+    public class SupportAccessRequest
     {
 
-        public int? TotalCount { get; set; }
-
-        public int? PageSize { get; set; }
-
-        public int? PageNumber { get; set; }
-
-        public InvoiceSummaryModel[] Records { get; set; }
-
         /// <summary>
-        /// The totals for an Invoice Summary
+        /// The UTC date and time when support access should expire.
         /// </summary>
-        public InvoiceSummaryTotalsModel Summary { get; set; }
-
-        public SummaryAgingTotalsModel[] AgingSummary { get; set; }
+        public DateTime? ExpiresAt { get; set; }
     }
 }

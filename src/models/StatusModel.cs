@@ -107,6 +107,16 @@ namespace LockstepSDK.Models
         public MagicLinkStatusModel MagicLink { get; set; }
 
         /// <summary>
+        /// Information allowing Lockstep to offer direct support to the user
+        /// </summary>
+        public SupportAccessModel SupportAccess { get; set; }
+
+        /// <summary>
+        /// True if the user is being impersonated by the Lockstep support team.
+        /// </summary>
+        public bool? IsImpersonated { get; set; }
+
+        /// <summary>
         /// Statuses for the dependencies of this api.
         /// OK if the dependency is working.
         /// </summary>

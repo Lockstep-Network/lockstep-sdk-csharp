@@ -65,6 +65,11 @@ namespace LockstepSDK.Models
         public string InvoiceReferenceCode { get; set; }
 
         /// <summary>
+        /// The currency code of the invoice the payment is associated with.
+        /// </summary>
+        public string InvoiceCurrencyCode { get; set; }
+
+        /// <summary>
         /// Invoice total amount payment is associated with
         /// </summary>
         public decimal? InvoiceTotalAmount { get; set; }
@@ -73,6 +78,11 @@ namespace LockstepSDK.Models
         /// Date payment placed
         /// </summary>
         public DateTime? PaymentDate { get; set; }
+
+        /// <summary>
+        /// The currency code of the payment.
+        /// </summary>
+        public string PaymentCurrencyCode { get; set; }
 
         /// <summary>
         /// Amount payment was made for

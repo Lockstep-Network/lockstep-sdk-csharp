@@ -88,5 +88,10 @@ namespace LockstepSDK.Models
         /// A list of FinancialAccountBalanceHistory records to merge with your Lockstep Platform data
         /// </summary>
         public FinancialAccountBalanceHistorySyncModel[] FinancialAccountBalanceHistories { get; set; }
+
+        /// <summary>
+        /// A list of BaseCurrency records to merge with your Lockstep Platform data
+        /// </summary>
+        public BaseCurrencySyncModel[] BaseCurrencies { get; set; }
     }
 }

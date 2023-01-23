@@ -45,7 +45,12 @@ namespace LockstepSDK.Models
         public int? Bills { get; set; }
 
         /// <summary>
-        /// The total amount outstanding
+        /// The group&#39;s base currency code
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// The total amount outstanding at the group&#39;s base currency.
         /// </summary>
         public decimal? AmountOutstanding { get; set; }
 

@@ -60,7 +60,12 @@ namespace LockstepSDK.Models
         public decimal? PercentageOfTotal { get; set; }
 
         /// <summary>
-        /// Total amount due for this time period
+        /// The base currency code of the group
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// Total amount due for this time period at the group&#39;s base currency
         /// </summary>
         public decimal? TotalAmountDue { get; set; }
 

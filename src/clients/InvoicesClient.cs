@@ -134,9 +134,11 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Retrieves a PDF file for this invoice if it is of one of the supported invoice types and has been synced using an app enrollment to one of the supported apps.
         ///
-        /// Supported apps: Quickbooks Online, Xero
+        /// Sage Intacct supports AR Invoices.
         ///
-        /// Supported invoice types: Invoice, Credit Memo
+        /// Quickbooks Online supports AR Invoices, and AR Credit Memos.
+        ///
+        /// Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.
         ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
