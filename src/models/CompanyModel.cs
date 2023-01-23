@@ -245,6 +245,21 @@ namespace LockstepSDK.Models
         public string PublicUrlSlug { get; set; }
 
         /// <summary>
+        /// State Tax ID
+        /// </summary>
+        public string StateTaxId { get; set; }
+
+        /// <summary>
+        /// The state where the company was registered.
+        /// </summary>
+        public string StateOfIncorporation { get; set; }
+
+        /// <summary>
+        /// Linkedin Url
+        /// </summary>
+        public string LinkedInUrlSlug { get; set; }
+
+        /// <summary>
         /// View box settings for the company logo.
         /// </summary>
         public ViewBoxSettingsModel ViewBoxSettings { get; set; }

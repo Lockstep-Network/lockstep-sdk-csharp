@@ -45,5 +45,10 @@ namespace LockstepSDK.Models
         /// The type of LockstepApi2.Models.TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.
         /// </summary>
         public string InvoiceTypeCode { get; set; }
+
+        /// <summary>
+        /// Group account transcription validation request item is associated with.
+        /// </summary>
+        public Guid? TranscriptionValidationRequestId { get; set; }
     }
 }

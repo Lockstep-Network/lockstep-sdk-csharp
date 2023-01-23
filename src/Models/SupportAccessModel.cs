@@ -20,22 +20,20 @@ using System;
 namespace LockstepSDK.Models
 {
 
-    public class TransactionModelTransactionSummaryTotalModelSummaryFetchResult
+    /// <summary>
+    /// Contains information for Lockstep to support/assist a user.
+    /// </summary>
+    public class SupportAccessModel
     {
 
-        public TransactionModel[] Records { get; set; }
-
-        public int? TotalCount { get; set; }
-
-        public int? PageSize { get; set; }
-
-        public int? PageNumber { get; set; }
+        /// <summary>
+        /// The code required to assist the user.
+        /// </summary>
+        public string Code { get; set; }
 
         /// <summary>
-        /// Represents transaction summary information based on the query request within the group account.
+        /// The UTC date and time when the support access will expire.
         /// </summary>
-        public TransactionSummaryTotalModel Summary { get; set; }
-
-        public SummaryAgingTotalsModel[] AgingSummary { get; set; }
+        public DateTime? ExpiresAt { get; set; }
     }
 }

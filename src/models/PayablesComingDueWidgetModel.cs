@@ -41,7 +41,12 @@ namespace LockstepSDK.Models
         public DateTime? Date { get; set; }
 
         /// <summary>
-        /// Total amount due for this time period
+        /// The group&#39;s base currency code.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// Total amount due for this time period at the group&#39;s base currency.
         /// </summary>
         public decimal? AmountDue { get; set; }
     }

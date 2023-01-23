@@ -116,5 +116,18 @@ namespace LockstepSDK.Clients
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<AccountingProfileContactModel>>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        /// Updates an accounting profile contact that matches the specified id with the primary contact attached to the accounting profile
+        ///
+        /// An Accounting Profile Contact has a link to a Contact that is associated with your company&#39;s Accounting Profile. These Contacts are secondary contacts to the primary that is on the profile.
+        ///
+        /// </summary>
+        /// <param name="id">The unique Lockstep Platform ID number of the Accounting Profile Contact to update</param>
+        public async Task<LockstepResponse<AccountingProfileContactModel>> SwapSecondaryandPrimaryContact(Guid id)
+        {
+            var url = $"/api/v1/profiles/accounting/contacts/{id}/primary";
+            return await _client.Request<AccountingProfileContactModel>(new HttpMethod("PATCH"), url, null, null, null);
+        }
     }
 }

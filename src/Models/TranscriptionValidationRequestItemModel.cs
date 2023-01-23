@@ -23,7 +23,7 @@ namespace LockstepSDK.Models
     /// <summary>
     /// Represents a transcription validation request item to be validated.
     /// </summary>
-    public class TranscriptionValidationRequestItem
+    public class TranscriptionValidationRequestItemModel
     {
 
         /// <summary>

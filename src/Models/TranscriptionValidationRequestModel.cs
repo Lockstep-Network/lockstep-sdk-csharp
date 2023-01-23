@@ -23,7 +23,7 @@ namespace LockstepSDK.Models
     /// <summary>
     /// Represents a transcription validation request that is used to validate if file is of a specific type.
     /// </summary>
-    public class TranscriptionValidationRequest
+    public class TranscriptionValidationRequestModel
     {
 
         /// <summary>
@@ -71,6 +71,6 @@ namespace LockstepSDK.Models
         /// All items attached to this transcription validation request.
         /// To retrieve this collection, specify `Items` in the &quot;Include&quot; parameter for your query.
         /// </summary>
-        public TranscriptionValidationRequestItem[] Items { get; set; }
+        public TranscriptionValidationRequestItemModel[] Items { get; set; }
     }
 }
