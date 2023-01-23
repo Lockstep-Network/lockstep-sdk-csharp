@@ -119,62 +119,62 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Retrieves the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+        /// Retrieves the TranscriptionValidationRequestItemModel specified by this unique identifier.
         ///
-        /// A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+        /// A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
         ///
         /// </summary>
-        /// <param name="body">The LockstepApi2.Models.TranscriptionValidationRequestItemModels to add to an existing LockstepApi2.Models.TranscriptionValidationRequestItemModel</param>
-        public async Task<LockstepResponse<TranscriptionValidationRequestItemModel[]>> CreatesaLockstepApi2.Models.TranscriptionValidationRequestItemModel(TranscriptionRequestSubmit[] body)
+        /// <param name="body">The TranscriptionValidationRequestItemModels to add to an existing TranscriptionValidationRequestItemModel</param>
+        public async Task<LockstepResponse<TranscriptionValidationRequestItemModel[]>> CreatesaTranscriptionValidationRequestItemModel(TranscriptionRequestSubmit[] body)
         {
             var url = $"/api/v1/Transcriptions/validation-items";
             return await _client.Request<TranscriptionValidationRequestItemModel[]>(HttpMethod.Post, url, null, body, null);
         }
 
         /// <summary>
-        /// Retrieves the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+        /// Retrieves the TranscriptionValidationRequestItemModel specified by this unique identifier.
         ///
-        /// A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+        /// A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the LockstepApi2.Models.TranscriptionValidationRequestItemModel</param>
-        public async Task<LockstepResponse<TranscriptionValidationRequestItemModel>> RetrieveaLockstepApi2.Models.TranscriptionValidationRequestItemModel(Guid id)
+        /// <param name="id">The unique Lockstep Platform ID number of the TranscriptionValidationRequestItemModel</param>
+        public async Task<LockstepResponse<TranscriptionValidationRequestItemModel>> RetrieveaTranscriptionValidationRequestItemModel(Guid id)
         {
             var url = $"/api/v1/Transcriptions/validation-items/{id}";
             return await _client.Request<TranscriptionValidationRequestItemModel>(HttpMethod.Get, url, null, null, null);
         }
 
         /// <summary>
-        /// Updates the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+        /// Updates the TranscriptionValidationRequestItemModel specified by this unique identifier.
         ///
         /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
         ///
-        /// A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+        /// A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the LockstepApi2.Models.TranscriptionValidationRequestItemModel</param>
-        /// <param name="body">A list of changes to apply to this LockstepApi2.Models.TranscriptionValidationRequestItemModel</param>
-        public async Task<LockstepResponse<TranscriptionValidationRequestItemModel>> UpdateaLockstepApi2.Models.TranscriptionValidationRequestItemModel(Guid id, object body)
+        /// <param name="id">The unique Lockstep Platform ID number of the TranscriptionValidationRequestItemModel</param>
+        /// <param name="body">A list of changes to apply to this TranscriptionValidationRequestItemModel</param>
+        public async Task<LockstepResponse<TranscriptionValidationRequestItemModel>> UpdateaTranscriptionValidationRequestItemModel(Guid id, object body)
         {
             var url = $"/api/v1/Transcriptions/validation-items/{id}";
             return await _client.Request<TranscriptionValidationRequestItemModel>(new HttpMethod("PATCH"), url, null, body, null);
         }
 
         /// <summary>
-        /// Deletes the LockstepApi2.Models.TranscriptionValidationRequestItemModel specified by this unique identifier.
+        /// Deletes the TranscriptionValidationRequestItemModel specified by this unique identifier.
         ///
-        /// A LockstepApi2.Models.TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
+        /// A TranscriptionValidationRequestItemModel represents a file sent from the client to verify the file type using the machine learning platform Sage AI.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the LockstepApi2.Models.TranscriptionValidationRequestItemModel</param>
-        public async Task<LockstepResponse<DeleteResult>> DeleteaLockstepApi2.Models.TranscriptionValidationRequestItemModel(Guid id)
+        /// <param name="id">The unique Lockstep Platform ID number of the TranscriptionValidationRequestItemModel</param>
+        public async Task<LockstepResponse<DeleteResult>> DeleteaTranscriptionValidationRequestItemModel(Guid id)
         {
             var url = $"/api/v1/Transcriptions/validation-items/{id}";
             return await _client.Request<DeleteResult>(HttpMethod.Delete, url, null, null, null);
         }
 
         /// <summary>
-        /// Queries LockstepApi2.Models.TranscriptionValidationRequestItemModels for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
+        /// Queries TranscriptionValidationRequestItemModels for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
         /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
         ///

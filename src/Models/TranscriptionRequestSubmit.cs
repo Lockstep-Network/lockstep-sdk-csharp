@@ -42,7 +42,7 @@ namespace LockstepSDK.Models
         public string FileName { get; set; }
 
         /// <summary>
-        /// The type of LockstepApi2.Models.TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.
+        /// The type of TranscriptionRequestSubmit.InvoiceTypeCode requested to transcribe content to.
         /// </summary>
         public string InvoiceTypeCode { get; set; }
 
