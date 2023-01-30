@@ -246,7 +246,7 @@ namespace LockstepSDK
         /// Internal constructor for the client.  You should always begin with `withEnvironment()`.
         /// </summary>
         /// <param name="customUrl"></param>
-        /// <param name="clientHandler">Optional client handler to set custom configuration for HTTP client</param>
+        /// <param name="clientHandler">Optional handler to set specific settings for the HTTP client</param>
         private LockstepApi(string customUrl, HttpClientHandler clientHandler = null)
         {
             // Add support for HTTP compression
