@@ -44,6 +44,11 @@ namespace LockstepSDK.Models
         public Guid? ContactId { get; set; }
 
         /// <summary>
+        /// Determines whether the contact is primary or secondary.
+        /// </summary>
+        public bool? IsPrimary { get; set; }
+
+        /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///

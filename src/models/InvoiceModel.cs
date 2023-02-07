@@ -128,22 +128,22 @@ namespace LockstepSDK.Models
         public string CurrencyCode { get; set; }
 
         /// <summary>
-        /// The total value of this invoice, inclusive of all taxes and line items.
+        /// The total value of this invoice, inclusive of all taxes and line items in it&#39;s tendered currency.
         /// </summary>
         public decimal? TotalAmount { get; set; }
 
         /// <summary>
-        /// The total sales (or transactional) tax calculated for this invoice.
+        /// The total sales (or transactional) tax calculated for this invoice in it&#39;s tendered currency.
         /// </summary>
         public decimal? SalesTaxAmount { get; set; }
 
         /// <summary>
-        /// The total discounts given by the seller to the buyer on this invoice.
+        /// The total discounts given by the seller to the buyer on this invoice in it&#39;s tendered currency.
         /// </summary>
         public decimal? DiscountAmount { get; set; }
 
         /// <summary>
-        /// The remaining balance value of this invoice.
+        /// The remaining balance value of this invoice in it&#39;s tendered currency.
         /// </summary>
         public decimal? OutstandingBalanceAmount { get; set; }
 
@@ -255,6 +255,26 @@ namespace LockstepSDK.Models
         /// The Currency Rate used to get from the account&#39;s base currency to the invoice amount.
         /// </summary>
         public decimal? CurrencyRate { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice, inclusive of all taxes and line items in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyTotalAmount { get; set; }
+
+        /// <summary>
+        /// The total sales (or transactional) tax calculated for this invoice in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencySalesTaxAmount { get; set; }
+
+        /// <summary>
+        /// The total discounts given by the seller to the buyer on this invoice in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyDiscountAmount { get; set; }
+
+        /// <summary>
+        /// The remaining balance value of this invoice in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyOutstandingBalanceAmount { get; set; }
 
         /// <summary>
         /// All addresses connected to this invoice.

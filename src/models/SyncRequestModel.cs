@@ -77,6 +77,11 @@ namespace LockstepSDK.Models
         public string ProcessResultMessage { get; set; }
 
         /// <summary>
+        /// The number of times this Sync Request has failed
+        /// </summary>
+        public int? FailureCount { get; set; }
+
+        /// <summary>
         /// A boolean indicating whether a sync from an ERP system should process all the data from the ERP
         /// as opposed to just the delta of changes since the previous sync run
         /// </summary>

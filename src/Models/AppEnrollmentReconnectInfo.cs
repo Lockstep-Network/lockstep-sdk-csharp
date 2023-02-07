@@ -32,7 +32,7 @@ namespace LockstepSDK.Models
         public string AuthCode { get; set; }
 
         /// <summary>
-        /// The OAuth authentication code.
+        /// The username for the web services account with access permissions.
         /// </summary>
         public string Username { get; set; }
 
@@ -55,5 +55,10 @@ namespace LockstepSDK.Models
         /// The access token secret for the connector enrollment.
         /// </summary>
         public string TokenSecret { get; set; }
+
+        /// <summary>
+        /// The OAuth redirect uri.
+        /// </summary>
+        public string RedirectUri { get; set; }
     }
 }

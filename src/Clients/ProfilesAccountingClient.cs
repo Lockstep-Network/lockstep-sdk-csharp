@@ -89,7 +89,7 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="body">The Accounting Profiles to create</param>
-        public async Task<LockstepResponse<AccountingProfileModel[]>> CreateAccountingProfiles(AccountingProfileModel[] body)
+        public async Task<LockstepResponse<AccountingProfileModel[]>> CreateAccountingProfiles(AccountingProfileRequest[] body)
         {
             var url = $"/api/v1/profiles/accounting";
             return await _client.Request<AccountingProfileModel[]>(HttpMethod.Post, url, null, body, null);
@@ -118,19 +118,6 @@ namespace LockstepSDK.Clients
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<AccountingProfileModel>>(HttpMethod.Get, url, options, null, null);
-        }
-
-        /// <summary>
-        /// Retrieves all the Contacts associated with the Accounting Profile by this unique identifier, optionally including nested data sets.
-        ///
-        /// A Contact has a link to a Contact that is associated with your company&#39;s Accounting Profile.
-        ///
-        /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Accounting Profile</param>
-        public async Task<LockstepResponse<ContactModel[]>> RetrieveAllAccountingProfileContacts(Guid id)
-        {
-            var url = $"/api/v1/profiles/accounting/{id}/contacts/models";
-            return await _client.Request<ContactModel[]>(HttpMethod.Get, url, null, null, null);
         }
     }
 }
