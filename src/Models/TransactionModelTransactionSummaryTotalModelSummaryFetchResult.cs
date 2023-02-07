@@ -23,13 +23,13 @@ namespace LockstepSDK.Models
     public class TransactionModelTransactionSummaryTotalModelSummaryFetchResult
     {
 
+        public TransactionModel[] Records { get; set; }
+
         public int? TotalCount { get; set; }
 
         public int? PageSize { get; set; }
 
         public int? PageNumber { get; set; }
-
-        public TransactionModel[] Records { get; set; }
 
         /// <summary>
         /// Represents transaction summary information based on the query request within the group account.

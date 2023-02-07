@@ -23,13 +23,13 @@ namespace LockstepSDK.Models
     public class InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult
     {
 
+        public InvoiceSummaryModel[] Records { get; set; }
+
         public int? TotalCount { get; set; }
 
         public int? PageSize { get; set; }
 
         public int? PageNumber { get; set; }
-
-        public InvoiceSummaryModel[] Records { get; set; }
 
         /// <summary>
         /// The totals for an Invoice Summary

@@ -260,6 +260,16 @@ namespace LockstepSDK.Models
         public string LinkedInUrlSlug { get; set; }
 
         /// <summary>
+        /// This flag indicates whether the company is verified.
+        /// </summary>
+        public bool? IsVerified { get; set; }
+
+        /// <summary>
+        /// The date this company was last verified.
+        /// </summary>
+        public DateTime? LastVerifiedDate { get; set; }
+
+        /// <summary>
         /// View box settings for the company logo.
         /// </summary>
         public ViewBoxSettingsModel ViewBoxSettings { get; set; }

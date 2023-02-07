@@ -115,12 +115,12 @@ namespace LockstepSDK.Models
         public string PostDate { get; set; }
 
         /// <summary>
-        /// Total amount of this payment.
+        /// Total amount of this payment in it&#39;s received currency.
         /// </summary>
         public decimal? PaymentAmount { get; set; }
 
         /// <summary>
-        /// Unapplied balance of this payment.  If this amount is nonzero, the field `IsOpen` will be true.
+        /// Unapplied balance of this payment in it&#39;s received currency.  If this amount is nonzero, the field `IsOpen` will be true.
         /// </summary>
         public decimal? UnappliedAmount { get; set; }
 
@@ -178,6 +178,16 @@ namespace LockstepSDK.Models
         /// The Currency Rate used to get from the account&#39;s base currency to the payment amount.
         /// </summary>
         public decimal? CurrencyRate { get; set; }
+
+        /// <summary>
+        /// Total amount of this payment in the group&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyPaymentAmount { get; set; }
+
+        /// <summary>
+        /// Unapplied balance of this payment in the group&#39;s base currency.  If this amount is nonzero, the field `IsOpen` will be true.
+        /// </summary>
+        public decimal? BaseCurrencyUnappliedAmount { get; set; }
 
         /// <summary>
         /// All applications this payment is associated with.

@@ -27,7 +27,7 @@ namespace LockstepSDK.Models
     /// You can use Accounting Profiles to define an accounting function by what
     /// the function does and how to interface with the function.
     /// </summary>
-    public class AccountingProfileModel
+    public class AccountingProfileRequest
     {
 
         /// <summary>
@@ -164,5 +164,10 @@ namespace LockstepSDK.Models
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public CustomFieldValueModel[] CustomFieldValues { get; set; }
+
+        /// <summary>
+        /// The ID of the primary contact that is linked to this profile.
+        /// </summary>
+        public Guid? PrimaryContactId { get; set; }
     }
 }

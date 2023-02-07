@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.4.0
+ * @version    2023.5.21
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,7 +36,7 @@ namespace LockstepSDK
     /// </summary>
     public class LockstepApi
     {
-        public const string SdkVersion = "2023.3.18";
+        public const string SdkVersion = "2023.5.21";
         
         private readonly string _serverUrl;
         private readonly HttpClient _client;
@@ -60,6 +60,11 @@ namespace LockstepSDK
         /// API methods related to Applications
         /// </summary>
         public ApplicationsClient Applications { get; }
+
+        /// <summary>
+        /// API methods related to AttachmentLinks
+        /// </summary>
+        public AttachmentLinksClient AttachmentLinks { get; }
 
         /// <summary>
         /// API methods related to Attachments
@@ -246,11 +251,10 @@ namespace LockstepSDK
         /// Internal constructor for the client.  You should always begin with `withEnvironment()`.
         /// </summary>
         /// <param name="customUrl"></param>
-        /// <param name="clientHandler">Optional handler to set specific settings for the HTTP client</param>
-        private LockstepApi(string customUrl, HttpClientHandler clientHandler = null)
+        private LockstepApi(string customUrl)
         {
             // Add support for HTTP compression
-            var handler = clientHandler ?? new HttpClientHandler();
+            var handler = new HttpClientHandler();
             handler.AutomaticDecompression = DecompressionMethods.GZip;
             
             // We intentionally use a single HttpClient object for the lifetime of this API connection.
@@ -261,6 +265,7 @@ namespace LockstepSDK
             ApiKeys = new ApiKeysClient(this);
             AppEnrollments = new AppEnrollmentsClient(this);
             Applications = new ApplicationsClient(this);
+            AttachmentLinks = new AttachmentLinksClient(this);
             Attachments = new AttachmentsClient(this);
             CodeDefinitions = new CodeDefinitionsClient(this);
             Companies = new CompaniesClient(this);
@@ -305,37 +310,35 @@ namespace LockstepSDK
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
             };
         }
-
+    
         /// <summary>
         /// Construct a new API client to target the specific environment.
         /// </summary>
         /// <param name="env">The environment to use, either "prd" for production or "sbx" for sandbox.</param>
-        /// <param name="handler">Optional handler to set specific settings for the HTTP client</param>
         /// <returns>The API client to use</returns>
-        public static LockstepApi WithEnvironment(string env, HttpClientHandler handler = null)
+        public static LockstepApi WithEnvironment(string env)
         {
             switch (env)
             {
                 case "sbx":
-                    return new LockstepApi("https://api.sbx.lockstep.io/", handler);
+                    return new LockstepApi("https://api.sbx.lockstep.io/");
                 case "prd":
-                    return new LockstepApi("https://api.lockstep.io/", handler);
+                    return new LockstepApi("https://api.lockstep.io/");
             }
     
             throw new InvalidOperationException($"Unknown environment: {env}");
         }
-
+    
         /// <summary>
         /// Construct an unsafe client that uses a non-standard server; this can be necessary
         /// when using proxy servers or an API gateway.  Please be careful when using this
         /// mode.  You should prefer to use `WithEnvironment()` instead wherever possible.
         /// </summary>
         /// <param name="unsafeUrl">The custom environment URL to use for this client</param>
-        /// <param name="handler">Optional handler to set specific settings for the HTTP client</param>
         /// <returns>The API client to use</returns>
-        public static LockstepApi WithCustomEnvironment(string unsafeUrl, HttpClientHandler handler = null)
+        public static LockstepApi WithCustomEnvironment(string unsafeUrl)
         {
-            return new LockstepApi(unsafeUrl, handler);
+            return new LockstepApi(unsafeUrl);
         }
         
         /// <summary>
