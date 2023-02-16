@@ -190,6 +190,12 @@ namespace LockstepSDK.Models
         public decimal? BaseCurrencyUnappliedAmount { get; set; }
 
         /// <summary>
+        /// The status of this payment within Service Fabric.
+        /// &quot;UNAUTHORISED&quot; &quot;PENDING&quot; &quot;PAID&quot; &quot;PAID_OFFLINE&quot; &quot;FAILED&quot; &quot;CANCELLED&quot; &quot;REJECTED&quot; &quot;REFUNDED&quot; &quot;PARTIALLY&quot; &quot;PARTIALLY_REFUNDED&quot;
+        /// </summary>
+        public string ServiceFabricStatus { get; set; }
+
+        /// <summary>
         /// All applications this payment is associated with.
         /// To retrieve this collection, specify `Applications` in the &quot;Include&quot; parameter for your query.
         /// </summary>

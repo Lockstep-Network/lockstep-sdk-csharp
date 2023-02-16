@@ -275,6 +275,16 @@ namespace LockstepSDK.Models
         public ViewBoxSettingsModel ViewBoxSettings { get; set; }
 
         /// <summary>
+        /// The unique ID of the Service Fabric organisation to which this record belongs.
+        /// </summary>
+        public Guid? ServiceFabricOrgId { get; set; }
+
+        /// <summary>
+        /// The unique ID of this record within Service Fabric.
+        /// </summary>
+        public Guid? ServiceFabricCompanyId { get; set; }
+
+        /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
         /// `include` parameter when retrieving data.
         ///
