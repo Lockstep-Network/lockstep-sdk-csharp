@@ -35,6 +35,16 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
+        /// The optional existing app enrollment to associate with the data in this batch.
+        /// </summary>
+        public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// True if this is a full sync, false if this is a partial sync. Defaults to false.
+        /// </summary>
+        public bool? IsFullSync { get; set; }
+
+        /// <summary>
         /// A list of Company records to merge with your Lockstep Platform data
         /// </summary>
         public CompanySyncModel[] Companies { get; set; }

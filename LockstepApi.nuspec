@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LockstepSdk</id>
-		<version>2023.5.21</version>
+		<version>2023.7.7</version>
 		<title>LockstepSdk</title>
 		<authors>Lockstep Network</authors>
 		<owners>Lockstep, Inc.</owners>
@@ -14,7 +14,7 @@
 		<readme>docs/README.md</readme>
 		<summary>Lockstep Platform SDK for CSharp</summary>
 		<releaseNotes>
-            # 2023.5.21
+            # 2023.7.7
         
             For full patch notes see [Patch Notes](https://medium.com/lockstep-developer/tagged/patch-notes) on the [Lockstep Developer website](https://developer.lockstep.io)
         </releaseNotes>
@@ -24,7 +24,7 @@
 		<dependencies>
 			<group targetFramework=".NETStandard2.0">
 				<dependency id="System.Net.Http" version="4.3.4" />
-				<dependency id="System.Text.Json" version="6.0.5" />
+				<dependency id="System.Text.Json" version="6.0.2" />
 			</group>
 		</dependencies>
 	</metadata>

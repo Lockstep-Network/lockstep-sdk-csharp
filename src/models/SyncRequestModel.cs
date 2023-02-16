@@ -67,7 +67,7 @@ namespace LockstepSDK.Models
         public string OperationTypeName { get; set; }
 
         /// <summary>
-        /// The name of the OperationType for this SyncRequest
+        /// Possible operation types for a SyncRequest
         /// </summary>
         public int? OperationType { get; set; }
 
@@ -85,7 +85,7 @@ namespace LockstepSDK.Models
         /// A boolean indicating whether a sync from an ERP system should process all the data from the ERP
         /// as opposed to just the delta of changes since the previous sync run
         /// </summary>
-        public string RunFullSync { get; set; }
+        public bool? RunFullSync { get; set; }
 
         /// <summary>
         /// The AppEnrollmentId of the AppEnrollment object that executed this sync request

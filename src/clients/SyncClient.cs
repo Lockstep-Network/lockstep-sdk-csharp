@@ -71,11 +71,16 @@ namespace LockstepSDK.Clients
         /// A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
         ///
         /// </summary>
+        /// <param name="appEnrollmentId">The optional existing app enrollment to associate with the data in the zip file.</param>
+        /// <param name="isFullSync">True if this is a full sync, false if this is a partial sync. Defaults to false.</param>
         /// <param name="filename">The full path of a file to upload to the API</param>
-        public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile(string filename)
+        public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile(string filename, Guid? appEnrollmentId = null, bool? isFullSync = null)
         {
             var url = $"/api/v1/Sync/zip";
-            return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, null, null, filename);
+            var options = new Dictionary<string, object>();
+            if (appEnrollmentId != null) { options["appEnrollmentId"] = appEnrollmentId; }
+            if (isFullSync != null) { options["isFullSync"] = isFullSync; }
+            return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, options, null, filename);
         }
 
         /// <summary>
