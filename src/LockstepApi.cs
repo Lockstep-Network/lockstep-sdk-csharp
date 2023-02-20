@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.7.7
+ * @version    2023.7.8
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -36,9 +36,12 @@ namespace LockstepSDK
     /// </summary>
     public class LockstepApi
     {
-        public const string SdkVersion = "2023.7.7";
+        /// <summary>
+        /// The version of the SDK
+        /// </summary>
+        public const string SdkVersion = "2023.7.8";
         
-        private readonly string _serverUrl;
+        private readonly string _apiUrl;
         private readonly HttpClient _client;
         private readonly JsonSerializerOptions _options;
         
@@ -248,20 +251,21 @@ namespace LockstepSDK
 
 
         /// <summary>
-        /// Internal constructor for the client.  You should always begin with `withEnvironment()`.
+        /// Internal constructor for the client. You should always begin with `WithEnvironment()` or `WithCustomEnvironment`.
         /// </summary>
-        /// <param name="customUrl"></param>
-        private LockstepApi(string customUrl)
+        /// <param name="url"></param>
+        /// <param name="clientHandler">Handler for the HTTP client, when null the default handler will be used</param>
+        private LockstepApi(string url, HttpClientHandler clientHandler)
         {
             // Add support for HTTP compression
-            var handler = new HttpClientHandler();
+            var handler = clientHandler ?? new HttpClientHandler();
             handler.AutomaticDecompression = DecompressionMethods.GZip;
             
             // We intentionally use a single HttpClient object for the lifetime of this API connection.
             // Best practices: https://bytedev.medium.com/net-core-httpclient-best-practices-4c1b20e32c6
             _client = new HttpClient(handler);
             
-            _serverUrl = customUrl;
+            _apiUrl = url;
             ApiKeys = new ApiKeysClient(this);
             AppEnrollments = new AppEnrollmentsClient(this);
             Applications = new ApplicationsClient(this);
@@ -315,30 +319,32 @@ namespace LockstepSDK
         /// Construct a new API client to target the specific environment.
         /// </summary>
         /// <param name="env">The environment to use, either "prd" for production or "sbx" for sandbox.</param>
+        /// <param name="clientHandler">Optional handler for the HTTP client</param>
         /// <returns>The API client to use</returns>
-        public static LockstepApi WithEnvironment(string env)
+        public static LockstepApi WithEnvironment(string env, HttpClientHandler clientHandler = null)
         {
             switch (env)
             {
                 case "sbx":
-                    return new LockstepApi("https://api.sbx.lockstep.io/");
+                    return new LockstepApi("https://api.sbx.lockstep.io/", clientHandler);
                 case "prd":
-                    return new LockstepApi("https://api.lockstep.io/");
+                    return new LockstepApi("https://api.lockstep.io/", clientHandler);
             }
     
             throw new InvalidOperationException($"Unknown environment: {env}");
         }
     
         /// <summary>
-        /// Construct an unsafe client that uses a non-standard server; this can be necessary
-        /// when using proxy servers or an API gateway.  Please be careful when using this
-        /// mode.  You should prefer to use `WithEnvironment()` instead wherever possible.
+        /// Construct a client that uses a non-standard environment; this can be necessary when using proxy servers or
+        /// an API gateway.  Please be careful when using this mode.
+        /// You should prefer to use `WithEnvironment()` instead wherever possible.
         /// </summary>
-        /// <param name="unsafeUrl">The custom environment URL to use for this client</param>
+        /// <param name="url">The custom URL to use for this client</param>
+        /// <param name="clientHandler">Optional handler to set specific settings for the HTTP client</param>
         /// <returns>The API client to use</returns>
-        public static LockstepApi WithCustomEnvironment(string unsafeUrl)
+        public static LockstepApi WithCustomEnvironment(string url, HttpClientHandler clientHandler = null)
         {
-            return new LockstepApi(unsafeUrl);
+            return new LockstepApi(url, clientHandler);
         }
         
         /// <summary>
@@ -417,7 +423,7 @@ namespace LockstepSDK
             }
     
             // Construct the request URI and query string
-            var uriBuilder = new UriBuilder(_serverUrl)
+            var uriBuilder = new UriBuilder(_apiUrl)
             {
                 Path = path
             };
@@ -458,7 +464,7 @@ namespace LockstepSDK
                     Success = response.IsSuccessStatusCode,
                     Status = response.StatusCode,
                 };
-                if (response.Headers.TryGetValues("ServerDuration", out var durations))
+                if (response.Headers.TryGetValues("Server-Duration", out var durations))
                 {
                     var durationStr = durations.FirstOrDefault();
                     if (int.TryParse(durationStr, out var duration))
@@ -494,7 +500,10 @@ namespace LockstepSDK
                         try
                         {
                             result.Error = JsonSerializer.Deserialize<ErrorResult>(errorContent, _options);
-                            if (result.Error != null) result.Error.Content = errorContent;
+                            if (result.Error != null)
+                            {
+                                result.Error.Content = errorContent;
+                            }
                         }
                         catch
                         {
