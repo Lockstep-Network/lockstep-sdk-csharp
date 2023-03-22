@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.7.8
+ * @version    2023.11.28
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
         /// <summary>
         /// The version of the SDK
         /// </summary>
-        public const string SdkVersion = "2023.7.8";
+        public const string SdkVersion = "2023.11.28";
         
         private readonly string _apiUrl;
         private readonly HttpClient _client;
@@ -143,11 +143,6 @@ namespace LockstepSDK
         /// API methods related to InvoiceAddresses
         /// </summary>
         public InvoiceAddressesClient InvoiceAddresses { get; }
-
-        /// <summary>
-        /// API methods related to InvoiceHistory
-        /// </summary>
-        public InvoiceHistoryClient InvoiceHistory { get; }
 
         /// <summary>
         /// API methods related to InvoiceLines
@@ -285,7 +280,6 @@ namespace LockstepSDK
             FinancialYearSettings = new FinancialYearSettingsClient(this);
             GroupAccounts = new GroupAccountsClient(this);
             InvoiceAddresses = new InvoiceAddressesClient(this);
-            InvoiceHistory = new InvoiceHistoryClient(this);
             InvoiceLines = new InvoiceLinesClient(this);
             Invoices = new InvoicesClient(this);
             Leads = new LeadsClient(this);

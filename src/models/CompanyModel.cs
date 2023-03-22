@@ -185,11 +185,6 @@ namespace LockstepSDK.Models
         public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The name of the user who last modified this company
-        /// </summary>
-        public string ModifiedUserName { get; set; }
-
-        /// <summary>
         /// Federal Tax ID
         /// </summary>
         public string TaxId { get; set; }
@@ -283,6 +278,11 @@ namespace LockstepSDK.Models
         /// The unique ID of this record within Service Fabric.
         /// </summary>
         public Guid? ServiceFabricCompanyId { get; set; }
+
+        /// <summary>
+        /// A unique identification number assigned to the company by the national registration office.
+        /// </summary>
+        public string CompanyRegistrationNumber { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

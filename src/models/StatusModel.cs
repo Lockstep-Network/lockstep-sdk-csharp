@@ -102,6 +102,16 @@ namespace LockstepSDK.Models
         public bool? OnboardingScheduled { get; set; }
 
         /// <summary>
+        /// Base Currency of the group
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// Country code of the group
+        /// </summary>
+        public string CountryCode { get; set; }
+
+        /// <summary>
         /// Magic link information about the user
         /// </summary>
         public MagicLinkStatusModel MagicLink { get; set; }
@@ -117,20 +127,15 @@ namespace LockstepSDK.Models
         public bool? IsImpersonated { get; set; }
 
         /// <summary>
-        /// Statuses for the dependencies of this api.
-        /// OK if the dependency is working.
-        /// </summary>
-        public object Dependencies { get; set; }
-
-        /// <summary>
         /// The set of Groups that the user has access to.
         /// You can use the /api/v1/useraccounts/change-group endpoint to change your active group.
         /// </summary>
         public UserGroupModel[] UserGroups { get; set; }
 
         /// <summary>
-        /// Base Currency of the group
+        /// Statuses for the dependencies of this api.
+        /// OK if the dependency is working.
         /// </summary>
-        public string BaseCurrencyCode { get; set; }
+        public object Dependencies { get; set; }
     }
 }

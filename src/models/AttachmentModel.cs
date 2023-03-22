@@ -82,11 +82,6 @@ namespace LockstepSDK.Models
         public string FileExt { get; set; }
 
         /// <summary>
-        /// DEPRECATED: This field is replaced by `AttachmentType`.
-        /// </summary>
-        public Guid? AttachmentTypeId { get; set; }
-
-        /// <summary>
         /// A flag indicating whether this Attachment is archived (also known as hidden or deleted).  When you call
         /// [ArchiveAttachment](https://developer.lockstep.io/reference/delete_api-v1-attachments-id) this field will
         /// be set to true.
@@ -94,21 +89,6 @@ namespace LockstepSDK.Models
         /// You should avoid displaying Attachments with the IsArchived field set to true in your user interface.
         /// </summary>
         public bool? IsArchived { get; set; }
-
-        /// <summary>
-        /// DEPRECATED - Do not use
-        /// </summary>
-        public Guid? OriginAttachmentId { get; set; }
-
-        /// <summary>
-        /// Flag for if LS clients can see this file
-        /// </summary>
-        public bool? ViewInternal { get; set; }
-
-        /// <summary>
-        /// Flag for if Vendors and customers can see this file
-        /// </summary>
-        public bool? ViewExternal { get; set; }
 
         /// <summary>
         /// The unique ID of this record as it was known in its originating financial system.
