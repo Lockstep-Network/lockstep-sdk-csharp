@@ -70,11 +70,6 @@ namespace LockstepSDK.Models
         public string IconUrl { get; set; }
 
         /// <summary>
-        /// The description of the price for this application
-        /// </summary>
-        public string PriceTerms { get; set; }
-
-        /// <summary>
         /// The ID of the user who created this application
         /// </summary>
         public Guid? CreatedUserId { get; set; }
@@ -98,11 +93,6 @@ namespace LockstepSDK.Models
         /// Flag indicating if the application is active.
         /// </summary>
         public bool? IsActive { get; set; }
-
-        /// <summary>
-        /// URL to the Wiki for the Application
-        /// </summary>
-        public string WikiURL { get; set; }
 
         /// <summary>
         /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this

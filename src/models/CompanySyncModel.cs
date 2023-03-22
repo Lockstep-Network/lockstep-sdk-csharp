@@ -35,7 +35,7 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// Indicates what action to take when a sync model has been found during the sync process.
+        /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
         public int? OnMatchAction { get; set; }
 
@@ -190,5 +190,10 @@ namespace LockstepSDK.Models
         /// An external reference that identifies the Company from the originating ERP system, separate from the ErpKey.
         /// </summary>
         public string ExternalReference { get; set; }
+
+        /// <summary>
+        /// A unique identification number assigned to the company by the national registration office.
+        /// </summary>
+        public string CompanyRegistrationNumber { get; set; }
     }
 }

@@ -35,6 +35,11 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
+        /// Indicates what action to take when an existing object has been found during the sync process.
+        /// </summary>
+        public int? OnMatchAction { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Credit Memo Application record. For this field, you should use whatever this
         /// transaction&#39;s unique identifying number is in the originating system. Search for a unique, non-changing
         /// number within the originating financial system for this record.

@@ -82,11 +82,6 @@ namespace LockstepSDK.Models
         public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
-        /// The name of the user who last modified the user account
-        /// </summary>
-        public string ModifiedUserName { get; set; }
-
-        /// <summary>
         /// The ID of the user in Azure B2C
         /// </summary>
         public Guid? B2CUserId { get; set; }

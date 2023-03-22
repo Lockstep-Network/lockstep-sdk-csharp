@@ -83,5 +83,10 @@ namespace LockstepSDK.Models
         /// The ID of the user who last modified this group account
         /// </summary>
         public Guid? ModifiedUserId { get; set; }
+
+        /// <summary>
+        /// The 2-letter ISO country code for the group
+        /// </summary>
+        public string CountryCode { get; set; }
     }
 }
