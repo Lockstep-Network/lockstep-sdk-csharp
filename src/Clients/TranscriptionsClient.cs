@@ -195,5 +195,18 @@ namespace LockstepSDK.Clients
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<TranscriptionValidationRequestItemModel>>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        /// Retrieves the Email Reply Generator Response containing a list of email reply suggestions
+        ///
+        /// An Email Reply Generator Request represents an email to be sent for a list of email reply suggestions.
+        ///
+        /// </summary>
+        /// <param name="body">The Email Reply Generator Request to be sent</param>
+        public async Task<LockstepResponse<EmailReplyGeneratorResponse>> RetrieveanEmailReplyGeneratorResponse(EmailReplyGeneratorRequest body)
+        {
+            var url = $"/api/v1/Transcriptions/email-reply-suggestions";
+            return await _client.Request<EmailReplyGeneratorResponse>(HttpMethod.Post, url, null, body, null);
+        }
     }
 }

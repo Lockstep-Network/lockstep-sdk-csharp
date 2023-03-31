@@ -77,6 +77,16 @@ namespace LockstepSDK.Models
         public string ErpKey { get; set; }
 
         /// <summary>
+        /// Possible statuses for a record that supports ERP write.
+        /// </summary>
+        public int? ErpWriteStatus { get; set; }
+
+        /// <summary>
+        /// The name of the ErpWriteStatus for this credit memo application
+        /// </summary>
+        public string ErpWriteStatusName { get; set; }
+
+        /// <summary>
         /// Reference number for the applied credit memo.
         /// </summary>
         public int? EntryNumber { get; set; }
@@ -118,6 +128,11 @@ namespace LockstepSDK.Models
         /// was not loaded from an external ERP or financial system.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The date on which this record was last modified in source ERP.
+        /// </summary>
+        public DateTime? SourceModifiedDate { get; set; }
 
         /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in

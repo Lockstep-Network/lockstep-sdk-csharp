@@ -86,6 +86,16 @@ namespace LockstepSDK.Models
         public decimal? Balance { get; set; }
 
         /// <summary>
+        /// Financial Account Balance Types
+        /// </summary>
+        public int? BalanceType { get; set; }
+
+        /// <summary>
+        /// The name of the BalanceType for this record.
+        /// </summary>
+        public string BalanceTypeName { get; set; }
+
+        /// <summary>
         /// The date on which this financial account balance history record was created.
         /// </summary>
         public DateTime? Created { get; set; }

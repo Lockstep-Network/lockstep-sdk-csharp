@@ -67,6 +67,16 @@ namespace LockstepSDK.Models
         public string ErpKey { get; set; }
 
         /// <summary>
+        /// Possible statuses for a record that supports ERP write.
+        /// </summary>
+        public int? ErpWriteStatus { get; set; }
+
+        /// <summary>
+        /// The name of the ErpWriteStatus for this payment application
+        /// </summary>
+        public string ErpWriteStatusName { get; set; }
+
+        /// <summary>
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,
         /// or other identifying field for this payment application.
         /// </summary>
@@ -109,6 +119,11 @@ namespace LockstepSDK.Models
         /// was not loaded from an external ERP or financial system.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
+
+        /// <summary>
+        /// The date on which this record was last modified in source ERP.
+        /// </summary>
+        public DateTime? SourceModifiedDate { get; set; }
 
         /// <summary>
         /// The payment associated with this applied payment

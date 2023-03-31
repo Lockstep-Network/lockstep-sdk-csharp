@@ -55,5 +55,10 @@ namespace LockstepSDK.Models
         /// The errors encountered during sync keyed by ERP key
         /// </summary>
         public object Errors { get; set; }
+
+        /// <summary>
+        /// The records that were skipped during sync keyed by ERP key
+        /// </summary>
+        public object Skips { get; set; }
     }
 }

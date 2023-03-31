@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.11.28
+ * @version    2023.13.37
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
         /// <summary>
         /// The version of the SDK
         /// </summary>
-        public const string SdkVersion = "2023.11.28";
+        public const string SdkVersion = "2023.13.37";
         
         private readonly string _apiUrl;
         private readonly HttpClient _client;
@@ -391,10 +391,9 @@ namespace LockstepSDK
         /// <typeparam name="T">The type of the expected response</typeparam>
         /// <returns>The response object including success/failure codes and error messages as appropriate</returns>
         public async Task<LockstepResponse<T>> Request<T>(HttpMethod method, string path,
-            Dictionary<string, object> query, object body, string filename) where T: class
+            Dictionary<string, object> query, object body, string filename) where T : class
         {
-            var sw = new Stopwatch();
-            sw.Start();
+            var sw = Stopwatch.StartNew();
             var request = new HttpRequestMessage();
             request.Method = method;
             request.Headers.Add("Accept", "application/json");
@@ -510,6 +509,7 @@ namespace LockstepSDK
                         result.Error = new ErrorResult()
                         {
                             Title = $"{(int)response.StatusCode} {response.StatusCode}",
+                            Status = (int)response.StatusCode,
                             Content = errorContent
                         };
                     }
