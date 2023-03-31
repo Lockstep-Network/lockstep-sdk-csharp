@@ -65,6 +65,16 @@ namespace LockstepSDK.Models
         public string ErpKey { get; set; }
 
         /// <summary>
+        /// Possible statuses for a record that supports ERP write.
+        /// </summary>
+        public int? ErpWriteStatus { get; set; }
+
+        /// <summary>
+        /// The name of the ErpWriteStatus for this Payment
+        /// </summary>
+        public string ErpWriteStatusName { get; set; }
+
+        /// <summary>
         /// The type of payment, AR Payment or AP Payment.
         ///
         /// Recognized PaymentType values are:
@@ -194,6 +204,11 @@ namespace LockstepSDK.Models
         /// &quot;UNAUTHORISED&quot; &quot;PENDING&quot; &quot;PAID&quot; &quot;PAID_OFFLINE&quot; &quot;FAILED&quot; &quot;CANCELLED&quot; &quot;REJECTED&quot; &quot;REFUNDED&quot; &quot;PARTIALLY&quot; &quot;PARTIALLY_REFUNDED&quot;
         /// </summary>
         public string ServiceFabricStatus { get; set; }
+
+        /// <summary>
+        /// The date on which this record was last modified in source ERP.
+        /// </summary>
+        public DateTime? SourceModifiedDate { get; set; }
 
         /// <summary>
         /// All applications this payment is associated with.

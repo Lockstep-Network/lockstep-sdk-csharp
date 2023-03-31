@@ -70,6 +70,16 @@ namespace LockstepSDK.Models
         public string Email { get; set; }
 
         /// <summary>
+        /// Possible statuses for a record that supports ERP write.
+        /// </summary>
+        public int? ErpWriteStatus { get; set; }
+
+        /// <summary>
+        /// The name of the ErpWriteStatus for this payment
+        /// </summary>
+        public string ErpWriteStatusName { get; set; }
+
+        /// <summary>
         /// The currency code of the payment.
         /// </summary>
         public string CurrencyCode { get; set; }

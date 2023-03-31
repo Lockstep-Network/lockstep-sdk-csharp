@@ -1,31 +1,25 @@
 /***
- * Lockstep Platform SDK for C#
+ * Lockstep Software Development Kit for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2022 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2022 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
+using System.Collections.Generic;
 
-
-#pragma warning disable CS8618
-
-using System;
-
-namespace LockstepSDK.Models
+namespace LockstepSDK
 {
-
     /// <summary>
     /// Represents a failed API request.
     /// </summary>
     public class ErrorResult
     {
-
         /// <summary>
         /// A description of the type of error that occurred.
         /// </summary>
@@ -42,14 +36,9 @@ namespace LockstepSDK.Models
         public int? Status { get; set; }
 
         /// <summary>
-        /// If detailed information about this error is available, this value contains more information.
+        /// The set of errors that occurred.
         /// </summary>
-        public string Detail { get; set; }
-
-        /// <summary>
-        /// If this error corresponds to a specific instance or object, this field indicates which one.
-        /// </summary>
-        public string Instance { get; set; }
+        public Dictionary<string, string[]> Errors { get; set; }
 
         /// <summary>
         /// The full content of the HTTP response.

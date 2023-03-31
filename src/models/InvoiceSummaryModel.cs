@@ -118,13 +118,6 @@ namespace LockstepSDK.Models
         public string InvoiceTypeCode { get; set; }
 
         /// <summary>
-        /// The date stamp for the newest Activity on this Invoice.
-        ///
-        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
-        /// </summary>
-        public string NewestActivity { get; set; }
-
-        /// <summary>
         /// The number of days this Invoice is past due.
         /// </summary>
         public int? DaysPastDue { get; set; }

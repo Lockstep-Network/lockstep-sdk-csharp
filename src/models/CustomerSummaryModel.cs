@@ -135,13 +135,6 @@ namespace LockstepSDK.Models
         public decimal? Dso { get; set; }
 
         /// <summary>
-        /// The date stamp for the newest Activity on this Customer.
-        ///
-        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
-        /// </summary>
-        public string NewestActivity { get; set; }
-
-        /// <summary>
         /// The modified date of the customer.
         /// </summary>
         public DateTime? Modified { get; set; }
