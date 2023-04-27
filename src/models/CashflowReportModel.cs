@@ -32,7 +32,12 @@ namespace LockstepSDK.Models
         public int? Timeframe { get; set; }
 
         /// <summary>
-        /// Amount of payments collected based in the timeframe
+        /// The base currency code of the group.
+        /// </summary>
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// Amount of payments collected based in the timeframe in the group&#39;s base currency
         /// </summary>
         public decimal? PaymentsCollected { get; set; }
 
@@ -42,7 +47,7 @@ namespace LockstepSDK.Models
         public int? PaymentsCollectedCount { get; set; }
 
         /// <summary>
-        /// Amount of invoices billed based in the timeframe
+        /// Amount of invoices billed based in the timeframe in the group&#39;s base currency
         /// </summary>
         public decimal? InvoicesBilled { get; set; }
 
