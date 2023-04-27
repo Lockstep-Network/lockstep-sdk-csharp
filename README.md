@@ -8,7 +8,7 @@ This software development kit allows you to connect with the Lockstep Platform S
 
 Many types of products examine invoices for a customer and provide feedback on them. A typical product might analyze incoming invoices and add metadata like a credit score for each invoice. This tutorial explains how to iterate through invoices, examine them, and add metadata.
 
-We use the [Query Invoices API](https://developer.lockstep.io/reference/get_api-v1-invoices-query) to retrieve a collection of invoices. To fetch a large number of invoices, we must use [filtering and pagination](https://developer.lockstep.io/docs/querying-with-searchlight).
+We use the [Query Invoices API](https://developer.lockstep.io/reference/v1_invoices_queryinvoices) to retrieve a collection of invoices. To fetch a large number of invoices, we must use [filtering and pagination](https://developer.lockstep.io/docs/querying-with-searchlight).
 
 ## How to Write a Program Using This SDK
 
@@ -17,11 +17,12 @@ We use the [Query Invoices API](https://developer.lockstep.io/reference/get_api-
 Before you start, make sure you [generated a valid API key](https://developer.lockstep.io/docs/api-keys) and saved it as an environment variable in your system (referred to as `LOCKSTEPAPI_SBX` in this example). That way, you'll have access to the server.
 
 Create a new project folder with an empty `Program.cs` file inside it and add the SDK to your project:
+
 - One way to add the SDK to your project is by using the [package manager](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli):
 
-    ```
-    dotnet add package LockstepSdk
-    ```
+  ```
+  dotnet add package LockstepSdk
+  ```
 
 - Another way is to locate the source code in the `/src/` folder of this repository and ensure that your project folder has access to it (download and add it using your IDE).
 
@@ -29,7 +30,7 @@ There may be some additional dependencies you have to install.
 
 ### Step 2: Declare and initialize Lockstep API
 
-Open your `Program.cs` file. Start by listing the dependencies and creating the main method. This main method should have variables for the `client` and `apiKey`. Note that the string passed in `Environment.GetEnvironmentVariable()` matches the environment variable name you created on your system. The `Ping()` method verifies your program can access the Lockstep Platfom API, regardless of authentication status or permissions. 
+Open your `Program.cs` file. Start by listing the dependencies and creating the main method. This main method should have variables for the `client` and `apiKey`. Note that the string passed in `Environment.GetEnvironmentVariable()` matches the environment variable name you created on your system. The `Ping()` method verifies your program can access the Lockstep Platfom API, regardless of authentication status or permissions.
 
 ```c#
 using System;
@@ -40,7 +41,7 @@ namespace LockstepExamples
     public class CSharpExample
     {
         public static async Task Main(string[] args)
-        { 
+        {
             var client = LockstepApi.WithEnvironment(LockstepEnv.SBX)
                 .WithApiKey(Environment.GetEnvironmentVariable("LOCKSTEPAPI_SBX"));
 
@@ -57,7 +58,7 @@ namespace LockstepExamples
             Console.WriteLine($"Ping result: {result.Value.UserName} ({result.Value.UserStatus})");
             Console.WriteLine($"Server status: {result.Value.Environment} {result.Value.Version}");
             Console.WriteLine();
-            
+
             // You may now use the client object to make API calls
         }
     }

@@ -277,6 +277,21 @@ namespace LockstepSDK.Models
         public decimal? BaseCurrencyOutstandingBalanceAmount { get; set; }
 
         /// <summary>
+        /// Possible statuses for a record that supports ERP write.
+        /// </summary>
+        public int? ErpWriteStatus { get; set; }
+
+        /// <summary>
+        /// The name of the ErpWriteStatus for this Invoice
+        /// </summary>
+        public string ErpWriteStatusName { get; set; }
+
+        /// <summary>
+        /// The date on which this record was last modified in source ERP.
+        /// </summary>
+        public DateTime? SourceModifiedDate { get; set; }
+
+        /// <summary>
         /// All addresses connected to this invoice.
         /// To retrieve this collection, specify `Addresses` in the &quot;Include&quot; parameter for your query.
         /// </summary>
