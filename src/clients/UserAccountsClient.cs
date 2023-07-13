@@ -99,7 +99,6 @@ namespace LockstepSDK.Clients
         /// Retrieves invite information for the specified invite token.
         ///
         /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
-        ///
         /// </summary>
         /// <param name="code">The code of the invite</param>
         public async Task<LockstepResponse<InviteDataModel>> RetrieveInviteData(Guid? code = null)

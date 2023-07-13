@@ -140,6 +140,8 @@ namespace LockstepSDK.Clients
         ///
         /// Xero supports AR Invoices, AP Invoices, AR Credit Memos, and AP Credit Memos.
         ///
+        /// Sage 50 supports AR Invoices and AR Credit Memos.
+        ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this invoice; NOT the customer's ERP key</param>
         public async Task<LockstepResponse<byte[]>> RetrieveinvoicePDF(Guid id)

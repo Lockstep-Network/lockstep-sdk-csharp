@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.17.21
+ * @version    2023.28.10
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
         /// <summary>
         /// The version of the SDK
         /// </summary>
-        public const string SdkVersion = "2023.17.21";
+        public const string SdkVersion = "2023.28.10";
         
         private readonly string _apiUrl;
         private readonly HttpClient _client;
@@ -128,6 +128,11 @@ namespace LockstepSDK
         /// API methods related to FinancialAccountBalanceHistory
         /// </summary>
         public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; }
+
+        /// <summary>
+        /// API methods related to FinancialInstitutionAccounts
+        /// </summary>
+        public FinancialInstitutionAccountsClient FinancialInstitutionAccounts { get; }
 
         /// <summary>
         /// API methods related to FinancialYearSettings
@@ -277,6 +282,7 @@ namespace LockstepSDK
             FeatureFlags = new FeatureFlagsClient(this);
             FinancialAccount = new FinancialAccountClient(this);
             FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
+            FinancialInstitutionAccounts = new FinancialInstitutionAccountsClient(this);
             FinancialYearSettings = new FinancialYearSettingsClient(this);
             GroupAccounts = new GroupAccountsClient(this);
             InvoiceAddresses = new InvoiceAddressesClient(this);

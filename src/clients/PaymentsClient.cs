@@ -190,5 +190,18 @@ namespace LockstepSDK.Clients
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<PaymentDetailModel>>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        /// **This API endpoint is under maintenance and may not function properly.**  Schedule an ERP post request for payments.
+        ///
+        /// The payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.
+        ///
+        /// </summary>
+        /// <param name="body">The payments to submit to the connected ERP</param>
+        public async Task<LockstepResponse<PaymentModelErpWriteResult>> WritepaymentstoconnectedERP(InsertPaymentRequestModelErpWriteSyncSubmitModel body)
+        {
+            var url = $"/api/v1/Payments/erp-write";
+            return await _client.Request<PaymentModelErpWriteResult>(HttpMethod.Post, url, null, body, null);
+        }
     }
 }
