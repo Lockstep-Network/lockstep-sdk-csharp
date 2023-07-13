@@ -180,6 +180,11 @@ namespace LockstepSDK.Models
         public string DefaultCurrencyCode { get; set; }
 
         /// <summary>
+        /// The IETF language tag for the user&#39;s preferred locale.
+        /// </summary>
+        public string Locale { get; set; }
+
+        /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
         /// `include` parameter when retrieving data.
         ///

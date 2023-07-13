@@ -74,7 +74,7 @@ namespace LockstepSDK.Models
 
         /// <summary>
         /// The classification for the Financial Account. Possible values are Asset, Equity,
-        /// Expense, Liability or Income.
+        /// Expense, Liability, Income, CreditCard, Checking, or Savings.
         /// </summary>
         public string Classification { get; set; }
 

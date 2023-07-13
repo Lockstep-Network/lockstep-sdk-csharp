@@ -142,6 +142,11 @@ namespace LockstepSDK.Models
         public string CurrencyCode { get; set; }
 
         /// <summary>
+        /// The Bank account id for the company to which this payment belongs.
+        /// </summary>
+        public string BankAccountId { get; set; }
+
+        /// <summary>
         /// Reference code for the payment for the given Erp system.
         /// </summary>
         public string ReferenceCode { get; set; }

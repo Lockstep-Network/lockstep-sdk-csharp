@@ -166,5 +166,10 @@ namespace LockstepSDK.Models
         /// Unapplied balance of this payment in the erp&#39;s base currency.  If this amount is nonzero, the field `IsOpen` will be true.
         /// </summary>
         public decimal? BaseCurrencyUnappliedAmount { get; set; }
+
+        /// <summary>
+        /// Bank account id for the payment.
+        /// </summary>
+        public string BankAccountId { get; set; }
     }
 }
