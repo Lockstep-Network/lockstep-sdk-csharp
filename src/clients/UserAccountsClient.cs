@@ -54,7 +54,9 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Updates a User that matches the specified id with the requested information.
+        /// Updates a User that matches the specified id with the requested information. The following limitations are applied when updating a user:
+        ///
+        /// &lt;list type=&quot;bullet&quot;&gt;&lt;item&gt;Only Group Owners and Admins can change other users.&lt;/item&gt;&lt;item&gt;When updating another user, only the role and status can be updated.&lt;/item&gt;&lt;item&gt;A user can only change their own status when their current status is Onboarding.&lt;/item&gt;&lt;item&gt;A user can never change their own role.&lt;/item&gt;&lt;item&gt;Nobody can change the owner&#39;s role or status. See the &quot;/transfer-owner&quot; route for changing the owner.&lt;/item&gt;&lt;item&gt;A user can change their own personal information.&lt;/item&gt;&lt;/list&gt;
         ///
         /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
         ///
@@ -147,7 +149,6 @@ namespace LockstepSDK.Clients
         /// Change the active GroupKey of the calling user.
         ///
         /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
-        ///
         /// </summary>
         /// <param name="groupKey"></param>
         public async Task<LockstepResponse<UserAccountModel>> ChangeUserGroup(Guid groupKey)
@@ -160,7 +161,6 @@ namespace LockstepSDK.Clients
 
         /// <summary>
         /// Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.
-        ///
         /// </summary>
         /// <param name="include">The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case. Possible values are: UTM</param>
         public async Task<LockstepResponse<UserDataResponseModel>> GetUserData(string[] include)
@@ -177,7 +177,6 @@ namespace LockstepSDK.Clients
         /// Support access allows Lockstep to access the user&#39;s account to troubleshoot issues. Access is granted for a limited time, can be revoked at any time, and requires a code to verify the access.
         ///
         /// Every call to this API will regenerate the support access code.
-        ///
         /// </summary>
         /// <param name="body"></param>
         public async Task<LockstepResponse<SupportAccessModel>> SetSupportAccess(SupportAccessRequest body)

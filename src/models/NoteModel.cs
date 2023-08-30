@@ -100,6 +100,16 @@ namespace LockstepSDK.Models
         public Guid? CreatedUserId { get; set; }
 
         /// <summary>
+        /// The date this note was last modified
+        /// </summary>
+        public DateTime? Modified { get; set; }
+
+        /// <summary>
+        /// The ID of the user who last modified this note
+        /// </summary>
+        public Guid? ModifiedUserId { get; set; }
+
+        /// <summary>
         /// The name of the user who created the note
         /// </summary>
         public string CreatedUserName { get; set; }

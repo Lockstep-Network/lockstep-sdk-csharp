@@ -72,7 +72,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Possible statuses for a record that supports ERP write.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public string ErpWriteStatus { get; set; }
 
         /// <summary>
         /// The name of the ErpWriteStatus for this payment
