@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.28.10
+ * @version    2023.35.14
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
         /// <summary>
         /// The version of the SDK
         /// </summary>
-        public const string SdkVersion = "2023.28.10";
+        public const string SdkVersion = "2023.35.14";
         
         private readonly string _apiUrl;
         private readonly HttpClient _client;

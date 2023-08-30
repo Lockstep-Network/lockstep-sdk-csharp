@@ -21,13 +21,9 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// A Company represents a customer, a vendor, or a company within the organization of the account holder.
-    /// Companies can have parents and children, representing an organizational hierarchy of corporate entities.
-    /// You can use Companies to track projects and financial data under this Company label.
-    ///
-    /// See [Vendors, Customers, and Companies](https://developer.lockstep.io/docs/companies-customers-and-vendors) for more information.
+    /// A summary of companies combined with their most recent magic links
     /// </summary>
-    public class CompanyModel
+    public class CompanyMagicLinkSummaryModel
     {
 
         /// <summary>
@@ -350,5 +346,20 @@ namespace LockstepSDK.Models
         /// To retrieve this collection, specify `Classification` in the &quot;Include&quot; parameter for your query.
         /// </summary>
         public CodeDefinitionModel CompanyClassificationCodeDefinition { get; set; }
+
+        /// <summary>
+        /// Created date of the most recent magic link made for this company
+        /// </summary>
+        public DateTime? LatestMagicLinkDate { get; set; }
+
+        /// <summary>
+        /// Id of the most recent magic link made for this company
+        /// </summary>
+        public Guid? LatestMagicLinkId { get; set; }
+
+        /// <summary>
+        /// Possible statuses for a Magic Link.
+        /// </summary>
+        public string LatestMagicLinkStatus { get; set; }
     }
 }

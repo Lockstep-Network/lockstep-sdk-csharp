@@ -84,5 +84,20 @@ namespace LockstepSDK.Clients
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<MagicLinkModel>>(HttpMethod.Get, url, options, null, null);
         }
+
+        /// <summary>
+        /// Gets a summary of all magic links created during the specified date range, returns no content if there are no magic links for the specified date range
+        ///
+        /// </summary>
+        /// <param name="from">The date that the summary starts from (default one year ago from today)</param>
+        /// <param name="to">The date that the summary ends at (default today)</param>
+        public async Task<LockstepResponse<MagicLinkSummaryModel>> MagicLinkSummary(DateTime? from = null, DateTime? to = null)
+        {
+            var url = $"/api/v1/useraccounts/magic-links/summary";
+            var options = new Dictionary<string, object>();
+            if (from != null) { options["from"] = from; }
+            if (to != null) { options["to"] = to; }
+            return await _client.Request<MagicLinkSummaryModel>(HttpMethod.Get, url, options, null, null);
+        }
     }
 }

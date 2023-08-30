@@ -56,6 +56,22 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
+        /// Updates the Note with the unique ID specified.
+        ///
+        /// A note is a customizable text string that can be attached to various account attributes within Lockstep. You can use notes for internal communication, correspondence with clients, or personal reminders. The Note Model represents a note and a number of different metadata attributes related to the creation, storage, and ownership of the note.
+        ///
+        /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
+        ///
+        /// </summary>
+        /// <param name="id">Note id to be updated</param>
+        /// <param name="body">A list of changes to apply to this Note</param>
+        public async Task<LockstepResponse<NoteModel>> UpdateNote(Guid id, object body)
+        {
+            var url = $"/api/v1/Notes/{id}";
+            return await _client.Request<NoteModel>(new HttpMethod("PATCH"), url, null, body, null);
+        }
+
+        /// <summary>
         /// Archives the Note with the unique ID specified.
         ///
         /// A note is a customizable text string that can be attached to various account attributes within Lockstep. You can use notes for internal communication, correspondence with clients, or personal reminders. The Note Model represents a note and a number of different metadata attributes related to the creation, storage, and ownership of the note.

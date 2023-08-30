@@ -104,5 +104,15 @@ namespace LockstepSDK.Models
         /// To retrieve this item, specify `User` in the &quot;Include&quot; parameter for your query.
         /// </summary>
         public UserAccountModel User { get; set; }
+
+        /// <summary>
+        /// The number of visits to this Magic Link
+        /// </summary>
+        public int? Visits { get; set; }
+
+        /// <summary>
+        /// Possible statuses for a Magic Link.
+        /// </summary>
+        public string Status { get; set; }
     }
 }
