@@ -88,7 +88,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Financial Account Balance Types
         /// </summary>
-        public string BalanceType { get; set; }
+        public int? BalanceType { get; set; }
 
         /// <summary>
         /// The name of the BalanceType for this record.

@@ -277,7 +277,7 @@ namespace LockstepSDK.Clients
         /// <param name="comparisonPeriod">Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. Options are as follows (note for YTD the data will be compared as a percentage of YTD and showCurrencyDifference and showPercentageDifference should not be used): "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior) "YTD" - year to date (the current financial year to the current period)</param>
         /// <param name="showCurrencyDifference">A boolean to turn on a currency based difference between the reporting period and the comparison period.</param>
         /// <param name="showPercentageDifference">A boolean to turn on a percent based difference between the reporting period and the comparison period.</param>
-        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, string displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
+        public async Task<LockstepResponse<FinancialReportModel>> IncomeStatementReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
         {
             var url = $"/api/v1/Reports/income-statement";
             var options = new Dictionary<string, object>();
@@ -304,7 +304,7 @@ namespace LockstepSDK.Clients
         /// <param name="comparisonPeriod">Add a column for historical data with the following options and use showCurrencyDifference and/or show percentageDifference to display a comparison of that historical data to the report period. "PP" - previous period (will show the previous quarter or year if Quarterly or Annually is chosen for columnOption) "PY" - previous year (the same date range as the report, but for the year prior)</param>
         /// <param name="showCurrencyDifference">A boolean to turn on a currency based difference between the reporting period and the comparison period.</param>
         /// <param name="showPercentageDifference">A boolean to turn on a percent based difference between the reporting period and the comparison period.</param>
-        public async Task<LockstepResponse<FinancialReportModel>> BalanceSheetReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, string displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
+        public async Task<LockstepResponse<FinancialReportModel>> BalanceSheetReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, int? displayDepth = null, string comparisonPeriod = null, bool? showCurrencyDifference = null, bool? showPercentageDifference = null)
         {
             var url = $"/api/v1/Reports/balance-sheet";
             var options = new Dictionary<string, object>();
@@ -328,7 +328,7 @@ namespace LockstepSDK.Clients
         /// <param name="appEnrollmentId">The app enrollment id of the app enrollment whose data will be used.</param>
         /// <param name="columnOption">The desired column splitting of the report data. An empty string or anything unrecognized will result in only totals being displayed. Options are as follows: By Period - a column for every month/fiscal period within the reporting dates Quarterly - a column for every quarter within the reporting dates Annually - a column for every year within the reporting dates</param>
         /// <param name="displayDepth">The desired row splitting of the report data. Options are as follows: 0 - combine all accounts by their classification 1 - combine all accounts by their category 2 - combine all accounts by their subcategory 3 - display all accounts</param>
-        public async Task<LockstepResponse<FinancialReportModel>> CashFlowStatementReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, string displayDepth = null)
+        public async Task<LockstepResponse<FinancialReportModel>> CashFlowStatementReport(DateTime? startDate = null, DateTime? endDate = null, Guid? appEnrollmentId = null, string columnOption = null, int? displayDepth = null)
         {
             var url = $"/api/v1/Reports/cash-flow-statement";
             var options = new Dictionary<string, object>();

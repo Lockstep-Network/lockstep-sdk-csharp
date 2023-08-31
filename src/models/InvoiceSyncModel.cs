@@ -37,7 +37,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
-        public string OnMatchAction { get; set; }
+        public int? OnMatchAction { get; set; }
 
         /// <summary>
         /// This is the primary key of the Invoice record. For this field, you should use whatever the invoice&#39;s unique

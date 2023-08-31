@@ -113,6 +113,6 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Possible statuses for a Magic Link.
         /// </summary>
-        public string Status { get; set; }
+        public int? Status { get; set; }
     }
 }
