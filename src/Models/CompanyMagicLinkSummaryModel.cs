@@ -360,6 +360,6 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Possible statuses for a Magic Link.
         /// </summary>
-        public string LatestMagicLinkStatus { get; set; }
+        public int? LatestMagicLinkStatus { get; set; }
     }
 }

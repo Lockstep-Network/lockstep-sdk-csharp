@@ -89,6 +89,6 @@ namespace LockstepSDK.Models
         /// <summary>
         /// The balance type of this period. If left null, the balance type will be determined by the balance.
         /// </summary>
-        public string BalanceType { get; set; }
+        public int? BalanceType { get; set; }
     }
 }

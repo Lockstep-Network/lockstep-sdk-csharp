@@ -69,7 +69,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Possible operation types for a SyncRequest
         /// </summary>
-        public string OperationType { get; set; }
+        public int? OperationType { get; set; }
 
         /// <summary>
         /// Message containing information about the sync request results

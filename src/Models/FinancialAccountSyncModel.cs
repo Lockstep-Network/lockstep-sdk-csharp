@@ -37,7 +37,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
-        public string OnMatchAction { get; set; }
+        public int? OnMatchAction { get; set; }
 
         /// <summary>
         /// The code for the Financial Account. Can either be a general ledger or
