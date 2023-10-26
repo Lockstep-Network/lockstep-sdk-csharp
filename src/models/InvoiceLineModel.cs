@@ -163,14 +163,14 @@ namespace LockstepSDK.Models
         public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// Possible statuses for a record that supports ERP write.
+        /// Possible statuses for a record that supports ERP Update.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public int? ErpUpdateStatus { get; set; }
 
         /// <summary>
-        /// The name of the ErpWriteStatus for this Invoice
+        /// Possible actions for a record that supports ERP Update.
         /// </summary>
-        public string ErpWriteStatusName { get; set; }
+        public int? ErpUpdateAction { get; set; }
 
         /// <summary>
         /// The date on which this record was last modified in source ERP.

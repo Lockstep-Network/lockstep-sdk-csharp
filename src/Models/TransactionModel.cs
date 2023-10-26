@@ -135,5 +135,10 @@ namespace LockstepSDK.Models
         /// call to Invoices/{id}/pdf or Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
         /// </summary>
         public bool? SupportsErpPdfRetrieval { get; set; }
+
+        /// <summary>
+        /// The customer associated with this transaction
+        /// </summary>
+        public Guid? TransactionCustomerId { get; set; }
     }
 }

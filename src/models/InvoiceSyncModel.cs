@@ -40,6 +40,11 @@ namespace LockstepSDK.Models
         public int? OnMatchAction { get; set; }
 
         /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Invoice record. For this field, you should use whatever the invoice&#39;s unique
         /// identifying number is in the originating system. Search for a unique, non-changing number within the
         /// originating financial system for this record.
@@ -63,6 +68,11 @@ namespace LockstepSDK.Models
         public string CompanyErpKey { get; set; }
 
         /// <summary>
+        /// The network id of the related Company.
+        /// </summary>
+        public Guid? CompanyNetworkId { get; set; }
+
+        /// <summary>
         /// The original primary key or unique ID of the company to which this invoice was sent.  This value should
         /// match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
         /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
@@ -72,6 +82,11 @@ namespace LockstepSDK.Models
         /// was sent.
         /// </summary>
         public string CustomerErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the related Customer.
+        /// </summary>
+        public Guid? CustomerNetworkId { get; set; }
 
         /// <summary>
         /// The name of the salesperson that wrote this invoice.  This is just text, it is not a reference to the
@@ -374,5 +389,15 @@ namespace LockstepSDK.Models
         /// The remaining balance value of this invoice in the erp&#39;s base currency.
         /// </summary>
         public decimal? BaseCurrencyOutstandingBalanceAmount { get; set; }
+
+        /// <summary>
+        /// True if the invoice is an E-Invoice
+        /// </summary>
+        public bool? IsEInvoice { get; set; }
+
+        /// <summary>
+        /// True if the E-Invoice should be sent to gov/other recipients immediately
+        /// </summary>
+        public bool? SendImmediately { get; set; }
     }
 }

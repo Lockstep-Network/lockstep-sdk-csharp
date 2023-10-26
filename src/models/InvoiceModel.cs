@@ -112,6 +112,16 @@ namespace LockstepSDK.Models
         public string InvoiceStatusCode { get; set; }
 
         /// <summary>
+        /// The id of the work flow status associated with this invoice.
+        /// </summary>
+        public Guid? WorkflowStatusId { get; set; }
+
+        /// <summary>
+        /// A description of the current workflow status of this invoice.
+        /// </summary>
+        public string WorkflowStatusNotes { get; set; }
+
+        /// <summary>
         /// A code identifying the terms given to the purchaser.  This field is imported directly from the originating
         /// financial system and does not follow a specified format.
         /// </summary>
@@ -277,19 +287,25 @@ namespace LockstepSDK.Models
         public decimal? BaseCurrencyOutstandingBalanceAmount { get; set; }
 
         /// <summary>
-        /// Possible statuses for a record that supports ERP write.
+        /// Possible statuses for a record that supports ERP Update.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public int? ErpUpdateStatus { get; set; }
 
         /// <summary>
-        /// The name of the ErpWriteStatus for this Invoice
+        /// Possible actions for a record that supports ERP Update.
         /// </summary>
-        public string ErpWriteStatusName { get; set; }
+        public int? ErpUpdateAction { get; set; }
 
         /// <summary>
         /// The date on which this record was last modified in source ERP.
         /// </summary>
         public DateTime? SourceModifiedDate { get; set; }
+
+        /// <summary>
+        /// All workflow status histories connected to this invoice.
+        /// To retrieve this collection, specify `WorkflowStatuses` in the &quot;Include&quot; parameter for your query.
+        /// </summary>
+        public InvoiceWorkflowStatusHistoryModel[] WorkflowStatuses { get; set; }
 
         /// <summary>
         /// All addresses connected to this invoice.
@@ -372,5 +388,10 @@ namespace LockstepSDK.Models
         /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
         /// </summary>
         public CustomFieldDefinitionModel[] CustomFieldDefinitions { get; set; }
+
+        /// <summary>
+        /// Indicates if the invoice an E-Invoice or not
+        /// </summary>
+        public bool? IsEInvoice { get; set; }
     }
 }

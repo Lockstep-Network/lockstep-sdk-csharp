@@ -65,14 +65,14 @@ namespace LockstepSDK.Models
         public string ErpKey { get; set; }
 
         /// <summary>
-        /// Possible statuses for a record that supports ERP write.
+        /// Possible statuses for a record that supports ERP Update.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public int? ErpUpdateStatus { get; set; }
 
         /// <summary>
-        /// The name of the ErpWriteStatus for this Payment
+        /// Possible actions for a record that supports ERP Update.
         /// </summary>
-        public string ErpWriteStatusName { get; set; }
+        public int? ErpUpdateAction { get; set; }
 
         /// <summary>
         /// The type of payment, AR Payment or AP Payment.

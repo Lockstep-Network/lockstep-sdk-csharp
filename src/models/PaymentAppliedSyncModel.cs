@@ -40,6 +40,11 @@ namespace LockstepSDK.Models
         public int? OnMatchAction { get; set; }
 
         /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Payment Application record. For this field, you should use whatever this
         /// transaction&#39;s unique identifying number is in the originating system. Search for a unique, non-changing
         /// number within the originating financial system for this record.
@@ -64,6 +69,11 @@ namespace LockstepSDK.Models
         public string InvoiceErpKey { get; set; }
 
         /// <summary>
+        /// The network id of the related Invoice.
+        /// </summary>
+        public Guid? InvoiceNetworkId { get; set; }
+
+        /// <summary>
         /// This field indicates which Payment was used to provide the funds for this payment application. In this
         /// field, identify the original primary key or unique ID of the Payment that was used for this payment
         /// application.
@@ -75,6 +85,11 @@ namespace LockstepSDK.Models
         /// field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
         /// </summary>
         public string PaymentErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the related Payment.
+        /// </summary>
+        public Guid? PaymentNetworkId { get; set; }
 
         /// <summary>
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,

@@ -9,7 +9,7 @@
  * @author     Lockstep Network <support@lockstep.io>
  *             
  * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.35.16
+ * @version    2023.40.72
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
         /// <summary>
         /// The version of the SDK
         /// </summary>
-        public const string SdkVersion = "2023.35.16";
+        public const string SdkVersion = "2023.40.72";
         
         private readonly string _apiUrl;
         private readonly HttpClient _client;
@@ -160,6 +160,16 @@ namespace LockstepSDK
         public InvoicesClient Invoices { get; }
 
         /// <summary>
+        /// API methods related to JournalEntries
+        /// </summary>
+        public JournalEntriesClient JournalEntries { get; }
+
+        /// <summary>
+        /// API methods related to JournalEntryLines
+        /// </summary>
+        public JournalEntryLinesClient JournalEntryLines { get; }
+
+        /// <summary>
         /// API methods related to Leads
         /// </summary>
         public LeadsClient Leads { get; }
@@ -249,6 +259,11 @@ namespace LockstepSDK
         /// </summary>
         public WebhooksClient Webhooks { get; }
 
+        /// <summary>
+        /// API methods related to WorkflowStatuses
+        /// </summary>
+        public WorkflowStatusesClient WorkflowStatuses { get; }
+
 
         /// <summary>
         /// Internal constructor for the client. You should always begin with `WithEnvironment()` or `WithCustomEnvironment`.
@@ -288,6 +303,8 @@ namespace LockstepSDK
             InvoiceAddresses = new InvoiceAddressesClient(this);
             InvoiceLines = new InvoiceLinesClient(this);
             Invoices = new InvoicesClient(this);
+            JournalEntries = new JournalEntriesClient(this);
+            JournalEntryLines = new JournalEntryLinesClient(this);
             Leads = new LeadsClient(this);
             MagicLinks = new MagicLinksClient(this);
             Notes = new NotesClient(this);
@@ -306,6 +323,7 @@ namespace LockstepSDK
             UserRoles = new UserRolesClient(this);
             WebhookRules = new WebhookRulesClient(this);
             Webhooks = new WebhooksClient(this);
+            WorkflowStatuses = new WorkflowStatusesClient(this);
                 
             // Configure JSON serializer options
             _options = new JsonSerializerOptions

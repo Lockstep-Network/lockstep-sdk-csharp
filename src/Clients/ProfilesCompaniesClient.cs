@@ -41,6 +41,7 @@ namespace LockstepSDK.Clients
         /// Retrieves the Public Company Profile specified by the public url slug.
         ///
         /// A Public Company Profile makes available the following information: &lt;ul&gt;&lt;li&gt;Company Name&lt;/li&gt;&lt;li&gt;Company Logo Url&lt;/li&gt;&lt;li&gt;Description&lt;/li&gt;&lt;li&gt;Website&lt;/li&gt;&lt;/ul&gt;
+        ///
         /// </summary>
         /// <param name="urlSlug"></param>
         public async Task<LockstepResponse<PublicCompanyProfileModel>> RetrievePublicCompanyProfile(string urlSlug)
@@ -57,6 +58,7 @@ namespace LockstepSDK.Clients
         /// A Public Company Profile makes available the following information:
         ///
         /// &lt;ul&gt;&lt;li&gt;Company Name&lt;/li&gt;&lt;li&gt;Company Logo Url&lt;/li&gt;&lt;li&gt;Description&lt;/li&gt;&lt;li&gt;Website&lt;/li&gt;&lt;/ul&gt;
+        ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>

@@ -40,6 +40,11 @@ namespace LockstepSDK.Models
         public int? OnMatchAction { get; set; }
 
         /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Company record. For this field, you should use whatever the company&#39;s unique
         /// identifying number is in the originating system. Search for a unique, non-changing number within the
         /// originating financial system for this record.
@@ -85,6 +90,11 @@ namespace LockstepSDK.Models
         public string ParentCompanyErpKey { get; set; }
 
         /// <summary>
+        /// The network id of the parent Company.
+        /// </summary>
+        public Guid? ParentCompanyNetworkId { get; set; }
+
+        /// <summary>
         /// This flag indicates whether the company is currently active. An inactive company will be hidden from the
         /// user interface but will still be available for querying.
         /// </summary>
@@ -106,6 +116,11 @@ namespace LockstepSDK.Models
         /// [Importing Contacts](https://developer.lockstep.io/docs/importing-contacts) record for the contact table.
         /// </summary>
         public string PrimaryContactErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the primary Contact.
+        /// </summary>
+        public Guid? PrimaryContactNetworkId { get; set; }
 
         /// <summary>
         /// The company&#39;s primary mailing address information

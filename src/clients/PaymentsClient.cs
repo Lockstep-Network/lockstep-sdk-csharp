@@ -125,12 +125,29 @@ namespace LockstepSDK.Clients
         ///
         /// QuickBooks Online supports AR Payments.
         ///
+        /// For other ERPs, the supported types will depend on the synced data.
+        ///
         /// </summary>
         /// <param name="id">The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key</param>
         public async Task<LockstepResponse<byte[]>> RetrievepaymentPDF(Guid id)
         {
             var url = $"/api/v1/Payments/{id}/pdf";
             return await _client.Request<byte[]>(HttpMethod.Get, url, null, null, null);
+        }
+
+        /// <summary>
+        /// Checks for whether a PDF file for this payment exists if it has been synced using an app enrollment to one of the supported apps.
+        ///
+        /// QuickBooks Online supports AR Payments.
+        ///
+        /// For other ERPs, the supported types will depend on the synced data.
+        ///
+        /// </summary>
+        /// <param name="id">The unique Lockstep Platform ID number of this payment; NOT the customer's ERP key</param>
+        public async Task<LockstepResponse<byte[]>> CheckpaymentPDF(Guid id)
+        {
+            var url = $"/api/v1/Payments/{id}/pdf";
+            return await _client.Request<byte[]>(HttpMethod.Head, url, null, null, null);
         }
 
         /// <summary>
@@ -189,19 +206,6 @@ namespace LockstepSDK.Clients
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             return await _client.Request<FetchResult<PaymentDetailModel>>(HttpMethod.Get, url, options, null, null);
-        }
-
-        /// <summary>
-        /// **This API endpoint is under maintenance and may not function properly.**  Schedule an ERP post request for payments.
-        ///
-        /// The payments must be associated with an active app enrollment and have a valid `AppEnrollmentId`.
-        ///
-        /// </summary>
-        /// <param name="body">The payments to submit to the connected ERP</param>
-        public async Task<LockstepResponse<PaymentModelErpWriteResult>> WritepaymentstoconnectedERP(InsertPaymentRequestModelErpWriteSyncSubmitModel body)
-        {
-            var url = $"/api/v1/Payments/erp-write";
-            return await _client.Request<PaymentModelErpWriteResult>(HttpMethod.Post, url, null, body, null);
         }
     }
 }

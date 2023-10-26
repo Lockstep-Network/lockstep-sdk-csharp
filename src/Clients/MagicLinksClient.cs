@@ -65,6 +65,19 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
+        /// Revokes the bounced magic link with the specified id so it cannot be used to call the API.
+        ///
+        /// Revocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.
+        ///
+        /// </summary>
+        /// <param name="id">The unique Lockstep Platform ID number of this magic link</param>
+        public async Task<LockstepResponse<ActionResultModel>> RevokeBouncedMagicLink(Guid id)
+        {
+            var url = $"/api/v1/useraccounts/magic-links/{id}/bounced";
+            return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
+        }
+
+        /// <summary>
         /// Queries Magic Links for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
         /// </summary>

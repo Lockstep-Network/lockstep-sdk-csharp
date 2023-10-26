@@ -101,6 +101,7 @@ namespace LockstepSDK.Clients
         /// Retrieves invite information for the specified invite token.
         ///
         /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
+        ///
         /// </summary>
         /// <param name="code">The code of the invite</param>
         public async Task<LockstepResponse<InviteDataModel>> RetrieveInviteData(Guid? code = null)
@@ -149,6 +150,7 @@ namespace LockstepSDK.Clients
         /// Change the active GroupKey of the calling user.
         ///
         /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must have an email address defined within their account.  All Users must validate their email to make use of Lockstep platform services.  Users may have different privileges and access control rights within the Lockstep Platform.
+        ///
         /// </summary>
         /// <param name="groupKey"></param>
         public async Task<LockstepResponse<UserAccountModel>> ChangeUserGroup(Guid groupKey)
@@ -161,6 +163,7 @@ namespace LockstepSDK.Clients
 
         /// <summary>
         /// Retrieves the user data for the current user. This allows for retrieving extended user data such as UTM parameters.
+        ///
         /// </summary>
         /// <param name="include">The set of data to retrieve. To avoid any casing confusion, these values are converted to upper case. Possible values are: UTM</param>
         public async Task<LockstepResponse<UserDataResponseModel>> GetUserData(string[] include)
@@ -177,6 +180,7 @@ namespace LockstepSDK.Clients
         /// Support access allows Lockstep to access the user&#39;s account to troubleshoot issues. Access is granted for a limited time, can be revoked at any time, and requires a code to verify the access.
         ///
         /// Every call to this API will regenerate the support access code.
+        ///
         /// </summary>
         /// <param name="body"></param>
         public async Task<LockstepResponse<SupportAccessModel>> SetSupportAccess(SupportAccessRequest body)

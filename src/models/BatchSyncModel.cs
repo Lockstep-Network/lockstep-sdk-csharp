@@ -103,5 +103,15 @@ namespace LockstepSDK.Models
         /// A list of BaseCurrency records to merge with your Lockstep Platform data
         /// </summary>
         public BaseCurrencySyncModel[] BaseCurrencies { get; set; }
+
+        /// <summary>
+        /// A list of JournalEntry records to merge with your Lockstep Platform data
+        /// </summary>
+        public JournalEntrySyncModel[] JournalEntries { get; set; }
+
+        /// <summary>
+        /// A list of JournalEntryLine records to merge with your Lockstep Platform data
+        /// </summary>
+        public JournalEntryLineSyncModel[] JournalEntryLines { get; set; }
     }
 }

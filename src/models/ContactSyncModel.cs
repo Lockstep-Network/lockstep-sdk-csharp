@@ -40,6 +40,11 @@ namespace LockstepSDK.Models
         public int? OnMatchAction { get; set; }
 
         /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Contact record. For this field, you should use whatever the contact&#39;s unique
         /// identifying number is in the originating system. Search for a unique, non-changing number within the
         /// originating financial system for this record.
@@ -63,6 +68,11 @@ namespace LockstepSDK.Models
         /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
         /// </summary>
         public string CompanyErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the related Company.
+        /// </summary>
+        public Guid? CompanyNetworkId { get; set; }
 
         /// <summary>
         /// The name of the contact.

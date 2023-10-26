@@ -61,8 +61,8 @@ namespace LockstepSDK.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// The status of the Financial Account. Possible values are active,
-        /// inactive, deleted or archived.
+        /// The status of the Financial Account. Possible values are Active,
+        /// Inactive, Deleted or Archived.
         /// </summary>
         public string Status { get; set; }
 

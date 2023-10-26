@@ -40,6 +40,11 @@ namespace LockstepSDK.Models
         public int? OnMatchAction { get; set; }
 
         /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
+
+        /// <summary>
         /// This is the primary key of the Invoice Line record. For this field, you should use whatever the contact&#39;s unique
         /// identifying number is in the originating system. Search for a unique, non-changing number within the
         /// originating financial system for this record.
@@ -57,6 +62,11 @@ namespace LockstepSDK.Models
         /// [InvoiceSyncModel](https://developer.lockstep.io/docs/importing-invoices).
         /// </summary>
         public string InvoiceErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the parent Invoice.
+        /// </summary>
+        public Guid? InvoiceNetworkId { get; set; }
 
         /// <summary>
         /// The line number of this line, as defined in the originating ERP or accounting system.  You can sort on this number to
