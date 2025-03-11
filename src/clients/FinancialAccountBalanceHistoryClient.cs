@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -43,7 +43,7 @@ namespace LockstepSDK.Clients
         /// A Financial Account Balance History records either the current or end of period balance for a corresponding financial account.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Financial Account Balance History</param>
+        /// <param name="id">The unique ADS Platform ID number of this Financial Account Balance History</param>
         public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> RetrieveBalanceHistory(Guid id)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
@@ -58,7 +58,7 @@ namespace LockstepSDK.Clients
         /// A Financial Account Balance History records either the current or end of period balance for a corresponding financial account.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Financial Account Balance History to update</param>
+        /// <param name="id">The unique ADS Platform ID number of the Financial Account Balance History to update</param>
         /// <param name="body">A list of changes to apply to this Financial Account Balance History</param>
         public async Task<LockstepResponse<FinancialAccountBalanceHistoryModel>> UpdateBalanceHistory(Guid id, object body)
         {
@@ -72,7 +72,7 @@ namespace LockstepSDK.Clients
         /// A Financial Account Balance History records either the current or end of period balance for a corresponding financial account.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Financial Account Balance History to disable</param>
+        /// <param name="id">The unique ADS Platform ID number of the Financial Account Balance History to disable</param>
         public async Task<LockstepResponse<ActionResultModel>> DeleteBalanceHistory(Guid id)
         {
             var url = $"/api/v1/FinancialAccountBalanceHistory/{id}";
@@ -95,7 +95,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Financial Account Balance History for this account using the specified filtering, sorting, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// A Financial Account Balance History records either the current or end of period balance for a corresponding financial account.
         ///

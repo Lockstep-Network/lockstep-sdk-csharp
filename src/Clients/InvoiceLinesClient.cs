@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -52,7 +52,7 @@ namespace LockstepSDK.Clients
         ///
         ///
         /// </summary>
-        /// <param name="body">The unique Lockstep Platform ID numbers of the Invoice Lines to delete; NOT the customer's ERP keys</param>
+        /// <param name="body">The unique ADS Platform ID numbers of the Invoice Lines to delete; NOT the customer's ERP keys</param>
         public async Task<LockstepResponse<DeleteResult>> DeleteInvoiceLines(BulkDeleteRequestModel body)
         {
             var url = $"/api/v1/invoice-lines";
@@ -96,7 +96,7 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Queries Invoice Lines for the account using specified filtering More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// Queries Invoice Lines for the account using specified filtering More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>

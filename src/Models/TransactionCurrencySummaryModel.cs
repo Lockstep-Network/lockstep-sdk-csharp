@@ -21,34 +21,24 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// Represents an ISO-4217 currency code definition
+    /// Represents transaction summary information based on the query request within the group account, grouped by currency.
     /// </summary>
-    public class CurrencyModel
+    public class TransactionCurrencySummaryModel
     {
 
         /// <summary>
-        /// Alphabetic code for the given currency
+        /// The currency code for the summary.
         /// </summary>
-        public string AlphaCode { get; set; }
+        public string CurrencyCode { get; set; }
 
         /// <summary>
-        /// Numeric code for the given currency
+        /// Total value of all transactions from the query request for the specified currency.
         /// </summary>
-        public string NumericCode { get; set; }
+        public decimal? TotalAmount { get; set; }
 
         /// <summary>
-        /// Name of currency
+        /// Total outstanding amount value of all transactions from the query request for the specified currency.
         /// </summary>
-        public string CurrencyName { get; set; }
-
-        /// <summary>
-        /// Number of places after the decimal for this currency
-        /// </summary>
-        public int? MinorUnit { get; set; }
-
-        /// <summary>
-        /// Symbol for the given currency
-        /// </summary>
-        public string Symbol { get; set; }
+        public decimal? OutstandingAmount { get; set; }
     }
 }

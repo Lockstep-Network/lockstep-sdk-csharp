@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -40,7 +40,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Retrieves the API Key with this identifier.
         ///
-        /// An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the Lockstep API. When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot retrieve an API Key once it is created.
+        /// An API Key is an authentication token that you may use with the ADS Platform API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the ADS Platform API. When you create an API Key, make sure to save the value in a secure location.  ADS Platform cannot retrieve an API Key once it is created.
         ///
         /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
         ///
@@ -58,14 +58,14 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Immediately revokes the API Key with the specified id so it cannot be used to call the API.
         ///
-        /// The Lockstep Platform guarantees that revocation will be received by all servers within five minutes of revocation.  API calls made using this API key after the revocation will fail.  A revoked API Key cannot be un-revoked and may be removed 60 days after revocation.
+        /// The ADS Platform guarantees that revocation will be received by all servers within five minutes of revocation.  API calls made using this API key after the revocation will fail.  A revoked API Key cannot be un-revoked and may be removed 60 days after revocation.
         ///
-        /// An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the Lockstep API. When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot retrieve an API Key once it is created.
+        /// An API Key is an authentication token that you may use with the ADS Platform API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the ADS Platform API. When you create an API Key, make sure to save the value in a secure location.  ADS Platform cannot retrieve an API Key once it is created.
         ///
         /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this API Key</param>
+        /// <param name="id">The unique ADS Platform ID number of this API Key</param>
         public async Task<LockstepResponse<ActionResultModel>> RevokeAPIKey(Guid id)
         {
             var url = $"/api/v1/ApiKeys/{id}";
@@ -75,7 +75,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Creates an API key with the specified name.
         ///
-        /// An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the Lockstep API. When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot retrieve an API Key once it is created.
+        /// An API Key is an authentication token that you may use with the ADS Platform API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the ADS Platform API. When you create an API Key, make sure to save the value in a secure location.  ADS Platform cannot retrieve an API Key once it is created.
         ///
         /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
         ///
@@ -90,7 +90,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries API Keys for this user using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
-        /// An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the Lockstep API. When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot retrieve an API Key once it is created.
+        /// An API Key is an authentication token that you may use with the ADS Platform API.  Because API Keys do not have an expiration date, they are well suited for unattended processes.  Each API Key is associated with a user, and may be revoked to prevent it from accessing the ADS Platform API. When you create an API Key, make sure to save the value in a secure location.  ADS Platform cannot retrieve an API Key once it is created.
         ///
         /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
         ///

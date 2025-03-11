@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,13 +21,13 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// The CompanySyncModel represents information coming into Lockstep from an external financial system or other
+    /// The CompanySyncModel represents information coming into ADS from an external financial system or other
     /// enterprise resource planning system.  To import data from an external system, convert your original data into
     /// the CompanySyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
-    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
-    /// platform.
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS
+    /// Platform.
     ///
-    /// Once imported, this record will be available in the Lockstep API as a [CompanyModel](https://developer.lockstep.io/docs/companymodel).
+    /// Once imported, this record will be available in the ADS Platform API as a [CompanyModel](https://developer.lockstep.io/docs/companymodel).
     ///
     /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
     /// </summary>
@@ -38,6 +38,11 @@ namespace LockstepSDK.Models
         /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
         public int? OnMatchAction { get; set; }
+
+        /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
 
         /// <summary>
         /// This is the primary key of the Company record. For this field, you should use whatever the company&#39;s unique
@@ -64,7 +69,7 @@ namespace LockstepSDK.Models
         /// `Customer`, `Group`, `Vendor`, or `Third Party`. A company that represents both a customer and a vendor is
         /// identified as a `CustomerVendor`.
         ///
-        /// When loading data into Lockstep, you should focus on the distinction between a company that is part of
+        /// When loading data into ADS, you should focus on the distinction between a company that is part of
         /// your own enterprise, or a company that is external to your enterprise.
         ///
         /// For a company that is within your enterprise, you should set this value to be `Company`.
@@ -83,6 +88,11 @@ namespace LockstepSDK.Models
         /// If this company is not a child company, leave this field null.
         /// </summary>
         public string ParentCompanyErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the parent Company.
+        /// </summary>
+        public Guid? ParentCompanyNetworkId { get; set; }
 
         /// <summary>
         /// This flag indicates whether the company is currently active. An inactive company will be hidden from the
@@ -108,6 +118,11 @@ namespace LockstepSDK.Models
         public string PrimaryContactErpKey { get; set; }
 
         /// <summary>
+        /// The network id of the primary Contact.
+        /// </summary>
+        public Guid? PrimaryContactNetworkId { get; set; }
+
+        /// <summary>
         /// The company&#39;s primary mailing address information
         /// </summary>
         public string Address1 { get; set; }
@@ -121,6 +136,11 @@ namespace LockstepSDK.Models
         /// The company&#39;s primary mailing address information
         /// </summary>
         public string Address3 { get; set; }
+
+        /// <summary>
+        /// The company&#39;s primary mailing address information
+        /// </summary>
+        public string Address4 { get; set; }
 
         /// <summary>
         /// The company&#39;s primary mailing address information
@@ -195,5 +215,10 @@ namespace LockstepSDK.Models
         /// A unique identification number assigned to the company by the national registration office.
         /// </summary>
         public string CompanyRegistrationNumber { get; set; }
+
+        /// <summary>
+        /// The set of identifiers for the Company.
+        /// </summary>
+        public string CompanyIdentifiers { get; set; }
     }
 }

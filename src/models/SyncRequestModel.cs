@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,8 +21,8 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// Represents a Sync action that loads data from a connector into the Lockstep Platform.  Users can
-    /// request Sync actions manually using Lockstep Inbox, or via the [Create Sync API](https://developer.lockstep.io/reference/post_api-v1-sync).
+    /// Represents a Sync action that loads data from a connector into the ADS Platform.  Users can
+    /// request Sync actions manually using ADS Inbox, or via the [Create Sync API](https://developer.lockstep.io/reference/post_api-v1-sync).
     /// Each Sync action is tied to an [AppEnrollment](https://developer.lockstep.io/docs/applications-and-enrollments).
     /// When the Sync action is complete, the field `StatusCode` will be set to either `Success` or `Failed`.
     ///
@@ -34,13 +34,13 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS Platform when this record is
+        /// added to the ADS Platform.
         /// </summary>
         public Guid? SyncRequestId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -49,11 +49,13 @@ namespace LockstepSDK.Models
 
         /// <summary>
         /// The status of processing for this SyncRequest.  When a SyncRequest is created, it is flagged as `Ready`.
+        /// While it is in queue waiting to be picked up, its status moves to `Connector`.
         /// When it is picked up for execution, its status moves to `In Progress`.  When it is complete, its status
         /// will move to `Success` or `Failed`.  If another API call cancels the SyncRequest, its status will move
         /// to `Cancelled`.
         ///
         /// * Ready
+        /// * Connector
         /// * In Progress
         /// * Cancelled
         /// * Failed
@@ -116,5 +118,20 @@ namespace LockstepSDK.Models
         /// Query requests.
         /// </summary>
         public object Details { get; set; }
+
+        /// <summary>
+        /// The ParentSyncRequestId for this batch zip sync request
+        /// </summary>
+        public Guid? ParentSyncRequestId { get; set; }
+
+        /// <summary>
+        /// The CurrentBatch of this batch zip sync request
+        /// </summary>
+        public int? CurrentBatch { get; set; }
+
+        /// <summary>
+        /// The TotalBatches of this batch zip sync request
+        /// </summary>
+        public int? TotalBatches { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -82,5 +82,25 @@ namespace LockstepSDK.Models
         /// The port number of the server a connection is being created for.
         /// </summary>
         public int? ServerPort { get; set; }
+
+        /// <summary>
+        /// The Client Id for the connection being created.
+        /// </summary>
+        public string ClientId { get; set; }
+
+        /// <summary>
+        /// The Secret for the connection being created.
+        /// </summary>
+        public string ClientSecret { get; set; }
+
+        /// <summary>
+        /// The TenantId for the connection being created.
+        /// </summary>
+        public string Tenant { get; set; }
+
+        /// <summary>
+        /// The AuthToken for the connection being created.
+        /// </summary>
+        public string AuthToken { get; set; }
     }
 }

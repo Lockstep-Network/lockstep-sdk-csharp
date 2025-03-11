@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -32,7 +32,7 @@ namespace LockstepSDK.Models
         public Guid? FinancialAccountId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -61,8 +61,8 @@ namespace LockstepSDK.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// The status of the Financial Account. Possible values are active,
-        /// inactive, deleted or archived.
+        /// The status of the Financial Account. Possible values are Active,
+        /// Inactive, Deleted or Archived.
         /// </summary>
         public string Status { get; set; }
 
@@ -92,6 +92,11 @@ namespace LockstepSDK.Models
         /// The subcategory for the Financial Account. Examples include Cash, Property, Bank Loan, etc.
         /// </summary>
         public string Subcategory { get; set; }
+
+        /// <summary>
+        /// The system account type of the Financial Account.
+        /// </summary>
+        public string SystemAccountType { get; set; }
 
         /// <summary>
         /// The date the FinancialAccount was created.

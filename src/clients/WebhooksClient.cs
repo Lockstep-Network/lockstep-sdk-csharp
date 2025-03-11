@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -41,7 +41,7 @@ namespace LockstepSDK.Clients
         /// Retrieves the Webhook specified by this unique identifier.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Webhook</param>
+        /// <param name="id">The unique ADS Platform ID number of this Webhook</param>
         public async Task<LockstepResponse<WebhookModel>> RetrieveWebhook(Guid id)
         {
             var url = $"/api/v1/Webhooks/{id}";
@@ -54,7 +54,7 @@ namespace LockstepSDK.Clients
         /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Webhook to update.</param>
+        /// <param name="id">The unique ADS Platform ID number of the Webhook to update.</param>
         /// <param name="body">A list of changes to apply to this Webhook</param>
         public async Task<LockstepResponse<WebhookModel>> UpdateWebhook(Guid id, object body)
         {
@@ -66,7 +66,7 @@ namespace LockstepSDK.Clients
         /// Deletes the Webhook referred to by this unique identifier.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Webhook to delete.</param>
+        /// <param name="id">The unique ADS Platform ID number of the Webhook to delete.</param>
         public async Task<LockstepResponse<ActionResultModel>> DeleteWebhook(Guid id)
         {
             var url = $"/api/v1/Webhooks/{id}";
@@ -88,7 +88,7 @@ namespace LockstepSDK.Clients
         /// Updates a webhook that matches the specified id with a new client secret.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Webhook to update.</param>
+        /// <param name="id">The unique ADS Platform ID number of the Webhook to update.</param>
         public async Task<LockstepResponse<WebhookModel>> RegenerateClientSecret(Guid id)
         {
             var url = $"/api/v1/Webhooks/{id}/regenerate-client-secret";
@@ -98,7 +98,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Webhooks for this account using the specified filtering, sorting, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
@@ -122,7 +122,7 @@ namespace LockstepSDK.Clients
         ///
         ///
         /// </summary>
-        /// <param name="webhookId">The unique Lockstep Platform ID number of this Webhook</param>
+        /// <param name="webhookId">The unique ADS Platform ID number of this Webhook</param>
         /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collection: Records, RequestMessage, ResponseMessage</param>
         /// <param name="filter">The filter for this query. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
         /// <param name="select">The selection for this query. Selection is the desired properties of an entity to pull from the set. If a property is not selected, it will either return as null or empty. See [Azure Query Language](https://docs.microsoft.com/en-us/rest/api/storageservices/querying-tables-and-entities)</param>
@@ -144,8 +144,8 @@ namespace LockstepSDK.Clients
         ///
         ///
         /// </summary>
-        /// <param name="webhookId">The unique Lockstep Platform ID number of this Webhook</param>
-        /// <param name="webhookHistoryId">The unique Lockstep Platform ID number of the Webhook History to be retried. Note: the webhook history supplied must have a isSuccessful status of false to be retried.</param>
+        /// <param name="webhookId">The unique ADS Platform ID number of this Webhook</param>
+        /// <param name="webhookHistoryId">The unique ADS Platform ID number of the Webhook History to be retried. Note: the webhook history supplied must have a isSuccessful status of false to be retried.</param>
         public async Task<LockstepResponse<string>> RetryFailedWebhookHistory(Guid webhookId, Guid webhookHistoryId)
         {
             var url = $"/api/v1/Webhooks/{webhookId}/history/{webhookHistoryId}/retry";

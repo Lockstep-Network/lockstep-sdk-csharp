@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -35,16 +35,6 @@ namespace LockstepSDK.Models
         /// If authentication is successful, contains the email address of the logged-in user.
         /// </summary>
         public string EmailAddress { get; set; }
-
-        /// <summary>
-        /// If authentication is successful, contains subscription account name of logged-in user.
-        /// </summary>
-        public string AccountName { get; set; }
-
-        /// <summary>
-        /// If authentication is successful, contains subscription account company id of logged-in user.
-        /// </summary>
-        public Guid? AccountCompanyId { get; set; }
 
         /// <summary>
         /// If authentication is successful, contains the unique identifier of the logged-in user.
@@ -97,32 +87,17 @@ namespace LockstepSDK.Models
         public string Version { get; set; }
 
         /// <summary>
-        /// If authentication is successful, contains the onboarding session status of the logged-in user&#39;s group account.
-        /// </summary>
-        public bool? OnboardingScheduled { get; set; }
-
-        /// <summary>
-        /// Base Currency of the group
-        /// </summary>
-        public string BaseCurrencyCode { get; set; }
-
-        /// <summary>
-        /// Country code of the group
-        /// </summary>
-        public string CountryCode { get; set; }
-
-        /// <summary>
         /// Magic link information about the user
         /// </summary>
         public MagicLinkStatusModel MagicLink { get; set; }
 
         /// <summary>
-        /// Information allowing Lockstep to offer direct support to the user
+        /// Information allowing ADS Platform to offer direct support to the user
         /// </summary>
         public SupportAccessModel SupportAccess { get; set; }
 
         /// <summary>
-        /// True if the user is being impersonated by the Lockstep support team.
+        /// True if the user is being impersonated by the ADS Platform support team.
         /// </summary>
         public bool? IsImpersonated { get; set; }
 

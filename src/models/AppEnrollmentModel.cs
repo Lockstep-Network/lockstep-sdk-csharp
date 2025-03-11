@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -22,7 +22,7 @@ namespace LockstepSDK.Models
 
     /// <summary>
     /// An AppEnrollment represents an app that has been enrolled to the current account.  When you sign up for an
-    /// app using the Lockstep Platform, you obtain an enrollment record for that app.  Example types of apps include
+    /// app using the ADS Platform, you obtain an enrollment record for that app.  Example types of apps include
     /// connectors and feature enhancement apps. The App Enrollment object contains information about this app, its
     /// configuration, and settings.
     ///
@@ -32,8 +32,8 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         /// </summary>
         public Guid? AppEnrollmentId { get; set; }
 
@@ -44,7 +44,7 @@ namespace LockstepSDK.Models
         public Guid? AppId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).

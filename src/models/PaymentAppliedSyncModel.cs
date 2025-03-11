@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,13 +21,13 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// The PaymentAppliedSyncModel represents information coming into Lockstep from an external financial system or
+    /// The PaymentAppliedSyncModel represents information coming into ADS from an external financial system or
     /// other enterprise resource planning system.  To import data from an external system, convert your original data
     /// into the PaymentAppliedSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
-    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
-    /// platform.
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS
+    /// Platform.
     ///
-    /// Once imported, this record will be available in the Lockstep API as a [PaymentAppliedModel](https://developer.lockstep.io/docs/paymentappliedmodel).
+    /// Once imported, this record will be available in the ADS Platform API as a [PaymentAppliedModel](https://developer.lockstep.io/docs/paymentappliedmodel).
     ///
     /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
     /// </summary>
@@ -38,6 +38,11 @@ namespace LockstepSDK.Models
         /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
         public int? OnMatchAction { get; set; }
+
+        /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
 
         /// <summary>
         /// This is the primary key of the Payment Application record. For this field, you should use whatever this
@@ -64,9 +69,31 @@ namespace LockstepSDK.Models
         public string InvoiceErpKey { get; set; }
 
         /// <summary>
-        /// This field indicates which Payment was used to provide the funds for this payment application. In this
-        /// field, identify the original primary key or unique ID of the Payment that was used for this payment
-        /// application.
+        /// The network id of the related Invoice.
+        /// </summary>
+        public Guid? InvoiceNetworkId { get; set; }
+
+        /// <summary>
+        /// This field indicates which Payment is being used to provide the funds for a the payment.  In this field,
+        /// identify the original primary key or unique ID of the Payment which will be supplying the funds.
+        ///
+        /// This information lets you track how a payment was funded. You can identify what proportion of an payment&#39;s
+        /// balance was paid by which methods by joining this field to the Payment.
+        ///
+        /// This value should match the [Payment ErpKey](https://developer.lockstep.io/docs/importing-payments#erpkey)
+        /// field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
+        /// </summary>
+        public string RefundErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the related refund Payment.
+        /// </summary>
+        public Guid? RefundNetworkId { get; set; }
+
+        /// <summary>
+        /// This field indicates which Payment was used to provide the funds for this payment application, or the payment that
+        /// is being funded in the case of a refund. In this field, identify the original primary key or unique ID of the
+        /// Payment that was used for this payment or the Payment that is being refunded.
         ///
         /// This information lets you track how an invoice was paid. You can identify what proportion of an payment&#39;s
         /// balance was paid by which methods by joining this field to the Payment.
@@ -75,6 +102,11 @@ namespace LockstepSDK.Models
         /// field on the [PaymentSyncModel](https://developer.lockstep.io/docs/importing-payments).
         /// </summary>
         public string PaymentErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the related Payment.
+        /// </summary>
+        public Guid? PaymentNetworkId { get; set; }
 
         /// <summary>
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,

@@ -1,15 +1,15 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
  *             
- * @copyright  2021-2023 Lockstep, Inc.
- * @version    2023.35.16
+ * @copyright  2021-2025 Lockstep, Inc.
+ * @version    2025.8.6
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -39,7 +39,7 @@ namespace LockstepSDK
         /// <summary>
         /// The version of the SDK
         /// </summary>
-        public const string SdkVersion = "2023.35.16";
+        public const string SdkVersion = "2025.8.6";
         
         private readonly string _apiUrl;
         private readonly HttpClient _client;
@@ -63,11 +63,6 @@ namespace LockstepSDK
         /// API methods related to Applications
         /// </summary>
         public ApplicationsClient Applications { get; }
-
-        /// <summary>
-        /// API methods related to AttachmentLinks
-        /// </summary>
-        public AttachmentLinksClient AttachmentLinks { get; }
 
         /// <summary>
         /// API methods related to Attachments
@@ -95,11 +90,6 @@ namespace LockstepSDK
         public CreditMemosAppliedClient CreditMemosApplied { get; }
 
         /// <summary>
-        /// API methods related to Currencies
-        /// </summary>
-        public CurrenciesClient Currencies { get; }
-
-        /// <summary>
         /// API methods related to CustomFieldDefinitions
         /// </summary>
         public CustomFieldDefinitionsClient CustomFieldDefinitions { get; }
@@ -115,11 +105,6 @@ namespace LockstepSDK
         public DefinitionsClient Definitions { get; }
 
         /// <summary>
-        /// API methods related to FeatureFlags
-        /// </summary>
-        public FeatureFlagsClient FeatureFlags { get; }
-
-        /// <summary>
         /// API methods related to FinancialAccount
         /// </summary>
         public FinancialAccountClient FinancialAccount { get; }
@@ -130,19 +115,9 @@ namespace LockstepSDK
         public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; }
 
         /// <summary>
-        /// API methods related to FinancialInstitutionAccounts
-        /// </summary>
-        public FinancialInstitutionAccountsClient FinancialInstitutionAccounts { get; }
-
-        /// <summary>
         /// API methods related to FinancialYearSettings
         /// </summary>
         public FinancialYearSettingsClient FinancialYearSettings { get; }
-
-        /// <summary>
-        /// API methods related to GroupAccounts
-        /// </summary>
-        public GroupAccountsClient GroupAccounts { get; }
 
         /// <summary>
         /// API methods related to InvoiceAddresses
@@ -158,11 +133,6 @@ namespace LockstepSDK
         /// API methods related to Invoices
         /// </summary>
         public InvoicesClient Invoices { get; }
-
-        /// <summary>
-        /// API methods related to Leads
-        /// </summary>
-        public LeadsClient Leads { get; }
 
         /// <summary>
         /// API methods related to MagicLinks
@@ -185,26 +155,6 @@ namespace LockstepSDK
         public PaymentsAppliedClient PaymentsApplied { get; }
 
         /// <summary>
-        /// API methods related to ProfilesAccounting
-        /// </summary>
-        public ProfilesAccountingClient ProfilesAccounting { get; }
-
-        /// <summary>
-        /// API methods related to ProfilesAccountingContacts
-        /// </summary>
-        public ProfilesAccountingContactsClient ProfilesAccountingContacts { get; }
-
-        /// <summary>
-        /// API methods related to ProfilesCompanies
-        /// </summary>
-        public ProfilesCompaniesClient ProfilesCompanies { get; }
-
-        /// <summary>
-        /// API methods related to Provisioning
-        /// </summary>
-        public ProvisioningClient Provisioning { get; }
-
-        /// <summary>
         /// API methods related to Reports
         /// </summary>
         public ReportsClient Reports { get; }
@@ -225,16 +175,6 @@ namespace LockstepSDK
         public TransactionsClient Transactions { get; }
 
         /// <summary>
-        /// API methods related to Transcriptions
-        /// </summary>
-        public TranscriptionsClient Transcriptions { get; }
-
-        /// <summary>
-        /// API methods related to UserAccounts
-        /// </summary>
-        public UserAccountsClient UserAccounts { get; }
-
-        /// <summary>
         /// API methods related to UserRoles
         /// </summary>
         public UserRolesClient UserRoles { get; }
@@ -248,6 +188,11 @@ namespace LockstepSDK
         /// API methods related to Webhooks
         /// </summary>
         public WebhooksClient Webhooks { get; }
+
+        /// <summary>
+        /// API methods related to WorkflowStatuses
+        /// </summary>
+        public WorkflowStatusesClient WorkflowStatuses { get; }
 
 
         /// <summary>
@@ -269,43 +214,32 @@ namespace LockstepSDK
             ApiKeys = new ApiKeysClient(this);
             AppEnrollments = new AppEnrollmentsClient(this);
             Applications = new ApplicationsClient(this);
-            AttachmentLinks = new AttachmentLinksClient(this);
             Attachments = new AttachmentsClient(this);
             CodeDefinitions = new CodeDefinitionsClient(this);
             Companies = new CompaniesClient(this);
             Contacts = new ContactsClient(this);
             CreditMemosApplied = new CreditMemosAppliedClient(this);
-            Currencies = new CurrenciesClient(this);
             CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
             CustomFieldValues = new CustomFieldValuesClient(this);
             Definitions = new DefinitionsClient(this);
-            FeatureFlags = new FeatureFlagsClient(this);
             FinancialAccount = new FinancialAccountClient(this);
             FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
-            FinancialInstitutionAccounts = new FinancialInstitutionAccountsClient(this);
             FinancialYearSettings = new FinancialYearSettingsClient(this);
-            GroupAccounts = new GroupAccountsClient(this);
             InvoiceAddresses = new InvoiceAddressesClient(this);
             InvoiceLines = new InvoiceLinesClient(this);
             Invoices = new InvoicesClient(this);
-            Leads = new LeadsClient(this);
             MagicLinks = new MagicLinksClient(this);
             Notes = new NotesClient(this);
             Payments = new PaymentsClient(this);
             PaymentsApplied = new PaymentsAppliedClient(this);
-            ProfilesAccounting = new ProfilesAccountingClient(this);
-            ProfilesAccountingContacts = new ProfilesAccountingContactsClient(this);
-            ProfilesCompanies = new ProfilesCompaniesClient(this);
-            Provisioning = new ProvisioningClient(this);
             Reports = new ReportsClient(this);
             Status = new StatusClient(this);
             Sync = new SyncClient(this);
             Transactions = new TransactionsClient(this);
-            Transcriptions = new TranscriptionsClient(this);
-            UserAccounts = new UserAccountsClient(this);
             UserRoles = new UserRolesClient(this);
             WebhookRules = new WebhookRulesClient(this);
             Webhooks = new WebhooksClient(this);
+            WorkflowStatuses = new WorkflowStatusesClient(this);
                 
             // Configure JSON serializer options
             _options = new JsonSerializerOptions
@@ -323,12 +257,20 @@ namespace LockstepSDK
         /// <returns>The API client to use</returns>
         public static LockstepApi WithEnvironment(string env, HttpClientHandler clientHandler = null)
         {
-            switch (env)
+            switch (env.ToLower())
             {
+                case "dev":
+                    return new LockstepApi("https://api-dev.network-eng.sage.com/", clientHandler);
+                case "qa":
+                    return new LockstepApi("https://api-qa.network-eng.sage.com/", clientHandler);
+                case "int":
+                    return new LockstepApi("https://api-int.network-eng.sage.com/", clientHandler);
+                case "preprod":
+                    return new LockstepApi("https://api-preprod.network-eng.sage.com/", clientHandler);
                 case "sbx":
-                    return new LockstepApi("https://api.sbx.lockstep.io/", clientHandler);
+                    return new LockstepApi("https://api-sbx.network.sage.com/", clientHandler);
                 case "prd":
-                    return new LockstepApi("https://api.lockstep.io/", clientHandler);
+                    return new LockstepApi("https://api.network.sage.com/", clientHandler);
             }
     
             throw new InvalidOperationException($"Unknown environment: {env}");

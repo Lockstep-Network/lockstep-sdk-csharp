@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -53,9 +53,9 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Creates a new batch import Sync task that imports all the models provided to this API call.
         ///
-        /// A Sync task represents ingestion of data from a source.  For each data model in the source, the Sync process will determine whether the data is new, updated, or unchanged from data that already exists within the Lockstep Platform.  For records that are new, the Sync process will add them to the Lockstep Platform data.  For records that are updated, the Sync process will update existing data to match the newly uploaded records.  If records have not changed, no action will be taken.
+        /// A Sync task represents ingestion of data from a source.  For each data model in the source, the Sync process will determine whether the data is new, updated, or unchanged from data that already exists within the ADS Platform.  For records that are new, the Sync process will add them to the ADS Platform data.  For records that are updated, the Sync process will update existing data to match the newly uploaded records.  If records have not changed, no action will be taken.
         ///
-        /// You can use this Batch Import process to load data in bulk directly into the Lockstep Platform.
+        /// You can use this Batch Import process to load data in bulk directly into the ADS Platform.
         ///
         /// </summary>
         /// <param name="body">Information about the Sync to execute</param>
@@ -72,13 +72,19 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="appEnrollmentId">The optional existing app enrollment to associate with the data in the zip file.</param>
+        /// <param name="parentSyncRequestId">The optional existing sync request id to associate with the batch data in the zip file.</param>
+        /// <param name="currentBatch">The optional current batch no associate with the batch data in the zip file.</param>
+        /// <param name="totalBatches">The optional total batches to associate with the total batch data in the zip file.</param>
         /// <param name="isFullSync">True if this is a full sync, false if this is a partial sync. Defaults to false.</param>
         /// <param name="filename">The full path of a file to upload to the API</param>
-        public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile(string filename, Guid? appEnrollmentId = null, bool? isFullSync = null)
+        public async Task<LockstepResponse<SyncRequestModel>> UploadSyncFile(string filename, Guid? appEnrollmentId = null, Guid? parentSyncRequestId = null, int? currentBatch = null, int? totalBatches = null, bool? isFullSync = null)
         {
             var url = $"/api/v1/Sync/zip";
             var options = new Dictionary<string, object>();
             if (appEnrollmentId != null) { options["appEnrollmentId"] = appEnrollmentId; }
+            if (parentSyncRequestId != null) { options["parentSyncRequestId"] = parentSyncRequestId; }
+            if (currentBatch != null) { options["currentBatch"] = currentBatch; }
+            if (totalBatches != null) { options["totalBatches"] = totalBatches; }
             if (isFullSync != null) { options["isFullSync"] = isFullSync; }
             return await _client.Request<SyncRequestModel>(HttpMethod.Post, url, options, null, filename);
         }
@@ -133,7 +139,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Sync tasks for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// A Sync task represents an action performed by an Application for a particular account.  An Application can provide many different tasks as part of their capabilities.  Sync tasks are executed in the background and will continue running after they are created.  Use one of the creation APIs to request execution of a task. To check on the progress of the task, call GetSync or QuerySync.
         ///
@@ -143,7 +149,8 @@ namespace LockstepSDK.Clients
         /// <param name="order">The sort order for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
+        /// <param name="operationType">The type of Sync requests to query, defaults to Read.</param>
+        public async Task<LockstepResponse<FetchResult<SyncRequestModel>>> QuerySyncs(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, string operationType = null)
         {
             var url = $"/api/v1/Sync/query";
             var options = new Dictionary<string, object>();
@@ -152,6 +159,7 @@ namespace LockstepSDK.Clients
             if (order != null) { options["order"] = order; }
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
+            if (operationType != null) { options["operationType"] = operationType; }
             return await _client.Request<FetchResult<SyncRequestModel>>(HttpMethod.Get, url, options, null, null);
         }
     }

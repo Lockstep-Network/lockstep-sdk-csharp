@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -23,7 +23,7 @@ namespace LockstepSDK.Models
     /// <summary>
     /// Credit Memos reflect credits granted to a customer for various reasons, such as discounts or refunds.
     /// Credit Memos may be applied to Invoices as Payments. When a Credit Memo is applied as payment to an Invoice,
-    /// Lockstep creates a Credit Memo Application record to track the amount from the Credit Memo that was applied
+    /// ADS Platform creates a Credit Memo Application record to track the amount from the Credit Memo that was applied
     /// as payment to the Invoice. You can examine Credit Memo Application records to track which Invoices were paid
     /// using this Credit.
     /// </summary>
@@ -31,15 +31,15 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
         public Guid? CreditMemoAppliedId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -47,20 +47,20 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// The Lockstep ID of the Invoice to which this credit memo was applied.  This Invoice&#39;s outstanding balance
+        /// The ADS Platform ID of the Invoice to which this credit memo was applied.  This Invoice&#39;s outstanding balance
         /// was reduced by the value of the field `CreditMemoAppliedAmount` on the date `ApplyToInvoiceDate`.
         ///
         /// Example: Company ABC received a credit memo, CM000123 for $500.  Company ABC then chooses to apply this
-        /// credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is the Lockstep Platform
+        /// credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is the ADS Platform
         /// ID number of Invoice `PO1000578`.
         /// </summary>
         public Guid? InvoiceId { get; set; }
 
         /// <summary>
-        /// The Lockstep ID of the Invoice of type &quot;Credit Memo&quot; that was consumed in this payment application event.
+        /// The ADS Platform ID of the Invoice of type &quot;Credit Memo&quot; that was consumed in this payment application event.
         ///
         /// Example: Company ABC received a credit memo, CM000123 for $500.  Company ABC then chooses to apply this
-        /// credit memo to reduce the balance of the invoice PO1000578.  The `CreditMemoInvoiceId` is the Lockstep
+        /// credit memo to reduce the balance of the invoice PO1000578.  The `CreditMemoInvoiceId` is the ADS
         /// Platform ID number of Invoice `CM000123`.
         /// </summary>
         public Guid? CreditMemoInvoiceId { get; set; }
@@ -77,14 +77,14 @@ namespace LockstepSDK.Models
         public string ErpKey { get; set; }
 
         /// <summary>
-        /// Possible statuses for a record that supports ERP write.
+        /// Possible statuses for a record that supports ERP Update.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public int? ErpUpdateStatus { get; set; }
 
         /// <summary>
-        /// The name of the ErpWriteStatus for this credit memo application
+        /// Possible actions for a record that supports ERP Update.
         /// </summary>
-        public string ErpWriteStatusName { get; set; }
+        public int? ErpUpdateAction { get; set; }
 
         /// <summary>
         /// Reference number for the applied credit memo.

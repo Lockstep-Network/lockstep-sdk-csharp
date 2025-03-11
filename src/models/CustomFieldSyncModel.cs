@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,17 +21,17 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// The CustomFieldSyncModel represents information coming into Lockstep from an external financial system or other
+    /// The CustomFieldSyncModel represents information coming into ADS from an external financial system or other
     /// enterprise resource planning system.  [Custom Fields](https://developer.lockstep.io/docs/custom-fields#custom-fields)
-    /// represent custom data extensions that you can use with the Lockstep Platform.  If you need to store extra
-    /// information about an object that does not match Lockstep&#39;s official schema, you can store it in the Custom
+    /// represent custom data extensions that you can use with the ADS Platform.  If you need to store extra
+    /// information about an object that does not match ADS&#39;s official schema, you can store it in the Custom
     /// Field system using CustomFieldSyncModel.
     ///
     /// To store a custom field for an object, create a CustomFieldSyncModel record containing the `TableKey` and
     /// `ErpKey` of the entity to which you will attach a custom field. Next specify the field&#39;s `CustomFieldLabel`
     /// and either a `StringValue` or `NumericValue`.
     ///
-    /// Once imported, this record will be available in the Lockstep API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
+    /// Once imported, this record will be available in the ADS Platform API as a [CustomFieldValueModel](https://developer.lockstep.io/docs/customfieldvaluemodel).
     ///
     /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
     /// </summary>

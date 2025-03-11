@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -42,7 +42,7 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="id">The id of the Magic Link</param>
-        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: User</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: User, CustomFields, Notes</param>
         public async Task<LockstepResponse<MagicLinkModel>> RetrieveMagicLink(Guid id, string include = null)
         {
             var url = $"/api/v1/useraccounts/magic-links/{id}";
@@ -57,10 +57,23 @@ namespace LockstepSDK.Clients
         /// Revocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this magic link</param>
+        /// <param name="id">The unique ADS Platform ID number of this magic link</param>
         public async Task<LockstepResponse<ActionResultModel>> RevokeMagicLink(Guid id)
         {
             var url = $"/api/v1/useraccounts/magic-links/{id}";
+            return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
+        }
+
+        /// <summary>
+        /// Revokes the bounced magic link with the specified id so it cannot be used to call the API.
+        ///
+        /// Revocation will be received by all servers within five minutes of revocation. API calls made using this magic link after the revocation will fail. A revoked magic link cannot be un-revoked.
+        ///
+        /// </summary>
+        /// <param name="id">The unique ADS Platform ID number of this magic link</param>
+        public async Task<LockstepResponse<ActionResultModel>> RevokeBouncedMagicLink(Guid id)
+        {
+            var url = $"/api/v1/useraccounts/magic-links/{id}/bounced";
             return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
         }
 
@@ -69,7 +82,7 @@ namespace LockstepSDK.Clients
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: User</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: User, CustomFields, Notes</param>
         /// <param name="order">The sort order for the results, in the [Searchlight order syntax](https://github.com/tspence/csharp-searchlight).</param>
         /// <param name="pageSize">The page size for results (default 250, maximum of 500)</param>
         /// <param name="pageNumber">The page number for results (default 0)</param>

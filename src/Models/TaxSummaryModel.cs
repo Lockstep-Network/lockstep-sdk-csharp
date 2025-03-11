@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,29 +21,29 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// Model containing information to create a new developer account.
+    /// Represents the tax information for this invoice
     /// </summary>
-    public class DeveloperAccountSubmitModel
+    public class TaxSummaryModel
     {
 
         /// <summary>
-        /// The first name of the person requesting the developer account.
+        /// The tax code for this invoice
         /// </summary>
-        public string FirstName { get; set; }
+        public string TaxCode { get; set; }
 
         /// <summary>
-        /// The last name of the person requesting the developer account.
+        /// The tax rate for this invoice
         /// </summary>
-        public string LastName { get; set; }
+        public decimal? TaxRate { get; set; }
 
         /// <summary>
-        /// The email address of the developer.
+        /// The tax total for this invoice
         /// </summary>
-        public string Email { get; set; }
+        public decimal? TaxTotal { get; set; }
 
         /// <summary>
-        /// The company name of the developer.
+        /// The base currency tax total for this invoice
         /// </summary>
-        public string CompanyName { get; set; }
+        public decimal? BaseCurrencyTaxTotal { get; set; }
     }
 }

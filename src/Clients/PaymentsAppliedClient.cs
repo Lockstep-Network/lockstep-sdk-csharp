@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -42,9 +42,11 @@ namespace LockstepSDK.Clients
         ///
         /// A Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.
         ///
+        /// A Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.
+        ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Payment Applied; NOT the customer's ERP key</param>
-        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice, Payment</param>
+        /// <param name="id">The unique ADS Platform ID number of this Payment Applied; NOT the customer's ERP key</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice, Payment, Refund</param>
         public async Task<LockstepResponse<PaymentAppliedModel>> RetrievePaymentApplied(Guid id, string include = null)
         {
             var url = $"/api/v1/payments-applied/{id}";
@@ -60,8 +62,10 @@ namespace LockstepSDK.Clients
         ///
         /// A Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.
         ///
+        /// A Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.
+        ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Payment Applied to update; NOT the customer's ERP key</param>
+        /// <param name="id">The unique ADS Platform ID number of the Payment Applied to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Payment Applied</param>
         public async Task<LockstepResponse<PaymentAppliedModel>> UpdatePaymentApplied(Guid id, object body)
         {
@@ -74,8 +78,10 @@ namespace LockstepSDK.Clients
         ///
         /// A Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.
         ///
+        /// A Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.
+        ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Payment Applied to delete; NOT the customer's ERP key</param>
+        /// <param name="id">The unique ADS Platform ID number of the Payment Applied to delete; NOT the customer's ERP key</param>
         public async Task<LockstepResponse<ActionResultModel>> DeletePaymentApplied(Guid id)
         {
             var url = $"/api/v1/payments-applied/{id}";
@@ -86,6 +92,8 @@ namespace LockstepSDK.Clients
         /// Creates one or more Payments Applied within this account and returns the records as created.
         ///
         /// A Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.
+        ///
+        /// A Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.
         ///
         /// </summary>
         /// <param name="body">The Payments Applied to create</param>
@@ -98,13 +106,15 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Payments Applied for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// A Payment Applied is created by a business who receives a Payment from a customer.  A customer may make a single Payment to match an Invoice exactly, a partial Payment for an Invoice, or a single Payment may be made for multiple smaller Invoices.  The Payment Applied contains information about which Invoices are connected to which Payments and for which amounts.
         ///
+        /// A Payment Applied can also be used to add funds to a Payment by way of a refund Payment. In this scenario the Payment Applied contains information about which Payment is being funded and which refund Payment supplied the funds.
+        ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
-        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Invoice, Payment, Refund</param>
         /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>

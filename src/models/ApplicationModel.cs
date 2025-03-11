@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,9 +21,9 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// An Application represents a feature available to customers within the Lockstep Platform.  You can create
-    /// Applications by working with your Lockstep business development manager and publish them on the platform
-    /// so that customers can browse and find your Application on the Lockstep Platform Marketplace.  When a
+    /// An Application represents a feature available to customers within the ADS Platform.  You can create
+    /// Applications by working with your ADS Platform business development manager and publish them on the platform
+    /// so that customers can browse and find your Application on the ADS Platform Marketplace.  When a
     /// customer adds an Application to their account, they obtain an AppEnrollment which represents that customer&#39;s
     /// instance of this Application.  The customer-specific AppEnrollment contains a customer&#39;s configuration data
     /// for the Application, which is not customer-specific.
@@ -95,7 +95,7 @@ namespace LockstepSDK.Models
         public bool? IsActive { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).

@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,9 +21,9 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// An Attachment is a file that can be attached to various account attributes within Lockstep.
+    /// An Attachment is a file that can be attached to various account attributes within ADS.
     /// This data model contains metadata about the attachment.  You can upload and download attachments
-    /// into the Lockstep Platform along with this metadata.  Attachments can be used for invoices, payments,
+    /// into the ADS Platform along with this metadata.  Attachments can be used for invoices, payments,
     /// legal documents, or any other external files that you wish to track.
     ///
     /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
@@ -32,13 +32,13 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         /// </summary>
         public Guid? AttachmentId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -46,11 +46,11 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// An Attachment is connected to an existing item within the ADS Platform by the fields `TableKey` and
         /// `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
         /// `Invoice` and an `ObjectKey` value of `12345`.
         ///
-        /// The `TableKey` value contains the name of the table within the Lockstep Platform to which this Attachment
+        /// The `TableKey` value contains the name of the table within the ADS Platform to which this Attachment
         /// is connected.
         ///
         /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
@@ -58,11 +58,11 @@ namespace LockstepSDK.Models
         public string TableKey { get; set; }
 
         /// <summary>
-        /// An Attachment is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// An Attachment is connected to an existing item within the ADS Platform by the fields `TableKey` and
         /// `ObjectKey`.  For example, an Attachment connected to Invoice 12345 would have a `TableKey` value of
         /// `Invoice` and an `ObjectKey` value of `12345`.
         ///
-        /// The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+        /// The `ObjectKey` value contains the primary key of the record within the ADS Platform to which this
         /// Attachment is connected.
         ///
         /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
@@ -70,13 +70,13 @@ namespace LockstepSDK.Models
         public Guid? ObjectKey { get; set; }
 
         /// <summary>
-        /// An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+        /// An Attachment represents a file that was uploaded to the ADS Platform.  This field contains the original
         /// name of the file on disk, without its extension.
         /// </summary>
         public string FileName { get; set; }
 
         /// <summary>
-        /// An Attachment represents a file that was uploaded to the Lockstep Platform.  This field contains the original
+        /// An Attachment represents a file that was uploaded to the ADS Platform.  This field contains the original
         /// extension name of the file on disk.
         /// </summary>
         public string FileExt { get; set; }
@@ -121,8 +121,24 @@ namespace LockstepSDK.Models
         public Guid? CreatedUserId { get; set; }
 
         /// <summary>
+        /// The date the attachment was modified.
+        /// </summary>
+        public DateTime? Modified { get; set; }
+
+        /// <summary>
+        /// The unique ID of the [UserAccount](https://developer.lockstep.io/docs/useraccountmodel) of the user
+        /// who modified this Attachment.
+        /// </summary>
+        public Guid? ModifiedUserId { get; set; }
+
+        /// <summary>
         /// A text string describing the type of this Attachment.
         /// </summary>
         public string AttachmentType { get; set; }
+
+        /// <summary>
+        /// The different statuses of an attachment being scanned for viruses.
+        /// </summary>
+        public string UploadStatus { get; set; }
     }
 }

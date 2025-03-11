@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -118,5 +118,17 @@ namespace LockstepSDK.Models
         /// call to Invoices/{id}/pdf or Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
         /// </summary>
         public bool? SupportsErpPdfRetrieval { get; set; }
+
+        /// <summary>
+        /// Specific payment transactions have a status with Service Fabric.
+        ///
+        /// Recognized values are:
+        /// * PENDING
+        /// * PAID
+        /// * PAID_OFFLINE
+        /// * PARTIALLY
+        /// * PARTIALLY_REFUNDED
+        /// </summary>
+        public string ServiceFabricStatus { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -43,7 +43,7 @@ namespace LockstepSDK.Clients
         /// A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Financial Year Setting</param>
+        /// <param name="id">The unique ADS Platform ID number of this Financial Year Setting</param>
         public async Task<LockstepResponse<FinancialYearSettingModel>> RetrieveFinancialYearSetting(Guid id)
         {
             var url = $"/api/v1/FinancialYearSettings/{id}";
@@ -58,7 +58,7 @@ namespace LockstepSDK.Clients
         /// A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Financial Year Setting to update</param>
+        /// <param name="id">The unique ADS Platform ID number of the Financial Year Setting to update</param>
         /// <param name="body">A list of changes to apply to this Financial Year Setting</param>
         public async Task<LockstepResponse<FinancialYearSettingModel>> UpdateFinancialYearSetting(Guid id, object body)
         {
@@ -72,7 +72,7 @@ namespace LockstepSDK.Clients
         /// A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Financial Year Setting to disable</param>
+        /// <param name="id">The unique ADS Platform ID number of the Financial Year Setting to disable</param>
         public async Task<LockstepResponse<ActionResultModel>> DeleteFinancialYearSetting(Guid id)
         {
             var url = $"/api/v1/FinancialYearSettings/{id}";
@@ -95,7 +95,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Financial Year Settings for this account using the specified filtering, sorting, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// A Financial Year Setting is used to to set the type, beginning, end, and number of periods of a year used to calculate accounting reports. The financial setting can either be for a specific app enrollment id via a sync or, when the financial year setting is manually created, will cover all account data without an app enrollment id.
         ///

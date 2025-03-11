@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -38,14 +38,18 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Verifies that your application can successfully call the Lockstep Platform API and returns a successful code regardless of your authentication status or permissions.
+        /// Verifies that your application can successfully call the ADS Platform API and returns a successful code regardless of your authentication status or permissions.
         ///
-        /// The Ping API can be used to verify that your app is working correctly.  The Ping API will always return 200 OK.  If you call this API and you receive a code other than 200 OK, you should check your network connectivity.  A response code of anything other than 200 means that a routing issue or proxy issue may prevent your application from reaching the Lockstep API
+        /// The Ping API can be used to verify that your app is working correctly.  The Ping API will always return 200 OK.  If you call this API and you receive a code other than 200 OK, you should check your network connectivity.  A response code of anything other than 200 means that a routing issue or proxy issue may prevent your application from reaching the ADS Platform API
+        ///
         /// </summary>
-        public async Task<LockstepResponse<StatusModel>> Ping()
+        /// <param name="useCompanyInfo">When true, the API will use information from the 'Company' instead of the 'Group' company</param>
+        public async Task<LockstepResponse<StatusModel>> Ping(bool? useCompanyInfo = null)
         {
             var url = $"/api/v1/Status";
-            return await _client.Request<StatusModel>(HttpMethod.Get, url, null, null, null);
+            var options = new Dictionary<string, object>();
+            if (useCompanyInfo != null) { options["useCompanyInfo"] = useCompanyInfo; }
+            return await _client.Request<StatusModel>(HttpMethod.Get, url, options, null, null);
         }
     }
 }
