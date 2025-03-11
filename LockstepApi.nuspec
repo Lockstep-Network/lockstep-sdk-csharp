@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LockstepSdk</id>
-		<version>2023.35.16</version>
+		<version>2025.8.6</version>
 		<title>LockstepSdk</title>
 		<authors>Lockstep Network</authors>
 		<owners>Lockstep, Inc.</owners>
@@ -14,11 +14,11 @@
 		<readme>docs/README.md</readme>
 		<summary>Lockstep Platform SDK for CSharp</summary>
 		<releaseNotes>
-            # 2023.35.16
+            # 2025.8.6
         
             For full patch notes see [Patch Notes](https://medium.com/lockstep-developer/tagged/patch-notes) on the [Lockstep Developer website](https://developer.lockstep.io)
         </releaseNotes>
-		<copyright>Copyright 2021 - 2023</copyright>
+		<copyright>Copyright 2021 - 2025</copyright>
     	<tags>Lockstep fintech api client sdk connector</tags>
 		<repository type="git" url="https://github.com/Lockstep-Network/lockstep-sdk-csharp" />
 		<dependencies>

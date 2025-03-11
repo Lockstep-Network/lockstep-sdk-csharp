@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -27,15 +27,15 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
         public Guid? InvoiceLineId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -66,6 +66,11 @@ namespace LockstepSDK.Models
         public string LineNumber { get; set; }
 
         /// <summary>
+        /// The account number this line is associated with in the originating ERP or accounting system.
+        /// </summary>
+        public string AccountNumber { get; set; }
+
+        /// <summary>
         /// A code number identifying the product or service that is specified on this line.
         /// </summary>
         public string ProductCode { get; set; }
@@ -74,6 +79,11 @@ namespace LockstepSDK.Models
         /// Description of this invoice line.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// The location to where specific items from an invoice will go.
+        /// </summary>
+        public string Location { get; set; }
 
         /// <summary>
         /// For lines measured in a unit other than &quot;quantity&quot;, this code indicates the measurement system for the quantity field.
@@ -107,9 +117,44 @@ namespace LockstepSDK.Models
         public decimal? TotalAmount { get; set; }
 
         /// <summary>
+        /// The tax code used for taxation on this line.
+        /// </summary>
+        public string TaxCode { get; set; }
+
+        /// <summary>
+        /// The taxation rate for this line.
+        /// </summary>
+        public decimal? TaxRate { get; set; }
+
+        /// <summary>
+        /// The amount of sales tax for this line in the transaction&#39;s currency.
+        /// </summary>
+        public decimal? SalesTaxAmount { get; set; }
+
+        /// <summary>
+        /// The amount of sales tax for this line in the base currency.
+        /// </summary>
+        public decimal? BaseCurrencySalesTaxAmount { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice line with deductions, excluding taxes.
+        /// </summary>
+        public decimal? NetAmount { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice line with deductions, excluding taxes and in the invoice&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyNetAmount { get; set; }
+
+        /// <summary>
         /// If this line is tax exempt, this code indicates the reason for the exemption.
         /// </summary>
         public string ExemptionCode { get; set; }
+
+        /// <summary>
+        /// Unique identifier for tax purposes, used for reference, validation, or compliance.
+        /// </summary>
+        public string TaxUid { get; set; }
 
         /// <summary>
         /// If null, the products specified on this line were delivered on the same date as all other lines.
@@ -118,21 +163,6 @@ namespace LockstepSDK.Models
         /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
         /// </summary>
         public string ReportingDate { get; set; }
-
-        /// <summary>
-        /// An optional ID number for the line&#39;s origin address.
-        /// </summary>
-        public Guid? OverrideOriginAddressId { get; set; }
-
-        /// <summary>
-        /// An optional ID number for the line&#39;s bill to address.
-        /// </summary>
-        public Guid? OverrideBillToAddressId { get; set; }
-
-        /// <summary>
-        /// An optional ID number for the line&#39;s ship to address.
-        /// </summary>
-        public Guid? OverrideShipToAddressId { get; set; }
 
         /// <summary>
         /// The date on which this line was created.
@@ -163,14 +193,14 @@ namespace LockstepSDK.Models
         public Guid? AppEnrollmentId { get; set; }
 
         /// <summary>
-        /// Possible statuses for a record that supports ERP write.
+        /// Possible statuses for a record that supports ERP Update.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public int? ErpUpdateStatus { get; set; }
 
         /// <summary>
-        /// The name of the ErpWriteStatus for this Invoice
+        /// Possible actions for a record that supports ERP Update.
         /// </summary>
-        public string ErpWriteStatusName { get; set; }
+        public int? ErpUpdateAction { get; set; }
 
         /// <summary>
         /// The date on which this record was last modified in source ERP.

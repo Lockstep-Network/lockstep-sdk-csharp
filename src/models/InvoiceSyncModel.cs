@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,13 +21,13 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// The InvoiceSyncModel represents information coming into Lockstep from an external financial system or other
+    /// The InvoiceSyncModel represents information coming into ADS from an external financial system or other
     /// enterprise resource planning system.  To import data from an external system, convert your original data into
     /// the InvoiceSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
-    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
-    /// platform.
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS
+    /// Platform.
     ///
-    /// Once imported, this record will be available in the Lockstep API as an [InvoiceModel](https://developer.lockstep.io/docs/invoicemodel).
+    /// Once imported, this record will be available in the ADS Platform API as an [InvoiceModel](https://developer.lockstep.io/docs/invoicemodel).
     ///
     /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
     /// </summary>
@@ -38,6 +38,11 @@ namespace LockstepSDK.Models
         /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
         public int? OnMatchAction { get; set; }
+
+        /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
 
         /// <summary>
         /// This is the primary key of the Invoice record. For this field, you should use whatever the invoice&#39;s unique
@@ -63,6 +68,11 @@ namespace LockstepSDK.Models
         public string CompanyErpKey { get; set; }
 
         /// <summary>
+        /// The network id of the related Company.
+        /// </summary>
+        public Guid? CompanyNetworkId { get; set; }
+
+        /// <summary>
         /// The original primary key or unique ID of the company to which this invoice was sent.  This value should
         /// match the [Company ErpKey](https://developer.lockstep.io/docs/importing-companies#erpkey) field on the
         /// [CompanySyncModel](https://developer.lockstep.io/docs/importing-companies).
@@ -72,6 +82,11 @@ namespace LockstepSDK.Models
         /// was sent.
         /// </summary>
         public string CustomerErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the related Customer.
+        /// </summary>
+        public Guid? CustomerNetworkId { get; set; }
 
         /// <summary>
         /// The name of the salesperson that wrote this invoice.  This is just text, it is not a reference to the
@@ -156,6 +171,16 @@ namespace LockstepSDK.Models
         public decimal? OutstandingBalanceAmount { get; set; }
 
         /// <summary>
+        /// The shipping amount of this invoice in it&#39;s tendered currency.
+        /// </summary>
+        public decimal? ShippingAmount { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice with deductions, excluding taxes.
+        /// </summary>
+        public decimal? NetAmount { get; set; }
+
+        /// <summary>
         /// The reporting date for this invoice.
         /// </summary>
         public DateTime? InvoiceDate { get; set; }
@@ -182,9 +207,19 @@ namespace LockstepSDK.Models
         public DateTime? PaymentDueDate { get; set; }
 
         /// <summary>
+        /// The date when payment is planned in Connect.
+        /// </summary>
+        public string PlannedPaymentDate { get; set; }
+
+        /// <summary>
         /// The date and time when this record was imported from the user&#39;s ERP or accounting system.
         /// </summary>
         public DateTime? ImportedDate { get; set; }
+
+        /// <summary>
+        /// The date when the tax becomes applicable; used for tax reporting.
+        /// </summary>
+        public DateTime? TaxPointDate { get; set; }
 
         /// <summary>
         /// The origination address for this invoice
@@ -346,6 +381,16 @@ namespace LockstepSDK.Models
         public bool? InDispute { get; set; }
 
         /// <summary>
+        /// Is the invoice a draft? If not specified, we assume the invoice is not a draft.
+        /// </summary>
+        public bool? IsDraft { get; set; }
+
+        /// <summary>
+        /// Is the invoice on hold? If not specified, we assume the invoice is not on hold.
+        /// </summary>
+        public bool? OnHold { get; set; }
+
+        /// <summary>
         /// Indicates the preferred delivery method for this invoice. Examples include Print, Email, Fax
         /// </summary>
         public string PreferredDeliveryMethod { get; set; }
@@ -374,5 +419,62 @@ namespace LockstepSDK.Models
         /// The remaining balance value of this invoice in the erp&#39;s base currency.
         /// </summary>
         public decimal? BaseCurrencyOutstandingBalanceAmount { get; set; }
+
+        /// <summary>
+        /// The shipping amount of this invoice in it&#39;s tendered currency.
+        /// </summary>
+        public decimal? BaseCurrencyShippingAmount { get; set; }
+
+        /// <summary>
+        /// The total value of this invoice with deductions, excluding taxes and in the invoice&#39;s base currency.
+        /// </summary>
+        public decimal? BaseCurrencyNetAmount { get; set; }
+
+        /// <summary>
+        /// True if the invoice is an E-Invoice
+        /// </summary>
+        public bool? IsEInvoice { get; set; }
+
+        /// <summary>
+        /// True if the E-Invoice should be sent to gov/other recipients immediately
+        /// </summary>
+        public bool? SendImmediately { get; set; }
+
+        /// <summary>
+        /// Workflow status of the invoice.
+        /// </summary>
+        public Guid? WorkflowStatusId { get; set; }
+
+        /// <summary>
+        /// Notes associated to workflow status
+        /// </summary>
+        public string WorkflowStatusNotes { get; set; }
+
+        /// <summary>
+        /// The reason code for the current workflow status of this invoice.
+        ///
+        /// Empty if workflow status does not require a reason code.
+        /// </summary>
+        public string WorkflowStatusReasonCode { get; set; }
+
+        /// <summary>
+        /// Workflow status code dictated by government standards
+        /// </summary>
+        public string WorkflowStatusCode { get; set; }
+
+        /// <summary>
+        /// A JSON string representing the tax information for this invoice
+        /// </summary>
+        public string TaxSummary { get; set; }
+
+        /// <summary>
+        /// The source of the invoice (e.g ERP, Peppol, Email, Gov System)
+        /// </summary>
+        public string DocumentSource { get; set; }
+
+        /// <summary>
+        /// The jurisdiction or country from which the invoice originates (e.g., US, AU)
+        /// </summary>
+        public string Jurisdiction { get; set; }
     }
 }

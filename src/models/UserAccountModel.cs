@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,25 +21,25 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// A User represents a person who has the ability to authenticate against the Lockstep Platform and use
-    /// services such as Lockstep Inbox.  A User is uniquely identified by an Azure identity, and each user must
+    /// A User represents a person who has the ability to authenticate against the ADS Platform and use
+    /// services such as ADS Inbox.  A User is uniquely identified by an Azure identity, and each user must
     /// have an email address defined within their account.  All Users must validate their email to make use of
-    /// Lockstep platform services.  Users may have different privileges and access control rights within the
-    /// Lockstep Platform.
+    /// ADS Platform services.  Users may have different privileges and access control rights within the
+    /// ADS Platform.
     /// </summary>
     public class UserAccountModel
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS Platform when this record is
+        /// added to the ADS Platform.
         ///
         /// This record provides a link to the user&#39;s Azure AD B2C OID.
         /// </summary>
         public Guid? UserId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).

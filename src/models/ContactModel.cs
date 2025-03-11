@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -30,8 +30,8 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
@@ -43,7 +43,7 @@ namespace LockstepSDK.Models
         public Guid? CompanyId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -67,84 +67,14 @@ namespace LockstepSDK.Models
         public string ContactName { get; set; }
 
         /// <summary>
-        /// A friendly human-readable code that describes this Contact.
-        /// </summary>
-        public string ContactCode { get; set; }
-
-        /// <summary>
-        /// The title of the contact.
-        /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
-        /// The role code for the contact.
-        /// </summary>
-        public string RoleCode { get; set; }
-
-        /// <summary>
         /// The email address of the contact.
         /// </summary>
         public string EmailAddress { get; set; }
 
         /// <summary>
-        /// The phone number of the contact.
-        /// </summary>
-        public string Phone { get; set; }
-
-        /// <summary>
-        /// The fax number of the contact.
-        /// </summary>
-        public string Fax { get; set; }
-
-        /// <summary>
-        /// The first line of the address.
-        /// </summary>
-        public string Address1 { get; set; }
-
-        /// <summary>
-        /// The second line of the address.
-        /// </summary>
-        public string Address2 { get; set; }
-
-        /// <summary>
-        /// The third line of the address.
-        /// </summary>
-        public string Address3 { get; set; }
-
-        /// <summary>
-        /// The city of the address.
-        /// </summary>
-        public string City { get; set; }
-
-        /// <summary>
-        /// The state/region of the address.
-        /// </summary>
-        public string StateRegion { get; set; }
-
-        /// <summary>
-        /// The postal/zip code of the address.
-        /// </summary>
-        public string PostalCode { get; set; }
-
-        /// <summary>
-        /// The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set
-        /// </summary>
-        public string CountryCode { get; set; }
-
-        /// <summary>
         /// Flag indicating if the contact is active.
         /// </summary>
         public bool? IsActive { get; set; }
-
-        /// <summary>
-        /// The webpage url of the contact.
-        /// </summary>
-        public string WebpageUrl { get; set; }
-
-        /// <summary>
-        /// The picture/avatar url of the contact.
-        /// </summary>
-        public string PictureUrl { get; set; }
 
         /// <summary>
         /// The date on which this record was created.

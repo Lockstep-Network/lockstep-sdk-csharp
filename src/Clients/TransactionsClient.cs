@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -40,7 +40,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries transactions (invoices/credit memos/payments) for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
@@ -49,7 +49,8 @@ namespace LockstepSDK.Clients
         /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
         /// <param name="currentDate">The date the days past due value will be calculated against. If no currentDate is provided the current UTC date will be used.</param>
-        public async Task<LockstepResponse<TransactionModelTransactionSummaryTotalModelSummaryFetchResult>> QueryTransactions(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, DateTime? currentDate = null)
+        /// <param name="legacy">Generates query data based on legacy approach of executing SQL view queries.</param>
+        public async Task<LockstepResponse<TransactionModelTransactionSummaryTotalModelSummaryFetchResult>> QueryTransactions(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null, DateTime? currentDate = null, bool? legacy = null)
         {
             var url = $"/api/v1/Transactions/query";
             var options = new Dictionary<string, object>();
@@ -59,6 +60,7 @@ namespace LockstepSDK.Clients
             if (pageSize != null) { options["pageSize"] = pageSize; }
             if (pageNumber != null) { options["pageNumber"] = pageNumber; }
             if (currentDate != null) { options["currentDate"] = currentDate; }
+            if (legacy != null) { options["legacy"] = legacy; }
             return await _client.Request<TransactionModelTransactionSummaryTotalModelSummaryFetchResult>(HttpMethod.Get, url, options, null, null);
         }
 

@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -30,13 +30,13 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS Platform when this record is
+        /// added to the ADS Platform.
         /// </summary>
         public Guid? WebhookId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -60,7 +60,7 @@ namespace LockstepSDK.Models
 
         /// <summary>
         /// An secret set during webhook creation that can be used to verify that the notification
-        /// is coming from the Lockstep API.
+        /// is coming from the ADS Platform API.
         /// </summary>
         public string ClientSecret { get; set; }
 
@@ -77,7 +77,7 @@ namespace LockstepSDK.Models
         /// <summary>
         /// The URL where the notification will be sent via the method set in CallbackHttpMethod.
         ///
-        /// When creating a webhook, the Lockstep API will make a call to this url via the method
+        /// When creating a webhook, the ADS Platform API will make a call to this url via the method
         /// set in the CallbackHttpMethod property with a query parameter of &quot;code&quot; set to an encoded
         /// string. To successfully create the webhook, the call must return a successful status code
         /// with the query parameter&#39;s value as the plain text content.

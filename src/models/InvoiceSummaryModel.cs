@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -27,7 +27,7 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -116,16 +116,6 @@ namespace LockstepSDK.Models
         /// A code identifying the type of this Invoice.
         /// </summary>
         public string InvoiceTypeCode { get; set; }
-
-        /// <summary>
-        /// The number of days this Invoice is past due.
-        /// </summary>
-        public int? DaysPastDue { get; set; }
-
-        /// <summary>
-        /// The number of payments associated to this invoice.
-        /// </summary>
-        public int? PaymentCount { get; set; }
 
         /// <summary>
         /// Specific invoices have support for pdf retrieval from their respective erp. When this flag is true, an additional

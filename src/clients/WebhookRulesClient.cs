@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -41,7 +41,7 @@ namespace LockstepSDK.Clients
         /// Retrieves the Webhook Rule specified by this unique identifier.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Webhook Rule</param>
+        /// <param name="id">The unique ADS Platform ID number of this Webhook Rule</param>
         public async Task<LockstepResponse<WebhookRuleModel>> RetrieveWebhookRule(Guid id)
         {
             var url = $"/api/v1/WebhookRules/{id}";
@@ -54,7 +54,7 @@ namespace LockstepSDK.Clients
         /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Webhook Rule to update.</param>
+        /// <param name="id">The unique ADS Platform ID number of the Webhook Rule to update.</param>
         /// <param name="body">A list of changes to apply to this Webhook Rule</param>
         public async Task<LockstepResponse<WebhookRuleModel>> UpdateWebhookRule(Guid id, object body)
         {
@@ -66,7 +66,7 @@ namespace LockstepSDK.Clients
         /// Deletes the Webhook Rule referred to by this unique identifier.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Webhook Rule to delete.</param>
+        /// <param name="id">The unique ADS Platform ID number of the Webhook Rule to delete.</param>
         public async Task<LockstepResponse<ActionResultModel>> DeleteWebhookRule(Guid id)
         {
             var url = $"/api/v1/WebhookRules/{id}";
@@ -87,7 +87,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Webhook Rules for this account using the specified filtering, sorting, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
         /// </summary>
         /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>

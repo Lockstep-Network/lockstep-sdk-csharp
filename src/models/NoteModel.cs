@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -22,7 +22,7 @@ namespace LockstepSDK.Models
 
     /// <summary>
     /// A note is a customizable text string that can be attached to various account attributes
-    /// within Lockstep. You can use notes for internal communication, correspondence with
+    /// within ADS Platform. You can use notes for internal communication, correspondence with
     /// clients, or personal reminders. The Note Model represents a note and a number of
     /// different metadata attributes related to the creation, storage, and ownership of the note.
     ///
@@ -32,13 +32,13 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         /// </summary>
         public Guid? NoteId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -46,11 +46,11 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// A Note is connected to an existing item within the ADS Platform by the fields `TableKey` and
         /// `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
         /// `Invoice` and an `ObjectKey` value of `12345`.
         ///
-        /// The `TableKey` value contains the name of the table within the Lockstep Platform to which this metadata
+        /// The `TableKey` value contains the name of the table within the ADS Platform to which this metadata
         /// is connected.
         ///
         /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
@@ -58,11 +58,11 @@ namespace LockstepSDK.Models
         public string TableKey { get; set; }
 
         /// <summary>
-        /// A Note is connected to an existing item within the Lockstep Platform by the fields `TableKey` and
+        /// A Note is connected to an existing item within the ADS Platform by the fields `TableKey` and
         /// `ObjectKey`.  For example, a Note connected to Invoice 12345 would have a `TableKey` value of
         /// `Invoice` and an `ObjectKey` value of `12345`.
         ///
-        /// The `ObjectKey` value contains the primary key of the record within the Lockstep Platform to which this
+        /// The `ObjectKey` value contains the primary key of the record within the ADS Platform to which this
         /// metadata is connected.
         ///
         /// For more information, see [linking metadata to an object](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).

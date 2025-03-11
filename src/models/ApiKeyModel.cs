@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,10 +21,10 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// An API Key is an authentication token that you may use with the Lockstep API.  Because API Keys
+    /// An API Key is an authentication token that you may use with the ADS Platform API.  Because API Keys
     /// do not have an expiration date, they are well suited for unattended processes.  Each API Key
-    /// is associated with a user, and may be revoked to prevent it from accessing the Lockstep API.
-    /// When you create an API Key, make sure to save the value in a secure location.  Lockstep cannot
+    /// is associated with a user, and may be revoked to prevent it from accessing the ADS Platform API.
+    /// When you create an API Key, make sure to save the value in a secure location.  ADS Platform cannot
     /// retrieve an API Key once it is created.
     ///
     /// For more information, see [API Keys](https://developer.lockstep.io/docs/api-keys).
@@ -38,7 +38,7 @@ namespace LockstepSDK.Models
         public Guid? ApiKeyId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).

@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -27,7 +27,7 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -97,12 +97,6 @@ namespace LockstepSDK.Models
         public decimal? BaseCurrencyUnappliedAmount { get; set; }
 
         /// <summary>
-        /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
-        /// value is true, the field `UnappliedAmount` will be nonzero.
-        /// </summary>
-        public bool? IsOpen { get; set; }
-
-        /// <summary>
         /// The number of invoices associated to this payment.
         /// </summary>
         public int? InvoiceCount { get; set; }
@@ -137,26 +131,6 @@ namespace LockstepSDK.Models
         /// call to Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
         /// </summary>
         public bool? SupportsErpPdfRetrieval { get; set; }
-
-        /// <summary>
-        /// The ids of the customer for the associated invoices.
-        /// </summary>
-        public Guid[] CustomerIds { get; set; }
-
-        /// <summary>
-        /// The names of the customer for the associated invoices.
-        /// </summary>
-        public string[] CustomerNames { get; set; }
-
-        /// <summary>
-        /// The ids of the company for the associated invoices.
-        /// </summary>
-        public Guid[] CompanyIds { get; set; }
-
-        /// <summary>
-        /// The names of the company for the associated invoices.
-        /// </summary>
-        public string[] CompanyNames { get; set; }
 
         /// <summary>
         /// The modified date of the payment

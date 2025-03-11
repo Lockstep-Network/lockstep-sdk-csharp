@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -40,7 +40,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Retrieves the Attachment with the provided Attachment identifier.
         ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        /// An Attachment is a file that can be attached to various account attributes within ADS Platform. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
         ///
         /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
         ///
@@ -60,12 +60,12 @@ namespace LockstepSDK.Clients
         ///
         /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  If you do not provide the name of a field, that field will remain unchanged.  This allows you to ensure that you are only updating the specific fields desired.
         ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        /// An Attachment is a file that can be attached to various account attributes within ADS Platform. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
         ///
         /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the attachment to update</param>
+        /// <param name="id">The unique ADS Platform ID number of the attachment to update</param>
         /// <param name="body">A list of changes to apply to this Attachment</param>
         public async Task<LockstepResponse<AttachmentModel>> UpdateAttachment(Guid id, object body)
         {
@@ -76,7 +76,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Flag this attachment as archived, which can distinguish between attachments currently active and attachments not intended for active use.  This is similar to deletion but preserves information about the record&#39;s existence.
         ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        /// An Attachment is a file that can be attached to various account attributes within ADS Platform. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
         ///
         /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
         ///
@@ -91,7 +91,7 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Returns a URI for the Attachment file to be downloaded, based on the ID provided.
         ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        /// An Attachment is a file that can be attached to various account attributes within ADS Platform. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
         ///
         /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
         ///
@@ -104,24 +104,9 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
-        /// Returns the Attachment file to be downloaded, based on the ID provided.
-        ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
-        ///
-        /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
-        ///
-        /// </summary>
-        /// <param name="id">The unique ID number of the Attachment whose URI will be returned</param>
-        public async Task<LockstepResponse<byte[]>> DownloadAttachmentFile(Guid id)
-        {
-            var url = $"/api/v1/Attachments/{id}/download-file";
-            return await _client.Request<byte[]>(HttpMethod.Get, url, null, null, null);
-        }
-
-        /// <summary>
         /// Uploads and creates one or more Attachments from the provided arguments.
         ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        /// An Attachment is a file that can be attached to various account attributes within ADS Platform. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
         ///
         /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
         ///
@@ -143,9 +128,9 @@ namespace LockstepSDK.Clients
         /// <summary>
         /// Queries Attachments for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
-        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Lockstep Developer website.
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
         ///
-        /// An Attachment is a file that can be attached to various account attributes within Lockstep. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
+        /// An Attachment is a file that can be attached to various account attributes within ADS Platform. Attachments can be used for invoices, bills, or any other external files that you wish to track and have access to. Attachments represents an Attachment and a number of different metadata attributes related to the creation, storage, and ownership of the Attachment.
         ///
         /// See [Extensibility](https://developer.lockstep.io/docs/extensibility) for more information.
         ///

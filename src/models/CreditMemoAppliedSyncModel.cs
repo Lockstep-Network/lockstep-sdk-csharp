@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,13 +21,13 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// The CreditMemoAppliedSyncModel represents information coming into Lockstep from an external financial system or
+    /// The CreditMemoAppliedSyncModel represents information coming into ADS from an external financial system or
     /// other enterprise resource planning system.  To import data from an external system, convert your original data
     /// into the CreditMemoAppliedSyncModel format and call the [Upload Sync File API](https://developer.lockstep.io/reference/post_api-v1-sync-zip).
-    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the Lockstep
-    /// platform.
+    /// This API retrieves all of the data you uploaded in a compressed ZIP file and imports it into the ADS
+    /// Platform.
     ///
-    /// Once imported, this record will be available in the Lockstep API as a [CreditMemoAppliedModel](https://developer.lockstep.io/docs/creditmemoappliedmodel).
+    /// Once imported, this record will be available in the ADS Platform API as a [CreditMemoAppliedModel](https://developer.lockstep.io/docs/creditmemoappliedmodel).
     ///
     /// For more information on writing your own connector, see [Connector Data](https://developer.lockstep.io/docs/connector-data).
     /// </summary>
@@ -38,6 +38,11 @@ namespace LockstepSDK.Models
         /// Indicates what action to take when an existing object has been found during the sync process.
         /// </summary>
         public int? OnMatchAction { get; set; }
+
+        /// <summary>
+        /// The unique identifier of this object in the Sage Network platform.
+        /// </summary>
+        public Guid? NetworkId { get; set; }
 
         /// <summary>
         /// This is the primary key of the Credit Memo Application record. For this field, you should use whatever this
@@ -59,6 +64,11 @@ namespace LockstepSDK.Models
         /// credit memo to reduce the balance of the invoice PO1000578.  The `InvoiceErpKey` is `PO1000578`.
         /// </summary>
         public string InvoiceErpKey { get; set; }
+
+        /// <summary>
+        /// The network id of the parent Invoice.
+        /// </summary>
+        public Guid? InvoiceNetworkId { get; set; }
 
         /// <summary>
         /// This field indicates which Invoice is the original credit memo that was used to make this payment

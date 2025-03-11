@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -21,19 +21,19 @@ namespace LockstepSDK.Models
 {
 
     /// <summary>
-    /// Represents a magic link that can be used to log in to a Lockstep application.
+    /// Represents a magic link that can be used to log in to a ADS Platform application.
     /// </summary>
     public class MagicLinkModel
     {
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
         /// </summary>
         public Guid? MagicLinkId { get; set; }
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         /// </summary>
         public Guid? GroupKey { get; set; }
@@ -89,11 +89,6 @@ namespace LockstepSDK.Models
         public Guid? CompanyId { get; set; }
 
         /// <summary>
-        /// The ID of the accounting profile associated to this magic link
-        /// </summary>
-        public Guid? AccountingProfileId { get; set; }
-
-        /// <summary>
         /// The created magic link URL. This will only be returned upon creation of the magic link.
         /// All other times, this value will be `null`.
         /// </summary>
@@ -114,5 +109,25 @@ namespace LockstepSDK.Models
         /// Possible statuses for a Magic Link.
         /// </summary>
         public int? Status { get; set; }
+
+        /// <summary>
+        /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the
+        /// `include` parameter when retrieving data.
+        ///
+        /// To create a note, use the [Create Note](https://developer.lockstep.io/reference/post_api-v1-notes)
+        /// endpoint with the `TableKey` to `MagicLink` and the `ObjectKey` set to the `MagicLinkId` for this record.  For
+        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// </summary>
+        public NoteModel[] Notes { get; set; }
+
+        /// <summary>
+        /// A collection of custom fields linked to this record.  To retrieve this collection, specify
+        /// `CustomFieldValues` in the `include` parameter when retrieving data.
+        ///
+        /// To create a custom field, use the [Create Custom Field](https://developer.lockstep.io/reference/post_api-v1-customfieldvalues)
+        /// endpoint with the `TableKey` to `MagicLink` and the `ObjectKey` set to the `MagicLinkId` for this record.  For
+        /// more information on extensibility, see [linking extensible metadata to objects](https://developer.lockstep.io/docs/custom-fields#linking-metadata-to-an-object).
+        /// </summary>
+        public CustomFieldValueModel[] CustomFieldValues { get; set; }
     }
 }

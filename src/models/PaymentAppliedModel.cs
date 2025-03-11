@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -30,7 +30,7 @@ namespace LockstepSDK.Models
     {
 
         /// <summary>
-        /// The GroupKey uniquely identifies a single Lockstep Platform account.  All records for this
+        /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
         /// For more information, see [Accounts and GroupKeys](https://developer.lockstep.io/docs/accounts-and-groupkeys).
@@ -38,8 +38,8 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
-        /// The unique ID of this record, automatically assigned by Lockstep when this record is
-        /// added to the Lockstep platform.
+        /// The unique ID of this record, automatically assigned by ADS Platform when this record is
+        /// added to the ADS Platform.
         ///
         /// For the ID of this record in its originating financial system, see `ErpKey`.
         /// </summary>
@@ -51,7 +51,12 @@ namespace LockstepSDK.Models
         public Guid? InvoiceId { get; set; }
 
         /// <summary>
-        /// The Payment applied to the invoice.
+        /// The refund Payment that funded the payment.
+        /// </summary>
+        public Guid? RefundId { get; set; }
+
+        /// <summary>
+        /// The Payment applied to the invoice or receiving funding from a refund.
         /// </summary>
         public Guid? PaymentId { get; set; }
 
@@ -67,14 +72,14 @@ namespace LockstepSDK.Models
         public string ErpKey { get; set; }
 
         /// <summary>
-        /// Possible statuses for a record that supports ERP write.
+        /// Possible statuses for a record that supports ERP Update.
         /// </summary>
-        public int? ErpWriteStatus { get; set; }
+        public int? ErpUpdateStatus { get; set; }
 
         /// <summary>
-        /// The name of the ErpWriteStatus for this payment application
+        /// Possible actions for a record that supports ERP Update.
         /// </summary>
-        public string ErpWriteStatusName { get; set; }
+        public int? ErpUpdateAction { get; set; }
 
         /// <summary>
         /// The entry number of this payment application.  This is often a journal entry number, confirmation code,
@@ -134,5 +139,10 @@ namespace LockstepSDK.Models
         /// The invoice associated with this applied payment.
         /// </summary>
         public InvoiceModel Invoice { get; set; }
+
+        /// <summary>
+        /// The refund payment associated with this applied payment
+        /// </summary>
+        public PaymentModel Refund { get; set; }
     }
 }

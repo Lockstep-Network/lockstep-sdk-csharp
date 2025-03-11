@@ -7,39 +7,33 @@
     public class LockstepEnv
     {
         /// <summary>
-        /// Production environment - https://api.lockstep.io
+        /// Development environment
         /// </summary>
-        public static string PRD = "prd";
+        public const string Dev = "dev";
 
         /// <summary>
-        /// Sandbox environment - https://api.sbx.lockstep.io
+        /// QA environment
         /// </summary>
-        public static string SBX = "sbx";
-    }
+        public const string QA = "qa";
 
-    /// <summary>
-    /// The different depths of describing an account. See the Financial Account Model for possible values for each depth
-    /// </summary>
-    public enum ReportDepth
-    {
         /// <summary>
-        /// the classification of the account
+        /// INT environment
         /// </summary>
-        Classification = 0,
-        
+        public const string INT = "int";
+
         /// <summary>
-        /// the category of the account
+        /// PreProd environment
         /// </summary>
-        Category = 1,
-        
+        public const string PreProd = "preprod";
+
         /// <summary>
-        /// the subcategory of the account
+        /// Production environment
         /// </summary>
-        Subcategory = 2,
-        
+        public const string Production = "prd";
+
         /// <summary>
-        /// the account
+        /// Sandbox environment
         /// </summary>
-        Account = 3
+        public const string Sandbox = "sbx";
     }
 }

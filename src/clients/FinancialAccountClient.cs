@@ -1,13 +1,13 @@
 /***
  * Lockstep Platform SDK for C#
  *
- * (c) 2021-2023 Lockstep, Inc.
+ * (c) 2021-2025 Lockstep, Inc.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
  * @author     Lockstep Network <support@lockstep.io>
- * @copyright  2021-2023 Lockstep, Inc.
+ * @copyright  2021-2025 Lockstep, Inc.
  * @link       https://github.com/Lockstep-Network/lockstep-sdk-csharp
  */
 
@@ -52,7 +52,7 @@ namespace LockstepSDK.Clients
         /// Retrieves the financial account specified by this unique identifier.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of this Account; NOT the customer's ERP key</param>
+        /// <param name="id">The unique ADS Platform ID number of this Account; NOT the customer's ERP key</param>
         public async Task<LockstepResponse<FinancialAccountModel>> RetrieveFinancialAccount(Guid id)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
@@ -63,7 +63,7 @@ namespace LockstepSDK.Clients
         ///
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Account to update; NOT the customer's ERP key</param>
+        /// <param name="id">The unique ADS Platform ID number of the Account to update; NOT the customer's ERP key</param>
         /// <param name="body">A list of changes to apply to this Account</param>
         public async Task<LockstepResponse<FinancialAccountModel>> UpdateFinancialAccount(Guid id, object body)
         {
@@ -75,7 +75,7 @@ namespace LockstepSDK.Clients
         /// Deletes the Financial Account referred to by this unique identifier.
         ///
         /// </summary>
-        /// <param name="id">The unique Lockstep Platform ID number of the Financial Account to disable; NOT the customer's ERP key</param>
+        /// <param name="id">The unique ADS Platform ID number of the Financial Account to disable; NOT the customer's ERP key</param>
         public async Task<LockstepResponse<ActionResultModel>> DeleteFinancialAccount(Guid id)
         {
             var url = $"/api/v1/FinancialAccount/{id}";
