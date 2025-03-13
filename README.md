@@ -14,7 +14,7 @@ We use the [Query Invoices API](https://developer.lockstep.io/reference/v1_invoi
 
 ### Step 1: Install Lockstep SDK for C#
 
-Before you start, make sure you [generated a valid API key](https://developer.lockstep.io/docs/api-keys) and saved it as an environment variable in your system (referred to as `LOCKSTEPAPI_SBX` in this example). That way, you'll have access to the server.
+Before you start, make sure you [generated a valid API key](https://developer.lockstep.io/docs/api-keys) and saved it as an environment variable in your system (referred to as `LOCKSTEPAPI_SANDBOX` in this example). That way, you'll have access to the server.
 
 Create a new project folder with an empty `Program.cs` file inside it and add the SDK to your project:
 
@@ -42,15 +42,15 @@ namespace LockstepExamples
     {
         public static async Task Main(string[] args)
         {
-            var client = LockstepApi.WithEnvironment(LockstepEnv.SBX)
-                .WithApiKey(Environment.GetEnvironmentVariable("LOCKSTEPAPI_SBX"));
+            var client = LockstepApi.WithEnvironment(LockstepEnv.Sandbox)
+                .WithApiKey(Environment.GetEnvironmentVariable("LOCKSTEPAPI_SANDBOX"));
 
             // Test first API call
             var result = await client.Status.Ping();
             if (!result.Success || !result.Value.LoggedIn)
             {
                 Console.WriteLine("Your API key is not valid.");
-                Console.WriteLine("Please set the environment variable LOCKSTEPAPI_SBX and try again.");
+                Console.WriteLine("Please set the environment variable LOCKSTEPAPI_SANDBOX and try again.");
                 return;
             }
 

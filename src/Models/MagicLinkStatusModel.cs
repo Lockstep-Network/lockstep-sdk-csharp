@@ -42,6 +42,12 @@ namespace LockstepSDK.Models
         public Guid? CompanyId { get; set; }
 
         /// <summary>
+        /// The id of the accounting profile for the Magic Link
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? AccountingProfileId { get; set; }
+
+        /// <summary>
         /// The UTC date and time when this magic link expires.
         /// </summary>
         public DateTime? Expires { get; set; }

@@ -43,6 +43,12 @@ namespace LockstepSDK.Models
         public string Description { get; set; }
 
         /// <summary>
+        /// The prior workflow status ID.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? ParentWorkflowStatusId { get; set; }
+
+        /// <summary>
         /// The category of the workflow status.
         /// </summary>
         public string Category { get; set; }

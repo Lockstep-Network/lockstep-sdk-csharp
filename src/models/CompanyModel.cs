@@ -70,6 +70,22 @@ namespace LockstepSDK.Models
         public string CompanyType { get; set; }
 
         /// <summary>
+        /// If this business entity is part of an organization, this value is non-null and it is set
+        /// to the `CompanyId` value of the parent company of this business entity.
+        ///
+        /// If this value is null, this business entity is a standalone.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? ParentCompanyId { get; set; }
+
+        /// <summary>
+        /// For convenience, this field indicates the top-level parent company.  This can be used
+        /// to jump directly to the top parent in complex organizational hierarchies.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? EnterpriseId { get; set; }
+
+        /// <summary>
         /// The GroupKey uniquely identifies a single ADS Platform account.  All records for this
         /// account will share the same GroupKey value.  GroupKey values cannot be changed once created.
         ///
@@ -92,9 +108,87 @@ namespace LockstepSDK.Models
         public string DefaultCurrencyCode { get; set; }
 
         /// <summary>
+        /// The URL of this company&#39;s logo, if known.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string CompanyLogoUrl { get; set; }
+
+        /// <summary>
+        /// The scan status of the company&#39;s logo, if it exists
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string CompanyLogoStatus { get; set; }
+
+        /// <summary>
         /// The ADS Platform `ContactId` of the primary contact for this company.
         /// </summary>
         public Guid? PrimaryContactId { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address1 { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address2 { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address3 { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address4 { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string City { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StateRegion { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// Address info
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Country { get; set; }
+
+        /// <summary>
+        /// Time zone
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string TimeZone { get; set; }
+
+        /// <summary>
+        /// Phone number
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Fax number
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string FaxNumber { get; set; }
 
         /// <summary>
         /// The date this company was created
@@ -117,6 +211,50 @@ namespace LockstepSDK.Models
         public Guid? ModifiedUserId { get; set; }
 
         /// <summary>
+        /// Federal Tax ID
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string TaxId { get; set; }
+
+        /// <summary>
+        /// Dun &amp; Bradstreet Number
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string DunsNumber { get; set; }
+
+        /// <summary>
+        /// Indicates the preferred invoice delivery method. Examples include Print, Email, Fax
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string PreferredDeliveryMethod { get; set; }
+
+        /// <summary>
+        /// For companies that use a custom domain name for their email system, this is
+        /// the domain name used by this company.  If this value is known, new emails that
+        /// come in from this domain will be connected to this company.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string DomainName { get; set; }
+
+        /// <summary>
+        /// Identifier for classification of this company.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? CompanyClassificationCodeDefId { get; set; }
+
+        /// <summary>
+        /// Description of the company.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Website URL for this company.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Website { get; set; }
+
+        /// <summary>
         /// The AppEnrollmentId of the application that imported this record.  For accounts
         /// with more than one financial system connected, this field identifies the originating
         /// financial system that produced this record.  This value is null if this record
@@ -130,6 +268,54 @@ namespace LockstepSDK.Models
         public string EmailAddress { get; set; }
 
         /// <summary>
+        /// The public url slug for the Company.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string PublicUrlSlug { get; set; }
+
+        /// <summary>
+        /// Indicates if the primary contact has been set by the user.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public bool? PrimaryContactSet { get; set; }
+
+        /// <summary>
+        /// State Tax ID
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StateTaxId { get; set; }
+
+        /// <summary>
+        /// The state where the company was registered.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StateOfIncorporation { get; set; }
+
+        /// <summary>
+        /// Linkedin Url
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string LinkedInUrlSlug { get; set; }
+
+        /// <summary>
+        /// This flag indicates whether the company is verified.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public bool? IsVerified { get; set; }
+
+        /// <summary>
+        /// The date this company was last verified.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public DateTime? LastVerifiedDate { get; set; }
+
+        /// <summary>
+        /// View box settings for the company logo.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public ViewBoxSettingsModel ViewBoxSettings { get; set; }
+
+        /// <summary>
         /// The unique ID of the Service Fabric organisation to which this record belongs.
         /// </summary>
         public Guid? ServiceFabricOrgId { get; set; }
@@ -138,6 +324,24 @@ namespace LockstepSDK.Models
         /// The unique ID of this record within Service Fabric.
         /// </summary>
         public Guid? ServiceFabricCompanyId { get; set; }
+
+        /// <summary>
+        /// A unique identification number assigned to the company by the national registration office.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string CompanyRegistrationNumber { get; set; }
+
+        /// <summary>
+        /// An optional reference to a real company, making this a profile.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? ProfileReferenceId { get; set; }
+
+        /// <summary>
+        /// Company identifiers for this company.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public CompanyIdentifierModel[] CompanyIdentifiers { get; set; }
 
         /// <summary>
         /// A collection of notes linked to this record.  To retrieve this collection, specify `Notes` in the

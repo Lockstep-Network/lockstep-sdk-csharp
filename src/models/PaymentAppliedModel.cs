@@ -144,5 +144,11 @@ namespace LockstepSDK.Models
         /// The refund payment associated with this applied payment
         /// </summary>
         public PaymentModel Refund { get; set; }
+
+        /// <summary>
+        /// Additional attributes that may be required by the source system.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public object ErpSystemAttributes { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 <package >
 	<metadata>
 		<id>LockstepSdk</id>
-		<version>2025.8.6</version>
+		<version>2025.8.7</version>
 		<title>LockstepSdk</title>
 		<authors>Lockstep Network</authors>
 		<owners>Lockstep, Inc.</owners>
@@ -14,7 +14,7 @@
 		<readme>docs/README.md</readme>
 		<summary>Lockstep Platform SDK for CSharp</summary>
 		<releaseNotes>
-            # 2025.8.6
+            # 2025.8.7
         
             For full patch notes see [Patch Notes](https://medium.com/lockstep-developer/tagged/patch-notes) on the [Lockstep Developer website](https://developer.lockstep.io)
         </releaseNotes>

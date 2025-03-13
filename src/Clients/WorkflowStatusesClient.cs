@@ -54,6 +54,22 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
+        /// Creates one or more Workflow Statuses from a given model.
+        ///
+        /// Custom WorkflowStatuses will not be supported in the future. Please use predefined WorkflowStatuses.
+        ///
+        /// A Workflow Status represents the state for a specific workflow for an entity. A Workflow Status may be generic for common use cases or specific to a set of predefined statuses.
+        ///
+        /// </summary>
+        /// <param name="body">The Workflow Statuses to create</param>
+        [Obsolete("This endpoint is deprecated.")]
+        public async Task<LockstepResponse<WorkflowStatusModel[]>> CreateWorkflowStatuses(WorkflowStatusModel[] body)
+        {
+            var url = $"/api/v1/workflow-statuses";
+            return await _client.Request<WorkflowStatusModel[]>(HttpMethod.Post, url, null, body, null);
+        }
+
+        /// <summary>
         /// Queries Workflow Statuses using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
         /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the Accounting Data Services Developer website.
