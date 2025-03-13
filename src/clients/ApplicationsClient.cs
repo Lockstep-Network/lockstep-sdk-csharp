@@ -56,6 +56,57 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
+        /// Updates an existing Application with the information supplied to this PATCH call.
+        ///
+        /// The PATCH method allows you to change specific values on the object while leaving other values alone.  As input you should supply a list of field names and new values.  For example, you can provide the field name &quot;IsActive&quot; and specify the new value &quot;False&quot;; this API will then change the value of IsActive to false.
+        ///
+        /// An Application represents a feature available to customers within the ADS Platform.  You can create Applications by working with your ADS Platform business development manager and publish them on the platform so that customers can browse and find your Application on the ADS Platform Marketplace.  When a customer adds an Application to their account, they obtain an AppEnrollment which represents that customer&#39;s instance of this Application.  The customer-specific AppEnrollment contains a customer&#39;s configuration data for the Application, which is not customer-specific.
+        ///
+        /// See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
+        ///
+        /// </summary>
+        /// <param name="id">The unique ID number of the Application to update</param>
+        /// <param name="body">A list of changes to apply to this Application</param>
+        [Obsolete("This endpoint is deprecated.")]
+        public async Task<LockstepResponse<ApplicationModel>> UpdateApplication(Guid id, object body)
+        {
+            var url = $"/api/v1/Applications/{id}";
+            return await _client.Request<ApplicationModel>(new HttpMethod("PATCH"), url, null, body, null);
+        }
+
+        /// <summary>
+        /// Deletes the Application referred to by this unique identifier.  Information about this Application is retained but after the DELETE call, this Application is no longer available for use on the ADS Platform.
+        ///
+        /// An Application represents a feature available to customers within the ADS Platform.  You can create Applications by working with your ADS Platform business development manager and publish them on the platform so that customers can browse and find your Application on the ADS Platform Marketplace.  When a customer adds an Application to their account, they obtain an AppEnrollment which represents that customer&#39;s instance of this Application.  The customer-specific AppEnrollment contains a customer&#39;s configuration data for the Application, which is not customer-specific.
+        ///
+        /// See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
+        ///
+        /// </summary>
+        /// <param name="id">The unique ID number of the Application to delete</param>
+        [Obsolete("This endpoint is deprecated.")]
+        public async Task<LockstepResponse<ActionResultModel>> DeleteApplication(Guid id)
+        {
+            var url = $"/api/v1/Applications/{id}";
+            return await _client.Request<ActionResultModel>(HttpMethod.Delete, url, null, null, null);
+        }
+
+        /// <summary>
+        /// Creates one or more Applications and returns the records as created.  Applications are universal and available across all accounts.
+        ///
+        /// An Application represents a feature available to customers within the ADS Platform.  You can create Applications by working with your ADS Platform business development manager and publish them on the platform so that customers can browse and find your Application on the ADS Platform Marketplace.  When a customer adds an Application to their account, they obtain an AppEnrollment which represents that customer&#39;s instance of this Application.  The customer-specific AppEnrollment contains a customer&#39;s configuration data for the Application, which is not customer-specific.
+        ///
+        /// See [Applications and Enrollments](https://developer.lockstep.io/docs/applications-and-enrollments) for more information.
+        ///
+        /// </summary>
+        /// <param name="body">The Applications to create</param>
+        [Obsolete("This endpoint is deprecated.")]
+        public async Task<LockstepResponse<ApplicationModel[]>> CreateApplications(ApplicationModel[] body)
+        {
+            var url = $"/api/v1/Applications";
+            return await _client.Request<ApplicationModel[]>(HttpMethod.Post, url, null, body, null);
+        }
+
+        /// <summary>
         /// Queries Applications on the ADS Platform using the specified filtering, sorting, nested fetch, and pagination rules requested.
         ///
         /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.

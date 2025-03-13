@@ -118,6 +118,26 @@ namespace LockstepSDK.Models
         public string InvoiceTypeCode { get; set; }
 
         /// <summary>
+        /// The date stamp for the newest Activity on this Invoice.
+        ///
+        /// This is a date-only field stored as a string in ISO 8601 (YYYY-MM-DD) format.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string NewestActivity { get; set; }
+
+        /// <summary>
+        /// The number of days this Invoice is past due.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public int? DaysPastDue { get; set; }
+
+        /// <summary>
+        /// The number of payments associated to this invoice.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public int? PaymentCount { get; set; }
+
+        /// <summary>
         /// Specific invoices have support for pdf retrieval from their respective erp. When this flag is true, an additional
         /// call to Invoices/{id}/pdf can be made to retrieve a pdf directly from the erp.
         /// </summary>

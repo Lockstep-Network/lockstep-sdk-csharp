@@ -40,6 +40,13 @@ namespace LockstepSDK.Models
         public Guid? GroupKey { get; set; }
 
         /// <summary>
+        /// The unique ID of this record, automatically assigned by ADS when this record is
+        /// added to the ADS Platform.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? CustomFieldDefinitionId { get; set; }
+
+        /// <summary>
         /// Additional key if source table doesn&#39;t have a unique id
         /// </summary>
         public Guid? RecordKey { get; set; }
@@ -58,6 +65,18 @@ namespace LockstepSDK.Models
         /// Data type of this definition
         /// </summary>
         public string DataType { get; set; }
+
+        /// <summary>
+        /// String of data for field
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StringValue { get; set; }
+
+        /// <summary>
+        /// Number data for field
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public decimal? NumericValue { get; set; }
 
         /// <summary>
         /// Date created

@@ -189,6 +189,32 @@ namespace LockstepSDK.Clients
         }
 
         /// <summary>
+        /// Queries Invoices for this account using the specified filtering, sorting, nested fetch, and pagination rules requested.  Display the results using the Invoice Summary View format.
+        ///
+        /// More information on querying can be found on the [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight) page on the ADS Platform Developer website.
+        ///
+        /// The Invoice Summary View represents a slightly different view of the data and includes some extra fields that might be useful.  For more information, see the data format of the Invoice Summary Model.
+        ///
+        /// </summary>
+        /// <param name="filter">The filter for this query. See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="include">To fetch additional data on this object, specify the list of elements to retrieve. Available collections: Summary, Aging</param>
+        /// <param name="order">The sort order for this query. See See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageSize">The page size for results (default 250, maximum of 500). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        /// <param name="pageNumber">The page number for results (default 0). See [Searchlight Query Language](https://developer.lockstep.io/docs/querying-with-searchlight)</param>
+        [Obsolete("This endpoint is deprecated.")]
+        public async Task<LockstepResponse<InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult>> QueryInvoiceSummaryView(string filter = null, string include = null, string order = null, int? pageSize = null, int? pageNumber = null)
+        {
+            var url = $"/api/v1/Invoices/views/summary";
+            var options = new Dictionary<string, object>();
+            if (filter != null) { options["filter"] = filter; }
+            if (include != null) { options["include"] = include; }
+            if (order != null) { options["order"] = order; }
+            if (pageSize != null) { options["pageSize"] = pageSize; }
+            if (pageNumber != null) { options["pageNumber"] = pageNumber; }
+            return await _client.Request<InvoiceSummaryModelInvoiceSummaryTotalsModelSummaryFetchResult>(HttpMethod.Get, url, options, null, null);
+        }
+
+        /// <summary>
         /// Posts a notification to Document Flow Service to send the specified e-invoice.
         ///
         /// </summary>

@@ -135,6 +135,12 @@ namespace LockstepSDK.Models
         public DateTime? SourceModifiedDate { get; set; }
 
         /// <summary>
+        /// Additional attributes that may be required by the source system.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public object ErpSystemAttributes { get; set; }
+
+        /// <summary>
         /// A collection of attachments linked to this record.  To retrieve this collection, specify `Attachments` in
         /// the `include` parameter when retrieving data.
         ///

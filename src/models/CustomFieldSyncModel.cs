@@ -81,6 +81,18 @@ namespace LockstepSDK.Models
         public string CustomFieldLabel { get; set; }
 
         /// <summary>
+        /// The value of this custom field, if it is stored in string format.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StringValue { get; set; }
+
+        /// <summary>
+        /// The value of this custom field, if it is stored in numeric format.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public decimal? NumericValue { get; set; }
+
+        /// <summary>
         /// The value of this custom field.
         /// </summary>
         public string Value { get; set; }

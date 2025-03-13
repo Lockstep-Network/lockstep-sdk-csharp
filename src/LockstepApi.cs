@@ -65,6 +65,11 @@ namespace LockstepSDK
         public ApplicationsClient Applications { get; }
 
         /// <summary>
+        /// API methods related to AttachmentLinks
+        /// </summary>
+        public AttachmentLinksClient AttachmentLinks { get; }
+
+        /// <summary>
         /// API methods related to Attachments
         /// </summary>
         public AttachmentsClient Attachments { get; }
@@ -105,6 +110,11 @@ namespace LockstepSDK
         public DefinitionsClient Definitions { get; }
 
         /// <summary>
+        /// API methods related to FeatureFlags
+        /// </summary>
+        public FeatureFlagsClient FeatureFlags { get; }
+
+        /// <summary>
         /// API methods related to FinancialAccount
         /// </summary>
         public FinancialAccountClient FinancialAccount { get; }
@@ -115,9 +125,19 @@ namespace LockstepSDK
         public FinancialAccountBalanceHistoryClient FinancialAccountBalanceHistory { get; }
 
         /// <summary>
+        /// API methods related to FinancialInstitutionAccounts
+        /// </summary>
+        public FinancialInstitutionAccountsClient FinancialInstitutionAccounts { get; }
+
+        /// <summary>
         /// API methods related to FinancialYearSettings
         /// </summary>
         public FinancialYearSettingsClient FinancialYearSettings { get; }
+
+        /// <summary>
+        /// API methods related to GroupAccounts
+        /// </summary>
+        public GroupAccountsClient GroupAccounts { get; }
 
         /// <summary>
         /// API methods related to InvoiceAddresses
@@ -155,6 +175,11 @@ namespace LockstepSDK
         public PaymentsAppliedClient PaymentsApplied { get; }
 
         /// <summary>
+        /// API methods related to Provisioning
+        /// </summary>
+        public ProvisioningClient Provisioning { get; }
+
+        /// <summary>
         /// API methods related to Reports
         /// </summary>
         public ReportsClient Reports { get; }
@@ -173,6 +198,11 @@ namespace LockstepSDK
         /// API methods related to Transactions
         /// </summary>
         public TransactionsClient Transactions { get; }
+
+        /// <summary>
+        /// API methods related to UserAccounts
+        /// </summary>
+        public UserAccountsClient UserAccounts { get; }
 
         /// <summary>
         /// API methods related to UserRoles
@@ -214,6 +244,7 @@ namespace LockstepSDK
             ApiKeys = new ApiKeysClient(this);
             AppEnrollments = new AppEnrollmentsClient(this);
             Applications = new ApplicationsClient(this);
+            AttachmentLinks = new AttachmentLinksClient(this);
             Attachments = new AttachmentsClient(this);
             CodeDefinitions = new CodeDefinitionsClient(this);
             Companies = new CompaniesClient(this);
@@ -222,9 +253,12 @@ namespace LockstepSDK
             CustomFieldDefinitions = new CustomFieldDefinitionsClient(this);
             CustomFieldValues = new CustomFieldValuesClient(this);
             Definitions = new DefinitionsClient(this);
+            FeatureFlags = new FeatureFlagsClient(this);
             FinancialAccount = new FinancialAccountClient(this);
             FinancialAccountBalanceHistory = new FinancialAccountBalanceHistoryClient(this);
+            FinancialInstitutionAccounts = new FinancialInstitutionAccountsClient(this);
             FinancialYearSettings = new FinancialYearSettingsClient(this);
+            GroupAccounts = new GroupAccountsClient(this);
             InvoiceAddresses = new InvoiceAddressesClient(this);
             InvoiceLines = new InvoiceLinesClient(this);
             Invoices = new InvoicesClient(this);
@@ -232,10 +266,12 @@ namespace LockstepSDK
             Notes = new NotesClient(this);
             Payments = new PaymentsClient(this);
             PaymentsApplied = new PaymentsAppliedClient(this);
+            Provisioning = new ProvisioningClient(this);
             Reports = new ReportsClient(this);
             Status = new StatusClient(this);
             Sync = new SyncClient(this);
             Transactions = new TransactionsClient(this);
+            UserAccounts = new UserAccountsClient(this);
             UserRoles = new UserRolesClient(this);
             WebhookRules = new WebhookRulesClient(this);
             Webhooks = new WebhooksClient(this);

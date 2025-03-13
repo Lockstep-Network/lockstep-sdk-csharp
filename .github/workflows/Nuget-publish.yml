@@ -26,7 +26,7 @@ jobs:
         run: dotnet build -c Release
 
       - name: Run Nuget pack
-        run: dotnet pack -c Release --output artifacts
+        run: dotnet pack -c Release -p:Nuspecfile=../LockstepApi.nuspec --output artifacts
 
       - name: Upload Nuget package as artifact
         uses: actions/upload-artifact@v4
@@ -38,4 +38,4 @@ jobs:
 
       - name: Push generated package to GitHub registry
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: nuget push *.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+        run: dotnet nuget push artifacts/*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}

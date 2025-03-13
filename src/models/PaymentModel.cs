@@ -231,6 +231,12 @@ namespace LockstepSDK.Models
         public string FinancialAccountCode { get; set; }
 
         /// <summary>
+        /// Additional attributes that may be required by the source system.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public object ErpSystemAttributes { get; set; }
+
+        /// <summary>
         /// All applications this payment is associated with.
         /// To retrieve this collection, specify `Applications` in the &quot;Include&quot; parameter for your query.
         /// </summary>

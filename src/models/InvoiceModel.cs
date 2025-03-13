@@ -456,6 +456,12 @@ namespace LockstepSDK.Models
         public bool? IsEInvoice { get; set; }
 
         /// <summary>
+        /// Additional attributes that may be required by the source system.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public object ErpSystemAttributes { get; set; }
+
+        /// <summary>
         /// The tax information related to the invoice
         /// </summary>
         public TaxSummaryModel[] TaxSummary { get; set; }

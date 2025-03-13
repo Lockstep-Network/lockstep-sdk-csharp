@@ -89,6 +89,12 @@ namespace LockstepSDK.Models
         public Guid? CompanyId { get; set; }
 
         /// <summary>
+        /// The ID of the accounting profile associated to this magic link
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? AccountingProfileId { get; set; }
+
+        /// <summary>
         /// The created magic link URL. This will only be returned upon creation of the magic link.
         /// All other times, this value will be `null`.
         /// </summary>

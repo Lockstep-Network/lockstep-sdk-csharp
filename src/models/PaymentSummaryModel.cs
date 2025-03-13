@@ -97,6 +97,13 @@ namespace LockstepSDK.Models
         public decimal? BaseCurrencyUnappliedAmount { get; set; }
 
         /// <summary>
+        /// True if this payment includes some unassigned amount that has not yet been applied to an invoice.  If this
+        /// value is true, the field `UnappliedAmount` will be nonzero.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public bool? IsOpen { get; set; }
+
+        /// <summary>
         /// The number of invoices associated to this payment.
         /// </summary>
         public int? InvoiceCount { get; set; }
@@ -131,6 +138,30 @@ namespace LockstepSDK.Models
         /// call to Payments/{id}/pdf can be made to retrieve a pdf directly from the erp.
         /// </summary>
         public bool? SupportsErpPdfRetrieval { get; set; }
+
+        /// <summary>
+        /// The ids of the customer for the associated invoices.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid[] CustomerIds { get; set; }
+
+        /// <summary>
+        /// The names of the customer for the associated invoices.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string[] CustomerNames { get; set; }
+
+        /// <summary>
+        /// The ids of the company for the associated invoices.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid[] CompanyIds { get; set; }
+
+        /// <summary>
+        /// The names of the company for the associated invoices.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string[] CompanyNames { get; set; }
 
         /// <summary>
         /// The modified date of the payment

@@ -37,6 +37,18 @@ namespace LockstepSDK.Models
         public string EmailAddress { get; set; }
 
         /// <summary>
+        /// If authentication is successful, contains subscription account name of logged-in user.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string AccountName { get; set; }
+
+        /// <summary>
+        /// If authentication is successful, contains subscription account company id of logged-in user.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? AccountCompanyId { get; set; }
+
+        /// <summary>
         /// If authentication is successful, contains the unique identifier of the logged-in user.
         /// </summary>
         public Guid? UserId { get; set; }
@@ -85,6 +97,36 @@ namespace LockstepSDK.Models
         /// The version currently being used
         /// </summary>
         public string Version { get; set; }
+
+        /// <summary>
+        /// If authentication is successful, contains the onboarding session status of the logged-in user&#39;s group account.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public bool? OnboardingScheduled { get; set; }
+
+        /// <summary>
+        /// Base Currency of the group
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string BaseCurrencyCode { get; set; }
+
+        /// <summary>
+        /// Country code of the group
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string CountryCode { get; set; }
+
+        /// <summary>
+        /// The id of the Magic link used to authenticate.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? MagicLinkId { get; set; }
+
+        /// <summary>
+        /// The id of the target company for the Magic Link
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public Guid? MagicLinkCompanyId { get; set; }
 
         /// <summary>
         /// Magic link information about the user

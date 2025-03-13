@@ -75,6 +75,18 @@ namespace LockstepSDK.Models
         public int? SortOrder { get; set; }
 
         /// <summary>
+        /// String of data for field
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StringValue { get; set; }
+
+        /// <summary>
+        /// Number data for field
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public decimal? NumericValue { get; set; }
+
+        /// <summary>
         /// Value for the field
         /// </summary>
         public string Value { get; set; }

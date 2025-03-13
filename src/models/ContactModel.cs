@@ -67,14 +67,110 @@ namespace LockstepSDK.Models
         public string ContactName { get; set; }
 
         /// <summary>
+        /// A friendly human-readable code that describes this Contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string ContactCode { get; set; }
+
+        /// <summary>
+        /// The title of the contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Title { get; set; }
+
+        /// <summary>
+        /// The role code for the contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string RoleCode { get; set; }
+
+        /// <summary>
         /// The email address of the contact.
         /// </summary>
         public string EmailAddress { get; set; }
 
         /// <summary>
+        /// The phone number of the contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Phone { get; set; }
+
+        /// <summary>
+        /// The fax number of the contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Fax { get; set; }
+
+        /// <summary>
+        /// The IETF language tag for the contact&#39;s locale.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Locale { get; set; }
+
+        /// <summary>
+        /// The first line of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address1 { get; set; }
+
+        /// <summary>
+        /// The second line of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address2 { get; set; }
+
+        /// <summary>
+        /// The third line of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address3 { get; set; }
+
+        /// <summary>
+        /// The fourth line of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string Address4 { get; set; }
+
+        /// <summary>
+        /// The city of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string City { get; set; }
+
+        /// <summary>
+        /// The state/region of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string StateRegion { get; set; }
+
+        /// <summary>
+        /// The postal/zip code of the address.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// The two character country code of the address. This will be validated by the /api/v1/definitions/countries data set
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string CountryCode { get; set; }
+
+        /// <summary>
         /// Flag indicating if the contact is active.
         /// </summary>
         public bool? IsActive { get; set; }
+
+        /// <summary>
+        /// The webpage url of the contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string WebpageUrl { get; set; }
+
+        /// <summary>
+        /// The picture/avatar url of the contact.
+        /// </summary>
+        [Obsolete("This field is deprecated.")]
+        public string PictureUrl { get; set; }
 
         /// <summary>
         /// The date on which this record was created.
